@@ -1,0 +1,402 @@
+body {
+    background-color: #F4F6F8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.column-nav {
+    float: left;
+    width: 20%;
+    padding: 20px 0px;
+    height: 100vh; /* Should be removed. Only for demonstration */
+    background-color: #1f79ba;
+    min-width: 200px;
+}
+
+.right-col-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: center;
+    align-items: flex-start;
+    min-width: 100%;
+    height: 100vh;
+}
+
+.navbar-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 20px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #F0F9FF;
+    min-width: 100%;
+
+}
+
+.nabbar-hamburger {
+    width: 30px;
+    height: 30px;
+    max-height: 30px;
+    max-width: 30px;
+
+}
+
+.nabbar-hamburger:hover {
+    width: 30px;
+    height: 30px;
+    max-height: 30px;
+    max-width: 30px;
+    cursor: pointer;
+    opacity: 40%;
+
+}
+
+.sidebar-top-image {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.sidebar-link-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.sidebar-title {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 20px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    }
+
+
+.column {
+    float: left;
+    width: 80%;
+    padding: 10px;
+    background-color: #F4F6F8;
+    height: 100vh;
+
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column-video {
+  float: left;
+  padding: 10px;
+}
+
+.video-left {
+    margin: auto;
+    width: 75%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+
+}
+
+.video-right {
+    width: 25%;
+    height: 100%;
+    max-width: 300px;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+    height: 100%;
+}
+
+
+.row {
+    height: 100%;
+}
+
+/* Clear floats after the columns */
+.row.right {
+padding-left: 20px;
+}
+
+
+.left-col-container {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* TRANSACTIONS */
+.left-col-container.transaction {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.transaction-title {
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+}
+
+.transaction-title.amount {
+    color: red;
+}
+
+.transaction-right-container {
+    display: flex;
+    align-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+.transacton-left-container {
+    display: flex;
+    align-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+}
+
+
+
+.left-col-container.goals {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.left-col-container.dashboard {
+    margin: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.container-title {
+    padding: 0px;
+    margin: 0px;
+}
+
+.container-header-goals {
+    padding: 0px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.goal-title {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.transactions-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* First Job */
+
+.left-col-video {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.right-colum-video {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+
+.button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.bottom-btn-wrapper {
+    padding: 20px;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+      display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+}
+
+
+.back-btn {
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #1f79ba;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1f79ba;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+.next-btn {
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  border-color: #1f79ba;
+  background-color: #1f79ba;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+.progress-input {
+  display: none;
+}
+
+.video-title-banner{
+    background-color: #1f79ba;
+    color: white;
+    padding: 20px;
+}
+
+.video-title-text {
+    padding: 0px;
+    margin: 0px;
+}
+
+.alert-page-wrapper {
+    padding: 0px;
+    margin: 0px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #505050;
+}
+
+.alert-page-container {
+    background-color: white;
+    width: auto;
+    padding: 40px;
+    margin-top: 60px;
+
+}
+
+.alert-box-title {
+    color: #1f79ba;
+    font-weight: bold;
+    font-size: 36px;
+    font-family: Poppins;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.alert-box-text {
+    color: #142450;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: Poppins;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+

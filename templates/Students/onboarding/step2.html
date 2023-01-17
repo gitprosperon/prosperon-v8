@@ -1,0 +1,25 @@
+{% extends 'Students/onboarding/base.html' %}
+
+{% block content %}
+<body class="body-background">
+    <div class="onboarding-container">
+        <div class="header-container">
+            <h1 class="onboarding-title-header">Thank you for being here</h1>
+            <h1 class="onboarding-subheader">Fill out the forms to sign up</h1>
+        </div>
+    <div class="video-container">
+        <iframe class="video" src="https://www.youtube.com/embed/gFqzg0IZlo4?rel=0" frameborder="0" allow="autoplay"> </iframe>
+    </div>
+  </div>
+    <div class="button-container">
+        <form method="post">
+        {% csrf_token %}
+            <div class="button-wrapper">
+                <a href="{% url 'Students:onboarding-step1' %}" class="back-btn">Back</a>
+                <input type="text" value="2" class="progress-input" name="progress">
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+  </div>
+</body>
+{% endblock %}

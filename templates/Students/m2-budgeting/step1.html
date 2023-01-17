@@ -1,0 +1,28 @@
+{% extends 'Students/base.html' %}
+{% load static %}
+{% block stylesheets %}
+    <link href="{% static 'students/m2/style.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="spending-profile-heading-container">
+    <h1 class="spending-profile-main-heading">Spending Profile (1/3)</h1>
+    <h1 class="spending-profile-subheading">Answer these questions to help generate your spending habits</h1>
+  </div>
+
+{% endblock %}
+
+{% block buttons %}
+
+     <form method="post" style="width: 100%; padding:20px">
+        {% csrf_token %}
+            <div class="bottom-btn-wrapper" style="width: 100%; padding: 0px">
+                <a href="{% url 'Students:universal-video-page' '5' %}" class="back-btn">Back</a>
+                <input type="text" value="2" class="progress-input" name="progress">
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'Students/base.html' %}
+{% load static %}
+{% block stylesheets %}
+    <link href="{% static 'students/css/style.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="video-title-banner">
+    <h3 class="video-title-text">{{ video.title }}</h3>
+</div>
+
+<div class="column-video video-left">
+    <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" width="100%" height="100%" style="padding:20px"></iframe>
+</div>
+
+<div class="column-video video-right">Notes</div>
+
+
+
+{% endblock %}
+
+{% block buttons %}
+        <form method="post" style="width: 100%">
+        {% csrf_token %}
+            <div class="bottom-btn-wrapper" style="width: 100%;">
+                <a href="../../{{ video.back_button }}" class="back-btn">Back</a>
+                <input type="text" value="{{ video.progress }}" class="progress-input" name="progress">
+                <input type="hidden" id="custId" name="next-button" value="{{ video.next_button }}">
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+{% endblock %}
+

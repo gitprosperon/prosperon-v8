@@ -1,0 +1,124 @@
+{% extends 'Budget/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="full-page-wrapper">
+    <div class="section-container">
+      <div class="page-title-blue">
+        <div>
+          <h1 class="heading-4">Transactions</h1>
+        </div>
+        <div class="month-selector-wrapper">
+          <div class="arrow-wrapper left"><img src="images/Left-arrow.svg" loading="lazy" alt="" class="arrow"></div>
+          <h1 class="_24px semibold white">*November, 2022*</h1>
+          <div class="arrow-wrapper right"><img src="images/right-arrow.svg" loading="lazy" alt="" class="arrow"></div>
+        </div>
+        <div>
+          <h1 class="heading-5">Transactions</h1>
+        </div>
+      </div>
+    </div>
+    <div class="page-divider-container">
+      <div class="page-divider w-row">
+        <div class="page-left-column w-col w-col-4">
+          <div class="account-overview-container left">
+            <div class="section-header-wrapper">
+              <h1 class="page-section-header">Overview</h1>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information total-spent">
+                <div class="account-title total-spent">$<span class="text-span-3">*total spent*</span></div>
+                <div class="sub-text">Spent this month</div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing all-accounts selected">
+              <div class="account-ov-information">
+                <div class="account-title selected">All Accounts</div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Checking &amp; Savings</div>
+                <div class="account-balance">$<span class="text-span">*Balance*</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/Liabilities-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Credit Cards</div>
+                <div class="account-balance">$<span class="text-span">*Balance*</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column w-col w-col-8">
+          <div class="account-overview-container right">
+            <div class="section-warpper">
+              <div class="section-header-wrapper">
+                <h1 class="page-section-header">All Transactions</h1>
+                <div class="transaction-filter-wrapper">
+                  <div class="filter-categories-wrapper selected">
+                    <div class="text-block">All</div>
+                  </div>
+                  <div class="filter-categories-wrapper not-selected">
+                    <div class="text-block">Completed</div>
+                  </div>
+                  <div class="filter-categories-wrapper not-selected">
+                    <div class="text-block">Incomplete</div>
+                  </div>
+                  <div class="search-wrapper">
+                    <div class="form-block-2 w-form">
+                      <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form-2"><input type="text" class="text-field w-input" maxlength="256" name="field" data-name="Field" placeholder="Search Here" id="field" required=""></form>
+                      <div class="w-form-done">
+                        <div>Thank you! Your submission has been received!</div>
+                      </div>
+                      <div class="w-form-fail">
+                        <div>Oops! Something went wrong while submitting the form.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="_20-padding-container transaction-card">
+                <div class="left-card">
+                  <div class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img"></div>
+                  <div class="transaction-place-wrapper">
+                    <h4 class="_18px">Stop and Shop</h4>
+                  </div>
+                  <div class="transaction-amount-wrapper">
+                    <div class="_24px medium green">+ $<span>10,000.00</span></div>
+                  </div>
+                </div>
+                <div class="right-card">
+                  <div class="date-wrapper">
+                    <div class="_18px normal light-grey">*Date*</div>
+                  </div>
+                  <div class="form-wrapper">
+                    <div class="form-block">
+                      <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form"><select id="transaction-category" name="transaction-category" data-name="transaction category" >
+                          <option value="">Select one...</option>
+                          <option value="First">First choice</option>
+                          <option value="Second">Second choice</option>
+                          <option value="Third">Third choice</option>
+                        </select><input type="submit" value="Correct" data-wait="Please wait..." class="submit-button">
+                        <div class="check-wrapper"><img src="images/Green-check.svg" loading="lazy" width="35" height="35" alt=""></div>
+                      </form>
+                      <div class="w-form-done">
+                        <div>Thank you! Your submission has been received!</div>
+                      </div>
+                      <div class="w-form-fail">
+                        <div>Oops! Something went wrong while submitting the form.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

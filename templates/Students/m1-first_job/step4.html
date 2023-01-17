@@ -1,0 +1,130 @@
+{% extends 'Students/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'students/m1/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/new_stylesheet.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+<body style="padding: 0px; margin: 0px">
+<div class="alert-page-wrapper">
+    <div class="alert-page-container">
+      <p class="alert-box-title">*Title*</p>
+      <p class="alert-box-text">*information stuff*</p>
+      <div class="div-block">
+        <div class="w-layout-grid grid-12">
+         <div class="centered-div">
+          <div id="w-node-_9283b414-920f-7a40-8e34-0b3784d3f024-bf5ba9ff" class="company-card">
+            <div>
+              <div class="w-layout-grid grid-13">
+                <div id="w-node-ecc3fb34-4201-025e-732f-86118bd9f9b2-bf5ba9ff"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" id="w-node-_76bb93b2-2825-4d7d-fc5f-15f570b88405-bf5ba9ff" alt="" class="image"></div>
+                <div id="w-node-_8c684412-a7f8-94a8-de73-39258fd6d6ac-bf5ba9ff">
+                  <div class="job-information-wrapper">
+                    <div class="w-layout-grid grid-11">
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b34-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b36-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b39-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3b-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3e-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b40-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b43-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b45-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="company-name">*Company Name*</p>
+          </div>
+
+          <form method="post">
+                  {% csrf_token %}
+                <div class="button next" style="margin-top: 20px">
+                  <input type="text" value="2" class="progress-input" name="progress" style="display: none">
+                    <input type="hidden" value="job1" class="progress-input" name="progress" style="display: none">
+                  <button type="submit" class="button-text next" style="background: none">Accept</button>
+                </div>
+            </form>
+
+
+            </div>
+
+          <div class="centered-div">
+            <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c99-bf5ba9ff" class="company-card">
+            <div>
+              <div class="w-layout-grid grid-13">
+                <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9c-bf5ba9ff"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9d-bf5ba9ff" alt="" class="image"></div>
+                <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9e-bf5ba9ff">
+                  <div class="job-information-wrapper">
+                    <div class="w-layout-grid grid-11">
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca1-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca3-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca6-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca8-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cab-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cad-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cb0-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cb2-bf5ba9ff" class="information-wrapper">
+                        <div>*Information*</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="company-name">*Company Name*</p>
+
+          </div>
+
+              <form method="post">
+                  {% csrf_token %}
+                <div class="button next" style="margin-top: 20px">
+                  <input type="text" value="2" class="progress-input" name="progress" style="display: none">
+                    <input type="hidden" value="job2" class="progress-input" name="progress" style="display: none">
+                  <button type="submit" class="button-text next" style="background: none">Accept</button>
+                </div>
+            </form>
+
+
+        </div>
+        </div>
+      </div>
+
+ <form method="post" style="width: 100%">
+        {% csrf_token %}
+         <div class="button-wrapper" style="display: none">
+        <div class="button">
+           <a href="{% url 'Students:universal-video-page' '4' %}" class="button-text" style="text-decoration: none">Back</a>
+        </div>
+        <div class="button next">
+          <input type="text" value="2" class="progress-input" name="progress" style="display: none">
+                <button type="submit" class="button-text next" style="background: none">Next</button>
+        </div>
+      </div>
+ </form>
+    </div>
+  </div>
+
+</body>
+
+
+
+{% endblock %}
+

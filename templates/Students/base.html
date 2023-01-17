@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'budget/css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'budget/css/webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'budget/css/other.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/new_stylesheet.css' %}" rel="stylesheet" type="text/css">
+
+
+    {% block stylesheets %}
+
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+
+</head>
+
+
+
+<body class="body">
+  <div class="everything-col w-row" style="display: none;" id="navbar-overlay">
+    <div id="left-nav-container" class="nav-col-left w-col w-col-2">
+      <div class="nav-img-container"><img src="{% static 'images/Prosperon-Logo-white-p-1080.png' %}" loading="lazy" width="180" sizes="(max-width: 767px) 180px, 17vw" srcset="{% static 'images/Prosperon-Logo-white-p-1080.png' %} 500w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 800w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 1080w, images/{% static 'images/Prosperon-Logo-white-p-1080.png' %} 1600w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 1783w" alt=""></div>
+        <div class="nav-links-container">
+
+
+        <a href="{% url 'Budget:budget-dashboard' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/uw_dashboard.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
+                <h1 class="nav-link-text">Dashboard</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-transactions' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_transactions.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text">Transactions</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-budget' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text">Budget</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-goals' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/uw_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text">Goals</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text">Bank Accounts</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-budget' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/uw_investments.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text">Investments</h1>
+            </div>
+        </a>
+
+        <a href="{% url 'Budget:budget-budget' %}" class="side-bar-link">
+        <div class="nav-link"><img src="{% static 'images/icons/icons_uw_insurance.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+          <h1 class="nav-link-text">Insurance</h1>
+        </div>
+        </a>
+
+      </div>
+    </div>
+    <div class="main-content-conainer back-ground-blur w-col-10">
+      <div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30"  alt="" onclick="navbarOpen()" class="navbar-hamburger-img">
+        <div class="navbar-right-container">
+
+        <a href="{% url 'Budget:budget-notifications' %}" class="side-bar-link">
+              <div class="notification-container">
+                  <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
+              </div>
+        </a>
+
+            <div class="calendar-container"><img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
+                <div class="date-text">*Date*</div>
+            </div>
+
+
+          <div class="navbar-profile-wrapper">
+            <div class="profile-imagine-wrapper"><img src="../../media/{{ user_image }}" loading="lazy" width="30" height="30" alt="" class="profile-image"></div>
+            <div class="navbar-name">{{ first_name }}</div>
+            <div class="navbar-dowpdown-wrapper"><img src="{% static 'images/icons/topnav_caret.svg' %}" loading="lazy" width="20" height="20" alt="" class="navbar-drop-down"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30" alt="" id="navbar" onclick="navbarOpen()" class="navbar-hamburger-img">
+      <div class="navbar-right-container">
+          <a href="{% url 'Budget:budget-notifications' %}" id='topnav-notification' class="side-bar-link">
+              <div class="notification-container">
+                <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
+            </div>
+          </a>
+
+        <div class="calendar-container">
+            <img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
+          <div class="date-text">*Date*</div>
+        </div>
+        <div class="navbar-profile-wrapper">
+
+
+
+          <div class="profile-imagine-wrapper"><img src="../../media/{{ user_image }}" loading="lazy" width="30" height="30" alt="" class="profile-image"></div>
+          <div class="navbar-name">{{ first_name }}</div>
+          <div class="navbar-dowpdown-wrapper"><img src="{% static 'images/icons/topnav_caret.svg' %}" loading="lazy" width="20" height="20" alt="" class="navbar-drop-down"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+{% block content %}
+
+{% endblock %}
+
+{% block buttons %}
+{% endblock %}
+
+</body>
+
+
+
+</html>
+
+{% block scripts %}
+{% endblock %}
+
+<script>
+
+    function navbarOpen() {
+        var navbarOverlay = document.getElementById('navbar-overlay');
+
+        if(navbarOverlay.style.display ==='none') {
+            navbarOverlay.style.display ='flex';
+        } else if (navbarOverlay.style.display ==='flex'){
+            navbarOverlay.style.display = 'none';
+
+        }
+    }
+
+
+
+
+
+
+</script>

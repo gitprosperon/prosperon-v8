@@ -1,0 +1,289 @@
+.body-background {
+    background-color: #F4F6F8;
+}
+
+
+.div-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.section {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+    background-image: url('images/Onboarding-Step1 background.png');
+    background-size: cover;
+}
+
+.image {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 12px 40px;
+  border-radius: 20px;
+  background-color: #1f79ba;
+}
+
+.welcome-text {
+  color: #1f79ba;
+  font-weight: 700;
+}
+
+
+.getStarted-button {
+    color: white;
+    background-color: #1f79ba;
+    border: #1f79ba solid 3px;
+
+    margin-top: 20px;
+    padding: 20px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.getStarted-button:hover {
+    color: #1f79ba;
+    background-color: white;
+    border: #1f79ba solid 3px;
+    margin-top: 20px;
+    padding: 20px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  cursor: pointer;
+}
+
+.header-container {
+  padding-bottom: 20px;
+}
+
+.onboarding-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.onboarding-title-header {
+  margin: 0px;
+  color: #1f79ba;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+.onboarding-subheader {
+  margin-top: 10px;
+  color: #818181;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  padding: 0px;
+}
+
+.video-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 800px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.video {
+  height: 400px;
+  width: 800px;
+}
+
+.button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.button-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.back-btn {
+
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #1f79ba;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1f79ba;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+
+.next-btn {
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  border-color: #1f79ba;
+  background-color: #1f79ba;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+
+.form-container {
+  width: 400px;
+}
+
+.text-field {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  border-style: none none solid;
+  border-width: 1px 1px 2px;
+  border-color: #000 #000 #818181;
+  width: 100%;
+  font-size: 18px;
+}
+
+.field-label {
+  color: #818181;
+}
+
+.form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.input-container {
+  width: 100%;
+
+}
+
+
+.progress-input {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 479px) {
+  .getStarted-button {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .welcome-text {
+    font-size: 24px;
+  }
+}

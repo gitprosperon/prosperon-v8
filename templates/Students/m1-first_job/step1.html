@@ -1,0 +1,133 @@
+{% extends 'Students/base.html' %}
+{% load static %}
+{% block stylesheets %}
+    <link href="{% static 'students/m1/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/style.css' %}" rel="stylesheet" type="text/css">
+
+
+{% endblock %}
+
+{% block content %}
+
+<body style="padding: 0px; margin: 0px">
+<div class="alert-page-wrapper" style="display: none;" id="alert">
+    <div class="alert-page-container">
+        <p class="alert-box-title" style="margin-bottom: 20px">Thanks for applying!</p>
+        <p class="alert-box-text">Now that you've applied to some jobs, employers will review your application. They will get back to you shortly</p>
+        <div>
+
+
+
+
+
+
+
+
+        </div>
+        <form method="post" style="width: 100%">
+        {% csrf_token %}
+            <div class="bottom-btn-wrapper" style="width: 100%; padding: 0px">
+                <a href="../../university/video/1" class="back-btn">Back</a>
+                <input type="text" value="1" class="progress-input" name="jobs" id="jobs-applied">
+                <input type="text" value="2" class="progress-input" name="progress">
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="get-a-job-container">
+    <div class="number-of-applied-container">
+      <h1 class="heading-3">Applied to</h1>
+    </div>
+    <div class="get-a-job-wrapper">
+      <div class="columns w-row">
+        <div class="column-3 w-col w-col-4">
+          <div class="div-block-4">
+            <h1 class="heading-4">Jobs</h1>
+          </div>
+
+            {% for job in all_jobs %}
+
+            <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements }}', '{{ job.company_qualifications }}', this)">
+                <img src="../../../media/{{ job.logo }}" loading="lazy" width="94" alt="">
+            <div class="div-block-5">
+              <div>
+                <h1 class="job-title">{{ job.title }}l</h1>
+                <h1 class="job-company">{{ job.company }}</h1>
+              </div>
+              <h1 class="job-company">{{ job.location }}</h1>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+        <div class="column-4 w-col w-col-8">
+          <div>
+            <div class="div-block-7">
+              <div class="w-row">
+                <div class="w-col w-col-7">
+                  <div class="job-left-col">
+                    <div>
+                      <h1 class="job-title-main" id="job-title">Accounting Paraprofessional</h1>
+                      <h1 class="job-title-main subtitle" id="job-company">Partners LLC</h1>
+                    </div>
+                    <div class="benefits-container">
+                      <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
+                        <h1 class="benefits-text" id="job-location">Boston Ma</h1>
+                      </div>
+                      <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
+                        <h1 class="benefits-text" id="job-type">Heading1</h1>
+                      </div>
+                      <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
+                        <h1 class="benefits-text" id="job-hours">Heading</h1>
+                      </div>
+                      <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
+                        <h1 class="benefits-text" id="salary-range">Heading</h1>
+                      </div>
+                    </div>
+                      <button class="next-btn" id="apply-to-job-button" value="1" onclick="changeToApplied(this)">Apply</button>
+                  </div>
+                </div>
+                <div class="w-col w-col-5"><img src="" id="job-image" loading="lazy" width="342" alt="" class="image-2"></div>
+              </div>
+            </div>
+
+            <div>
+
+                <h3 class="job-title-main subtitle">Requirememts</h3>
+                <p id="job-requirmenets">a</p>
+
+                <h3 class="job-title-main subtitle">Qualifications</h3>
+                <p id="job-qualifications">a</p>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</body>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'students/m1/script.js' %}" type="text/javascript"></script>
+
+{% endblock %}

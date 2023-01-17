@@ -1,0 +1,26 @@
+
+
+/*spending profile css */
+
+.spending-profile-main-heading {
+  margin: 0px;
+  font-family: Poppins, sans-serif;
+  color: #1f79ba;
+  font-size: 40px;
+  padding: 0;
+}
+
+.spending-profile-subheading {
+  margin-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #929090;
+  font-family: Poppins, sans-serif;
+  color: #777;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.spending-profile-heading-container {
+  padding: 20px;
+}
+

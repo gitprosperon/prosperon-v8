@@ -1,0 +1,267 @@
+{% extends 'Students/base.html' %}
+{% load static %}
+
+{% block stylesheets %}
+ <link href="{% static 'students/m1/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/new_stylesheet.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<body class="body">
+    <div class="full-page-wrapper">
+
+      <div class="section-container">
+        <div class="page-title-blue">
+          <h1 class="heading-4">Life Event - {{ summary_title }} Summary</h1>
+        </div>
+      </div>
+    </div>
+    <div class="module-summary-page-wrapper">
+      <div class="w-layout-grid grid-14">
+        <div id="w-node-_10387a8c-b1a6-4cec-b235-1cf47c9e424e-962fd150" class="left-summary-wrapper">
+          <div class="calendary-summary-wrapper">
+            <div class="w-layout-grid grid-16">
+              <div class="_20-padding-container box-shadow centered-div">
+                <div class="calendar-wrapper">
+                  <div class="month-year-wrapper">
+                    <div class="_24px semibold text"><span>*Month*</span> <span>*Year*</span></div>
+                  </div>
+                  <div class="day-wrapper">
+                    <div class="w-layout-grid grid-3">
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0ce-962fd150" class="day-name">
+                        <div class="text-block-3">Sun</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0d1-962fd150" class="day-name">
+                        <div class="text-block-3">Mon</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0d4-962fd150" class="day-name">
+                        <div class="text-block-3">Tue</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0d7-962fd150" class="day-name">
+                        <div class="text-block-3">Wed</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0da-962fd150" class="day-name">
+                        <div class="text-block-3">Thu</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0dd-962fd150" class="day-name">
+                        <div class="text-block-3">Fri</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0e0-962fd150" class="day-name">
+                        <div class="text-block-3">Sat</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="day-number-wrapper">
+                    <div class="w-layout-grid grid-4">
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0e5-962fd150" class="number non-current smaller">
+                        <div>30</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0e8-962fd150" class="number current-month smaller-calendar">
+                        <div>01</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0eb-962fd150" class="number current-month smaller-calendar">
+                        <div>02</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0ee-962fd150" class="number current-month smaller-calendar">
+                        <div>03</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0f1-962fd150" class="number current-month smaller-calendar">
+                        <div>04</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0f4-962fd150" class="number current-month smaller-calendar">
+                        <div>05</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0f7-962fd150" class="number current-month smaller-calendar">
+                        <div>06</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0fa-962fd150" class="number current-month smaller-calendar">
+                        <div>07</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e0fd-962fd150" class="number current-month smaller-calendar">
+                        <div>08</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e100-962fd150" class="number current-month smaller-calendar">
+                        <div>09</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e103-962fd150" class="number current-month smaller-calendar">
+                        <div>10</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e106-962fd150" class="number current-month smaller-calendar">
+                        <div>11</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e109-962fd150" class="number current-month smaller-calendar">
+                        <div>12</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e10c-962fd150" class="number current-month smaller-calendar">
+                        <div>13</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e10f-962fd150" class="number current-month smaller-calendar">
+                        <div>14</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e112-962fd150" class="number current-month smaller-calendar">
+                        <div>15</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e115-962fd150" class="number current-month smaller-calendar">
+                        <div>16</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e118-962fd150" class="number current-month smaller-calendar current-day">
+                        <div>17</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e11b-962fd150" class="number current-month smaller-calendar">
+                        <div>18</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e11e-962fd150" class="number current-month smaller-calendar">
+                        <div>19</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e121-962fd150" class="number current-month smaller-calendar">
+                        <div>20</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e124-962fd150" class="number current-month smaller-calendar">
+                        <div>21</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e127-962fd150" class="number current-month smaller-calendar">
+                        <div>22</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e12a-962fd150" class="number current-month smaller-calendar">
+                        <div>23</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e12d-962fd150" class="number current-month smaller-calendar">
+                        <div>24</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e130-962fd150" class="number current-month smaller-calendar">
+                        <div>25</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e133-962fd150" class="number current-month smaller-calendar">
+                        <div>26</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e136-962fd150" class="number current-month smaller-calendar">
+                        <div>27</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e139-962fd150" class="number current-month smaller-calendar">
+                        <div>28</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e13c-962fd150" class="number current-month smaller-calendar">
+                        <div>29</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e13f-962fd150" class="number current-month smaller-calendar">
+                        <div>30</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e142-962fd150" class="number current-month smaller-calendar">
+                        <div>31</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e145-962fd150" class="number non-current smaller">
+                        <div>1</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e148-962fd150" class="number non-current smaller">
+                        <div>02</div>
+                      </div>
+                      <div id="w-node-_12e6602c-ea28-bf3c-9d53-2b577245e14b-962fd150" class="number non-current smaller">
+                        <div>03</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="w-node-ffc74bb9-b903-9ece-52cc-1d5d62f980bf-962fd150" class="_20-padding-container">
+                <div class="section-header-wrapper">
+                  <h1 class="page-section-header">Here&#x27;s What Happened</h1>
+                </div>
+                <p class="paragraph">*Summary information*</p>
+              </div>
+            </div>
+          </div>
+          <div class="impact-wrapper">
+            <div class="w-layout-grid grid-17">
+              <div id="w-node-d3badde0-c082-bfc5-4581-eb17696cf7bb-962fd150" class="_20-padding-container _100">
+                <h1 class="impact-header">Module Results</h1>
+                <h1 class="results-subheader">Learning Objectives</h1>
+              </div>
+              <div id="w-node-_8d2a2f93-eb9e-3633-3e1b-91187eb2282a-962fd150" class="_20-padding-container _100">
+                <h1 class="impact-header">Module Results</h1>
+                <h1 class="results-subheader">*All financial Information</h1>
+              </div>
+              <div id="w-node-_58acb94a-0ad7-7d90-10e6-2c0303aeb53c-962fd150" class="_20-padding-container _100 centered-div">
+                <div class="centered-div"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
+                  <div>
+                    <h1 class="_24px semibold blue"><span>*XP*</span>/<span>*XP*</span>XP</h1>
+                    <div class="centered-text">Last Decision</div>
+                    <div class="centered-text green">+<span>*XP*</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-d0afc307-c444-544c-244d-b5d0c684873a-962fd150" class="_40-padding-container">
+          <div class="section-header-wrapper">
+            <h1 class="page-section-header">Unlocked Decisions</h1>
+          </div>
+          <div class="unlocked-decisions">
+            <div class="w-layout-grid grid-15">
+              <div id="w-node-_22a24785-fbac-adb4-2c40-54bdf50db517-962fd150" class="_20-padding-container alternative center-aligned">
+                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
+                <div id="w-node-_22a24785-fbac-adb4-2c40-54bdf50db51a-962fd150" class="_10-top">
+                  <div class="_24px-2">*Title*</div>
+                  <div class="_18px-2 _10-top _14">*Description*</div>
+                </div>
+                <div class="_10-top _100-width">
+                  <div class="add-button">
+                    <div class="_18-poppins-2 white">Add</div>
+                  </div>
+                </div>
+              </div>
+              <div id="w-node-b8c50053-3b05-30eb-348c-646045a07be1-962fd150" class="_20-padding-container alternative center-aligned">
+                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
+                <div id="w-node-b8c50053-3b05-30eb-348c-646045a07be4-962fd150" class="_10-top">
+                  <div class="_24px-2">*Title*</div>
+                  <div class="_18px-2 _10-top _14">*Description*</div>
+                </div>
+                <div class="_10-top _100-width">
+                  <div class="add-button">
+                    <div class="_18-poppins-2 white">Add</div>
+                  </div>
+                </div>
+              </div>
+              <div id="w-node-_3ecb8b41-c6aa-59c3-21cb-c7f4ed239476-962fd150" class="_20-padding-container alternative center-aligned">
+                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
+                <div id="w-node-_3ecb8b41-c6aa-59c3-21cb-c7f4ed239479-962fd150" class="_10-top">
+                  <div class="_24px-2">*Title*</div>
+                  <div class="_18px-2 _10-top _14">*Description*</div>
+                </div>
+                <div class="_10-top _100-width">
+                  <div class="add-button">
+                    <div class="_18-poppins-2 white">Add</div>
+                  </div>
+                </div>
+              </div>
+              <div id="w-node-b7fdb7e3-a255-527d-3244-877c490b2db5-962fd150" class="_20-padding-container alternative center-aligned">
+                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
+                <div id="w-node-b7fdb7e3-a255-527d-3244-877c490b2db8-962fd150" class="_10-top">
+                  <div class="_24px-2">*Title*</div>
+                  <div class="_18px-2 _10-top _14">*Description*</div>
+                </div>
+                <div class="_10-top _100-width">
+                  <div class="add-button">
+                    <div class="_18-poppins-2 white">Add</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-wrapper bottom-spacing">
+      <div class="button">
+        <div class="button-text">Back</div>
+      </div>
+      <a href="{% url 'Students:dashboard'  %}">
+        <div class="button next">
+        <div class="button-text next">Next</div>
+      </div>
+      </a>
+
+    </div>
+</body>
+
+{% endblock %}

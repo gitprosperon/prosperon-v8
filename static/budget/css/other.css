@@ -1,0 +1,44 @@
+.navbar-hamburger-img:hover {
+    opacity: 25%;
+}
+
+.side-bar-link {
+    text-decoration: none;
+    color: white;
+}
+
+.goal-link {
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.goals-card:hover {
+    background-color: #F2F6FF;
+    cursor: pointer;
+}
+
+.no-text-decoration {
+    text-decoration: none;
+}
+
+#topnav-notification:hover {
+    opacity: 30%;
+    cursor: pointer;
+}
+
+.submit-button {
+  display: block;
+  margin-left: 15px;
+  padding: 0px;
+  background-color: transparent;
+  font-family: Poppins, sans-serif;
+  color: #1f79ba;
+  font-size: 18px;
+    border: none;
+}
+
+.submit-button:hover {
+    opacity: 30%;
+    cursor: pointer;
+}
+
