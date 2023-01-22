@@ -9,14 +9,17 @@ def first_job_step1(request):
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
     all_jobs = Job.objects.all()
+    print('request', request.POST)
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             jobs = request.POST['jobs']
             progress = request.POST['progress']
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
-                student_model.jobs_applied = jobs
+                student_model.jobs_applied = [jobs]
+                print(student_model.jobs_applied)
                 student_model.save()
+                print('complete')
                 return redirect('/university/video/2')
             else:
                 return redirect('/university/video/2')
@@ -36,8 +39,19 @@ def first_job_step2(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    jobs_applied = student_model.jobs_applied
+    jobs_applied = jobs_applied.replace("'", "")
+    print()
 
     if user.is_active and user.has_university == True:
+        the_jobs = []
+        jobs = Job.objects.all()
+        for job in jobs:
+            if job.job_id in jobs_applied:
+
+                the_jobs.append(job)
+                print(the_jobs)
+
         if request.method == 'POST':
             print(request.POST)
             progress = request.POST['progress']
@@ -48,7 +62,11 @@ def first_job_step2(request):
             else:
                 return redirect('/university/video/3')
 
-        return render(request, 'Students/m1-first_job/step2.html')
+        context = {
+            'the_jobs': the_jobs
+        }
+
+        return render(request, 'Students/m1-first_job/step2.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
 
@@ -58,8 +76,18 @@ def first_job_step3(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    jobs_applied = student_model.jobs_applied
+    jobs_applied = jobs_applied.replace("'", "")
 
     if user.is_active and user.has_university == True:
+        the_jobs = []
+        jobs = Job.objects.all()
+        for job in jobs:
+            if job.job_id in jobs_applied:
+                the_jobs.append(job)
+                print(the_jobs)
+
+
         if request.method == 'POST':
             print(request.POST)
             progress = request.POST['progress']
@@ -69,8 +97,14 @@ def first_job_step3(request):
                 return redirect('/university/video/4')
             else:
                 return redirect('/university/video/4')
+        print(len(the_jobs))
 
-        return render(request, 'Students/m1-first_job/step3.html')
+
+        context = {
+            'the_jobs': the_jobs[0:2]
+        }
+
+        return render(request, 'Students/m1-first_job/step3.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
 
@@ -82,8 +116,19 @@ def first_job_step4(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    jobs_applied = student_model.jobs_applied
+    jobs_applied = jobs_applied.replace("'", "")
 
     if user.is_active and user.has_university == True:
+        the_jobs = []
+        jobs = Job.objects.all()
+        for job in jobs:
+            if job.job_id in jobs_applied:
+                the_jobs.append(job)
+                print(the_jobs)
+
+
+
         if request.method == 'POST':
             print(request.POST)
             progress = request.POST['progress']
@@ -94,6 +139,10 @@ def first_job_step4(request):
             else:
                 return redirect('/university/module_summary/first_job')
 
-        return render(request, 'Students/m1-first_job/step4.html')
+        context = {
+            'the_jobs': the_jobs[0:2]
+        }
+
+        return render(request, 'Students/m1-first_job/step4.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')

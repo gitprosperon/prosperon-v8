@@ -90,3 +90,9 @@ class Account(AbstractBaseUser):
 
     def get_user_image(self):
         return self.user_image
+
+
+    changed_transactions = models.JSONField(null=True, blank=True)
+
+    def get_changed_transactions(self):
+        return self.changed_transactions

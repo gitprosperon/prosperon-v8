@@ -55,5 +55,8 @@ class BankAccount(models.Model):
         return self.user
 
 
-class ChangedTransactions(models.Model):
+class MonthlySummary(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     account_transactions = models.JSONField(null=True, blank=True)
+    all_transactions = models.JSONField(null=True, blank=True)
+    users_id = models.CharField(max_length=100, null=True, blank=True)

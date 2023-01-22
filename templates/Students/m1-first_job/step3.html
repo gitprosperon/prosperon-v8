@@ -13,70 +13,43 @@
 <body style="padding: 0px; margin: 0px">
 <div class="alert-page-wrapper">
     <div class="alert-page-container">
-      <p class="alert-box-title">*Title*</p>
-      <p class="alert-box-text">*information stuff*</p>
+      <p class="alert-box-title">You got some offers!</p>
+      <p class="alert-box-text">You have two job offers from two great companies. Click each company to view <br> the offer. Evaluate each offer and make your decision.</p>
       <div class="div-block">
         <div class="w-layout-grid grid-12">
-          <div id="w-node-_9283b414-920f-7a40-8e34-0b3784d3f024-bf5ba9ff" class="company-card">
+
+            {% for job in the_jobs %}
+            <div id="w-node-_9283b414-920f-7a40-8e34-0b3784d3f024-bf5ba9ff" class="company-card">
             <div>
               <div class="w-layout-grid grid-13">
-                <div id="w-node-ecc3fb34-4201-025e-732f-86118bd9f9b2-bf5ba9ff"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" id="w-node-_76bb93b2-2825-4d7d-fc5f-15f570b88405-bf5ba9ff" alt="" class="image"></div>
+                <div id="w-node-ecc3fb34-4201-025e-732f-86118bd9f9b2-bf5ba9ff"><img src="{{ job.logo.url }}" loading="lazy" id="w-node-_76bb93b2-2825-4d7d-fc5f-15f570b88405-bf5ba9ff" alt="" class="image"></div>
                 <div id="w-node-_8c684412-a7f8-94a8-de73-39258fd6d6ac-bf5ba9ff">
                   <div class="job-information-wrapper">
                     <div class="w-layout-grid grid-11">
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b34-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b34-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
                       <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b36-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
+                        <div>{{ job.location }}</div>
                       </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b39-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b39-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
                       <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3b-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
+                        <div>{{ job.job_type }}</div>
                       </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3e-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3e-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
                       <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b40-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
+                        <div>{{ job.job_hours }}</div>
                       </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b43-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
+                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b43-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
                       <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b45-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
+                        <div>{{ job.salary_range }}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <p class="company-name">*Company Name*</p>
+            <p class="company-name">{{ job.company }}</p>
           </div>
-          <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c99-bf5ba9ff" class="company-card">
-            <div>
-              <div class="w-layout-grid grid-13">
-                <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9c-bf5ba9ff"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9d-bf5ba9ff" alt="" class="image"></div>
-                <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363c9e-bf5ba9ff">
-                  <div class="job-information-wrapper">
-                    <div class="w-layout-grid grid-11">
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca1-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca3-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
-                      </div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca6-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363ca8-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
-                      </div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cab-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cad-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
-                      </div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cb0-bf5ba9ff" class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="25" height="25" alt=""></div>
-                      <div id="w-node-d6a6c8c2-e30e-12d8-c515-3eb717363cb2-bf5ba9ff" class="information-wrapper">
-                        <div>*Information*</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p class="company-name">*Company Name*</p>
-          </div>
+          {% endfor %}
         </div>
       </div>
 

@@ -153,63 +153,34 @@
             </div>
           </div>
         </div>
+
+        {% for job in the_jobs %}
         <div id="w-node-bd2fd6e4-a3c9-aefe-2177-f77fb6430eb9-b159a0e6" class="job-container-div">
-          <div class="div-block-11"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-            <h1 class="job-title-heading">Partners LLC</h1>
+          <div class="div-block-11"><img src="{{ job.logo.url }}" loading="lazy" alt="">
+            <h1 class="job-title-heading">{{ job.company }}</h1>
           </div>
           <div class="benefits-container vertical">
             <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
-              <h1 class="benefits-text">Boston Ma</h1>
+              <h1 class="benefits-text">{{ job.location }}</h1>
             </div>
             <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
+              <h1 class="benefits-text">{{ job.job_type }}</h1>
             </div>
             <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
+              <h1 class="benefits-text">{{ job.job_hours }}</h1>
             </div>
             <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
+              <h1 class="benefits-text">{{ job.salary_range }}</h1>
             </div>
           </div>
         </div>
-        <div id="w-node-ce8f2967-3dd0-0637-919f-80e1a5ad3b66-b159a0e6" class="job-container-div">
-          <div class="div-block-12"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-            <h1 class="job-title-heading">Mother Truckers</h1>
-          </div>
-          <div class="benefits-container vertical">
-            <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
-              <h1 class="benefits-text">Boston Ma</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-          </div>
-        </div>
-        <div id="w-node-_877191d7-7cae-0bd8-d896-32dc2398bab0-b159a0e6" class="job-container-div">
-          <div class="div-block-13"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
-            <h1 class="job-title-heading">Other Company</h1>
-          </div>
-          <div class="benefits-container vertical">
-            <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
-              <h1 class="benefits-text">Boston Ma</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-            <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
-              <h1 class="benefits-text">Heading</h1>
-            </div>
-          </div>
-        </div>
+          {% endfor %}
+
+
+
+
+
+
       </div>
     </div>
 

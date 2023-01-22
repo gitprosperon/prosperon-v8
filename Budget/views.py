@@ -3,8 +3,9 @@ from .models import Goal, BudgetItems
 import json
 import environ
 from Accounts.models import Account
-from Budget.models import BankAccount
+from Budget.models import BankAccount, MonthlySummary
 import requests
+from .forms import UpdateChangedTransactions
 
 # creating env object
 env = environ.Env()
@@ -73,19 +74,31 @@ def budget_dashboard(request):
     if user.is_active and user.has_budget == True:
         account = Account.objects.filter(pk=request.user.pk)
         user_id = account.model.get_user_id(self=user)
+        changed_transactions = account.model.get_changed_transactions(self=user)
         bank_accounts = BankAccount.objects.filter(users_id=user_id)
         goals = Goal.objects.filter(users_id=user_id)
+
 
         # receiving AJAX from changing a transaction category
         if request.POST.get('action') == 'post':
             public = request.POST
-            print(public)
+            category = public['new_category']
+            transaction_id = public['transaction_id']
+            packeged_transaction = {'category': f'{category}', 'transaction_id': f'{transaction_id}'}
+            changed_transactions['changedTransactions'].append(packeged_transaction)
+            print(changed_transactions)
+
+            form = UpdateChangedTransactions(request.POST)
+            if form.is_valid():
+                instance = request.user
+                instance.changed_transactions = changed_transactions
+                instance.save()
+
 
 
         # Getting all accounts
         for account in bank_accounts:
             token = account.token
-            print('ads4tfg3433')
             url = 'https://development.plaid.com/transactions/get'
             headers = {
                 'Content-Type': 'application/json'
@@ -104,7 +117,6 @@ def budget_dashboard(request):
 
             # Transaction data received
             transaction_data = requests.post(url, headers=headers, json=data).json()['transactions']
-            print(transaction_data)
 
 
 
@@ -193,12 +205,41 @@ def transactions(request):
     if user.is_active and user.has_budget == True:
         account = Account.objects.filter(pk=request.user.pk)
         user_id = account.model.get_user_id(self=user)
-        my_goals = Goal.objects.filter(user=request.user)
+        bank_accounts = BankAccount.objects.filter(users_id=user_id)
+        monthly_summary = MonthlySummary.objects.filter(users_id=user_id)[:1]
+        monthly_summary = monthly_summary.get().all_transactions
+        monthly_summary = json.dumps(monthly_summary)
+
+
+        # Getting all accounts
+        for account in bank_accounts:
+            token = account.token
+            url = 'https://development.plaid.com/transactions/get'
+            headers = {
+                'Content-Type': 'application/json'
+            }
+            data = {
+                "client_id": F"{CLIENT_ID}",
+                "secret": f"{SECRET}",
+                "access_token": f'{token}',
+                "start_date": "2022-11-02",
+                "end_date": "2023-11-04",
+                "options": {
+                    "count": 3,
+                    "offset": 0
+                }
+            }
+
+            # Transaction data received
+            transaction_data = requests.post(url, headers=headers, json=data).json()['transactions']
+
+
+
+
 
 
         context = {
-            'myGoals': my_goals,
-
+            'transaction_data': transaction_data
         }
 
         return render(request, 'Budget/transactions.html', context=context)
