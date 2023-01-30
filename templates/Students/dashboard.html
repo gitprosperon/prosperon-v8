@@ -139,13 +139,57 @@
           </div>
         </div>
         <div class="column w-col w-col-8">
-          <div class="right-column dumb-bottom">
-            <div class="section-container">
+          <div class="right-column">
+ <div class="section-container">
               <div class="w-layout-grid grid-6">
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30759-fe18aa3b" class="_20-padding-container centered-div">
+                  <div class="profile-snapshot top">
+                    <div class="profile-image"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="profile-image homepageprofile"></div>
+                    <div class="profile-snapshot-information">
+                      <div>
+                        <h1 class="heading-32">{{ first_name }} {{ last_name }}</h1>
+                      </div>
+                      <div>
+                        <div class="_18 medium text">*Position*</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="profile-snapshot bottom">
+                    <div class="w-layout-grid _100-width">
+                      <div class="centered-div _10-padding">
+                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon-material-cake.png' %}" loading="lazy" alt="" class="_40x40"></div>
+                        <div class="_14px normal _10-top">
+                          <div class="_14px normal center">{{ age }}</div>
+                        </div>
+                      </div>
+                      <div class="centered-div _10-padding">
+                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon material-location-on.png' %}" loading="lazy" alt="" class="_40x40"></div>
+                        <div class="_14px normal _10-top">
+                          <div class="_14px normal center">*Location*</div>
+                        </div>
+                      </div>
+                      <div class="centered-div _10-padding">
+                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon material-location-on.png' %}" loading="lazy" alt="" class="_40x40"></div>
+                        <div class="_14px normal _10-top">
+                          <div class="_14px normal center">*living*</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3077e-fe18aa3b" class="_20-padding-container centered-div">
+                  <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" loading="lazy" alt="" class="image-6">
+                    <div class="_10-top">
+                      <h1 class="_18 semibold blue"><span>*XP*</span>/<span>*XP*</span>XP</h1>
+                      <div class="centered-text _16px">Last Decision</div>
+                      <div class="centered-text green">+<span>*XP*</span></div>
+                    </div>
+                  </div>
+                </div>
                 <div class="_20-padding-container box-shadow centered-div">
                   <div class="calendar-wrapper">
                     <div class="month-year-wrapper">
-                      <div class="_24px semibold text"><span>*Month*</span> <span>*Year*</span></div>
+                      <div class="_18 semibold text"><span>*Month*</span> <span>*Year*</span></div>
                     </div>
                     <div class="day-wrapper">
                       <div class="w-layout-grid grid-3">
@@ -283,58 +327,9 @@
                     </div>
                   </div>
                 </div>
-                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30759-fe18aa3b" class="_20-padding-container centered-div">
-                  <div class="profile-snapshot top">
-                    <div class="profile-image"><img src="{{ profile_image.url }}" loading="lazy" alt="" class="profile-image homepageprofile"></div>
-                    <div class="profile-snapshot-information">
-                      <div>
-                        <h1 class="heading-36">{{ first_name }} {{ last_name }}</h1>
-                      </div>
-                      <div>
-                        <div class="_24px medium text">*Position*</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="profile-snapshot bottom">
-                    <div class="w-layout-grid _100-width">
-                      <div class="centered-div _10-padding">
-                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon-material-cake.png' %}" width="40px" loading="lazy" alt=""></div>
-                        <div class="_18px normal _10-top">
-                          <div class="_18px normal center">{{ age }}</div>
-                        </div>
-                      </div>
-                      <div class="centered-div _10-padding">
-                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon material-location-on.png' %}" width="40px" height="40px" loading="lazy" alt=""></div>
-                        <div class="_18px normal _10-top">
-                          <div class="_18px normal center">*Location*</div>
-                        </div>
-                      </div>
-                      <div class="centered-div _10-padding">
-                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon material-people.png' %}" loading="lazy" width="40px" height="40px" alt=""></div>
-                        <div class="_18px normal _10-top">
-                          <div class="_18px normal center">*Status*</div>
-                        </div>
-                      </div>
-                      <div class="centered-div _10-padding">
-                        <div class="_40-width-picture"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg"  loading="lazy" alt=""></div>
-                        <div class="_18px normal _10-top">
-                          <div class="_18px normal center">*living sit*</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3077e-fe18aa3b" class="_20-padding-container">
-                  <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" width="100px" loading="lazy" alt="">
-                    <div>
-                      <h1 class="_24px semibold blue"><span>*XP*</span>/<span>*XP*</span>XP</h1>
-                      <div class="centered-text">Last Decision</div>
-                      <div class="centered-text green">+<span>*XP*</span></div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
+
             <div class="section-warpper">
               <div>
                 <h1 class="page-section-header">Recommended Anytime Decisions</h1>
@@ -346,11 +341,11 @@
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
                     <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-                      <div class="_24px">{{ decision.title }}</div>
-                      <div class="_18px _10-top _14">*Description*</div>
+                      <div class="_18">{{ decision.title }}</div>
+                      <div class="_14px _10-top _14">{{ decision.description }}</div>
                     </div>
                     <div class="_10-top _100-width">
-                     <a href="{% url 'Anytime:anytime-decision' decision.id %}">
+                     <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
                       <div class="add-button">
                           <div class="_18-poppins white">Add</div>
                       </div>

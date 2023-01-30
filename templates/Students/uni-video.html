@@ -8,29 +8,66 @@
 
 {% block content %}
 
-<div class="video-title-banner">
-    <h3 class="video-title-text">{{ video.title }}</h3>
-</div>
-
-<div class="column-video video-left">
-    <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" width="100%" height="100%" style="padding:20px"></iframe>
-</div>
-
-<div class="column-video video-right">Notes</div>
 
 
+<body class="body-2">
+  <div class="fullpage-wrapper" style="height: auto">
+    <div class="full-page-wrapper">
 
-{% endblock %}
-
-{% block buttons %}
-        <form method="post" style="width: 100%">
-        {% csrf_token %}
-            <div class="bottom-btn-wrapper" style="width: 100%;">
-                <a href="../../{{ video.back_button }}" class="back-btn">Back</a>
-                <input type="text" value="{{ video.progress }}" class="progress-input" name="progress">
-                <input type="hidden" id="custId" name="next-button" value="{{ video.next_button }}">
-                <button type="submit" class="next-btn">Next</button>
+      <div class="section-container">
+        <div class="page-title-blue anytime-decision">
+          <h1 class="heading-4">{{ video.title }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="grid-wrapper" style="height: 100%">
+      <div class="w-layout-grid grid-18 step1">
+        <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-17e1b9de">
+          <div class="video-wrapper" style="height: 65vh">
+    <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" class="w-video" style="height: 100%"></iframe>
+          </div>
+        </div>
+        <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-17e1b9de" class="div-block-141">
+          <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-17e1b9de" class="_20-padding-container video-notes">
+            <div class="w-layout-grid grid-26">
+              <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" href="#" class="_18-poppins semibold centered-text clicked w-button">Summary</a>
+              <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" href="#" class="_18-poppins semibold centered-text w-button">Vocab</a>
+              <a id="w-node-_6d86d723-faa7-21c9-d908-dd89fd2a3ce0-17e1b9de" href="#" class="_18-poppins semibold centered-text w-button">Notes</a>
             </div>
+            <div class="horizontal"></div>
+          </div>
+          <div class="_20-padding-container description show">
+            <div class="horizontal">
+              <div class="_14px normal">This is some text inside of a div block.</div>
+            </div>
+          </div>
+          <div class="_20-padding-container description hide">
+            <div class="horizontal">
+              <div class="_14px normal">This is some text inside of a div block.</div>
+            </div>
+          </div>
+          <div class="_20-padding-container description hide">
+            <div class="horizontal">
+              <div class="_14px normal">This is some text inside of a div block.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form method="post" style="width: 100%">
+     {% csrf_token %}
+         <div class="button-wrapper bottom-spacing">
+        <a href="../../{{ video.back_button }}" class="back-btn" style="font-weight: 600">Back</a>
+         <input type="text" value="{{ video.progress }}" class="progress-input" name="progress">
+                <input type="hidden" id="custId" name="next-button" value="{{ video.next_button }}">
+                <button type="submit" class="next-btn" style="font-weight: 600">Next</button>
+          </div>
+
         </form>
+  </div>
+
+</body>
+
 {% endblock %}
+
 
