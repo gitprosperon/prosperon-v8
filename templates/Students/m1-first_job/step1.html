@@ -56,9 +56,9 @@
 
             <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements }}', '{{ job.company_qualifications }}', this)">
                 <img src="../../../media/{{ job.logo }}" loading="lazy" width="94" alt="">
-            <div class="div-block-5">
+            <div class="div-block-5" style="border: none; border-radius: 0px; background-color: transparent">
               <div>
-                <h1 class="job-title">{{ job.title }}</h1>
+                <h1 class="job-title" style="font-family: Poppins; font-size: 18px; font-weight: 600;">{{ job.title }}</h1>
                 <h1 class="job-company">{{ job.company }}</h1>
               </div>
               <h1 class="job-company">{{ job.location }}</h1>
