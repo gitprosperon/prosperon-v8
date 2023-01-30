@@ -119,8 +119,9 @@
 
 .job-title-main.subtitle {
   margin-top: 0px;
+  color: #1c2126;
   font-size: 18px;
-  line-height: 18px;
+  line-height: 24px;
   font-weight: 400;
 }
 
