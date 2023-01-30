@@ -1,1 +1,0 @@
-web: gunicorn Prosperon_v8.wsgi
