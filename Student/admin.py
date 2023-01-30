@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Major, video, Job, AnytimeDecision, BudgetItemsUniversity, ModuleSummarie, UniversityModule
+from .models import Student, Major, video, Job, AnytimeDecision, BudgetItemsUniversity, ModuleSummarie, UniversityModule, Apartment
 
 admin.site.register(Major)
 admin.site.register(Student)
@@ -9,3 +9,5 @@ admin.site.register(AnytimeDecision)
 admin.site.register(BudgetItemsUniversity)
 admin.site.register(UniversityModule)
 admin.site.register(ModuleSummarie)
+admin.site.register(Apartment)
+

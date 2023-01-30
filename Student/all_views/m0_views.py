@@ -68,7 +68,6 @@ def onboarding_step3(request):
             gender = post_data['gender']
             ethnicity = post_data['ethnicity']
             student_major = post_data['major']
-
             student_model.first_name = first_name
             student_model.last_name = last_name
             student_model.age = age
@@ -92,7 +91,8 @@ def onboarding_step3(request):
         gender = student_model.gender
         ethnicity = student_model.ethnicity
         major = student_model.major
-
+        genderChoices = Student.GENDER_CHOICES
+        ethnicityChoices = Student.ETHNICITY_CHOICES
 
         context = {
             'first_name': first_name,
@@ -102,6 +102,8 @@ def onboarding_step3(request):
             'ethnicity': ethnicity,
             'majors': majors,
             'maj': major,
+            'genderChoices': genderChoices,
+            'ethnicityChoices': ethnicityChoices
 
         }
 

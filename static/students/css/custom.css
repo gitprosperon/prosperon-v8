@@ -1,0 +1,41 @@
+.back-btn {
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #1f79ba;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #1f79ba;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.back-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+
+.next-btn {
+  padding: 10px 40px;
+  text-decoration: none;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  border-color: #1f79ba;
+  background-color: #1f79ba;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.next-btn:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+.right-timeline-card.anytime:hover {
+  opacity: 50%;
+}

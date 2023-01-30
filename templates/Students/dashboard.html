@@ -14,9 +14,128 @@
         <div class="page-left-column left-padding w-col w-col-4">
           <div class="_20-padding-container">
             <h1 class="_24px semibold text">Timeline</h1>
+            <div class="w-layout-grid timeline-grid top">
+              <div id="w-node-fbfb7ce5-02c3-bd99-0c4d-1ddf298b8575-fe18aa3b" class="timeline-left-col">
+                <div class="timeline-line top"></div>
+              </div>
+            </div>
 
-              <a href="{% url 'Students:universal-video-page' '1'  %}">first job</a>
-              <a href="{% url 'Students:universal-video-page' '5'  %}">Budgeting</a>
+              {% for event in student_path %}
+                {% if event.type == 'Life Event' %}
+                    {% if event.status == 'not-started' %}
+                        {% if event.title != 'First Job' %}
+
+                            <a href="{% url 'Anytime:all-anytime-decisions' %}">
+                            <div class="w-layout-grid timeline-grid anytime">
+                          <div id="w-node-df9b64e8-75ac-382d-e4f8-16c0eec0d9d4-fe18aa3b" class="timeline-left-col">
+                            <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                            <div class="timeline-line bottom"></div>
+                          </div>
+                          <div id="w-node-df9b64e8-75ac-382d-e4f8-16c0eec0d9d8-fe18aa3b" class="timeline-grid-right">
+                            <div class="w-row">
+                              <div class="column-7 w-col w-col-2">
+                                <div class="div-block-140"></div>
+                              </div>
+                              <div class="w-col w-col-10">
+                                <div class="right-timeline-card anytime"><img src="{% static 'images/icons/anytime-plus-icon.jpg' %}" loading="lazy" width="62" alt="" class="anytime-plus">
+                                  <h1 class="anytime-title card">Anytime Decision</h1>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </a>
+
+
+                        {% endif %}
+                        <div class="w-layout-grid timeline-grid">
+                          <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
+                            <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                            <div class="timeline-line bottom" style="background-color: #B2D8FF"></div>
+                          </div>
+                          <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
+                            <div class="w-row">
+                              <div class="column-7 w-col w-col-2">
+                                <div class="div-block-140"></div>
+                              </div>
+
+                                <div class="w-col w-col-10">
+                                <div class="right-timeline-card"><img src="{{ event.imgurl }}" loading="lazy" class="image-5">
+                                  <div class="_18 medium text lifeevent-title">{{ event.title }}</div>
+                                  <div class="_14px _10-top _14">{{ event.description }}</div>
+                                  <div class="add-button start">
+                                      <a href="{% url 'Students:universal-video-page' event.videoPageId %}" style="text-decoration: none">
+                                      <div class="_18-poppins white">Start</div>
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                {% elif event.status == 'completed' %}
+
+              <div class="w-layout-grid timeline-grid">
+              <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
+                <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                <div class="timeline-line bottom"></div>
+              </div>
+              <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
+                <div class="w-row">
+                  <div class="column-7 w-col w-col-2">
+                    <div class="div-block-140"></div>
+                  </div>
+
+                    <div class="w-col w-col-10">
+                    <div class="right-timeline-card">
+                      <div class="_18 medium text lifeevent-title">{{ event.title }}</div>
+                      <div class="_14px _10-top _14">{{ event.type }}</div>
+                      <div class="add-button start">
+                          <a href="{% url 'Students:module-summary-page' event.summaryPage '1' %}" style="text-decoration: none">
+                          <div class="_18-poppins white">Review</div>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+                {% endif %}
+
+            {% else %}
+
+            <div class="w-layout-grid timeline-grid">
+              <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
+                <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                <div class="timeline-line bottom"></div>
+              </div>
+              <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
+                <div class="w-row">
+                  <div class="column-7 w-col w-col-2">
+                    <div class="div-block-140"></div>
+                  </div>
+                    <div class="w-col w-col-10">
+                    <div class="right-timeline-card">
+                      <div class="_18 medium text lifeevent-title">{{ event.title }}</div>
+                      <div class="_14px _10-top _14">{{ event.type }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            {% endif %}
+            {% endfor %}
+
+
+
           </div>
         </div>
         <div class="column w-col w-col-8">
@@ -225,7 +344,7 @@
 
                     {% for decision in anytime_dec %}
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
-                    <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
+                    <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
                       <div class="_24px">{{ decision.title }}</div>
                       <div class="_18px _10-top _14">*Description*</div>

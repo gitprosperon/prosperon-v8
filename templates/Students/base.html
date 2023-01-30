@@ -9,6 +9,8 @@
     <link href="{% static 'budget/css/webflow.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'budget/css/other.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'students/css/new_stylesheet.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/custom.css' %}" rel="stylesheet" type="text/css">
+
 
 
     {% block stylesheets %}
@@ -30,19 +32,20 @@
         <div class="nav-links-container">
 
 
-        <a href="{% url 'Budget:budget-dashboard' %}" class="side-bar-link">
+        <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/uw_dashboard.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
-                <h1 class="nav-link-text">Dashboard</h1>
+                <h1 class="nav-link-text">Home</h1>
             </div>
         </a>
 
-        <a href="{% url 'Budget:budget-transactions' %}" class="side-bar-link">
+        <a href="" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/icons_uw_transactions.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
-              <h1 class="nav-link-text">Transactions</h1>
+              <h1 class="nav-link-text">Profile</h1>
             </div>
         </a>
 
-        <a href="{% url 'Budget:budget-budget' %}" class="side-bar-link">
+
+        <a href="{% url 'Students:budget' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Budget</h1>
             </div>

@@ -1,5 +1,23 @@
+{% extends 'Students/base.html' %}
+
+{% block content %}
 {% for decision in anytime_decisions %}
-
-{{ decision.title }}
-
+<div class="w-layout-grid grid-7">
+<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
+<div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
+<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
+    <div class="_18">{{ decision.title }}</div>
+    <div class="_14px _10-top _14">*Description*</div>
+</div>
+<div class="_10-top _100-width">
+    <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
+        <div class="add-button">
+            <div class="_18-poppins white">Add</div>
+        </div>
+    </a>
+</div>
+</div>
+</div>
 {% endfor %}
+
+{% endblock %}

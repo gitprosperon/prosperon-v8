@@ -181,7 +181,7 @@
                 <h1 class="results-subheader">*All financial Information</h1>
               </div>
               <div id="w-node-_58acb94a-0ad7-7d90-10e6-2c0303aeb53c-962fd150" class="_20-padding-container _100 centered-div">
-                <div class="centered-div"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="">
+                <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" width="150px" height="150px" loading="lazy" alt="">
                   <div>
                     <h1 class="_24px semibold blue"><span>*XP*</span>/<span>*XP*</span>XP</h1>
                     <div class="centered-text">Last Decision</div>
@@ -252,14 +252,25 @@
       </div>
     </div>
     <div class="button-wrapper bottom-spacing">
-      <div class="button">
+        {% if page_type == '0' %}
+        <a href="{% url 'Students:first-job-step4'  %}">
+        <div class="button">
         <div class="button-text">Back</div>
       </div>
+        </a>
       <a href="{% url 'Students:dashboard'  %}">
         <div class="button next">
         <div class="button-text next">Next</div>
       </div>
       </a>
+        {% elif page_type == '1' %}
+        <a href="{% url 'Students:dashboard'  %}">
+        <div class="button">
+        <div class="button-text">Back</div>
+      </div>
+        </a>
+
+        {% endif %}
 
     </div>
 </body>

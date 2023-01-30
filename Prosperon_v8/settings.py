@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mathfilters',
-
+    'django.contrib.humanize',
     'Accounts',
     'Budget',
     'Student',

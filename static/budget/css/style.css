@@ -632,11 +632,11 @@
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 20px;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -756,6 +756,7 @@
   -ms-flex-align: center;
   align-items: center;
   background-color: #fff;
+  margin-bottom: 10px;
 }
 
 .goals-card.add-goal {

@@ -53,18 +53,18 @@
         </div>
       </div>
 
- <form method="post" style="width: 100%">
-        {% csrf_token %}
-         <div class="button-wrapper">
-        <div class="button">
-           <a href="{% url 'Students:onboarding-step1' %}" class="button-text" style="text-decoration: none">Back</a>
-        </div>
-        <div class="button next">
-          <input type="text" value="2" class="progress-input" name="progress" style="display: none">
-                <button type="submit" class="button-text next" style="background: none">Next</button>
-        </div>
-      </div>
- </form>
+     <form method="post" style="width: 100%">
+            {% csrf_token %}
+             <div class="button-wrapper">
+            <div class="button">
+               <a href="{% url 'Students:first-job-step2' %}" class="button-text" style="text-decoration: none">Back</a>
+            </div>
+            <div class="button next">
+                    <input type="text" value="10" class="progress-input" name="progress" style="display: none">
+                    <button type="submit" class="button-text next" style="background: none">Next</button>
+            </div>
+          </div>
+     </form>
     </div>
   </div>
 

@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'Students/anytime-decisions/anytime_decision_step2.html' %}
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+
+{% block anytimeTitle %}
+    {{ ad.title }}
+{% endblock %}
+
+
+{% block anytimeD %}
+{% if id == '1' %}
+
+
+  <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-9f05c550">
+  <div class="apartment-search">
+    <div class="_24px semibold white">Searching for apartments in...</div>
+    <div class="search-area _10-top">
+      <div class="_18-poppins padding">Dallas, TX</div>
+    </div>
+  </div>
+  <div class="_40-padding-container white apartments-container">
+    <div class="w-layout-grid grid-22">
+        {% for apartment in apartments %}
+        <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f685-9f05c550" class="_20-padding-container alternative apartments"><img src="../{{ apartment.img.url }}" loading="lazy" width="200" height="160" srcset="{{ apartment.img.url }} 500w, {{ apartment.img.url }} 800w, {{ apartment.img.url }} 1080w, {{ apartment.img.url }} 1600w, {{ apartment.img.url }} 2000w, images/apartment-building-what-makes-good-apartment-building-scaled.jpg 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
+        <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
+          <div class="_18-poppins centered-text">{{ apartment.title }}</div>
+          <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}</div>
+          <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed / {{ apartment.bathrooms }} bath</div>
+          <div class="_18px _10-top _14 apartment-padding amount">${{ apartment.yearly_cost|div:12|floatformat|intcomma }}</div>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% endif %}
+{% endblock %}
+
+    {% block bottomButtons %}
+        {% if id == '1' %}
+        <div class="button-wrapper bottom-spacing">
+            <div class="button">
+                <div class="button-text">Back</div>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                    <button type="submit" class="next-btn">Next</button>
+            </form>
+        </div>
+        {% endif %}
+    {% endblock %}
+

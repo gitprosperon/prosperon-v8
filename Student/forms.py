@@ -13,7 +13,12 @@ class AddBudgetForm(forms.ModelForm):
 
     class Meta:
         model = BudgetItemsUniversity
-        fields = ['user', 'category', 'total_per_month', 'users_id']
+        fields = ['user', 'title', 'category', 'total_per_month', 'users_id']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'input budget w-input', 'placeholder': 'Title'}),
+            'total_per_month': forms.TextInput(attrs={'class': 'input budget w-input', 'placeholder': 'Total Per Month'}),
+            'category': forms.Select(choices=BudgetItemsUniversity.CATAGORIES, attrs={'class': 'input budget w-input', 'name': 'Total Per Month', 'data-name': 'Category'})
 
+        }
 
 

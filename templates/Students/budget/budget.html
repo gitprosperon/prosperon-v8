@@ -7,6 +7,10 @@
     <div class="section-container">
       <div class="page-title-blue">
         <h1 class="heading-4">Budget</h1>
+
+
+          <a href="{% url 'Students:universal-video-page' '7' %}" class="back-button" style="text-decoration: none">Continue</a>
+
       </div>
     </div>
     <div class="page-divider-container">
@@ -54,12 +58,16 @@
                 <h1 class="page-section-header">My Budget Categories</h1>
               </div>
 
-                {% for budget in all_budgets %}
+                {% if user_university_budget_items %}
+                {% for budget in user_university_budget_items %}
                 <div class="_20-padding-container budget-container">
                 <div class="left-card">
-                  <div class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="72" alt="" class="icon-img"></div>
+                  <div class="icon-wrapper">
+                      <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="72" alt="" class="icon-img">
+
+                  </div>
                   <div class="transaction-place-wrapper">
-                    <h4 class="_18px">{{ budget.category }}</h4>
+                    <h4 class="_18px">{{ budget.title }}</h4>
                   </div>
                   <div class="transaction-amount-wrapper"></div>
                 </div>
@@ -86,11 +94,19 @@
                 </div>
               </div>
                 {% endfor %}
+                {% endif %}
 
 
-              <div class="_20-padding-container budget-container add-budget">
-                <h1 class="heading-7">Add Budget +</h1>
-              </div>
+              <a href="{% url 'Students:add-budget' %}" class="no-text-decoration">
+                <div class="goals-card add-goal">
+                  <div class="goal-middle-section">
+                    <div class="goalcard-contents-wrapper add-goal">
+                      <h3 class="_24px semibold text add-goal">Add Budget +</h3>
+                    </div>
+                  </div>
+                  <div class="day-counter-wrapper"></div>
+                </div>
+                </a>
             </div>
           </div>
         </div>

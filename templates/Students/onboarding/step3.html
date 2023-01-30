@@ -25,11 +25,26 @@
                 </div>
                 <div class="input-container">
                     <label for="name" class="field-label">Gender</label><br>
-                    <input type="text" class="text-field" maxlength="256" name="gender" data-name="Name" placeholder="" id="gender" value="{% if gender %}{{ gender }}{% endif %}">
+                    <select id="cars" class="text-field" name="gender" form="info-form">
+                        <option value="{% if gender %}{{ gender }}{% endif %}">{% if gender %}{{ gender }}{% endif %}</option>
+                        {% for gend in genderChoices %}
+                            {% if gend.0 != gender %}
+                                <option value="{{ gend.0 }}">{{ gend.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
                 </div>
                 <div class="input-container">
                     <label for="name" class="field-label">Ethnicity</label><br>
-                    <input type="text" class="text-field" maxlength="256" name="ethnicity" data-name="Name" placeholder="" id="ethnicity" value="{% if ethmicity %}{{ ethnicity }}{% endif %}">
+                    <select id="cars" class="text-field" name="ethnicity" form="info-form">
+                        <option value="{% if ethnicity %}{{ ethnicity }}{% endif %}">{% if ethnicity %}{{ ethnicity }}{% endif %}</option>
+                        {% for ethn in ethnicityChoices %}
+                            {% if ethn.0 != gender %}
+                                <option value="{{ ethn.0 }}">{{ ethn.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="button-wrapper forform">
                     <a href="{% url 'Students:onboarding-step2' %}" class="back-btn w-button">Back</a>
