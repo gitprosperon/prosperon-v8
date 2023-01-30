@@ -1,1 +1,78 @@
-{{ ad.title }}
+{% extends 'Students/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <body class="body-2">
+  <div class="fullpage-wrapper">
+    <div class="full-page-wrapper">
+      <div class="section-container">
+        <div class="page-title-blue anytime-decision">
+          <h1 class="heading-4">Anytime Decision - {{ ad.title }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="grid-wrapper">
+      <div class="w-layout-grid grid-18 step1">
+        <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-cd267249">
+          <div class="video-wrapper">
+
+                <iframe src="{{ ad.video_link }}" title="W3Schools Free Online Web Tutorials" width="100%" height="400px" ></iframe>
+
+
+          </div>
+          <div id="w-node-_72f08ab3-adc3-7cf0-7027-77b91e08d9ba-cd267249" class="_20-padding-container _30-top">
+            <div class="horizontal">
+              <div class="_24px anytimedecision">Decision Description</div>
+            </div>
+            <div id="w-node-_72f08ab3-adc3-7cf0-7027-77b91e08d9bf-cd267249" class="_10-top displayed">
+              <div class="_18px">{{ ad.description }}</div>
+            </div>
+          </div>
+        </div>
+        <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-cd267249">
+          <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-cd267249" class="_20-padding-container">
+            <div class="horizontal">
+              <div class="_24px anytimedecision">Learning Objectives</div>
+                <img src="images/Drowdown.svg" loading="lazy" id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0e2-cd267249" alt="">
+            </div>
+            <div class="_10-top displayed">
+              <div class="_18px">{{ ad.learning_objectives }}</div>
+            </div>
+            <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0e3-cd267249" class="_10-top hidden">
+              <div class="_18px">*Prior Information*</div>
+            </div>
+          </div>
+          <div id="w-node-bef59854-656b-b540-0c20-2fa52cc17a38-cd267249" class="_20-padding-container _30-top">
+            <div class="horizontal">
+              <div class="_24px anytimedecision">Vocab</div>
+                <img src="images/Drowdown.svg" loading="lazy" id="w-node-bef59854-656b-b540-0c20-2fa52cc17a3c-cd267249" alt="">
+            </div>
+            <div class="_10-top displayed">
+              <div class="_18px">{{ ad.vocab|linebreaksbr }}</div>
+            </div>
+            <div id="w-node-bef59854-656b-b540-0c20-2fa52cc17a3d-cd267249" class="_10-top hidden">
+              <div class="_18px">*Prior Information*</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-wrapper bottom-spacing">
+      <div class="button">
+
+          <input type=button class="button" style="font-size: 18px" value="Back" onClick="javascript:history.go(-1);">
+      </div>
+
+        <a href="/{{ ad.next_btn_link }}">
+        <div class="button next">
+            <div class="button-text next">Next</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+
+{% endblock %}

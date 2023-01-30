@@ -53,6 +53,7 @@ def goals(request):
 
     return render(request, 'Students/budget/goals.html')
 
+# Budget / Add Goals
 def add_goals(request):
 
     return render(request, 'Students/budget/add_goal.html')
@@ -79,7 +80,7 @@ def budget(request):
         return render(request, 'MainWebsite/index.html')
 
 
-# add budget
+# Budget / Add budget
 def add_budget(request):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -177,7 +178,6 @@ def anytime_decision_bank(request):
     context = {
         "anytime_decisions": anytime_decisions
     }
-
     return render(request, 'Students/all_anytime_decisions.html', context=context)
 
 # Specific Anytime Decision
@@ -187,7 +187,6 @@ def anytime_decision(request, id):
     context = {
         'ad': ad
     }
-
     return render(request, 'Students/anytime-decision.html', context=context)
 
 
