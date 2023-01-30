@@ -14,6 +14,7 @@ import os.path
 from pathlib import Path
 import environ
 import os
+import django_on_heroku
 
 env = environ.Env(
     # set casting, default value
@@ -165,3 +166,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+django_on_heroku.settings(locals())
