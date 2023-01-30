@@ -6,6 +6,7 @@ Django==4.1.4
 django-mathfilters==1.0.0
 django-on-heroku==1.1.2
 environ==1.0
+gunicorn==20.1.0
 humanize==4.5.0
 idna==3.4
 Pillow==9.3.0
