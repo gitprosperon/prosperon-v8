@@ -73,7 +73,7 @@
   margin-top: 0px;
   margin-bottom: 0px;
   color: #1f79ba;
-  font-size: 21px;
+  font-size: 18px;
   line-height: 21px;
 }
 
@@ -114,13 +114,13 @@
 .job-title-main {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .job-title-main.subtitle {
-  margin-top: 5px;
-  font-size: 24px;
-  line-height: 24px;
+  margin-top: 0px;
+  font-size: 18px;
+  line-height: 18px;
   font-weight: 400;
 }
 
@@ -151,8 +151,8 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 21px;
-  line-height: 21px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .job-header-container {
@@ -815,8 +815,8 @@ textarea.w-select {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 21px;
-  line-height: 21px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 400;
 }
 
