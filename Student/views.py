@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
-from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job
+from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule
 from .forms import AddBudgetForm, NewModuleSummaryForm
+import json
 
 # ------- UNIVERSITY MAIN VIEWS -----------
 
@@ -161,7 +162,19 @@ def module_summaries(request, id, type):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         next_module = summary.module.next_life_event['nextEvent']
+
         page_type = type
+
+        # Generating unlocked anytime decisions
+        unlocked_decisions = UniversityModule.objects.get(module_id=id).unlocked_decisions
+        unlocked_decisions = json.loads(unlocked_decisions)
+        all_unlocked_decisions = []
+        for i in unlocked_decisions:
+            decision = AnytimeDecision.objects.get(decision_id=i)
+            all_unlocked_decisions.append(decision)
+
+
+
 
         if type == '0':
             student.life_path['events'][-1]['status'] = "completed"
@@ -175,6 +188,7 @@ def module_summaries(request, id, type):
             'summary': summary,
             'summary_title': summary_title,
             'page_type': page_type,
+            'anytime_dec': all_unlocked_decisions
 
         }
         return render(request, 'Students/module_summary.html', context=context)

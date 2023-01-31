@@ -33,6 +33,14 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
     jobRequirementsTarget.innerHTML = requirements;
     jobQualificationsTarget.innerHTML = qualifications;
 
+    var elements = document.getElementsByClassName('job-container')
+
+    for(let i = 0; i < elements.length; i++) {
+        elements[i].style.backgroundColor = 'white'
+    }
+
+    object.style.backgroundColor ='#E7F6FF'
+
 
 
 

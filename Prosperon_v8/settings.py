@@ -99,8 +99,12 @@ WSGI_APPLICATION = 'Prosperon_v8.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8dr5loeq07nqc',
+        'USER': 'ufe02ks1pc18v3',
+        'PASSWORD': 'p72dc4291c151e1f99d78b10cdb0f86df51acc836d2af2311223ca8aabd5e46c3',
+        'HOST': 'ec2-54-243-252-102.compute-1.amazonaws.com',
+        'PORT': ''
     }
 }
 

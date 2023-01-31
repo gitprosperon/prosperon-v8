@@ -198,54 +198,20 @@
           </div>
           <div class="unlocked-decisions">
             <div class="w-layout-grid grid-15">
-              <div id="w-node-_22a24785-fbac-adb4-2c40-54bdf50db517-962fd150" class="_20-padding-container alternative center-aligned">
-                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
-                <div id="w-node-_22a24785-fbac-adb4-2c40-54bdf50db51a-962fd150" class="_10-top">
-                  <div class="_24px-2">*Title*</div>
-                  <div class="_18px-2 _10-top _14">*Description*</div>
-                </div>
-                <div class="_10-top _100-width">
-                  <div class="add-button">
-                    <div class="_18-poppins-2 white">Add</div>
+
+                {% for decision in anytime_dec %}
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
+                    <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
+                      <div class="_18">{{ decision.title }}</div>
+                      <div class="_14px _10-top _14">{{ decision.description }}</div>
+                    </div>
+                    <div class="_10-top _100-width">
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div id="w-node-b8c50053-3b05-30eb-348c-646045a07be1-962fd150" class="_20-padding-container alternative center-aligned">
-                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
-                <div id="w-node-b8c50053-3b05-30eb-348c-646045a07be4-962fd150" class="_10-top">
-                  <div class="_24px-2">*Title*</div>
-                  <div class="_18px-2 _10-top _14">*Description*</div>
-                </div>
-                <div class="_10-top _100-width">
-                  <div class="add-button">
-                    <div class="_18-poppins-2 white">Add</div>
-                  </div>
-                </div>
-              </div>
-              <div id="w-node-_3ecb8b41-c6aa-59c3-21cb-c7f4ed239476-962fd150" class="_20-padding-container alternative center-aligned">
-                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
-                <div id="w-node-_3ecb8b41-c6aa-59c3-21cb-c7f4ed239479-962fd150" class="_10-top">
-                  <div class="_24px-2">*Title*</div>
-                  <div class="_18px-2 _10-top _14">*Description*</div>
-                </div>
-                <div class="_10-top _100-width">
-                  <div class="add-button">
-                    <div class="_18-poppins-2 white">Add</div>
-                  </div>
-                </div>
-              </div>
-              <div id="w-node-b7fdb7e3-a255-527d-3244-877c490b2db5-962fd150" class="_20-padding-container alternative center-aligned">
-                <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="200" height="110" alt=""></div>
-                <div id="w-node-b7fdb7e3-a255-527d-3244-877c490b2db8-962fd150" class="_10-top">
-                  <div class="_24px-2">*Title*</div>
-                  <div class="_18px-2 _10-top _14">*Description*</div>
-                </div>
-                <div class="_10-top _100-width">
-                  <div class="add-button">
-                    <div class="_18-poppins-2 white">Add</div>
-                  </div>
-                </div>
-              </div>
+                    {% endfor %}
+
+
             </div>
           </div>
         </div>

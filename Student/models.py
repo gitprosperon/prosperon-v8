@@ -181,6 +181,7 @@ class BudgetItemsUniversity(models.Model):
 # Model for all Modules
 class UniversityModule(models.Model):
     module_title = models.CharField(max_length=500, null=True, blank=True)
+    module_id = models.CharField(max_length=500, null=True, blank=True)
     start_date = models.CharField(max_length=500, null=True, blank=True)
     end_date = models.CharField(max_length=500, null=True, blank=True)
     next_life_event = models.JSONField(null=True, blank=True)
