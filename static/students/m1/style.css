@@ -818,7 +818,7 @@ textarea.w-select {
   align-items: center;
   font-size: 18px;
   line-height: 24px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .benefits-container {
@@ -1006,8 +1006,8 @@ textarea.w-select {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: auto;
+  height: auto;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -1018,6 +1018,13 @@ textarea.w-select {
   align-items: center;
   border-radius: 8px;
   background-color: #93c6f9;
+}
+
+.number.current-month.future-date {
+    border-radius: 16px;
+    color: #fff;
+    background-color: #93c6f9;
+
 }
 
 .div-block-11 {
