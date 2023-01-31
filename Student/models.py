@@ -10,57 +10,6 @@ class Major(models.Model):
         return self.major_title
 
 
-# Create your models here.
-class Student(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    student_email = models.CharField(max_length=200, null=True, blank=True)
-    user_id_number = models.CharField(max_length=250, null=True, blank=True)
-    school = models.CharField(max_length=250, null=True, blank=True)
-    class_code = models.CharField(max_length=250, null=True, blank=True)
-    course_progress = models.CharField(max_length=200, null=True, blank=True)
-    first_name = models.CharField(max_length=20, null=True, blank=True)
-    last_name = models.CharField(max_length=20, null=True, blank=True)
-    age = models.CharField(max_length=20, null=True, blank=True)
-    location = models.CharField(max_length=200, null=True, blank=True)
-    GENDER_CHOICES = (
-        ('Female', 'Female'),
-        ('Male', 'Male'),
-        ('Not Specified', 'Not Specified'),
-    )
-    gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True, blank=True)
-    ETHNICITY_CHOICES = (
-        ('white', 'White'),
-        ('black', 'Black or African American'),
-        ('latin', 'Hispanic or Latino'),
-        ('native american', 'American Indian or Alaska Native'),
-        ('asian', 'Asian'),
-        ('islander or hawaiian', 'Native Hawaiian or Other Pacific Islander'),
-        ('other', 'Multiracial/Other'),
-    )
-    ethnicity = models.CharField(max_length=20, choices=ETHNICITY_CHOICES, null=True, blank=True)
-    major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
-    jobs_applied = models.CharField(max_length=100, null=True, blank=True)
-    accepted_job = models.CharField(max_length=100, null=True, blank=True)
-    life_path = models.JSONField(null=True, blank=True)
-
-
-    def __str__(self):
-        return self.student_email + ' - ' + self.user_id_number
-
-
-# Model for all video pages
-class video(models.Model):
-    title = models.CharField(max_length=400, null=True, blank=True)
-    progress = models.CharField(max_length=400, null=True, blank=True)
-    video_link = models.CharField(max_length=400, null=True, blank=True)
-    back_button = models.CharField(max_length=400, null=True, blank=True)
-    next_button = models.CharField(max_length=400, null=True, blank=True)
-    video_id = models.CharField(max_length=400, null=True, blank=True)
-
-    def __str__(self):
-        return self.video_id + ' - ' + self.title
-
-
 #Models for get a job
 class Job(models.Model):
     title = models.CharField(max_length=400, null=True, blank=True)
@@ -71,12 +20,12 @@ class Job(models.Model):
     PAYRANGE = [
         ("$>10,000", "$>10,000"),
         ("$10,001-$25,000", "$10,001-$25,000"),
-        ("25,001-$40,000", "$25,001-$40,000"),
+        ("$25,001-$40,000", "$25,001-$40,000"),
         ("$40,001-$55,000", "$40,001-$55,000"),
         ("$55,001-$70,000", "$55,001-$70,000"),
         ("$70,001-$85,000", "$70,001-$85,000"),
-        ("$85,001- $100,000", "$85,001- $100,000"),
-        ("$100,001- $120,000", "$100,001- $120,000"),
+        ("$85,001-$100,000", "$85,001-$100,000"),
+        ("$100,001-$120,000", "$100,001-$120,000"),
         ("$120,001-$140,000", "$120,001-$140,000"),
         ("$140,001-$160,000", "$140,001-$160,000"),
         ("$160,000+", "$160,000+"),
@@ -118,6 +67,60 @@ class Job(models.Model):
 
     company_requirements = models.TextField(max_length=10000, null=True, blank=True)
     company_qualifications = models.TextField(max_length=10000, null=True, blank=True)
+
+
+# Create your models here.
+class Student(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    student_email = models.CharField(max_length=200, null=True, blank=True)
+    user_id_number = models.CharField(max_length=250, null=True, blank=True)
+    school = models.CharField(max_length=250, null=True, blank=True)
+    class_code = models.CharField(max_length=250, null=True, blank=True)
+    course_progress = models.CharField(max_length=200, null=True, blank=True)
+    first_name = models.CharField(max_length=20, null=True, blank=True)
+    last_name = models.CharField(max_length=20, null=True, blank=True)
+    age = models.CharField(max_length=20, null=True, blank=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
+    GENDER_CHOICES = (
+        ('Female', 'Female'),
+        ('Male', 'Male'),
+        ('Not Specified', 'Not Specified'),
+    )
+    gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True, blank=True)
+    ETHNICITY_CHOICES = (
+        ('white', 'White'),
+        ('black', 'Black or African American'),
+        ('latin', 'Hispanic or Latino'),
+        ('native american', 'American Indian or Alaska Native'),
+        ('asian', 'Asian'),
+        ('islander or hawaiian', 'Native Hawaiian or Other Pacific Islander'),
+        ('other', 'Multiracial/Other'),
+    )
+    ethnicity = models.CharField(max_length=20, choices=ETHNICITY_CHOICES, null=True, blank=True)
+    major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
+    jobs_applied = models.CharField(max_length=100, null=True, blank=True)
+    accepted_job = models.CharField(max_length=100, null=True, blank=True)
+    life_path = models.JSONField(null=True, blank=True)
+    yearly_salary = models.IntegerField(null=True, blank=True)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True, blank=True)
+
+
+    def __str__(self):
+        return self.student_email + ' - ' + self.user_id_number
+
+
+# Model for all video pages
+class video(models.Model):
+    title = models.CharField(max_length=400, null=True, blank=True)
+    progress = models.CharField(max_length=400, null=True, blank=True)
+    video_link = models.CharField(max_length=400, null=True, blank=True)
+    back_button = models.CharField(max_length=400, null=True, blank=True)
+    next_button = models.CharField(max_length=400, null=True, blank=True)
+    video_id = models.CharField(max_length=400, null=True, blank=True)
+    summary = models.TextField( null=True, blank=True)
+
+    def __str__(self):
+        return self.video_id + ' - ' + self.title
 
 
 # Model for all fake apartments

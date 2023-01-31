@@ -12,7 +12,7 @@
 {% if id == '1' %}
 
 
-  <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-9f05c550">
+  <div id="all-rentals-card" style="display: block;" >
   <div class="apartment-search">
     <div class="_24px semibold white">Searching for apartments in...</div>
     <div class="search-area _10-top">
@@ -22,7 +22,8 @@
   <div class="_40-padding-container white apartments-container">
     <div class="w-layout-grid grid-22">
         {% for apartment in apartments %}
-        <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f685-9f05c550" class="_20-padding-container alternative apartments"><img src="../{{ apartment.img.url }}" loading="lazy" width="200" height="160" srcset="{{ apartment.img.url }} 500w, {{ apartment.img.url }} 800w, {{ apartment.img.url }} 1080w, {{ apartment.img.url }} 1600w, {{ apartment.img.url }} 2000w, images/apartment-building-what-makes-good-apartment-building-scaled.jpg 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
+        <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}')">
+            <img src="../{{ apartment.img.url }}" loading="lazy" width="200" height="160" srcset="{{ apartment.img.url }} 500w, {{ apartment.img.url }} 800w, {{ apartment.img.url }} 1080w, {{ apartment.img.url }} 1600w, {{ apartment.img.url }} 2000w, images/apartment-building-what-makes-good-apartment-building-scaled.jpg 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
         <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
           <div class="_18-poppins centered-text">{{ apartment.title }}</div>
           <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}</div>
@@ -34,6 +35,53 @@
     </div>
   </div>
 </div>
+
+
+      <div id="left-specific-apartment" class="left-grid" style="display: none;">
+          <div class="apartment-search background back">
+              <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" onclick="toggleRental()" loading="lazy" width="56" alt="" class="apartment-search-back-img"></div>
+          <div class="_40-padding-container white percent-change">
+            <div>
+              <div>
+                <h1 class="_36-bold" id="apartment-title">*Apartment*</h1>
+                <h1 class="_18" id="apartment-address">*address*</h1>
+              </div>
+              <div class="_10-top horizontal">
+                <div class="w-layout-grid grid-23">
+                  <div id="w-node-_2ebce160-23b2-b95f-bbfd-fc591c3e4565-dab43b3e" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_40e944fe-9d38-2d22-134b-6fdf53d9f49e-dab43b3e" class="apartment-breakdown-titles">Monthly Rent</div>
+                    <div class="apartment-breakdown-titles _5-top">$<span id="apartment-monthly-rent">1,234</span>/mo</div>
+                  </div>
+                  <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f74879-dab43b3e" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f7487a-dab43b3e" class="apartment-breakdown-titles">Bedrooms</div>
+                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-bedroom">1</span> bd</div>
+                  </div>
+                  <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c421-dab43b3e" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c422-dab43b3e" class="apartment-breakdown-titles">Bathrooms</div>
+                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-bathroom">1</span> ba</div>
+                  </div>
+                  <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575e-dab43b3e" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575f-dab43b3e" class="apartment-breakdown-titles">Square Ft</div>
+                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-sqft">704</span> sq ft</div>
+                  </div>
+                </div>
+              </div>
+              <div class="description _10-top">
+                <h1 class="_18 semibold">About <span>apartment place</span></h1>
+                <div class="_18-poppins _5-top">Description of the apartment</div>
+              </div>
+            </div>
+            <div class="button-wrapper bottom-spacing listing">
+              <div class="button listings">
+                <div class="button-text">Back to listing</div>
+              </div>
+              <div class="button apply">
+                <div class="button-text next">Apply</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
 
 

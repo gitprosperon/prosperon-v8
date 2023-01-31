@@ -1,24 +1,33 @@
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
-from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment
-from .forms import AddBudgetForm
+from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job
+from .forms import AddBudgetForm, NewModuleSummaryForm
 
 # ------- UNIVERSITY MAIN VIEWS -----------
 
 # University Dashboard
 def dashboard(request):
     user = request.user
-    student_user = Account.objects.filter(pk=request.user.pk)
-    user_id = student_user.model.get_user_id(self=user)
-    student_model = Student.objects.get(user_id_number=user_id)
+
 
     if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        student_job_id = student_model.accepted_job
+
+
         first_name = student_user.model.get_first_name(self=user)
         last_name = student_user.model.get_last_name(self=user)
         profile_image = student_user.model.get_user_image(self=user)
         student_path = student_model.life_path['events']
+        jobpicked = student_model.accepted_job
 
+        if student_model.job is None:
+            jobTitle = ''
+        else:
+            jobTitle = student_model.job.title
 
 
         if profile_image:
@@ -29,10 +38,6 @@ def dashboard(request):
         anytime_dec = AnytimeDecision.objects.all()
 
 
-        if request.method == 'POST':
-            print(request.POST)
-            progress = request.POST['progress']
-
 
         context = {
             'first_name': first_name,
@@ -40,7 +45,8 @@ def dashboard(request):
             'profile_image': profile_image,
             'age': age,
             'anytime_dec': anytime_dec,
-            'student_path': student_path
+            'student_path': student_path,
+            'jobTitle': jobTitle
         }
 
         return render(request, 'Students/dashboard.html', context=context)
@@ -67,13 +73,15 @@ def budget(request):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         user_university_budget_items = BudgetItemsUniversity.objects.filter(users_id=user_id)
-
-
-
-
+        yearly_salary = student_model.yearly_salary
+        monthly_salary = student_model.yearly_salary / 12
+        monthly_salary = round(monthly_salary)
 
         context = {
-            'user_university_budget_items': user_university_budget_items
+            'user_university_budget_items': user_university_budget_items,
+            'yearly_salary': yearly_salary,
+            'monthly_salary': monthly_salary
+
         }
         return render(request, 'Students/budget/budget.html', context=context)
     else:
@@ -196,7 +204,7 @@ def anytime_decision_step2(request, id):
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
-        ad = AnytimeDecision.objects.get(pk=id)
+        ad = AnytimeDecision.objects.get(decision_id=id)
         html_path = ad.step2_path
         apartments = Apartment.objects.all()
 

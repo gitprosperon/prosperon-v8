@@ -28,7 +28,7 @@
                             <a href="{% url 'Anytime:all-anytime-decisions' %}">
                             <div class="w-layout-grid timeline-grid anytime">
                           <div id="w-node-df9b64e8-75ac-382d-e4f8-16c0eec0d9d4-fe18aa3b" class="timeline-left-col">
-                            <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                            <div class="timeline-line"></div><img src="{% static 'images/icons/uncomplete-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
                             <div class="timeline-line bottom"></div>
                           </div>
                           <div id="w-node-df9b64e8-75ac-382d-e4f8-16c0eec0d9d8-fe18aa3b" class="timeline-grid-right">
@@ -50,7 +50,7 @@
                         {% endif %}
                         <div class="w-layout-grid timeline-grid">
                           <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
-                            <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                            <div class="timeline-line"></div><img src="{% static 'images/icons/uncomplete-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
                             <div class="timeline-line bottom" style="background-color: #B2D8FF"></div>
                           </div>
                           <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
@@ -80,7 +80,7 @@
 
               <div class="w-layout-grid timeline-grid">
               <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
-                <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                <div class="timeline-line"></div><img src="{% static 'images/icons/Completed-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
                 <div class="timeline-line bottom"></div>
               </div>
               <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
@@ -112,7 +112,7 @@
 
             <div class="w-layout-grid timeline-grid">
               <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
-                <div class="timeline-line"></div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="54" alt="" class="image-4">
+                <div class="timeline-line"></div><img src="{% static 'images/icons/Completed-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
                 <div class="timeline-line bottom"></div>
               </div>
               <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
@@ -144,13 +144,13 @@
               <div class="w-layout-grid grid-6">
                 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30759-fe18aa3b" class="_20-padding-container centered-div">
                   <div class="profile-snapshot top">
-                    <div class="profile-image"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="profile-image homepageprofile"></div>
+                    <div class="profile-image"><img src="{{ profile_image.url }}" loading="lazy" alt="" class="profile-image homepageprofile"></div>
                     <div class="profile-snapshot-information">
                       <div>
                         <h1 class="heading-32">{{ first_name }} {{ last_name }}</h1>
                       </div>
                       <div>
-                        <div class="_18 medium text">*Position*</div>
+                        <div class="_18 medium text">{{ jobTitle }}</div>
                       </div>
                     </div>
                   </div>

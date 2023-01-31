@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, BudgetItemsUniversity
+from .models import Student, BudgetItemsUniversity, ModuleSummarie
 
 
 class UpdateProgressForm(forms.ModelForm):
@@ -7,6 +7,7 @@ class UpdateProgressForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ['course_progress']
+
 
 
 class AddBudgetForm(forms.ModelForm):
@@ -22,3 +23,8 @@ class AddBudgetForm(forms.ModelForm):
         }
 
 
+class NewModuleSummaryForm(forms.ModelForm):
+
+    class Meta:
+        model = ModuleSummarie
+        fields = ['user', 'users_id', 'module_url', 'module']
