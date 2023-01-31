@@ -22,7 +22,7 @@
   <div class="_40-padding-container white apartments-container">
     <div class="w-layout-grid grid-22">
         {% for apartment in apartments %}
-        <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}')">
+        <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}', '{{ apartment.general_information }}', '{{ apartment.initial_cost }}')">
             <img src="../{{ apartment.img.url }}" loading="lazy" width="200" height="160" srcset="{{ apartment.img.url }} 500w, {{ apartment.img.url }} 800w, {{ apartment.img.url }} 1080w, {{ apartment.img.url }} 1600w, {{ apartment.img.url }} 2000w, images/apartment-building-what-makes-good-apartment-building-scaled.jpg 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
         <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
           <div class="_18-poppins centered-text">{{ apartment.title }}</div>
@@ -68,15 +68,7 @@
               </div>
               <div class="description _10-top">
                 <h1 class="_18 semibold">About <span>apartment place</span></h1>
-                <div class="_18-poppins _5-top">Description of the apartment</div>
-              </div>
-            </div>
-            <div class="button-wrapper bottom-spacing listing">
-              <div class="button listings">
-                <div class="button-text">Back to listing</div>
-              </div>
-              <div class="button apply">
-                <div class="button-text next">Apply</div>
+                <div class="_18-poppins _5-top" id="apartment-description">Description of the apartment</div>
               </div>
             </div>
           </div>

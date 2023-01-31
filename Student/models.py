@@ -118,6 +118,7 @@ class video(models.Model):
     next_button = models.CharField(max_length=400, null=True, blank=True)
     video_id = models.CharField(max_length=400, null=True, blank=True)
     summary = models.TextField( null=True, blank=True)
+    page_type = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.video_id + ' - ' + self.title
@@ -133,6 +134,7 @@ class Apartment(models.Model):
     bedrooms = models.CharField(max_length=500, null=True, blank=True)
     bathrooms = models.CharField(max_length=500, null=True, blank=True)
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
+    initial_cost = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.address
@@ -183,6 +185,10 @@ class UniversityModule(models.Model):
     end_date = models.CharField(max_length=500, null=True, blank=True)
     next_life_event = models.JSONField(null=True, blank=True)
     img = models.ImageField(upload_to='moduleImages/', null=True, blank=True)
+    whats_happened = models.TextField(max_length=5000, null=True, blank=True)
+    unlocked_decisions = models.CharField(max_length=50000, null=True, blank=True)
+
+
 
 
     def __str__(self):
@@ -198,6 +204,5 @@ class ModuleSummarie(models.Model):
     what_happened = models.CharField(max_length=500, null=True, blank=True)
     unlocked_decisions = models.CharField(max_length=5000, null=True, blank=True)
     points_earned = models.CharField(max_length=500, null=True, blank=True)
-    whats_happened = models.CharField(max_length=5000, null=True, blank=True)
 
 

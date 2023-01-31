@@ -45,6 +45,7 @@ function changeToApplied(a) {
     var button = document.getElementById('apply-to-job-button');
     var alert = document.getElementById('alert');
     var appliedTarget = document.getElementById('jobs-applied');
+    var getAJobContaonerTarget = document.getElementById('get-a-job-container')
 
     if(appliedList.includes(button.value)) {
         console.log('yes')
@@ -63,6 +64,7 @@ function changeToApplied(a) {
         appliedTarget.setAttribute('value', list)
 
         alert.style.display = 'flex'
+        getAJobContaonerTarget.style.display = 'none'
     }
 
 }

@@ -143,32 +143,35 @@ def first_job_step4(request):
             # Only updating if course progress meets requirement
             if studentProgress < 30:
                 # Creating new module summary object
-                module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
-                newModule = module_summary_form.save(commit=False)
-                newModule.user = request.user
-                newModule.module_url = 'first_job'
-                newModule.module = UniversityModule.objects.get(module_title='First Job')
-                newModule.users_id = user_id
-                newModule.save()
+                try:
+                    summary = ModuleSummarie.objects.get(module_url='first_job')
+                except:
+                    module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
+                    newModule = module_summary_form.save(commit=False)
+                    newModule.user = request.user
+                    newModule.module_url = 'first_job'
+                    newModule.module = UniversityModule.objects.get(module_title='First Job')
+                    newModule.users_id = user_id
+                    newModule.save()
 
-                acceptedJob = request.POST['accepted-job']
-                student_model.accepted_job = acceptedJob
-                student_job = Job.objects.get(job_id=acceptedJob)
+                    acceptedJob = request.POST['accepted-job']
+                    student_model.accepted_job = acceptedJob
+                    student_job = Job.objects.get(job_id=acceptedJob)
 
-                cleaned_salary = student_job.salary_range.replace('$', '')
-                cleaned_salary = cleaned_salary.replace(',', '')
-                cleaned_salary = cleaned_salary.partition('-')
-                min = cleaned_salary[0]
-                max = cleaned_salary[2]
-                salary = random.randint(int(min), int(max))
-                student_model.yearly_salary = salary
+                    cleaned_salary = student_job.salary_range.replace('$', '')
+                    cleaned_salary = cleaned_salary.replace(',', '')
+                    cleaned_salary = cleaned_salary.partition('-')
+                    min = cleaned_salary[0]
+                    max = cleaned_salary[2]
+                    salary = random.randint(int(min), int(max))
+                    student_model.yearly_salary = salary
 
-                student_model.course_progress = progress
-                student_model.job = student_job
-                student_model.save()
-                return redirect('/university/module_summary/first_job/0')
-            else:
-                return redirect('/university/module_summary/first_job/0')
+                    student_model.course_progress = progress
+                    student_model.job = student_job
+                    student_model.save()
+                    return redirect('/university/module_summary/first_job/0')
+                else:
+                    return redirect('/university/module_summary/first_job/0')
 
         context = {
             'the_jobs': the_jobs[0:2]

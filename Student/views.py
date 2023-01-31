@@ -135,6 +135,8 @@ def universal_video(request, id):
                 if student_model.course_progress < progress:
                     student_model.course_progress = progress
                     student_model.save()
+
+
                     return redirect(f'/{next_btn}')
                 else:
                     return redirect(f'/{next_btn}')

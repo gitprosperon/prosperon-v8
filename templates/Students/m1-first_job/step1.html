@@ -41,7 +41,7 @@
 
 
 
-<div class="get-a-job-container">
+<div class="get-a-job-container" id="get-a-job-container">
     <div class="number-of-applied-container" style="background-color: white; padding: 10px">
       <h1 class="heading-3">Applied to</h1>
     </div>
@@ -74,37 +74,38 @@
                 <div class="w-col w-col-7">
                   <div class="job-left-col">
                     <div>
-                      <h1 class="job-title-main" id="job-title">Accounting Paraprofessional</h1>
-                      <h1 class="job-title-main subtitle" id="job-company">Partners LLC</h1>
+
+                        <h1 class="job-title-main" id="job-title">{{ all_jobs.0.title }}</h1>
+                      <h1 class="job-title-main subtitle" id="job-company">{{ all_jobs.0.company }}</h1>
                     </div>
                     <div class="benefits-container">
                       <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
-                        <h1 class="benefits-text" id="job-location">Boston Ma</h1>
+                        <h1 class="benefits-text" id="job-location">{{ all_jobs.0.location }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="job-type">Heading1</h1>
+                        <h1 class="benefits-text" id="job-type">{{ all_jobs.0.job_type }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="job-hours">Heading</h1>
+                        <h1 class="benefits-text" id="job-hours">{{ all_jobs.0.job_hours }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="salary-range">Heading</h1>
+                        <h1 class="benefits-text" id="salary-range">{{ all_jobs.0.salary_range }}</h1>
                       </div>
                     </div>
-                      <button class="next-btn" style="font-weight: 500" id="apply-to-job-button" value="1" onclick="changeToApplied(this)">Apply</button>
+                      <button class="next-btn" style="font-weight: 500" id="apply-to-job-button" value="{{ job.job_id }}" onclick="changeToApplied(this)">Apply</button>
                   </div>
                 </div>
-                <div class="w-col w-col-5"><img src="" id="job-image" loading="lazy" width="342" alt="" class="image-2"></div>
+                <div class="w-col w-col-5"><img src="{{ all_jobs.0.logo.url }}" id="job-image" loading="lazy" width="342" alt="" class="image-2"></div>
               </div>
             </div>
 
             <div>
 
                 <h3 class="job-title-main subtitle">Requirememts</h3>
-                <p id="job-requirmenets" style="color: #707070; font-size: 14px">a</p>
+                <p id="job-requirmenets" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_requirements }}</p>
 
                 <h3 class="job-title-main subtitle">Qualifications</h3>
-                <p id="job-qualifications" style="color: #707070; font-size: 14px">a</p>
+                <p id="job-qualifications" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_qualifications }}</p>
 
             </div>
 

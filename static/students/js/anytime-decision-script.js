@@ -1,4 +1,4 @@
-function toggleRental(title, address, rent, bed, bath, sqft){
+function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     var rentalCardTarget = document.getElementById('left-specific-apartment');
     var allRentalCardTarget = document.getElementById('all-rentals-card');
     var apartmentTitleTarget = document.getElementById('apartment-title');
@@ -7,11 +7,9 @@ function toggleRental(title, address, rent, bed, bath, sqft){
     var apartmentBedroomTarget = document.getElementById('apartment-bedroom');
     var apartmentBathroomTarget = document.getElementById('apartment-bathroom');
     var apartmentSqftTarget = document.getElementById('apartment-sqft');
-
-
-
-
-
+    var apartmentDescriptionTarget = document.getElementById('apartment-description');
+    var effectMonthlyCostTarget = document.getElementById('effect-monthly-cost');
+    var effectInitialCostTarget = document.getElementById('effect-initial-cost');
 
     apartmentTitleTarget.innerText = title
     apartmentAddressTarget.innerText = address
@@ -19,7 +17,9 @@ function toggleRental(title, address, rent, bed, bath, sqft){
     apartmentBedroomTarget.innerText = bed
     apartmentBathroomTarget.innerText = bath
     apartmentSqftTarget.innerText = sqft
-
+    apartmentDescriptionTarget.innerText = desc
+    effectMonthlyCostTarget.innerText = rent
+    effectInitialCostTarget.innerText = init
 
 
     if(allRentalCardTarget.style.display === 'block') {
