@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'Budget',
     'Student',
     'MainWebsite',
-    'Schools'
+    'Schools',
+    'Admin'
 
 ]
 

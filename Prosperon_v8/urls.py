@@ -9,6 +9,10 @@ urlpatterns = [
     path(r'budget/', include('Budget.urls')),
     path(r'', include('MainWebsite.urls')),
     path(r'', include('Student.urls')),
+    path(r'admin-pages/', include('Admin.urls')),
+
+
     path(r'anytime-decision/', include('Student.anytime_decision_urls')),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
