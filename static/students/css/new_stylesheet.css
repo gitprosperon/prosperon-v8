@@ -136,15 +136,16 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  width: 175px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 ._20-padding-container.alternative.center-aligned {
@@ -159,6 +160,7 @@
 }
 
 ._20-padding-container.alternative.apartments {
+  width: auto;
   margin-bottom: 10px;
   padding-top: 0px;
   padding-right: 0px;
@@ -859,7 +861,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -872,6 +874,7 @@
 }
 
 .alert-page-container {
+  width: auto;
   margin-top: 60px;
   padding: 40px;
   background-color: #fff;
@@ -1100,7 +1103,7 @@
 }
 
 ._40-padding-container.white.apartments-container {
-  max-height: none;
+  max-height: 450px;
   padding-right: 20px;
   padding-left: 20px;
   background-color: #fff;
@@ -1471,8 +1474,8 @@
 }
 
 .grid-18 {
-  -ms-grid-columns: 5fr 0.25fr;
-  grid-template-columns: 5fr 0.25fr;
+  -ms-grid-columns: 0.75fr 1fr;
+  grid-template-columns: 0.75fr 1fr;
   -ms-grid-rows: auto;
   grid-template-rows: auto;
 }
@@ -1610,13 +1613,22 @@
 }
 
 .grid-22 {
-  overflow: hidden;
+  overflow: scroll;
+  justify-items: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  -ms-grid-columns: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
+.grid-22.credit-cards {
+  overflow: scroll;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: auto auto;
+  grid-template-rows: auto auto;
 }
 
 ._36-bold {
@@ -1628,7 +1640,7 @@
 }
 
 ._36-bold.light {
-  color: #505050;
+  color: #142450;
 }
 
 ._36-bold.light._20-left {
@@ -1712,7 +1724,7 @@
 }
 
 .ad-impact._30-padding.white {
-  width: 210px;
+  width: auto;
   background-color: #fff;
 }
 
@@ -1721,6 +1733,7 @@
 }
 
 .blue-gradient {
+  overflow: scroll;
   max-height: 675px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#1f79ba), to(#103d5d));
   background-image: linear-gradient(180deg, #1f79ba, #103d5d);
@@ -1836,8 +1849,8 @@
   margin-bottom: 5px;
   font-family: Poppins, sans-serif;
   color: #000;
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 400;
 }
 
@@ -2078,8 +2091,9 @@
 
 .grid-25 {
   height: auto;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .anytime-title {
@@ -2487,7 +2501,26 @@
   height: 50px;
 }
 
+.text-span-3 {
+  color: #142450;
+}
+
+.image-7 {
+  display: none;
+}
+
+.bank-accounts-grid {
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: auto auto auto;
+  grid-template-rows: auto auto auto;
+}
+
 @media screen and (min-width: 1280px) {
+  ._20-padding-container.alternative {
+    width: 200px;
+  }
+
   ._20-padding-container.video-notes {
     height: 15%;
   }
@@ -2506,6 +2539,19 @@
 
   ._20-padding-container.description.hide {
     display: none;
+  }
+
+  .right-column {
+    padding-top: 20px;
+  }
+
+  .page-left-column.left-padding {
+    padding-top: 20px;
+  }
+
+  ._18-poppins {
+    font-size: 14px;
+    line-height: 20px;
   }
 
   ._18-poppins.semibold.centered-text {
@@ -2539,6 +2585,73 @@
     line-height: 24px;
   }
 
+  .alert-page-wrapper {
+    height: 91vh;
+  }
+
+  .alert-page-container {
+    margin-top: 0px;
+  }
+
+  .module-summary-page-wrapper {
+    padding-top: 20px;
+  }
+
+  ._40-padding-container.white.apartments-container {
+    max-height: 450px;
+  }
+
+  ._40-padding-container.wrapper {
+    padding-top: 20px;
+  }
+
+  .grid-18 {
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-22 {
+    overflow: scroll;
+    justify-items: center;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: auto auto auto;
+    grid-template-rows: auto auto auto;
+  }
+
+  ._36-bold.light {
+    color: #142450;
+  }
+
+  .heading-34 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .bank-account-wrapper.top {
+    margin-top: 0px;
+  }
+
+  .div-block-128 {
+    width: 50%;
+  }
+
+  .div-block-131 {
+    width: 70%;
+  }
+
+  .grid-25 {
+    justify-items: center;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .scenario-popup {
+    height: 91vh;
+  }
+
   .right-timeline-card.anytime {
     border-radius: 20px;
   }
@@ -2555,11 +2668,25 @@
   .div-block-141 {
     height: 100%;
   }
+
+  .bank-accounts-grid {
+    overflow: scroll;
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+    -ms-grid-rows: auto auto auto;
+    grid-template-rows: auto auto auto;
+  }
 }
 
 @media screen and (max-width: 991px) {
   ._20-padding-container.centered-div {
     width: 100%;
+  }
+
+  ._20-padding-container.alternative.hidden {
+    display: none;
   }
 
   .right-column {
@@ -2596,11 +2723,31 @@
     grid-template-rows: auto auto;
   }
 
+  .grid-18 {
+    -ms-grid-columns: 2.5fr;
+    grid-template-columns: 2.5fr;
+    -ms-grid-rows: auto auto;
+    grid-template-rows: auto auto;
+  }
+
   .grid-18.step1 {
     -ms-grid-columns: 2.75fr;
     grid-template-columns: 2.75fr;
     -ms-grid-rows: auto auto;
     grid-template-rows: auto auto;
+  }
+
+  .anytime-bank-wrapper {
+    padding-bottom: 40px;
+  }
+
+  .grid-25 {
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .image-7 {
+    display: none;
   }
 }
 
@@ -2611,6 +2758,26 @@
 
   .page-left-column.left-padding {
     padding-left: 20px;
+  }
+
+  .searchbar {
+    width: 500px;
+  }
+
+  .right-arrow {
+    height: 20%;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .column-4 {
+    display: none;
+  }
+
+  .image-7 {
+    display: block;
   }
 }
 
@@ -6329,29 +6496,7 @@
   grid-row-end: span 1;
 }
 
-#w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-9f05c550 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-9f05c550 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_6eb24419-a21f-45df-39ba-9617e303e0e3-9f05c550 {
+#w-node-cfef72ea-55b2-3476-8362-d2fee68aca36-9f05c550 {
   -ms-grid-column: span 1;
   grid-column-start: span 1;
   -ms-grid-column-span: 1;
@@ -6961,6 +7106,94 @@
   grid-row-end: span 1;
 }
 
+#w-node-_7ef735c3-8d77-14f5-5d45-990b6198bc02-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_7ef735c3-8d77-14f5-5d45-990b6198bc05-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_84fae885-65b9-93fa-39d5-a777799b2440-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_84fae885-65b9-93fa-39d5-a777799b2443-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-bc3cfcb9-ad5d-ca84-fe7d-0d50a99d61bd-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-bc3cfcb9-ad5d-ca84-fe7d-0d50a99d61c0-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_9581338e-06dc-7f7c-ca7f-faf606c8918c-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
+#w-node-_9581338e-06dc-7f7c-ca7f-faf606c8918f-5bbc30a4 {
+  -ms-grid-column: span 1;
+  grid-column-start: span 1;
+  -ms-grid-column-span: 1;
+  grid-column-end: span 1;
+  -ms-grid-row: span 1;
+  grid-row-start: span 1;
+  -ms-grid-row-span: 1;
+  grid-row-end: span 1;
+}
+
 #w-node-_430ea00d-e1b5-356c-fc8a-3d5ca76896fa-5bbc30a4 {
   -ms-grid-column: span 1;
   grid-column-start: span 1;
@@ -7017,182 +7250,6 @@
 }
 
 #w-node-_853a052c-944f-2050-be4c-a6a6eb621b49-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_2b04f445-c18d-9311-9e46-c740c6b92240-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_2b04f445-c18d-9311-9e46-c740c6b92243-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_8293902a-9e96-69c5-d694-46b625eb740e-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_8293902a-9e96-69c5-d694-46b625eb7411-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-ef51f9ab-c2f2-c7b0-416f-eee6a54cdfd6-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-ef51f9ab-c2f2-c7b0-416f-eee6a54cdfd9-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-e016b812-3fc3-f9ad-ba7a-bf3c83b4ca44-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-e016b812-3fc3-f9ad-ba7a-bf3c83b4ca47-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_2ccdd6cf-95b9-81f9-5df2-570b1142d8aa-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_2ccdd6cf-95b9-81f9-5df2-570b1142d8ad-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-a2befbbf-381e-e4f9-1ab4-d7715ffd362f-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-a2befbbf-381e-e4f9-1ab4-d7715ffd3632-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_374586cf-5809-a70b-43a0-e257f1bc07c7-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_374586cf-5809-a70b-43a0-e257f1bc07ca-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_4248231e-10f9-a831-0cae-54637ecf1809-5bbc30a4 {
-  -ms-grid-column: span 1;
-  grid-column-start: span 1;
-  -ms-grid-column-span: 1;
-  grid-column-end: span 1;
-  -ms-grid-row: span 1;
-  grid-row-start: span 1;
-  -ms-grid-row-span: 1;
-  grid-row-end: span 1;
-}
-
-#w-node-_4248231e-10f9-a831-0cae-54637ecf180c-5bbc30a4 {
   -ms-grid-column: span 1;
   grid-column-start: span 1;
   -ms-grid-column-span: 1;
