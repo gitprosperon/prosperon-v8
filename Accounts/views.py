@@ -79,6 +79,7 @@ def register_student_account(request):
 
 
 
+
             djlogin(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('/university/onboarding/step1')
 
