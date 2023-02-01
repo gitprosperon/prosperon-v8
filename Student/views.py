@@ -164,6 +164,7 @@ def module_summaries(request, id, c):
     user = request.user
     if user.is_active and user.has_university == True:
         summary = ModuleSummarie.objects.get(user=user, module_url=id)
+        print(summary)
         summary_title = summary.module.module_title
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
