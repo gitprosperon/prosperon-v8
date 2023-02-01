@@ -33,7 +33,7 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
 }
 
 
-function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, feature1, feature2, feature3, feature4) {
+function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, feature1, feature2, feature3, feature4, signupFee) {
     var creditCardPopup = document.getElementById('creditCardPopUp')
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
     var apply_buttonTarget = document.getElementById('applyBtn')
