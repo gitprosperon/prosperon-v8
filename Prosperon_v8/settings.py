@@ -37,9 +37,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-*x97+rbyihbx9p4ek%qud*%-lm$4+ek3-4vpn%#==_%xd=$sk4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'https://prosperonv8.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
