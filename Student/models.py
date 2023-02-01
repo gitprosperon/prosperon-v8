@@ -98,7 +98,7 @@ class Student(models.Model):
 
     ]
     live_with_parents = models.CharField(max_length=20, choices=YES_NO, null=True, blank=True)
-
+    location = models.CharField(max_length=20, null=True, blank=True)
 
     GENDER_CHOICES = (
         ('Female', 'Female'),
