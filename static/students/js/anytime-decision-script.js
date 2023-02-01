@@ -72,7 +72,7 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     feature3Target.innerText = feature3
     feature4Target.innerText = feature4
     monthlyCostTarget.innerText = montlyCost
-    Targ
+    signupFeeTarget.innerText = signupFee
 
 
 
