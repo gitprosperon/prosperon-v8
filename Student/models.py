@@ -79,6 +79,8 @@ class Job(models.Model):
     company_qualifications = models.TextField(max_length=10000, null=True, blank=True)
     company_description = models.TextField(max_length=10000, null=True, blank=True)
 
+    major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
+
 
 
 
