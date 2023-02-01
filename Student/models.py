@@ -176,11 +176,28 @@ class AnytimeDecision(models.Model):
     yearly_cost = models.IntegerField(null=True, blank=True)
     monthly_cost = models.IntegerField(null=True, blank=True)
     next_btn_link = models.CharField(max_length=500, null=True, blank=True)
+    back_btn_link = models.CharField(max_length=500, null=True, blank=True)
+
     img = models.ImageField(upload_to='anytimeImages/', null=True, blank=True)
 
 
     def __str__(self):
         return self.decision_id + ' - ' + self.title
+
+class CreditCard(models.Model):
+    title = models.CharField(max_length=100, null=True, blank=True)
+    img = models.ImageField(upload_to='creditCardImages/', null=True, blank=True)
+    score = models.CharField(max_length=500, null=True, blank=True)
+    feature1 = models.CharField(max_length=500, null=True, blank=True)
+    feature2 = models.CharField(max_length=500, null=True, blank=True)
+    feature3 = models.CharField(max_length=500, null=True, blank=True)
+    feature4 = models.CharField(max_length=500, null=True, blank=True)
+    apr = models.CharField(max_length=500, null=True, blank=True)
+    yearlyFee = models.CharField(max_length=500, null=True, blank=True)
+    atmFee = models.CharField(max_length=500, null=True, blank=True)
+    credit_card_descrption = models.CharField(max_length=500, null=True, blank=True)
+    signup_fee = models.CharField(max_length=500, null=True, blank=True)
+
 
 
 # Model for all budgets

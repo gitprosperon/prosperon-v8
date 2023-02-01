@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Student, Major, video, Job, AnytimeDecision, BudgetItemsUniversity, ModuleSummarie, UniversityModule, Apartment
-from .models import Location
+from .models import Location, CreditCard
 
 admin.site.register(Major)
 admin.site.register(Student)
@@ -12,4 +12,5 @@ admin.site.register(UniversityModule)
 admin.site.register(ModuleSummarie)
 admin.site.register(Apartment)
 admin.site.register(Location)
+admin.site.register(CreditCard)
 

@@ -59,10 +59,11 @@
       </div>
     </div>
     <div class="button-wrapper bottom-spacing">
-      <div class="button">
-
-          <input type=button class="button" style="font-size: 18px" value="Back" onClick="javascript:history.go(-1);">
-      </div>
+      <a href="/university/dashboard">
+            <div class="button" id="backBtn">
+                <div class="button-text" id="backBtn">Back</div>
+            </div>
+            </a>
 
         <a href="/{{ ad.next_btn_link }}">
         <div class="button next">

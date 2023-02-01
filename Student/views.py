@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
-from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule
+from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
 
@@ -268,6 +268,7 @@ def anytime_decision_step2(request, id):
         html_path = ad.step2_path
         print(html_path)
         apartments = Apartment.objects.all()
+        credit_cards = CreditCard.objects.all()
 
         # Grabbing request
         if request.method == 'POST':
@@ -299,7 +300,8 @@ def anytime_decision_step2(request, id):
         context = {
             'ad': ad,
             'id': id,
-            'apartments': apartments
+            'apartments': apartments,
+            'credit_cards': credit_cards
         }
         return render(request, f'Students/anytime-decisions/{html_path}', context=context)
     else:

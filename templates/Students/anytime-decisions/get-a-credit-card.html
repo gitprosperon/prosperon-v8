@@ -8,12 +8,11 @@
 {% block anytimeD %}
 {% if id == '3' %}
 
- <body class="body-2">
-  <div class="fullpage-wrapper">
+
 
     <div class="grid-wrapper" style="padding: 0px; padding-right: 10px">
 
-        <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-e4f669d7" class="blue-gradient">
+        <div id="all-credit-card-wrapper" class="blue-gradient" style="display: block;">
           <div class="apartment-search _40-padding-container transparent">
             <div class="_18 semibold white">Welcome to Card World</div>
             <div class="search-area _20-top">
@@ -40,17 +39,79 @@
           </div>
         </div>
 
-    </div>
-    <div class="button-wrapper bottom-spacing">
-      <div class="button">
-        <div class="button-text">Back</div>
-      </div>
-      <div class="button next">
-        <div class="button-text next">Next</div>
-      </div>
-    </div>
-  </div>
-  </body>
+
+
+
+        <div id="creditCardPopUp" class="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-fbe61579" style="display: none;">
+          <div class="_40-padding-container white percent-change">
+            <div class="_20-bottom">
+              <h1 class="_24px-2 semibold _20-left" id="credit-card-name">Bank Name</h1>
+              <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""></div>
+            </div>
+            <div>
+              <div>
+                <h1 class="_18 semibold centered-text">General Information</h1>
+              </div>
+              <div class="_10-top horizontal">
+                <div class="w-layout-grid grid-23">
+                  <div id="w-node-_2ebce160-23b2-b95f-bbfd-fc591c3e4565-fbe61579" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_40e944fe-9d38-2d22-134b-6fdf53d9f49e-fbe61579" class="apartment-breakdown-titles">Intro APR</div>
+                    <div class="apartment-breakdown-titles _5-top"><span id="apr">1.1</span>%</div>
+                  </div>
+                  <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f74879-fbe61579" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f7487a-fbe61579" class="apartment-breakdown-titles">Yearly Fee</div>
+                    <div class="apartment-breakdown-titles _5-top"><span>$</span><span id="yearlyFee">0</span></div>
+                  </div>
+                  <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c421-fbe61579" class="apartment-info-wrapper _10-padding">
+                    <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c422-fbe61579" class="apartment-breakdown-titles">ATM Fee</div>
+                    <div class="apartment-breakdown-titles _5-top"><span>$</span><span id="atmFee">2.50</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="description _10-top">
+                <h1 class="_18 semibold">Description<span></span></h1>
+                <div class="_18-poppins _5-top" id="creditCardDescription">&quot;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa </div>
+
+              </div>
+            </div>
+             <h1 class="_18 semibold _10-top" style="margin-bottom: 0px">Features<span></span></h1>
+              <div class="_10-top horizontal">
+
+              <div class="div-block-136"></div>
+              <div class="_18-poppins _10-left semibold">Feature 1:</div>
+              <div class="_18-poppins _10-left" id="feature1">feature 1</div>
+            </div>
+            <div class="_10-top horizontal">
+              <div class="div-block-136"></div>
+              <div class="_18-poppins _10-left semibold">Feature 2:</div>
+              <div class="_18-poppins _10-left" id="feature2">feature 2</div>
+            </div>
+            <div class="_10-top horizontal">
+              <div class="div-block-136"></div>
+              <div class="_18-poppins _10-left semibold">Feature 3:</div>
+              <div class="_18-poppins _10-left" id="feature3">feature 3</div>
+            </div>
+            <div class="_10-top horizontal">
+              <div class="div-block-136"></div>
+              <div class="_18-poppins _10-left semibold">Feature 4:</div>
+              <div class="_18-poppins _10-left" id="feature4">feature 4</div>
+            </div>
+            <div class="button-wrapper bottom-spacing listing">
+              <div class="back-btn" onclick="backToCards()" style="cursor: pointer; width: auto">
+                <div class="" onclick="backToCards()" style="width: auto">Back to cards</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        </div>
+
+
+
+
+
 
 {% endif %}
 {% endblock %}
@@ -62,9 +123,10 @@
             <div class="back-btn" id="backBtn">
                 <div class="" id="backBtn" >Back</div>
             </div>
+            </a>
             <form method="post">
                 {% csrf_token %}
-                    <button type="submit" class="next-btn">Next</button>
+                    <button type="submit" id="applyBtn" class="next-btn" style="display: none;">Apply</button>
             </form>
         </div>
         {% endif %}
