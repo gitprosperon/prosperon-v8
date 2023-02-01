@@ -21,140 +21,21 @@
             </div>
           </div>
           <div class="_40-padding-container white">
-            <div class="w-layout-grid grid-22 credit-cards">
-              <div id="w-node-_2ffeaa9a-f26b-9e6d-abaa-f434b28d58d0-e4f669d7" class="credit-card-display-wrapper">
-                <div id="w-node-e644155f-9d67-bf7f-b00e-8606120590ad-e4f669d7" class="card-image-wrapper _50"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
-                <div class="card-infor-wrapper _20-padding-container _60-top">
-                  <div class="_18-poppins semibold"><span>*Banks Name*</span></div>
-                  <div class="_14-poppins">Required Credit Score: <span>###</span></div>
-                  <div class="_10-top centered-text">
-                    <a href="#" class="apply-now w-button">Apply Now</a>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Previous Devisions</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-a5d6b3dc-ec36-6be5-9d9e-63c9620a52d3-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-a5d6b3dc-ec36-6be5-9d9e-63c9620a52d4-e4f669d7" class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Card Details</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-eaceb516-cd11-ce12-f140-6dbeeff920c3-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-eaceb516-cd11-ce12-f140-6dbeeff920c4-e4f669d7" class="_10-top card-info strethced">
-                        <div class="_14px semibold">APR:</div>
-                        <div class="_18-poppins"><span>*##*</span>% APR</div>
-                      </div>
-                      <div class="_10-top card-info strethced">
-                        <div class="_14px semibold">Annual Fee:</div>
-                        <div class="_18-poppins"><span>$*##*</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="w-layout-grid grid-22 credit-cards" style="justify-items: stretch">
 
-              <div id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea10c-e4f669d7" class="credit-card-display-wrapper">
-                <div id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea10d-e4f669d7" class="card-image-wrapper _50"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" height="125" alt="" class="image-2"></div>
-                <div class="card-infor-wrapper _20-padding-container _60-top">
-                  <div class="_18-poppins semibold"><span>*Banks Name*</span></div>
-                  <div class="_14-poppins">Required Credit Score: <span>###</span></div>
+                {% for card in credit_cards %}
+                <div id="w-node-_2ffeaa9a-f26b-9e6d-abaa-f434b28d58d0-e4f669d7" class="credit-card-display-wrapper">
+                <div id="w-node-e644155f-9d67-bf7f-b00e-8606120590ad-e4f669d7" class="card-image-wrapper _50"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
+                <div class="card-infor-wrapper _20-padding-container _60-top" style="width: 100%">
+                  <div class="_18-poppins semibold" style="font-size: 18px"><span>{{ card.title }}</span></div>
+                  <div class="_14-poppins">Required Credit Score: <span>{{ card.score }}</span></div>
                   <div class="_10-top centered-text">
-                    <a href="#" class="apply-now w-button">Apply Now</a>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Previous Devisions</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea11f-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea121-e4f669d7" class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Card Details</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea131-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-_58d582ca-fdea-534d-f49e-c8a5f67ea133-e4f669d7" class="_10-top card-info strethced">
-                        <div class="_14px semibold">APR:</div>
-                        <div class="_18-poppins"><span>*##*</span>% APR</div>
-                      </div>
-                      <div class="_10-top card-info strethced">
-                        <div class="_14px semibold">Annual Fee:</div>
-                        <div class="_18-poppins"><span>$*##*</span></div>
-                      </div>
-                    </div>
+                    <button  class="next-btn" style="width: auto" onclick="showCreditCard('{{ card.title }}', '{{ card.apr }}', '{{ card.yearlyFee }}', '{{ card.atmFee }}', '{{ card.credit_card_descrption }}', '{{ card.feature1 }}', '{{ card.feature2 }}', '{{ card.feature3 }}', '{{ card.feature4 }}', '{{ card.signup_fee }}')">Learn More</button>
                   </div>
                 </div>
               </div>
-              <div id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aab7e-e4f669d7" class="credit-card-display-wrapper">
-                <div id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aab7f-e4f669d7" class="card-image-wrapper _50"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" height="125" alt="" class="image-2"></div>
-                <div class="card-infor-wrapper _20-padding-container _60-top">
-                  <div class="_18-poppins semibold"><span>*Banks Name*</span></div>
-                  <div class="_14-poppins">Required Credit Score: <span>###</span></div>
-                  <div class="_10-top centered-text">
-                    <a href="#" class="apply-now w-button">Apply Now</a>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Previous Devisions</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aab91-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aab93-e4f669d7" class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                      <div class="_10-top card-info">
-                        <div class="div-block-5"></div>
-                        <div class="_14px _10-left">*Card Info*</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="_10-top credit-card-info">
-                    <div class="horizontal">
-                      <div class="_18-poppins">Card Details</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aaba3-e4f669d7" alt="">
-                    </div>
-                    <div class="hidden">
-                      <div id="w-node-_834ed2d2-1970-efe9-4c82-9ce5177aaba5-e4f669d7" class="_10-top card-info strethced">
-                        <div class="_14px semibold">APR:</div>
-                        <div class="_18-poppins"><span>*##*</span>% APR</div>
-                      </div>
-                      <div class="_10-top card-info strethced">
-                        <div class="_14px semibold">Annual Fee:</div>
-                        <div class="_18-poppins"><span>$*##*</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {% endfor %}
+
             </div>
           </div>
         </div>
@@ -177,8 +58,9 @@
     {% block bottomButtons %}
         {% if id == '3' %}
         <div class="button-wrapper bottom-spacing">
-            <div class="button">
-                <div class="button-text">Back</div>
+            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
+            <div class="back-btn" id="backBtn">
+                <div class="" id="backBtn" >Back</div>
             </div>
             <form method="post">
                 {% csrf_token %}
