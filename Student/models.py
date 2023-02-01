@@ -77,6 +77,8 @@ class Job(models.Model):
 
     company_requirements = models.TextField(max_length=10000, null=True, blank=True)
     company_qualifications = models.TextField(max_length=10000, null=True, blank=True)
+    company_description = models.TextField(max_length=10000, null=True, blank=True)
+
 
 
 
