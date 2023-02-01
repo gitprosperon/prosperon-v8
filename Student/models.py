@@ -1,3 +1,5 @@
+import json
+
 from django.db import models
 from django.conf import settings
 
@@ -9,6 +11,13 @@ class Major(models.Model):
     def __str__(self):
         return self.major_title
 
+class Location(models.Model):
+    city = models.CharField(max_length=500, null=True, blank=True)
+    average_rent = models.FloatField(null=True, blank=True)
+
+    def __str__(self):
+        return self.city
+
 
 #Models for get a job
 class Job(models.Model):
@@ -16,6 +25,7 @@ class Job(models.Model):
     company = models.CharField(max_length=400, null=True, blank=True)
     job_id = models.CharField(max_length=400, null=True, blank=True)
     location = models.CharField(max_length=400, null=True, blank=True)
+    job_city = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
     logo = models.ImageField(upload_to='jobimages/', null=True, blank=True)
     PAYRANGE = [
         ("$>10,000", "$>10,000"),
@@ -69,6 +79,8 @@ class Job(models.Model):
     company_qualifications = models.TextField(max_length=10000, null=True, blank=True)
 
 
+
+
 # Create your models here.
 class Student(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
@@ -80,7 +92,14 @@ class Student(models.Model):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
     age = models.CharField(max_length=20, null=True, blank=True)
-    location = models.CharField(max_length=200, null=True, blank=True)
+    YES_NO = [
+        ("Yes", "Yes"),
+        ("No", "No"),
+
+    ]
+    live_with_parents = models.CharField(max_length=20, choices=YES_NO, null=True, blank=True)
+
+
     GENDER_CHOICES = (
         ('Female', 'Female'),
         ('Male', 'Male'),
@@ -103,6 +122,11 @@ class Student(models.Model):
     life_path = models.JSONField(null=True, blank=True)
     yearly_salary = models.IntegerField(null=True, blank=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True, blank=True)
+    unlocked_anytime_decisions = models.CharField(max_length=100, null=True, blank=True)
+    last_points_added = models.IntegerField(null=True, blank=True)
+    total_points = models.IntegerField(null=True, blank=True)
+
+
 
 
     def __str__(self):
@@ -136,8 +160,7 @@ class Apartment(models.Model):
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
     initial_cost = models.IntegerField(null=True, blank=True)
 
-    def __str__(self):
-        return self.address
+
 
 
 # Model for all anytime Decisions
@@ -188,6 +211,7 @@ class UniversityModule(models.Model):
     img = models.ImageField(upload_to='moduleImages/', null=True, blank=True)
     whats_happened = models.TextField(max_length=5000, null=True, blank=True)
     unlocked_decisions = models.CharField(max_length=50000, null=True, blank=True)
+    points = models.IntegerField(null=True, blank=True)
 
 
 

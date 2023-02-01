@@ -66,11 +66,26 @@
                 </div>
                  <div class="input-container">
                     <label for="name" class="field-label">Do you still live with your parents?</label><br>
-                    <input type="text" class="text-field" maxlength="256" name="name" data-name="Name" placeholder="" id="name">
+                      <select id="cars" class="text-field" name="parents" form="info-form">
+                        <option value="{% if parents %}{{ parents }}{% endif %}">{% if parents %}{{ parents }}{% endif %}</option>
+                        {% for pc in parentsChoices %}
+                            {% if pc.0 != parents %}
+                                <option value="{{ pc.0 }}">{{ pc.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="input-container">
-                    <label for="name" class="field-label">Where </label><br>
-                    <input type="text" class="text-field" maxlength="256" name="name" data-name="Name" placeholder="" id="name">
+                    <label for="name" class="field-label">Where do you live?</label><br>
+                    <select id="cars" class="text-field" name="location" form="info-form">
+                        <option value="{% if location %}{{ location }}{% endif %}">{% if location %}{{ location }}{% endif %}</option>
+                        {% for pc in locationChoices %}
+                            {% if pc != location %}
+                                <option value="{{ pc }}">{{ pc }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
                 </div>
 
                 <div class="button-wrapper forform">

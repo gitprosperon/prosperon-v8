@@ -71,6 +71,8 @@ def register_student_account(request):
                 ]
             }
             studentUser.student_email = request.user
+            studentUser.total_points = 0
+            studentUser.last_points_added = 0
             studentUser.course_progress = 0
             studentUser.save()
 

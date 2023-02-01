@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Student.forms import UpdateProgressForm
-from Student.models import Student, Major
+from Student.models import Student, Major, Location
 from Accounts.models import Account
 
 
@@ -67,16 +67,21 @@ def onboarding_step3(request):
             age = post_data['age']
             gender = post_data['gender']
             ethnicity = post_data['ethnicity']
+            location = post_data['location']
+            parents = post_data['parents']
             student_major = post_data['major']
             student_model.first_name = first_name
             student_model.last_name = last_name
             student_model.age = age
+            student_model.live_with_parents = parents
+            student_model.location = location
             student_model.gender = gender
             student_model.ethnicity = ethnicity
             student_model.major = Major.objects.get(major_title=student_major)
 
-
             student_model.save()
+
+
 
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
@@ -91,8 +96,12 @@ def onboarding_step3(request):
         gender = student_model.gender
         ethnicity = student_model.ethnicity
         major = student_model.major
+        parents = student_model.live_with_parents
+        location = student_model.location
         genderChoices = Student.GENDER_CHOICES
         ethnicityChoices = Student.ETHNICITY_CHOICES
+        parentsChoices = Student.YES_NO
+        locationChoices = Location.objects.all()
 
         context = {
             'first_name': first_name,
@@ -103,7 +112,11 @@ def onboarding_step3(request):
             'majors': majors,
             'maj': major,
             'genderChoices': genderChoices,
-            'ethnicityChoices': ethnicityChoices
+            'ethnicityChoices': ethnicityChoices,
+            'parents': parents,
+            'parentsChoices': parentsChoices,
+            'location': location,
+            'locationChoices': locationChoices,
 
         }
 

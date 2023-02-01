@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from Student.forms import UpdateProgressForm
-from Student.models import Student, Major
+from Student.forms import UpdateProgressForm, NewModuleSummaryForm
+from Student.models import Student, Major, UniversityModule
 from Accounts.models import Account
 
 
@@ -35,9 +35,21 @@ def budgeting_step2(request):
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             progress = request.POST['progress']
+
             if student_model.course_progress < progress:
+
+                module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
+                newModule = module_summary_form.save(commit=False)
+                newModule.user = request.user
+                newModule.module_url = 'budgeting'
+                newModule.module = UniversityModule.objects.get(module_title='Budgeting')
+                newModule.users_id = user_id
+                newModule.save()
+
+
                 student_model.course_progress = progress
                 student_model.save()
+
                 return redirect('/university/budget/transactions')
             else:
                 return redirect('/university/budget/transactions')

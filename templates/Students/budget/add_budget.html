@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 <body>
-  <div class="background-blur wf-section">
-    <div class="_60-padding">
+  <div class="background-blur wf-section" style="height: 91vh">
+    <div class="_60-padding" style="display: flex; width: auto; padding-bottom: 20px; padding-top: 30px; padding-right: 40px; padding-left: 40px; justify-content: center; margin-top: 0px">
       <div class="w-layout-grid grid-2 hidden-calendar no-calendar">
         <div id="w-node-d23ddebc-133a-9942-783f-c833d5e69064-2acd809f">
           <h1 class="heading-36">Add a Budget Category</h1>
@@ -11,14 +11,14 @@
             <div class="w-form">
               <form id="add-budget" name="wf-form-add-budget" data-name="add budget" method="post" class="add-budget-form">
                   {% csrf_token %}
-                  <label >Budget Title</label>
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Budget Title</label>
                   {{ form.title }}
-                  <label >Max Per Month</label>
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Max Per Month</label>
                   {{ form.total_per_month }}
-                  <label >Category</label>
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Category</label>
                   {{ form.category }}
 
-                <div class="_18-poppins">Color</div>
+                <div class="_18-poppins" style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Color</div>
                 <div class="color-selector">
                     <label class="color-button w-radio">
                         <input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input">

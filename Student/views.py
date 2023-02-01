@@ -18,12 +18,13 @@ def dashboard(request):
         student_model = Student.objects.get(user_id_number=user_id)
         student_job_id = student_model.accepted_job
 
-
-        first_name = student_user.model.get_first_name(self=user)
-        last_name = student_user.model.get_last_name(self=user)
+        first_name = student_model.first_name
+        last_name = student_model.last_name
         profile_image = student_user.model.get_user_image(self=user)
         student_path = student_model.life_path['events']
         jobpicked = student_model.accepted_job
+
+
 
         if student_model.job is None:
             jobTitle = ''
@@ -36,6 +37,9 @@ def dashboard(request):
         else:
             profile_image = ''
         age = student_model.age
+        location = student_model.location
+        total_points = student_model.total_points
+        last_points = student_model.last_points_added
         anytime_dec = AnytimeDecision.objects.all()
 
 
@@ -47,7 +51,10 @@ def dashboard(request):
             'age': age,
             'anytime_dec': anytime_dec,
             'student_path': student_path,
-            'jobTitle': jobTitle
+            'jobTitle': jobTitle,
+            'location': location,
+            'total_points': total_points,
+            'last_points': last_points
         }
 
         return render(request, 'Students/dashboard.html', context=context)
@@ -153,7 +160,7 @@ def universal_video(request, id):
 
 
 # End of module summaries
-def module_summaries(request, id, type):
+def module_summaries(request, id, c):
     user = request.user
     if user.is_active and user.has_university == True:
         summary = ModuleSummarie.objects.get(user=user, module_url=id)
@@ -162,33 +169,67 @@ def module_summaries(request, id, type):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         next_module = summary.module.next_life_event['nextEvent']
+        print(next_module['title'])
 
-        page_type = type
+        # Defining page type for buttons on front end
+        page_type = c
+
+        # Getting max points for doing module
+        student_total_points = student.total_points
+        modulePoints = UniversityModule.objects.get(module_id=id).points
+        total_points = student_total_points + modulePoints
+        student.last_points_added = modulePoints
+        student.total_points = total_points
+        student.save()
+
+
 
         # Generating unlocked anytime decisions
         unlocked_decisions = UniversityModule.objects.get(module_id=id).unlocked_decisions
         unlocked_decisions = json.loads(unlocked_decisions)
         all_unlocked_decisions = []
+        all_unlocked_decision_ids = []
+
+        # Cleaning unlocked anytime decisions and putting them into new list
         for i in unlocked_decisions:
             decision = AnytimeDecision.objects.get(decision_id=i)
             all_unlocked_decisions.append(decision)
+            all_unlocked_decision_ids.append(decision.decision_id)
 
 
+        # Checking to see if there are any unlocked anytime decisions
+        unlocked = student.unlocked_anytime_decisions
+
+        if unlocked is None:
+            student.unlocked_anytime_decisions = all_unlocked_decision_ids
+            student.save()
+        else:
+            pass
 
 
-        if type == '0':
-            student.life_path['events'][-1]['status'] = "completed"
-            if next_module in student.life_path['events']:
+        # appending upcoming life event to timeline
+        if c == '0':
+            decisions = []
+            for decision in student.life_path['events']:
+                decisions.append(decision['title'])
+
+            if next_module['title'] in decisions:
                 pass
             else:
+                student.life_path['events'][-1]['status'] = "completed"
+                student.total_points = total_points
                 student.life_path['events'].append(next_module)
-            student.save()
+                student.save()
+
+
 
         context = {
             'summary': summary,
             'summary_title': summary_title,
             'page_type': page_type,
-            'anytime_dec': all_unlocked_decisions
+            'anytime_dec': all_unlocked_decisions,
+            'modulePoints': modulePoints,
+            'total_points': total_points
 
         }
         return render(request, 'Students/module_summary.html', context=context)

@@ -12,9 +12,9 @@
 
 
     <body>
-  <div class="alert-page-wrapper" style="height: 90vh">
-    <div class="alert-page-container" style="margin-top: 0px">
-      <p class="alert-box-title">Time for Interviews</p>
+  <div class="alert-page-wrapper" style="height: 91vh">
+    <div class="alert-page-container" style="margin-top: 0px; padding-bottom: 20px; padding-top: 30px " >
+      <p class="alert-box-title" style="padding-bottom: 5px">Time for Interviews</p>
       <p class="alert-box-text">Here you will be setting up interviews with interested employers</p>
       <div class="div-block">
         <div class="w-layout-grid grid-9">
@@ -168,7 +168,7 @@
                 <div class="company-logo-wrapper" style="width: 100%; display: flex; justify-content: center"><img src="{{ job.logo.url }}" loading="lazy" width="150" height="100" alt=""></div>
                 <p class="company-name">{{ job.company }}</p>
                 <div class="job-information-wrapper">
-                  <div class="w-layout-grid grid-11">
+                  <div class="w-layout-grid grid-11" style="grid-column-gap: 0px">
                     <div id="w-node-_23fbb8b9-7f3b-59fb-6906-bbf1f1640f08-f522dbc2" class="icon-wrapper" style="max-height: 25px"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="25" height="25" alt=""></div>
                     <div id="w-node-_3a7ac47a-eef4-90f4-4dd3-d6ff728712b5-f522dbc2" class="information-wrapper" style="max-height: 25px; display: flex; -webkit-align-items: center ">
                       <div class="text-block-56">{{ job.location }}</div>
@@ -199,9 +199,20 @@
           </div>
         </div>
       </div>
+    <form method="post" style="width: 100%">
+        {% csrf_token %}
+            <div class="bottom-btn-wrapper" style="display: flex; justify-content: space-between; width: 100%; padding: 0px; margin-top: 20px">
+                <a href="../../university/video/2" class="back-btn">Back</a>
+                <input type="text" value="8" class="progress-input" name="progress" style="display:none;">
+                <button type="submit" class="next-btn">Next</button>
+            </div>
+        </form>
     </div>
+
   </div>
-</body>
+
+
+    </body>
 
 
 

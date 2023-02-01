@@ -15,6 +15,8 @@ from pathlib import Path
 import environ
 import os
 import django_on_heroku
+import dj_database_url
+
 
 env = environ.Env(
     # set casting, default value
@@ -35,9 +37,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-*x97+rbyihbx9p4ek%qud*%-lm$4+ek3-4vpn%#==_%xd=$sk4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://127.0.0.1:8000/', 'https://prosperonv8.herokuapp.com']
 
 
 # Application definition
@@ -99,12 +101,16 @@ WSGI_APPLICATION = 'Prosperon_v8.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8dr5loeq07nqc',
+        'USER': 'ufe02ks1pc18v3',
+        'PASSWORD': 'p72dc4291c151e1f99d78b10cdb0f86df51acc836d2af2311223ca8aabd5e46c3',
+        'HOST': 'ec2-54-243-252-102.compute-1.amazonaws.com',
+        'PORT': '5432',
+
     }
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 

@@ -8,9 +8,9 @@
 {% block content %}
 
 <body style="padding: 0px; margin: 0px">
-<div class="alert-page-wrapper" style="display: flex;" id="alert">
-    <div class="alert-page-container">
-        <p class="alert-box-title" style="margin-bottom: 20px">Now we need to categorize your transactions</p>
+<div class="alert-page-wrapper" style="display: flex; height: 91vh" id="alert">
+    <div class="alert-page-container" style="max-width: 900px; margin-top: 0px">
+        <p class="alert-box-title" style="margin-bottom: 0px">Now we need to categorize your transactions</p>
         <p class="alert-box-text">On the next page, please categories all of your transactions into the categories that you just made. </p>
         <div>
 
@@ -24,10 +24,10 @@
         </div>
         <form method="post" style="width: 100%">
         {% csrf_token %}
-            <div class="bottom-btn-wrapper" style="width: 100%; padding: 0px">
+            <div class="bottom-btn-wrapper" style="width: 100%; padding: 0px; display: flex; margin-top: 20px; justify-content: space-between">
                 <a href="../../university/video/7" class="back-btn">Back</a>
-                <input type="text" value="2" class="progress-input" name="progress">
-                <button type="submit" class="next-btn">Finish</button>
+                <input type="text" value="19" class="progress-input" name="progress" style="display: none">
+                <button type="submit" class="next-btn">Continue</button>
             </div>
         </form>
     </div>

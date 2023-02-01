@@ -21,7 +21,7 @@ urlpatterns = [
     path('university/video/<str:id>', views.universal_video, name='universal-video-page'),
 
     # Module Summary
-    path('university/module_summary/<str:id>/<str:type>', views.module_summaries, name='module-summary-page'),
+    path('university/module_summary/<str:id>/<str:c>', views.module_summaries, name='module-summary-page'),
 
     # Onboarding Urls
     path('university/onboarding/step1', m0_views.onboarding_step1, name='onboarding-step1'),

@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="module-summary-page-wrapper">
+    <div class="module-summary-page-wrapper" style="padding-bottom: 80px">
       <div class="w-layout-grid grid-14">
         <div id="w-node-_10387a8c-b1a6-4cec-b235-1cf47c9e424e-962fd150" class="left-summary-wrapper">
           <div class="calendary-summary-wrapper">
@@ -164,28 +164,28 @@
               </div>
               <div id="w-node-ffc74bb9-b903-9ece-52cc-1d5d62f980bf-962fd150" class="_20-padding-container">
                 <div class="section-header-wrapper">
-                  <h1 class="page-section-header">Here&#x27;s What Happened</h1>
+                  <h1 class="page-section-header" style="font-size: 24px; line-height: 24px">Here&#x27;s What Happened</h1>
                 </div>
-                <p class="paragraph">{{ summary.module.whats_happened }}</p>
+                <p class="paragraph" style="font-size: 18px; line-height: 22px">{{ summary.module.whats_happened }}</p>
               </div>
             </div>
           </div>
           <div class="impact-wrapper">
             <div class="w-layout-grid grid-17">
               <div id="w-node-d3badde0-c082-bfc5-4581-eb17696cf7bb-962fd150" class="_20-padding-container _100">
-                <h1 class="impact-header">Module Results</h1>
-                <h1 class="results-subheader">Learning Objectives</h1>
+                <h1 class="impact-header" style="font-size: 24px; line-height: 24px">Module Results</h1>
+                <h1 class="results-subheader" style="font-size: 18px; line-height: 22px">Learning Objectives</h1>
               </div>
               <div id="w-node-_8d2a2f93-eb9e-3633-3e1b-91187eb2282a-962fd150" class="_20-padding-container _100">
-                <h1 class="impact-header">Module Results</h1>
-                <h1 class="results-subheader">*All financial Information</h1>
+                <h1 class="impact-header" style="font-size: 24px; line-height: 24px">Module Results</h1>
+                <h1 class="results-subheader" style="font-size: 18px; line-height: 22px">*All financial Information</h1>
               </div>
               <div id="w-node-_58acb94a-0ad7-7d90-10e6-2c0303aeb53c-962fd150" class="_20-padding-container _100 centered-div">
-                <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" width="150px" height="150px" loading="lazy" alt="">
+                <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" width="125px" height="125px" loading="lazy" alt="">
                   <div>
-                    <h1 class="_24px semibold blue"><span>*XP*</span>/<span>*XP*</span>XP</h1>
-                    <div class="centered-text">Last Decision</div>
-                    <div class="centered-text green">+<span>*XP*</span></div>
+                    <h1 class="_24px semibold blue" style="margin-top: 20px; text-align: center; width: 100%">{{ total_points }} XP</h1>
+                    <div class="centered-text" style="text-align: center; width: 100%">Last Decision</div>
+                    <div class="centered-text green">+<span>{{ modulePoints }}</span></div>
                   </div>
                 </div>
               </div>
@@ -197,13 +197,13 @@
             <h1 class="page-section-header">Unlocked Decisions</h1>
           </div>
           <div class="unlocked-decisions">
-            <div class="w-layout-grid grid-15">
+            <div class="w-layout-grid grid-15" style="grid-column-gap: 10px; grid-row-gap: 10px">
 
                 {% for decision in anytime_dec %}
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="height: 100%; width: 100%">
                     <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-                      <div class="_18">{{ decision.title }}</div>
+                      <div class="_18" style="font-size: 18px; line-height: 22px">{{ decision.title }}</div>
                       <div class="_14px _10-top _14">{{ decision.description }}</div>
                     </div>
                     <div class="_10-top _100-width">
@@ -219,26 +219,28 @@
     </div>
     <div class="button-wrapper bottom-spacing">
         {% if page_type == '0' %}
-        <a href="{% url 'Students:first-job-step4'  %}">
-        <div class="button">
-        <div class="button-text">Back</div>
+        <a href="{% url 'Students:first-job-step4'  %}" style="text-decoration: none">
+        <div class="back-btn" style="text-decoration: none">
+        <div class="" style="text-decoration: none">Back</div>
       </div>
         </a>
-      <a href="{% url 'Students:dashboard'  %}">
-        <div class="button next">
-        <div class="button-text next">Next</div>
+      <a href="{% url 'Students:dashboard'  %}" style="text-decoration: none">
+        <div class="next-btn" style="text-decoration: none">
+        <div class="" >Next</div>
       </div>
       </a>
         {% elif page_type == '1' %}
-        <a href="{% url 'Students:dashboard'  %}">
-        <div class="button">
-        <div class="button-text">Back</div>
+        <a href="{% url 'Students:dashboard'  %}" style="text-decoration: none">
+        <div class="back-btn" style="text-decoration: none" style="text-decoration: none">
+        <div class="" style="text-decoration: none">Back</div>
+
       </div>
         </a>
 
         {% endif %}
-
     </div>
+
+
 </body>
 
 {% endblock %}

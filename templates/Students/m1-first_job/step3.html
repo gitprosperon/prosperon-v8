@@ -11,9 +11,9 @@
 
 {% block content %}
 <body style="padding: 0px; margin: 0px">
-<div class="alert-page-wrapper">
-    <div class="alert-page-container">
-      <p class="alert-box-title">You got some offers!</p>
+<div class="alert-page-wrapper" style="height: 91vh">
+    <div class="alert-page-container" style="margin-top: 0px">
+      <p class="alert-box-title" style="padding-bottom: 5px">You got some offers!</p>
       <p class="alert-box-text">You have two job offers from two great companies. Click each company to view <br> the offer. Evaluate each offer and make your decision.</p>
       <div class="div-block">
         <div class="w-layout-grid grid-12">
@@ -25,24 +25,24 @@
                 <div id="w-node-ecc3fb34-4201-025e-732f-86118bd9f9b2-bf5ba9ff"><img src="{{ job.logo.url }}" loading="lazy" id="w-node-_76bb93b2-2825-4d7d-fc5f-15f570b88405-bf5ba9ff" alt="" class="image"></div>
                 <div id="w-node-_8c684412-a7f8-94a8-de73-39258fd6d6ac-bf5ba9ff">
                   <div class="job-information-wrapper">
-                    <div class="w-layout-grid grid-11">
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b34-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b36-bf5ba9ff" class="information-wrapper">
-                        <div>{{ job.location }}</div>
-                      </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b39-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3b-bf5ba9ff" class="information-wrapper">
-                        <div>{{ job.job_type }}</div>
-                      </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b3e-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b40-bf5ba9ff" class="information-wrapper">
-                        <div>{{ job.job_hours }}</div>
-                      </div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b43-bf5ba9ff" class="icon-wrapper"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="40" height="40" alt=""></div>
-                      <div id="w-node-_2da5170e-47b8-803c-2e2e-a026f5bb2b45-bf5ba9ff" class="information-wrapper">
-                        <div>{{ job.salary_range }}</div>
-                      </div>
+                   <div class="w-layout-grid grid-11" style="grid-column-gap: 0px">
+                    <div id="w-node-_23fbb8b9-7f3b-59fb-6906-bbf1f1640f08-f522dbc2" class="icon-wrapper" style="max-height: 25px"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="25" height="25" alt=""></div>
+                    <div id="w-node-_3a7ac47a-eef4-90f4-4dd3-d6ff728712b5-f522dbc2" class="information-wrapper" style="max-height: 25px; display: flex; -webkit-align-items: center ">
+                      <div class="text-block-56">{{ job.location }}</div>
                     </div>
+                    <div id="w-node-_8cb8b1f8-d28a-ee7d-2668-cf7831331e40-f522dbc2" class="icon-wrapper" style="max-height: 25px"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="25" height="25" alt=""></div>
+                    <div id="w-node-e415223b-1fc3-147b-97a6-fd46434b35e9-f522dbc2" class="information-wrapper" style="max-height: 25px; display: flex; -webkit-align-items: center ">
+                      <div>{{ job.job_type }}</div>
+                    </div>
+                    <div id="w-node-_1422e268-6778-6cd1-e590-fc4095ada40e-f522dbc2" class="icon-wrapper" style="max-height: 25px"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="25" height="25" alt=""></div>
+                    <div id="w-node-cd1dba90-5092-5d95-8ed4-185eb69da580-f522dbc2" class="information-wrapper" style="max-height: 25px; display: flex; -webkit-align-items: center ">
+                      <div>{{ job.job_hours }}</div>
+                    </div>
+                    <div id="w-node-_1608ac05-674a-b1bc-783c-866d62a888c8-f522dbc2" class="icon-wrapper" style="max-height: 25px"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="25" height="25" alt=""></div>
+                    <div id="w-node-_68064f95-5fc7-6fc1-c077-476efba16390-f522dbc2" class="information-wrapper" style="max-height: 25px; display: flex; -webkit-align-items: center ">
+                      <div>{{ job.salary_range }}</div>
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -54,17 +54,13 @@
       </div>
 
      <form method="post" style="width: 100%">
-            {% csrf_token %}
-             <div class="button-wrapper">
-            <div class="button">
-               <a href="{% url 'Students:first-job-step2' %}" class="button-text" style="text-decoration: none">Back</a>
+        {% csrf_token %}
+            <div class="bottom-btn-wrapper" style="display: flex; justify-content: space-between; width: 100%; padding: 0px; margin-top: 20px">
+                <a href="../../university/video/3" class="back-btn">Back</a>
+                <input type="text" value="10" class="progress-input" name="progress" style="display:none;">
+                <button type="submit" class="next-btn">Next</button>
             </div>
-            <div class="button next">
-                    <input type="text" value="10" class="progress-input" name="progress" style="display: none">
-                    <button type="submit" class="button-text next" style="background: none">Next</button>
-            </div>
-          </div>
-     </form>
+        </form>
     </div>
   </div>
 

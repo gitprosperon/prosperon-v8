@@ -22,5 +22,5 @@ class AddStudentAccountForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = ['user_id_number', 'course_progress', 'student_email', 'life_path']
+        fields = ['user_id_number', 'course_progress', 'student_email', 'life_path', 'total_points', 'last_points_added']
 
