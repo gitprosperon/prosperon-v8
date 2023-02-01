@@ -60,8 +60,6 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     var yearly = Number(yearlyFee)
     var montlyCost = yearly / 12
 
-
-
     creditNameTarget.innerText = title
     aprTarget.innerText = apr
     yearlyFeeTarget.innerText = yearlyFee
@@ -74,9 +72,6 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
 
-
-
-    console.log('test')
 }
 
 function backToCards() {
@@ -94,3 +89,6 @@ function backToCards() {
 
 }
 
+function showBankAccount() {
+
+}

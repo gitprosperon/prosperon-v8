@@ -202,6 +202,8 @@ class CreditCard(models.Model):
 
 
 
+
+
 # Model for all budgets
 class BudgetItemsUniversity(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
