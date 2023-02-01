@@ -164,12 +164,14 @@ def module_summaries(request, id, c):
     user = request.user
     if user.is_active and user.has_university == True:
         summary = ModuleSummarie.objects.get(user=user, module_url=id)
-        print(summary)
         summary_title = summary.module.module_title
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
+
         next_module = summary.module.next_life_event['nextEvent']
+        print(next_module)
+
         print(next_module['title'])
 
         # Defining page type for buttons on front end
@@ -264,6 +266,7 @@ def anytime_decision_step2(request, id):
         student = Student.objects.get(user_id_number=user_id)
         ad = AnytimeDecision.objects.get(decision_id=id)
         html_path = ad.step2_path
+        print(html_path)
         apartments = Apartment.objects.all()
 
         # Grabbing request
