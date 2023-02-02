@@ -1,3 +1,7 @@
+
+
+
+// script for sidebar logic
 function hideSidebar() {
    var sidebar = document.getElementById('sidebar')
     var right_col = document.getElementById('right-col')
@@ -29,3 +33,5 @@ function videoToggle(a, information ) {
 
 
 }
+
+

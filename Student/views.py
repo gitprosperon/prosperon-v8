@@ -1,9 +1,21 @@
+import random
+
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
 from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
+from django import template
+
+
+register = template.Library()
+
+@register.filter()
+def to_int(value):
+    return int(value)
+
+
 
 # ------- UNIVERSITY MAIN VIEWS -----------
 
@@ -75,6 +87,8 @@ def add_goals(request):
     return render(request, 'Students/budget/add_goal.html')
 
 
+
+
 # Budget / Budget page
 def budget(request):
     user = request.user
@@ -86,6 +100,24 @@ def budget(request):
         yearly_salary = student_model.yearly_salary
         monthly_salary = student_model.yearly_salary / 12
         monthly_salary = round(monthly_salary)
+
+
+
+
+
+
+        for budget in user_university_budget_items:
+            title = budget.title
+
+            total_spent_in_category = 0
+            for transact in budget.transactions['categoryTransactions']:
+                price = int(transact['amount'])
+                total_spent_in_category += price
+
+            title = budget.title
+            total = total_spent_in_category
+
+
 
         context = {
             'user_university_budget_items': user_university_budget_items,
@@ -112,6 +144,8 @@ def add_budget(request):
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.user = request.user
+                instance.transactions = {"categoryTransactions": []}
+                instance.budget_id = random.randint(100000000,90000000000)
                 instance.users_id = user_id
                 instance.save()
                 return redirect('/university/budget/budget')
@@ -133,10 +167,64 @@ def transactions(request):
         student = Student.objects.get(user_id_number=user_id)
         budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
 
+        print('test')
+        # Code for receiving transactions with ajax
+        if request.POST.get('action') == 'post':
+            public = request.POST
+            transaction_category = public['test']
+            transaction_id = public['the_id']
+            amount = public['amount']
+            amount = float(amount)
+            print(amount)
+            print(transaction_category)
+            budget_category = BudgetItemsUniversity.objects.get(title=transaction_category)
 
+            currentTransactions = budget_category.transactions['categoryTransactions']
+
+            new_packaged_transaction =  {
+
+                         "date":"2017-01-29",
+                         "name":"Apple Store",
+                         "amount": amount,
+                         "category":[
+                            "Shops",
+                            "Computers and Electronics"
+                         ],
+                         "location":{
+                            "lat":40.740352,
+                            "lon":-74.001761,
+                            "city":"San Francisco",
+                            "region":"CA",
+                            "address":"300 Post St",
+                            "country":"US",
+                            "postal_code":"94108",
+                            "store_number":"1235"
+                         },
+                         "account_id":"BxBXxLj1m4HMXBm9WZZmCWVbPjX16EHwv99vp",
+                         "category_id":"19013000",
+
+                      }
+
+            currentTransactions.append(new_packaged_transaction)
+
+            if budget_category.current_total:
+
+                budget_category.current_total = int(budget_category.current_total) + amount
+            else:
+                budget_category.current_total = amount
+
+            budget_category.save()
+
+
+            print(amount)
+            print(currentTransactions)
+
+        transactions = student.all_transactions
+        new_current_transactions = transactions['all_transactions']
 
         context = {
-            'budget_categories': budget_categories
+            'budget_categories': budget_categories,
+            'new_current_transactions': new_current_transactions
         }
         return render(request, 'Students/budget/transactions.html', context=context)
 

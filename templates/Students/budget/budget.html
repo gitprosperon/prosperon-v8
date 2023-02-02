@@ -1,5 +1,8 @@
 {% extends 'Students/budget/base.html' %}
 {% load static %}
+{% load mathfilters %}
+
+
 {% block content %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <div class="full-page-wrapper">
@@ -106,13 +109,13 @@
                     <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">
                       <h1 class="overview-btm-title">Total Spent</h1>
                     </div>
-                    <h1 class="number-calculated">$321.21</h1>
+                    <h1 class="number-calculated" >$<span id="total-spent-calculator"></span></h1>
                   </div>
                   <div class="budget-overview-btm-container">
                     <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">
-                      <h1 class="overview-btm-title">Total Spent</h1>
+                      <h1 class="overview-btm-title">Remaining</h1>
                     </div>
-                    <h1 class="number-calculated">Heading</h1>
+                    <h1 class="number-calculated">$<span id="total-remaining"></span></h1>
                   </div>
                 </div>
               </div>
@@ -132,43 +135,64 @@
                 <h1 class="page-section-header">My Budget Categories</h1>
               </div>
 
+
+
+
                 {% if user_university_budget_items %}
                 {% for budget in user_university_budget_items %}
-                <div class="_20-padding-container budget-container">
-                <div class="left-card">
-                  <div class="icon-wrapper">
-                      <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="72" alt="" class="icon-img">
 
-                  </div>
-                  <div class="transaction-place-wrapper">
-                    <h4 class="_18px">{{ budget.title }}</h4>
-                  </div>
-                  <div class="transaction-amount-wrapper"></div>
-                </div>
-                <div class="goal-back-progress-bar">
-                  <div class="goal-progerss"></div>
-                </div>
-                <div class="right-card">
-                  <div class="form-wrapper budget">
-                    <div class="form-block w-form">
-                      <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form">
-                        <div class="check-wrapper"><img src="images/Green-check.svg" loading="lazy" width="35" height="35" alt=""></div>
-                      </form>
-                      <div class="w-form-done">
-                        <div>Thank you! Your submission has been received!</div>
+
+
+                <div class="_20-padding-container budget-container" >
+
+
+
+
+
+
+                    <div class="left-card">
+                        <div class="icon-wrapper">
+                            <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="72" alt="" class="icon-img">
+
                       </div>
-                      <div class="w-form-fail">
-                        <div>Oops! Something went wrong while submitting the form.</div>
+                      <div class="transaction-place-wrapper">
+                        <h4 class="_18px">{{ budget.title }}</h4>
+                      </div>
+                      <div class="transaction-amount-wrapper"></div>
+                    </div>
+                    <div class="goal-back-progress-bar">
+                        {% if budget.current_total|div:budget.total_per_month|mul:100 < 100 %}
+                            <div class="goal-progerss" style="width: {{ budget.current_total|div:budget.total_per_month|mul:100}}%"></div>
+                        {% else %}
+                            <div class="goal-progerss" style="width: 100%; background-color: red"></div>
+
+                        {% endif %}
+
+                    </div>
+                    <div class="right-card">
+
+                        <div class="form-wrapper budget">
+                        <div class="form-block w-form">
+                          <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form">
+                            <div class="check-wrapper"><img src="images/Green-check.svg" loading="lazy" width="35" height="35" alt=""></div>
+                          </form>
+                          <div class="w-form-done">
+                            <div>Thank you! Your submission has been received!</div>
+                          </div>
+                          <div class="w-form-fail">
+                            <div>Oops! Something went wrong while submitting the form.</div>
+                          </div>
+                        </div>
+                        <h4 class="_24px medium green">$<span id="{{ budget.budget_id }}">{{ budget.current_total }}</span></h4>
+                        <h4 class="_24px medium"> / </h4>
+                        <h4 class="_24px medium">$<span>{{ budget.total_per_month }}</span></h4>
                       </div>
                     </div>
-                    <h4 class="_24px medium green">$<span>Nothing</span></h4>
-                    <h4 class="_24px medium"> / </h4>
-                    <h4 class="_24px medium">$<span>{{ budget.total_per_month }}</span></h4>
-                  </div>
-                </div>
               </div>
-                {% endfor %}
-                {% endif %}
+            {% endfor %}
+            {% endif %}
+
+
 
 
               <a href="{% url 'Students:add-budget' %}" class="no-text-decoration">
@@ -187,5 +211,27 @@
       </div>
     </div>
   </div>
+
+<script>
+
+// for calculating total spend and remaining on student/budget/budget
+var elements = document.getElementsByClassName('_20-padding-container budget-container')
+var total_spent = 0
+for(let i = 0; i < elements.length; i++) {
+    var currentSpent = elements[i].children[2].children[0].children[1].children[0].innerHTML
+    total_spent += Number(currentSpent)
+    var total_allocated = elements[i].children[2].children[0].children[3].children[0].innerHTML
+}
+var totalSpentTarget = document.getElementById('total-spent-calculator')
+var totalRemainingTarget = document.getElementById('total-remaining')
+totalSpentTarget.innerText = total_spent
+var remaining = Number(total_allocated) - total_spent
+totalRemainingTarget.innerText = remaining
+
+
+
+</script>
+
+<script src="{% static 'students/js/script.js' %}" type="text/javascript"></script>
 
 {% endblock %}

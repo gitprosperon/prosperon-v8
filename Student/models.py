@@ -229,6 +229,7 @@ class BankAccount(models.Model):
 class BudgetItemsUniversity(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=100, null=True, blank=True)
+    budget_id = models.CharField(max_length=100, null=True, blank=True)
     CATAGORIES = [
         ('Food and Drink', 'Food and Drink'),
         ('Transportation', 'Transportation'),
@@ -240,6 +241,7 @@ class BudgetItemsUniversity(models.Model):
     ]
     category = models.CharField(max_length=200, null=True, blank=True, choices=CATAGORIES)
     total_per_month = models.IntegerField(null=True, blank=True)
+    current_total = models.FloatField(null=True, blank=True)
     users_id = models.CharField(max_length=100, null=True, blank=True)
     transactions = models.JSONField(null=True, blank=True)
 
