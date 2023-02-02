@@ -26,23 +26,23 @@
               <div class="_24px anytimedecision">Decision Description</div>
             </div>
             <div id="w-node-_72f08ab3-adc3-7cf0-7027-77b91e08d9bf-cd267249" class="_10-top displayed">
-              <div class="_18px">{{ ad.description }}</div>
+              <div class="_18px" style="font-weight: 400; font-size: 14px">{{ ad.description }}</div>
             </div>
           </div>
         </div>
         <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-17e1b9de" class="div-block-141">
           <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-17e1b9de" class="_20-padding-container video-notes">
             <div class="w-layout-grid grid-26">
-              <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" onclick="videoToggle(this, '{{ ad.summary|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text clicked">Summary</a>
-              <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" onclick="videoToggle(this, '{{ ad.vocab|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text">Vocab</a>
-              <a id="w-node-_6d86d723-faa7-21c9-d908-dd89fd2a3ce0-17e1b9de" onclick="videoToggle(this, '{{ ad.learning_objectives|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text">Notes</a>
+              <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" onclick="videoToggle(this, '{{ ad.summary|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text clicked" style="text-decoration: none">Summary</a>
+              <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" onclick="videoToggle(this, '{{ ad.vocab|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text" style="text-decoration: none">Vocab</a>
+              <a id="w-node-_6d86d723-faa7-21c9-d908-dd89fd2a3ce0-17e1b9de" onclick="videoToggle(this, '{{ ad.learning_objectives|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text" style="text-decoration: none">Notes</a>
             </div>
             <div class="horizontal"></div>
           </div>
 
-            <div class="_20-padding-container description show">
+            <div class="_20-padding-container description show" style="padding-top: 0px">
             <div class="horizontal">
-              <div class="_14px normal" id="video-info-target">{{ ad.summary|linebreaksbr }}</div>
+              <div class="_14px normal" id="video-info-target" style="line-height: 18px">{{ ad.summary|linebreaksbr }}</div>
             </div>
           </div>
 
@@ -50,13 +50,13 @@
       </div>
     </div>
     <div class="button-wrapper bottom-spacing">
-      <a href="/university/dashboard">
+      <a href="/university/dashboard" style="text-decoration: none">
             <div class="button" id="backBtn">
                 <div class="button-text" id="backBtn">Back</div>
             </div>
             </a>
 
-        <a href="/{{ ad.next_btn_link }}">
+        <a href="/{{ ad.next_btn_link }}" style="text-decoration: none">
         <div class="button next">
             <div class="button-text next">Next</div>
         </div>

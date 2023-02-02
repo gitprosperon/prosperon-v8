@@ -39,3 +39,21 @@
 .right-timeline-card.anytime:hover {
   opacity: 50%;
 }
+
+.city {
+  font-size: 14px;
+  font-family: Poppins;
+  color: #45484b;
+  font-weight: 400;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 18px;
+}
+
+.color-choice {
+  padding: 5px;
+  border: black;
+  border-width: thin;
+  border-radius: 10px;
+  background-color: red;
+}

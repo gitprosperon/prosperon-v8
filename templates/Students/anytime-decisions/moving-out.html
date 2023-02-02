@@ -16,7 +16,7 @@
   <div class="apartment-search">
     <div class="_24px semibold white">Searching for apartments in...</div>
     <div class="search-area _10-top">
-      <div class="_18-poppins padding">Dallas, TX</div>
+        <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%" placeholder="Search for housing">
     </div>
   </div>
   <div class="_40-padding-container white apartments-container">
@@ -30,11 +30,13 @@
         <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
           <div class="_18-poppins centered-text">{{ apartment.title }}</div>
           <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}</div>
+            <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState"><h1 class="city">Boston, Ma</h1></div>
           <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed / {{ apartment.bathrooms }} bath</div>
           <div class="_18px _10-top _14 apartment-padding amount">${{ apartment.yearly_cost|div:12|floatformat|intcomma }}</div>
         </div>
       </div>
              </div>
+
         {% endfor %}
     </div>
   </div>
@@ -87,7 +89,7 @@
     {% block bottomButtons %}
         {% if id == '1' %}
         <div class="button-wrapper bottom-spacing">
-            <a href="/{{ ad.back_btn_link }}">
+            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
             <div class="button" id="backBtn">
                 <div class="button-text" id="backBtn">Back</div>
             </div>

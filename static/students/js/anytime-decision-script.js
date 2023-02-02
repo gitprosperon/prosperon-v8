@@ -161,9 +161,27 @@ function backToBankAccount() {
 
 
 // search functionality for housing
-function searchHousing() {
-    console.log('test search hpusong ')
-}
+
+    const citySearch = document.getElementById('citySearch');
+    citySearch.addEventListener("keyup", (e) => {
+        let currentValue = e.target.value.toLowerCase();
+        let city = document.querySelectorAll('h1.city');
+        city.forEach(city => {
+            if (city.textContent.toLowerCase().includes(currentValue)) {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+            } else {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+            }
+        })
+    })
+
+
+
+
+
+
+
+
 
 
 
