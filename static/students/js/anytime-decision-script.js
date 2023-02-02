@@ -160,6 +160,12 @@ function backToBankAccount() {
 }
 
 
+// search functionality for housing
+function searchHousing() {
+    console.log('test search hpusong ')
+}
+
+
 
 
 

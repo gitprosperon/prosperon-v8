@@ -1,13 +1,35 @@
 {% extends 'Students/base.html' %}
 
 {% block content %}
+
+
+<body class="body-2">
+  <div class="fullpage-wrapper">
+
+    <div class="_40-padding-container wrapper">
+      <div class="decision-search">
+        <h1 class="_36-bold prosperon-blue centered">What decision would you like to make?</h1>
+        <div class="searchbar"></div>
+      </div>
+      <div class="anytime-bank-wrapper">
+        <div class="w-row">
+          <div class="column-4 w-col w-col-1">
+            <div class="left-arriw"><img src="images/Left-arrow.svg" loading="lazy" alt=""></div>
+          </div>
+          <div class="column-2 w-col w-col-10">
+            <div class="anytime-decision-bank">
+              <div class="w-layout-grid grid-25">
+
+
 {% for decision in anytime_decisions %}
 <div class="w-layout-grid grid-7">
-<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative">
-<div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
+<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="justify-content: space-between">
+<div>
+    <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-    <div class="_18">{{ decision.title }}</div>
+    <div class="_18" style="line-height: 24px">{{ decision.title }}</div>
     <div class="_14px _10-top _14">*Description*</div>
+</div>
 </div>
 <div class="_10-top _100-width">
     <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
@@ -19,5 +41,23 @@
 </div>
 </div>
 {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          <div class="column-3 w-col w-col-1">
+            <div class="right-arrow"><img src="images/Left-arrow.svg" loading="lazy" alt="" class="image-7"><img src="images/Right-arrow.svg" loading="lazy" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button-wrapper bottom-spacing">
+      <a href="#" class="button w-button">Back</a>
+      <a href="#" class="button next w-button">Next</a>
+    </div>
+  </div>
+</body>
+
+
 
 {% endblock %}
