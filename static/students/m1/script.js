@@ -37,23 +37,17 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
     for(let i = 0; i < elements.length; i++) {
         elements[i].style.backgroundColor = 'white'
     }
-
     object.style.backgroundColor ='#E7F6FF'
-
-
-
-
-
 
 }
 
 
+// function to change job to applied and add to list
 function changeToApplied(a) {
     var button = document.getElementById('apply-to-job-button');
     var alert = document.getElementById('alert');
     var appliedTarget = document.getElementById('jobs-applied');
     var getAJobContaonerTarget = document.getElementById('get-a-job-container')
-
     if(appliedList.includes(button.value)) {
         console.log('yes')
     } else {
@@ -61,15 +55,13 @@ function changeToApplied(a) {
         console.log('no')
 
     }
-
     button.innerText = 'Applied';
     button.style.backgroundColor = 'green';
     console.log('applied list', appliedList)
-    if(appliedList.length === 3) {
+    if(appliedList.length === 5) {
         console.log('equal to 5')
         var list = appliedList.toString()
         appliedTarget.setAttribute('value', list)
-
         alert.style.display = 'flex'
         getAJobContaonerTarget.style.display = 'none'
     }

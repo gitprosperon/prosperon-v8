@@ -23,6 +23,7 @@ def dashboard(request):
         profile_image = student_user.model.get_user_image(self=user)
         student_path = student_model.life_path['events']
         jobpicked = student_model.accepted_job
+        student_progress = student_model.course_progress
 
 
 
@@ -54,7 +55,8 @@ def dashboard(request):
             'jobTitle': jobTitle,
             'location': location,
             'total_points': total_points,
-            'last_points': last_points
+            'last_points': last_points,
+            'student_progress': student_progress
         }
 
         return render(request, 'Students/dashboard.html', context=context)
@@ -124,7 +126,19 @@ def add_budget(request):
 
 # Budget / transactions page
 def transactions(request):
-    return render(request, 'Students/budget/transactions.html')
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student = Student.objects.get(user_id_number=user_id)
+        budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
+
+
+
+        context = {
+            'budget_categories': budget_categories
+        }
+        return render(request, 'Students/budget/transactions.html', context=context)
 
 # Universal Video Page
 def universal_video(request, id):

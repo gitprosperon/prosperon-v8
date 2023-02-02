@@ -1,16 +1,16 @@
 {% extends 'Students/budget/base.html' %}
 {% load static %}
 {% block content %}
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <div class="full-page-wrapper">
 
     <div class="section-container">
       <div class="page-title-blue">
         <h1 class="heading-4">Budget</h1>
 
-
+        {% if user_university_budget_items %}
           <a href="{% url 'Students:universal-video-page' '7' %}" class="back-button" style="text-decoration: none">Continue</a>
-
+        {% endif %}
       </div>
     </div>
     <div class="page-divider-container">
@@ -26,7 +26,81 @@
                   <h1 class="total-imcome-header">Total Income</h1>
                   <h1 class="_24px medium green">${{ monthly_salary }}</h1>
                 </div>
-                <div class="graph-container"></div>
+                <div class="graph-container">
+
+
+
+
+
+                <div>
+                  <canvas id="myChart"></canvas>
+                </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <script>
+
+                {% if user_university_budget_items %}
+
+                    var allBudgetItemCategories = []
+                    var allBudgetCosts = []
+
+                    {% for budget in user_university_budget_items %}
+
+                    var budgetItemCategory = '{{ budget.category }}'
+                    var budgetCosts = {{ budget.total_per_month }}
+
+                    allBudgetItemCategories.push(budgetItemCategory)
+                    allBudgetCosts.push(budgetCosts)
+
+                {% endfor %}
+
+                    console.log(allBudgetItemCategories)
+                    console.log(allBudgetCosts)
+
+
+                {% endif %}
+
+
+                  const ctx = document.getElementById('myChart');
+
+                  new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                      labels: allBudgetItemCategories,
+                      datasets: [{
+                        label: '$ allocated',
+                        data: allBudgetCosts,
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
+                      }
+                    }
+                  });
+                </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
                 <div class="overvoew-btm">
                   <div class="budget-overview-btm-container">
                     <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">

@@ -130,6 +130,7 @@ class Student(models.Model):
     last_points_added = models.IntegerField(null=True, blank=True)
     total_points = models.IntegerField(null=True, blank=True)
     total_monthly_expenses = models.IntegerField(null=True, blank=True)
+    all_transactions = models.JSONField(null=True, blank=True)
 
 
 
@@ -240,6 +241,7 @@ class BudgetItemsUniversity(models.Model):
     category = models.CharField(max_length=200, null=True, blank=True, choices=CATAGORIES)
     total_per_month = models.IntegerField(null=True, blank=True)
     users_id = models.CharField(max_length=100, null=True, blank=True)
+    transactions = models.JSONField(null=True, blank=True)
 
 
 # Model for all Modules
