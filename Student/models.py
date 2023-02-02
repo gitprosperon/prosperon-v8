@@ -146,10 +146,10 @@ class video(models.Model):
     back_button = models.CharField(max_length=400, null=True, blank=True)
     next_button = models.CharField(max_length=400, null=True, blank=True)
     video_id = models.CharField(max_length=400, null=True, blank=True)
-    summary = models.TextField( null=True, blank=True)
+    summary = models.TextField(null=True, blank=True)
     page_type = models.CharField(max_length=200, null=True, blank=True)
-    vocab = models.TextField( null=True, blank=True)
-    notes = models.TextField( null=True, blank=True)
+    vocab = models.TextField(null=True, blank=True)
+    notes = models.TextField(null=True, blank=True)
 
 
 
@@ -174,18 +174,19 @@ class Apartment(models.Model):
 
 # Model for all anytime Decisions
 class AnytimeDecision(models.Model):
-    title = models.CharField(max_length=500, null=True, blank=True)
-    name_id = models.CharField(max_length=500, null=True, blank=True)
-    step2_path = models.CharField(max_length=500, null=True, blank=True)
-    video_link = models.CharField(max_length=500, null=True, blank=True)
-    decision_id = models.CharField(max_length=500, null=True, blank=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
-    learning_objectives = models.TextField(max_length=500, null=True, blank=True)
-    vocab = models.TextField(max_length=500, null=True, blank=True)
+    title = models.CharField(max_length=5000, null=True, blank=True)
+    name_id = models.CharField(max_length=5000, null=True, blank=True)
+    step2_path = models.CharField(max_length=5000, null=True, blank=True)
+    video_link = models.CharField(max_length=5000, null=True, blank=True)
+    decision_id = models.CharField(max_length=5000, null=True, blank=True)
+    description = models.TextField(max_length=5000, null=True, blank=True)
+    learning_objectives = models.TextField(max_length=5000, null=True, blank=True)
+    vocab = models.TextField(max_length=5000, null=True, blank=True)
     yearly_cost = models.IntegerField(null=True, blank=True)
     monthly_cost = models.IntegerField(null=True, blank=True)
-    next_btn_link = models.CharField(max_length=500, null=True, blank=True)
-    back_btn_link = models.CharField(max_length=500, null=True, blank=True)
+    next_btn_link = models.CharField(max_length=5000, null=True, blank=True)
+    back_btn_link = models.CharField(max_length=5000, null=True, blank=True)
+    summary = models.TextField(max_length=5000, null=True, blank=True)
 
     img = models.ImageField(upload_to='anytimeImages/', null=True, blank=True)
 
@@ -270,4 +271,6 @@ class ModuleSummarie(models.Model):
     unlocked_decisions = models.CharField(max_length=5000, null=True, blank=True)
     points_earned = models.CharField(max_length=500, null=True, blank=True)
 
+    def __str__(self):
+        return self.users_id + ' - ' + self.module_url
 

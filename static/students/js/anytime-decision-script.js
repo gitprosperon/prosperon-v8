@@ -1,4 +1,3 @@
-
 function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     var rentalCardTarget = document.getElementById('left-specific-apartment');
     var allRentalCardTarget = document.getElementById('all-rentals-card');
@@ -34,6 +33,7 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
 }
 
 
+// for showing specific
 function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, feature1, feature2, feature3, feature4, signupFee) {
     var creditCardPopup = document.getElementById('creditCardPopUp')
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
@@ -78,6 +78,7 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
 
 }
 
+// for toggeling back to all credit cards
 function backToCards() {
     var creditCardPopup = document.getElementById('creditCardPopUp')
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
@@ -90,7 +91,7 @@ function backToCards() {
 
 }
 
-
+// code to show bank account
 function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankFeature1, bankFeature2, bankFeature3, bankFeature4, signupFee) {
     var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
     var allBankTarget = document.getElementById('all-bank-account-wrapper')
@@ -143,6 +144,7 @@ function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankF
 
 }
 
+// for toggeling back to all bank accounts
 function backToBankAccount() {
     var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
     var allBankTarget = document.getElementById('all-bank-account-wrapper')
