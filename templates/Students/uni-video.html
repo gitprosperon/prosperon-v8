@@ -30,27 +30,31 @@
         <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-17e1b9de" class="div-block-141">
           <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-17e1b9de" class="_20-padding-container video-notes">
             <div class="w-layout-grid grid-26">
-              <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" href="#" class="_18-poppins semibold centered-text clicked w-button">Summary</a>
-              <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" href="#" class="_18-poppins semibold centered-text w-button">Vocab</a>
-              <a id="w-node-_6d86d723-faa7-21c9-d908-dd89fd2a3ce0-17e1b9de" href="#" class="_18-poppins semibold centered-text w-button">Notes</a>
+              <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" onclick="videoToggle(this, '{{ video.summary }}')" href="#" class="_18-poppins semibold centered-text clicked">Summary</a>
+              <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" onclick="videoToggle(this, '{{ video.vocab }}')" href="#" class="_18-poppins semibold centered-text">Vocab</a>
+              <a id="w-node-_6d86d723-faa7-21c9-d908-dd89fd2a3ce0-17e1b9de" onclick="videoToggle(this, '{{ video.notes }}')" href="#" class="_18-poppins semibold centered-text">Notes</a>
             </div>
             <div class="horizontal"></div>
           </div>
-          <div class="_20-padding-container description show">
+
+            <div class="_20-padding-container description show">
             <div class="horizontal">
-              <div class="_14px normal">{{ video.summary }}</div>
+              <div class="_14px normal" id="video-info-target">{{ video.summary }}</div>
             </div>
           </div>
-          <div class="_20-padding-container description hide">
+
+            <div class="_20-padding-container description hide">
+            <div class="horizontal">
+              <div class="_14px normal">{{ video.vocab }}</div>
+            </div>
+          </div>
+
+            <div class="_20-padding-container description hide">
             <div class="horizontal">
               <div class="_14px normal">This is some text inside of a div block.</div>
             </div>
           </div>
-          <div class="_20-padding-container description hide">
-            <div class="horizontal">
-              <div class="_14px normal">This is some text inside of a div block.</div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
@@ -65,7 +69,7 @@
 
         </form>
   </div>
-
+    <script src="{% static 'students/js/script.js' %}" type="text/javascript"></script>
 </body>
 
 {% endblock %}

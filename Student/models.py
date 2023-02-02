@@ -129,6 +129,7 @@ class Student(models.Model):
     unlocked_anytime_decisions = models.CharField(max_length=100, null=True, blank=True)
     last_points_added = models.IntegerField(null=True, blank=True)
     total_points = models.IntegerField(null=True, blank=True)
+    total_monthly_expenses = models.IntegerField(null=True, blank=True)
 
 
 
@@ -147,6 +148,10 @@ class video(models.Model):
     video_id = models.CharField(max_length=400, null=True, blank=True)
     summary = models.TextField( null=True, blank=True)
     page_type = models.CharField(max_length=200, null=True, blank=True)
+    vocab = models.TextField( null=True, blank=True)
+    notes = models.TextField( null=True, blank=True)
+
+
 
     def __str__(self):
         return self.video_id + ' - ' + self.title

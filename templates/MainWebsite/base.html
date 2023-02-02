@@ -1,13 +1,56 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-    {% block content %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link href="{% static 'budget/css/webflow.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'main-website/style.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'main-website/other.css' %}" rel="stylesheet" type="text/css">
 
-    {% endblock %}
-    </body>
-    </html>
+
+</head>
+<body>
+  <div data-w-id="915d4181-15e9-cef9-d7f7-2a3b351a7fcc" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="uui-navbar01_component w-nav">
+    <div class="uui-navbar01_container">
+      <a href="#" class="uui-navbar01_logo-link w-nav-brand">
+        <div class="uui-logo_component">
+          <div class="uui-logo_logomark"><img src="images/Prosperon-Logo.png" loading="lazy" srcset="images/Prosperon-Logo-p-500.png 500w, images/Prosperon-Logo-p-800.png 800w, images/Prosperon-Logo-p-1080.png 1080w, images/Prosperon-Logo-p-1600.png 1600w, images/Prosperon-Logo-p-2000.png 2000w, images/Prosperon-Logo-p-2600.png 2600w, images/Prosperon-Logo-p-3200.png 3200w, images/Prosperon-Logo.png 7428w" sizes="100px" alt="" class="image-47"></div>
+        </div>
+      </a>
+      <nav role="navigation" class="uui-navbar01_menu w-nav-menu">
+        <div class="uui-navbar01_menu-left">
+          <a href="{% url 'home_page' %}" class="uui-navbar01_link w-nav-link">Home</a>
+          <a href="#" class="uui-navbar01_link w-nav-link">Our Story</a>
+          <a href="#" class="uui-navbar01_link w-nav-link">Product</a>
+        </div>
+        <div class="uui-navbar01_menu-right">
+          <div class="uui-navbar01_button-wrapper">
+            <a href="#" class="uui-button w-inline-block">
+              <div class="text-block-81">Pilot Program</div>
+            </a>
+          </div>
+          <a href="{% url 'Accounts:registration-choice' %}" class="uui-navbar01_link left-padding w-nav-link">Sign Up</a>
+        </div>
+      </nav>
+      <div class="uui-navbar01_menu-button w-nav-button">
+        <div class="menu-icon_component">
+          <div class="menu-icon_line-top"></div>
+          <div class="menu-icon_line-middle">
+            <div class="menu-icon_line-middle-inner"></div>
+          </div>
+          <div class="menu-icon_line-bottom"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

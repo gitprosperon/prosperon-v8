@@ -1,3 +1,4 @@
+
 function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     var rentalCardTarget = document.getElementById('left-specific-apartment');
     var allRentalCardTarget = document.getElementById('all-rentals-card');
@@ -72,6 +73,8 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
 
+
+
 }
 
 function backToCards() {
@@ -79,16 +82,33 @@ function backToCards() {
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
     var backButton = document.getElementById('backBtn')
 
+
     backButton.style.opacity = '100%'
-
-
     AllCardsTarget.style.display = 'block'
-
     creditCardPopup.style.display = 'none'
 
-
 }
+
 
 function showBankAccount() {
 
 }
+
+function backToBankAccount() {
+    var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
+    var allBankTarget = document.getElementById('all-bank-account-wrapper')
+    var backButton = document.getElementById('backBtn')
+
+
+    allBankTarget.style.display = 'block'
+    bankAccountPopUpTarget.style.display = 'none'
+    backButton.style.opacity = '100%'
+
+
+
+}
+
+
+
+
+

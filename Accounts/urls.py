@@ -8,5 +8,7 @@ app_name = "Accounts"
 urlpatterns = [
     path('register-budget', views.register_budget_account, name='register-budget'),
     path('register-student', views.register_student_account, name='register-student'),
+    path('login-student', views.login_student, name='login-student'),
+    path('registration-choice', views.register_choice, name='registration-choice'),
 
 ]

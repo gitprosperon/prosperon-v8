@@ -6,7 +6,12 @@ from django.contrib.auth import login as djlogin
 from Student.models import Student
 
 
+def login_student(request):
+    return render(request, 'Accounts/login-student.html')
 
+
+def register_choice(request):
+    return render(request, 'Accounts/registration-choice.html')
 
 
 # Create your views here.

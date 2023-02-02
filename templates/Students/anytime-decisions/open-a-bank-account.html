@@ -18,7 +18,8 @@
           </div>
           <div class="_30-top">
             <div class="w-layout-grid bank-accounts-grid">
-              <div class="bank-account-wrapper top" style="justify-items: center">
+                {% for account in bank_accounts %}
+                <div class="bank-account-wrapper top" style="justify-items: center">
                 <div class="div-block-131">
                   <div class="div-block-135" style="width: 300px; display: flex">
                    <div>
@@ -34,6 +35,8 @@
                   <div class="text-block-5" onclick="showBankAccount()">Show Details</div>
                 </div>
               </div>
+                {% endfor %}
+
 
             </div>
           </div>
@@ -94,8 +97,8 @@
               <div class="_18-poppins _10-left" id="bankFeature4">feature 4</div>
             </div>
             <div class="button-wrapper bottom-spacing listing">
-              <div class="back-btn" onclick="backToCards()" style="cursor: pointer; width: auto">
-                <div class="" onclick="backToCards()" style="width: auto">Back to cards</div>
+              <div class="back-btn" onclick="backToBankAccount()" style="cursor: pointer; width: auto">
+                <div class="" onclick="backToBankAccount()" style="width: auto">Back to cards</div>
               </div>
 
             </div>

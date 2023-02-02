@@ -13,6 +13,7 @@
         </div>
       </div>
     </div>
+
     <div class="grid-wrapper">
       <div class="w-layout-grid grid-18">
         {% block anytimeD %}
@@ -30,35 +31,6 @@
 
                 <div>
                     <canvas id="myChart"></canvas>
-                    <script>
-                      const ctx = document.getElementById('myChart');
-
-                      new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                          datasets: [{
-                            label: '',
-                            data: [12, 19, 3, 5, 2, 3],
-                            borderWidth: 1,
-                            tension: 0.5
-
-                          }]
-                        },
-                        options: {
-                          scales: {
-                            y: {
-                              beginAtZero: true
-                            }
-                          },
-                          plugins: {
-                            legend: {
-                              display: false
-                            }
-                          }
-                        }
-                      });
-                    </script>
 
                 </div>
 
@@ -73,6 +45,8 @@
             <div class="_20-padding-container _10-top">
               <div class="_18-poppins"><span>*anytime decision name*</span> will cost <span>*X*</span> right now and <span>*Y*</span> every <span>*Period*</span> after that. Your month surplus will <span>*increase/decrease*</span> by <span>*Z*</span> each month if you make this decision.</div>
             </div>
+
+            <form>
             <div class="_20-top horizontal-spaced">
               <div class="ad-impact _30-padding white" style="padding: 20px">
                 <div class="_18 semibold red-text">$<span id="effect-initial-cost">1,000</span></div>
@@ -87,10 +61,124 @@
                 <div class="_14px light">Effect on Surplus</div>
               </div>
             </div>
+            </form>
+
           </div>
         </div>
       </div>
     </div>
+
+
+<script>
+
+function createGraph() {
+    console.log('create graph')
+
+    var student_income = '{{ student_income }}'
+    var monthlySpending = '{{ student_total_monthly_spending }}'
+
+
+
+
+    var monthlyCostTarget = document.getElementById('effect-monthly-cost').innerText
+    var signupFeeTarget = document.getElementById('effect-initial-cost').innerText
+
+
+    monthlySpending = Number(monthlySpending)
+    student_income = Number(student_income) / 12
+    monthlyCostTarget = Number(monthlyCostTarget)
+    signupFeeTarget = Number(signupFeeTarget)
+
+    var totalMonthlyExpenses = monthlySpending + monthlyCostTarget
+    var yearlyNet = ((student_income - signupFeeTarget)-totalMonthlyExpenses) * 12
+
+
+    // for handeling with
+    var netIncomeList = []
+    for(let i = 1; i <= 5; i++) {
+        var num = yearlyNet * i
+        netIncomeList.push(num)
+    }
+
+
+    // for handeling without
+    var withoutYearlyNet = (student_income - monthlySpending) * 12
+    var netIncomeListWithout = []
+    for(let i = 1; i <= 5; i++) {
+        var numb = withoutYearlyNet * i
+        netIncomeListWithout.push(numb)
+    }
+
+
+
+
+
+
+    const ctx = document.getElementById('myChart');
+
+
+
+
+
+
+
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+          datasets: [{
+            label: '',
+            data: netIncomeList,
+            borderWidth: 1,
+            tension: 0.5
+
+          }, {
+              label: '',
+              data: netIncomeListWithout,
+              borderWidth: 1,
+              tension: 0.5
+          }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+
+
+
+}
+
+
+var elements = document.getElementsByClassName('create-graph')
+for(let i = 0; i < elements.length; i++) {
+    elements[i].children[0].addEventListener('click', createGraph)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
 
 
     {% block bottomButtons %}
@@ -102,5 +190,7 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
+
+
 {% endblock %}
 
