@@ -207,7 +207,19 @@ class CreditCard(models.Model):
     credit_card_descrption = models.CharField(max_length=500, null=True, blank=True)
     signup_fee = models.CharField(max_length=500, null=True, blank=True)
 
-
+class BankAccount(models.Model):
+    title = models.CharField(max_length=100, null=True, blank=True)
+    bank_img = models.ImageField(upload_to='bankAccountImages/', null=True, blank=True)
+    score = models.CharField(max_length=500, null=True, blank=True)
+    apy = models.CharField(max_length=500, null=True, blank=True)
+    bank_Yearly_Fee = models.CharField(max_length=500, null=True, blank=True)
+    bank_ATM_Fee = models.CharField(max_length=500, null=True, blank=True)
+    bank_Account_Description = models.CharField(max_length=500, null=True, blank=True)
+    bank_feature1 = models.CharField(max_length=500, null=True, blank=True)
+    bank_feature2 = models.CharField(max_length=500, null=True, blank=True)
+    bank_feature3 = models.CharField(max_length=500, null=True, blank=True)
+    bank_feature4 = models.CharField(max_length=500, null=True, blank=True)
+    bank_signup_fee = models.CharField(max_length=500, null=True, blank=True)
 
 
 

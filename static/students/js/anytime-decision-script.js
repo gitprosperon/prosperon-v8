@@ -70,6 +70,7 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     feature2Target.innerText = feature2
     feature3Target.innerText = feature3
     feature4Target.innerText = feature4
+
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
 
@@ -90,7 +91,55 @@ function backToCards() {
 }
 
 
-function showBankAccount() {
+function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankFeature1, bankFeature2, bankFeature3, bankFeature4, signupFee) {
+    var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
+    var allBankTarget = document.getElementById('all-bank-account-wrapper')
+    var backButton = document.getElementById('backBtn')
+    var apply_buttonTarget = document.getElementById('applyBtn')
+
+
+   //handling targets
+    var bankAccountNameTarget = document.getElementById('bank-account-name')
+    var apyTarget = document.getElementById('apy')
+    var bankYearlyFeeTarget = document.getElementById('bankYearlyFee')
+    var bankAtmFeeTarget = document.getElementById('BankAtmFee')
+    var bankAccountDescriptionTarget = document.getElementById('bankAccountDescription')
+    var bankFeature1Target = document.getElementById('bankFeature1')
+    var bankFeature2Target = document.getElementById('bankFeature2')
+    var bankFeature3Target = document.getElementById('bankFeature3')
+    var bankFeature4Target = document.getElementById('bankFeature4')
+
+    var monthlyCostTarget = document.getElementById('effect-monthly-cost')
+    var signupFeeTarget = document.getElementById('effect-initial-cost')
+
+    var yearly = Number(bankFee)
+    var montlyCost = yearly / 12
+
+
+
+    bankAccountNameTarget.innerText = title
+    apyTarget.innerText = apy
+    bankYearlyFeeTarget.innerText = bankFee
+    bankAtmFeeTarget.innerText = bankATMFee
+    bankAccountDescriptionTarget.innerText = bankDescription
+    bankFeature1Target.innerText = bankFeature1
+    bankFeature2Target.innerText = bankFeature2
+    bankFeature3Target.innerText = bankFeature3
+    bankFeature4Target.innerText = bankFeature4
+
+    allBankTarget.style.display = 'none'
+    bankAccountPopUpTarget.style.display = 'block'
+    backButton.style.opacity = '0%'
+    apply_buttonTarget.style.display = 'block'
+
+    monthlyCostTarget.innerText = montlyCost
+    signupFeeTarget.innerText = signupFee
+
+
+
+
+
+
 
 }
 

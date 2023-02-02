@@ -12,7 +12,7 @@
   <div class="fullpage-wrapper">
 
 
-        <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-deff392a" class="bank-accounts _40-padding-container">
+        <div id="all-bank-account-wrapper" class="bank-accounts _40-padding-container">
           <div class="_40-bottom">
             <h1 class="_36-bold light">Compare the best starter checking accounts in the <span class="text-span-2">&quot;United States&quot;</span></h1>
           </div>
@@ -26,14 +26,16 @@
                     <div class="div-block-129 credit"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="80" alt=""></div>
                    </div>
                       <div style="display: flex; align-items: center">
-                      <h4 class="heading-34" style="width: 200px; font-size: 18px">Something Credit Union</h4>
+                      <h4 class="heading-34" style="width: 200px; font-size: 18px">{{ account.title }}</h4>
                       </div>
                   </div>
                 </div>
 
-                <div class="div-block-128" style="width: 150px; margin-top: 0px">
-                  <div class="text-block-5" onclick="showBankAccount()">Show Details</div>
-                </div>
+                <div class="div-block-128" style="width: 150px; margin-top: 0px; cursor: pointer">
+                  <div class="create-graph">
+                    <div class="" onclick="showBankAccount('{{ account.title }}', '{{ account.apy }}', '{{ account.bank_Yearly_Fee }}', '{{ account.bank_ATM_Fee }}', '{{ account.bank_Account_Description }}', '{{ account.bank_feature1 }}', '{{ account.Bank_feature2 }}', '{{ account.Bank_feature3 }}', '{{ account.Bank_feature4 }}', '{{ account.bank_signup_fee }}')">Show Details</div>
+                  </div>
+                  </div>
               </div>
                 {% endfor %}
 
@@ -42,7 +44,7 @@
           </div>
         </div>
 
-<div id="creditCardPopUp" class="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-fbe61579" style="display: none;">
+<div id="bankAccountPopUp" class="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-fbe61579" style="display: none;">
           <div class="_40-padding-container white percent-change">
             <div class="_20-bottom">
               <h1 class="_24px-2 semibold _20-left" id="bank-account-name">Bank Name</h1>
@@ -116,14 +118,14 @@
     {% block bottomButtons %}
         {% if id == '2' %}
         <div class="button-wrapper bottom-spacing">
-            <a href="/{{ ad.back_btn_link }}">
+            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
             <div class="button" id="backBtn">
                 <div class="button-text" id="backBtn">Back</div>
             </div>
             </a>
             <form method="post">
                 {% csrf_token %}
-                    <button type="submit" class="next-btn">Next</button>
+                    <button type="submit" id="applyBtn" class="next-btn" style="display: none">Apply</button>
             </form>
         </div>
         {% endif %}
