@@ -78,6 +78,7 @@ def register_student_account(request):
             studentUser.student_email = request.user
             studentUser.total_points = 0
             studentUser.last_points_added = 0
+            studentUser.total_monthly_expenses = 0
             studentUser.course_progress = 0
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}

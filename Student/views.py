@@ -87,8 +87,6 @@ def add_goals(request):
     return render(request, 'Students/budget/add_goal.html')
 
 
-
-
 # Budget / Budget page
 def budget(request):
     user = request.user
@@ -178,7 +176,6 @@ def transactions(request):
             print(amount)
             print(type(amount))
             amount = float(amount)
-            print(type(amount))
 
 
             print(transaction_category)
@@ -186,11 +183,14 @@ def transactions(request):
 
             currentTransactions = budget_category.transactions['categoryTransactions']
 
+
+
             new_packaged_transaction =  {
 
                          "date":"2017-01-29",
-                         "name":"Apple Store",
+                         "name":"Rent Payment",
                          "amount": amount,
+                         "checked" : "yes",
                          "category":[
                             "Shops",
                             "Computers and Electronics"
@@ -209,23 +209,36 @@ def transactions(request):
                          "category_id":"19013000",
 
                       }
-
             currentTransactions.append(new_packaged_transaction)
 
             if budget_category.current_total:
-
                 budget_category.current_total = int(budget_category.current_total) + amount
             else:
                 budget_category.current_total = amount
-
             budget_category.save()
 
 
-            print(amount)
-            print(currentTransactions)
-
         transactions = student.all_transactions
         new_current_transactions = transactions['all_transactions']
+        budget_category_transactions = BudgetItemsUniversity.objects.filter(users_id=user_id)
+
+        for transact in new_current_transactions:
+            for budgeted_transact in budget_category_transactions:
+                for i in budgeted_transact.transactions['categoryTransactions']:
+                    if i['transaction_id'] == transact['transaction_id']:
+                        transact['checked'] = "yes"
+                        print('it is in')
+
+                        student.save()
+
+
+
+
+
+
+
+
+
 
         context = {
             'budget_categories': budget_categories,
@@ -435,7 +448,7 @@ def anytime_decision_step2(request, id):
 
                     "date": "2017-01-29",
                     "name": transaction_title,
-                    "length": 12,
+                    "checked": "no",
                     "amount": monthly_cost,
                     "category": [
                         "Payment",

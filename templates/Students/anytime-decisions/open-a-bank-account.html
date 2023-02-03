@@ -125,9 +125,9 @@
             </a>
             <form method="post">
                 {% csrf_token %}
-                <input type="text"  id="effect-cost-now-input" name="cost-now" value="1">
-                <input type="text"  id="effect-monthly-cost-input" name="cost-later" value="2">
-                <input type="text"  id="anytime-transaction-title" name="transactiontitle" value="Bank Payment">
+                <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
+                <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
+                <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Bank Payment">
 
                     <button type="submit" id="applyBtn" class="next-btn" style="display: none">Apply</button>
             </form>

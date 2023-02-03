@@ -35,3 +35,12 @@ function videoToggle(a, information ) {
 }
 
 
+function transactionsToggle(a) {
+    var elements = document.getElementsByClassName('filter-categories-wrapper')
+
+    for(let i = 0; i < elements.length; i++) {
+        var elm = elements[i]
+        elm.className = 'filter-categories-wrapper not-selected'
+        a.className = 'filter-categories-wrapper selected'
+    }
+}

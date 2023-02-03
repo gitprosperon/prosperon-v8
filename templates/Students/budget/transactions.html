@@ -62,15 +62,19 @@
               <div class="section-header-wrapper">
                 <h1 class="page-section-header">All Transactions</h1>
                 <div class="transaction-filter-wrapper">
-                  <div class="filter-categories-wrapper selected" style="height: 40px">
+
+                <div class="filter-categories-wrapper selected" style="height: 40px" onclick="transactionsToggle(this)">
                     <div class="text-block">All</div>
                   </div>
-                  <div class="filter-categories-wrapper not-selected" style="height: 40px">
+
+                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this)">
                     <div class="text-block">Completed</div>
                   </div>
-                  <div class="filter-categories-wrapper not-selected" style="height: 40px">
+
+                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this)">
                     <div class="text-block">Incomplete</div>
                   </div>
+
                   <div class="search-wrapper">
                     <div class="form-block-2 w-form">
                       <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form-2"><input type="text" class="text-field w-input" maxlength="256" name="field" data-name="Field" placeholder="Search Here" id="field" required="" style="height: 40px"></form>
@@ -123,6 +127,8 @@
                         <script>
                              function changeTransaction(a, button) {
                                 var Button = document.getElementById('button-' + button)
+                                a.parentElement.children[2].style.display = 'block'
+                                 a.parentElement.children[3].children[0].style.display = 'none'
 
 
                                  Button.onclick = function() {
@@ -154,9 +160,19 @@
                                 }
 
                         </script>
+                            {% if tramsactiom.checked != 'yes' %}
                             <input type="button" value="Correct" data-wait="Please wait..." class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
-                        <div class="" style="padding-left: 20px">
-                                <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;" id="check-{{ tramsactiom.transaction_id }}"></div>
+                            {% else %}
+                                <input type="button" value="Correct" data-wait="Please wait..." style="display: none;" class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
+                            {% endif %}
+                        
+                            <div class="" style="padding-left: 20px">
+                        
+                        {% if tramsactiom.checked == 'yes' %}
+                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" ></div>
+                        {% else %}
+                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;" id="check-{{ tramsactiom.transaction_id }}"></div>
+                        {% endif %}
                         </div>
                     </div>
                     </form>
