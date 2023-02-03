@@ -63,15 +63,15 @@
                 <h1 class="page-section-header">All Transactions</h1>
                 <div class="transaction-filter-wrapper">
 
-                <div class="filter-categories-wrapper selected" style="height: 40px" onclick="transactionsToggle(this)">
+                <div class="filter-categories-wrapper selected" style="height: 40px" onclick="transactionsToggle(this, '1')">
                     <div class="text-block">All</div>
                   </div>
 
-                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this)">
+                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this, '2')">
                     <div class="text-block">Completed</div>
                   </div>
 
-                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this)">
+                  <div class="filter-categories-wrapper not-selected" style="height: 40px" onclick="transactionsToggle(this, '3')">
                     <div class="text-block">Incomplete</div>
                   </div>
 
@@ -89,8 +89,9 @@
                 </div>
               </div>
 
+
                 {% for tramsactiom in new_current_transactions %}
-                <div class="_20-padding-container transaction-card">
+                <div class="_20-padding-container transaction-card" id="all-transactions-card">
                 <div class="left-card">
                   <div class="icon-wrapper">
                       {% if tramsactiom.category.0 == 'Shops' %}
@@ -160,6 +161,7 @@
                                 }
 
                         </script>
+
                             {% if tramsactiom.checked != 'yes' %}
                             <input type="button" value="Correct" data-wait="Please wait..." class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
                             {% else %}
@@ -169,7 +171,7 @@
                             <div class="" style="padding-left: 20px">
                         
                         {% if tramsactiom.checked == 'yes' %}
-                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" ></div>
+                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" style="display: block;" width="35" height="35" alt="" ></div>
                         {% else %}
                             <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;" id="check-{{ tramsactiom.transaction_id }}"></div>
                         {% endif %}
@@ -180,11 +182,6 @@
                 </div>
               </div>
             {% endfor %}
-
-
-
-
-
 
 
             </div>

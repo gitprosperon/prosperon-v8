@@ -176,6 +176,7 @@ def transactions(request):
             print(amount)
             print(type(amount))
             amount = float(amount)
+            print(type(amount))
 
 
             print(transaction_category)
