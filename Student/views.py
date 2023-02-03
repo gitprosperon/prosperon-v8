@@ -177,10 +177,20 @@ def transactions(request):
             print(type(amount))
             amount = float(amount)
             print(type(amount))
+            print(public)
+            category1 = public['category1']
+            category2 = public['category2']
+
+
 
 
             print(transaction_category)
             budget_category = BudgetItemsUniversity.objects.get(title=transaction_category)
+
+
+
+
+
 
             currentTransactions = budget_category.transactions['categoryTransactions']
 
@@ -193,8 +203,8 @@ def transactions(request):
                          "amount": amount,
                          "checked" : "yes",
                          "category":[
-                            "Shops",
-                            "Computers and Electronics"
+                            f"{category1}",
+                            f"{category2}"
                          ],
                          "location":{
                             "lat":40.740352,
@@ -237,15 +247,13 @@ def transactions(request):
 
 
 
-
-
-
-
         context = {
             'budget_categories': budget_categories,
             'new_current_transactions': new_current_transactions
         }
         return render(request, 'Students/budget/transactions.html', context=context)
+
+
 
 # Universal Video Page
 def universal_video(request, id):

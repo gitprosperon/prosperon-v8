@@ -120,9 +120,18 @@
                     <form method="Post">
                       <div class="form-block">
                         <div id="email-form" class="form">
+
+
                             <select id="transaction-category" name="transaction-category" data-name="transaction category" onclick="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
-                              {% for category in budget_categories %}
-                                  <option value="{{ category.title }}">{{ category.title }}</option>
+                                <option value="">------ {{ tramsactiom.category.0 }} ------</option>
+                                {% for category in budget_categories %}
+                                    {% if category.category == 'Payment' %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endif %}
+                                    {% if category.category == 'Transfer' %}
+                                        <option value="{{ category.title }}">{{ category.title }}</option>
+                                    {% endif %}
+
                               {% endfor %}
                             </select>
                         <script>
@@ -149,7 +158,10 @@
                                                   action: "post",
                                                   test: theCategory,
                                                   the_id: '{{ tramsactiom.transaction_id }}',
-                                                  amount: cost
+                                                  amount: cost,
+                                                  category1: "{{ tramsactiom.category.0 }}",
+                                                  category2: "{{ tramsactiom.category.1 }}"
+
                                                 }
 
                                             })
