@@ -16,7 +16,14 @@
   <div class="apartment-search">
     <div class="_24px semibold white">Searching for apartments in...</div>
     <div class="search-area _10-top">
-        <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%" placeholder="Search for housing">
+
+
+        {% if student_job_location == student_current_location and student.job.job_type != 'Remote' %}
+            <h1 class="_18-poppins padding" id="citySearch">{{ student.job.job_city }}</h1>
+        {% else %}
+            <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%" placeholder="Search for housing">
+
+        {% endif %}
     </div>
   </div>
   <div class="_40-padding-container white apartments-container">
@@ -81,6 +88,24 @@
         </div>
 
 
+<script>
+
+// search functionality for housing
+    const citySearch = document.getElementById('citySearch');
+    citySearch.addEventListener("keyup", (e) => {
+        let currentValue = e.target.value.toLowerCase();
+        let city = document.querySelectorAll('h1.city');
+        city.forEach(city => {
+            if (city.textContent.toLowerCase().includes(currentValue)) {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+            } else {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+            }
+        })
+    })
+
+
+</script>
 
 
 {% endif %}
@@ -96,9 +121,16 @@
             </a>
             <form method="post">
                 {% csrf_token %}
+                <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
+                <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
+                <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
+
+
                     <button type="submit" class="next-btn">Next</button>
             </form>
         </div>
         {% endif %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
     {% endblock %}
 

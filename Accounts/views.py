@@ -80,6 +80,7 @@ def register_student_account(request):
             studentUser.last_points_added = 0
             studentUser.course_progress = 0
             studentUser.all_transactions = {"all_transactions": []}
+            studentUser.monthly_transactions = {"monthly_transactions": []}
             studentUser.save()
 
 

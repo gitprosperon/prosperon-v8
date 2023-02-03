@@ -167,15 +167,20 @@ def transactions(request):
         student = Student.objects.get(user_id_number=user_id)
         budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
 
-        print('test')
+        print('test3214')
         # Code for receiving transactions with ajax
         if request.POST.get('action') == 'post':
             public = request.POST
             transaction_category = public['test']
             transaction_id = public['the_id']
+
             amount = public['amount']
-            amount = float(amount)
             print(amount)
+            print(type(amount))
+            amount = float(amount)
+            print(type(amount))
+
+
             print(transaction_category)
             budget_category = BudgetItemsUniversity.objects.get(title=transaction_category)
 
@@ -200,7 +205,7 @@ def transactions(request):
                             "postal_code":"94108",
                             "store_number":"1235"
                          },
-                         "account_id":"BxBXxLj1m4HMXBm9WZZmCWVbPjX16EHwv99vp",
+                         "transaction_id": f"{transaction_id}",
                          "category_id":"19013000",
 
                       }
@@ -371,11 +376,19 @@ def anytime_decision_step2(request, id):
         print(html_path)
         apartments = Apartment.objects.all()
         credit_cards = CreditCard.objects.all()
-        bank_accounts = BankAccount.objects.all()
+        bank_accounts = BankAccount.objects.all()\
+
+        student_job_location = str(student.job.job_city)
+        student_current_location = str(student.location)
+
+
+
 
         # Grabbing request
         if request.method == 'POST':
             print('there was a request')
+            print(request.POST)
+            sent_form = request.POST
             full_life_path = student.life_path['events']
 
             # removed object
@@ -390,10 +403,83 @@ def anytime_decision_step2(request, id):
 
             }
 
+
+
+            cost_now = sent_form['cost-now']
+            monthly_cost = sent_form['cost-later']
+            transaction_title = sent_form['transactiontitle']
+
+
+
+
+
+            monthly_cost = monthly_cost.replace(',', '')
+            monthly_cost = float(monthly_cost)
+            print(type(monthly_cost))
+            student_current_monthhly_expenses = student.total_monthly_expenses
+            student.total_monthly_expenses = student_current_monthhly_expenses - monthly_cost
+
+
+
+
+
+            student.save()
+
+
+
+
+            if monthly_cost != '0':
+                transaction_id = random.randint(1231456437657543635423452323452345242,9231456437657543635423452323452345242)
+
+                new_packaged_transaction = {
+
+                    "date": "2017-01-29",
+                    "name": transaction_title,
+                    "length": 12,
+                    "amount": monthly_cost,
+                    "category": [
+                        "Payment",
+                        "Computers and Electronics"
+                    ],
+                    "location": {
+                        "lat": 40.740352,
+                        "lon": -74.001761,
+                        "city": "San Francisco",
+                        "region": "CA",
+                        "address": "300 Post St",
+                        "country": "US",
+                        "postal_code": "94108",
+                        "store_number": "1235"
+                    },
+                    "transaction_id": f"{transaction_id}",
+                    "category_id": "19013000",
+
+                }
+
+                student_montly_transactions = student.monthly_transactions['monthly_transactions']
+                student_montly_transactions.append(new_packaged_transaction)
+                student.monthly_transactions['monthly_transactions'] = student_montly_transactions
+
+
+                current_all_transactions = student.all_transactions['all_transactions']
+                print(current_all_transactions)
+                current_all_transactions.append(new_packaged_transaction)
+                print(current_all_transactions)
+
+                student.save()
+
+
+
+
+
+
             full_life_path.append(anytime)
             full_life_path.append(upcoming_module)
             new = {"events": full_life_path}
             student.life_path = new
+            ad_points = ad.points
+            student.last_points_added = ad_points
+            student.total_points = student.total_points + ad_points
             student.save()
             return redirect('/university/dashboard')
 
@@ -406,6 +492,10 @@ def anytime_decision_step2(request, id):
             'apartments': apartments,
             'credit_cards': credit_cards,
             'bank_accounts': bank_accounts,
+            'student': student,
+            'student_job_location': student_job_location,
+            'student_current_location': student_current_location
+
         }
         return render(request, f'Students/anytime-decisions/{html_path}', context=context)
     else:

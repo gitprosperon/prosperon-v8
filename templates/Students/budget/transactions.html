@@ -115,19 +115,24 @@
                     <form method="Post">
                       <div class="form-block">
                         <div id="email-form" class="form">
-                            <select id="transaction-category" name="transaction-category" data-name="transaction category" onclick="changeTransaction(this, '134131343')">
+                            <select id="transaction-category" name="transaction-category" data-name="transaction category" onclick="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
                               {% for category in budget_categories %}
                                   <option value="{{ category.title }}">{{ category.title }}</option>
                               {% endfor %}
                             </select>
                         <script>
                              function changeTransaction(a, button) {
-                                console.log('test')
-                                 console.log(a.parentElement.children[2])
-                                document.getElementById(button).onclick = function() {
+                                var Button = document.getElementById('button-' + button)
+
+
+                                 Button.onclick = function() {
                                     var theCategory = a.options[a.selectedIndex].value
-                                    a.parentElement.children[3].children[0].style.display = 'block'
-                                    a.parentElement.children[2].style.display ='none'
+                                    a.parentElement.children[2].style.display = 'none'
+                                    console.log(a.parentElement.children[3].children[0])
+                                     a.parentElement.children[3].children[0].style.display = 'block'
+                                     var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML
+                                    console.log(cost)
+
 
                                     $.ajax({
                                               type: "POST",
@@ -136,8 +141,8 @@
                                                   csrfmiddlewaretoken: '{{csrf_token}}',
                                                   action: "post",
                                                   test: theCategory,
-                                                  the_id: button,
-                                                  amount: {{ tramsactiom.amount }}
+                                                  the_id: '{{ tramsactiom.transaction_id }}',
+                                                  amount: cost
                                                 }
 
                                             })
@@ -149,9 +154,9 @@
                                 }
 
                         </script>
-                            <input type="button" value="Correct" data-wait="Please wait..." class="submit-button" id="134131343">
+                            <input type="button" value="Correct" data-wait="Please wait..." class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
                         <div class="" style="padding-left: 20px">
-                                <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;"></div>
+                                <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;" id="check-{{ tramsactiom.transaction_id }}"></div>
                         </div>
                     </div>
                     </form>

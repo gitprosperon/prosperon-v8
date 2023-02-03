@@ -131,6 +131,8 @@ class Student(models.Model):
     total_points = models.IntegerField(null=True, blank=True)
     total_monthly_expenses = models.IntegerField(null=True, blank=True)
     all_transactions = models.JSONField(null=True, blank=True)
+    monthly_transactions = models.JSONField(null=True, blank=True)
+
 
 
 
@@ -188,6 +190,7 @@ class AnytimeDecision(models.Model):
     next_btn_link = models.CharField(max_length=5000, null=True, blank=True)
     back_btn_link = models.CharField(max_length=5000, null=True, blank=True)
     summary = models.TextField(max_length=5000, null=True, blank=True)
+    points = models.IntegerField(null=True, blank=True)
 
     img = models.ImageField(upload_to='anytimeImages/', null=True, blank=True)
 

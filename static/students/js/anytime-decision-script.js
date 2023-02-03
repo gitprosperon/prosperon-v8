@@ -11,6 +11,15 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     var effectMonthlyCostTarget = document.getElementById('effect-monthly-cost');
     var effectInitialCostTarget = document.getElementById('effect-initial-cost');
 
+    var costLaterTarget = document.getElementById('effect-monthly-cost-input')
+    var costNowTarget = document.getElementById('effect-cost-now-input')
+
+    costLaterTarget.setAttribute('value', rent)
+    costNowTarget.setAttribute('value', init)
+
+
+
+
     apartmentTitleTarget.innerText = title
     apartmentAddressTarget.innerText = address
     apartmentRentTarget.innerText = rent
@@ -20,6 +29,8 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     apartmentDescriptionTarget.innerText = desc
     effectMonthlyCostTarget.innerText = rent
     effectInitialCostTarget.innerText = init
+
+
 
     if(allRentalCardTarget.style.display === 'block') {
         allRentalCardTarget.style.display = 'none'
@@ -74,6 +85,12 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
 
+    var costLaterTarget = document.getElementById('effect-monthly-cost-input')
+    var costNowTarget = document.getElementById('effect-cost-now-input')
+
+    costLaterTarget.setAttribute('value', montlyCost)
+    costNowTarget.setAttribute('value', signupFee)
+
 
 
 }
@@ -93,6 +110,7 @@ function backToCards() {
 
 // code to show bank account
 function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankFeature1, bankFeature2, bankFeature3, bankFeature4, signupFee) {
+    console.log('penis')
     var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
     var allBankTarget = document.getElementById('all-bank-account-wrapper')
     var backButton = document.getElementById('backBtn')
@@ -115,6 +133,14 @@ function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankF
 
     var yearly = Number(bankFee)
     var montlyCost = yearly / 12
+
+
+    var costLaterTarget = document.getElementById('effect-monthly-cost-input')
+    var costNowTarget = document.getElementById('effect-cost-now-input')
+
+    costLaterTarget.setAttribute('value', montlyCost)
+    costNowTarget.setAttribute('value', signupFee)
+    console.log('penis')
 
 
 
@@ -160,20 +186,6 @@ function backToBankAccount() {
 }
 
 
-// search functionality for housing
-
-    const citySearch = document.getElementById('citySearch');
-    citySearch.addEventListener("keyup", (e) => {
-        let currentValue = e.target.value.toLowerCase();
-        let city = document.querySelectorAll('h1.city');
-        city.forEach(city => {
-            if (city.textContent.toLowerCase().includes(currentValue)) {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
-            } else {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
-            }
-        })
-    })
 
 
 
