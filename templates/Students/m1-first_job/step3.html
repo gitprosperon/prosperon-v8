@@ -4,6 +4,7 @@
 {% block stylesheets %}
     <link href="{% static 'students/m1/style.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'students/css/webflow.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/css/custom.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'students/css/new_stylesheet.css' %}" rel="stylesheet" type="text/css">
 
 {% endblock %}
@@ -12,7 +13,7 @@
 {% block content %}
 <body style="padding: 0px; margin: 0px">
 <div class="alert-page-wrapper" style="height: 91vh">
-    <div class="alert-page-container" style="margin-top: 0px">
+    <div class="alert-page-container" id="offers" style="margin-top: 0px;display: block; min-width: auto; max-width: none">
       <p class="alert-box-title" style="padding-bottom: 5px">You got some offers!</p>
       <p class="alert-box-text">You have two job offers from two great companies. Click each company to view <br> the offer. Evaluate each offer and make your decision.</p>
       <div class="div-block">
@@ -62,6 +63,20 @@
             </div>
         </form>
     </div>
+<div class="alert-page-container" id="offer-letter" style="display: none">
+      <div class="job-offer-wrapper">
+        <div class="back-arrow-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-8"></div>
+      </div>
+      <div class="job-title-wrapper">
+        <div class="div-block-143"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-9"></div>
+        <div>
+          <h1 class="_24px semibold blue">*company name*</h1>
+          <h1 class="_18-poppins nomral">*Position*</h1>
+        </div>
+      </div>
+      <div class="scrolling-offer">
+       <p class="job-paragraph">Dear [Candidate Name],<br><br>[Company name] is offering to extend your current employment status from part-time to full-time, as of [date].<br><br>If you choose to accept our offer, please review the terms and conditions of your new employment contract below:<br><br>Position:  You will be working as a [position] and reporting to the [department name] manager.<br>Working hours: [days/week or weekends] [hours 9am-5pm, 7am-3pm, etc.]<br>Compensation: Your [hourly, weekly, bi-weekly] salary will be [salary amount].<br>Benefits: As a full-time employee, you will be eligible for the following employee benefits: [health insurance, 401k, PTO, etc.] <br><br>To accept our offer,  please sign and date this full-time offer letter as indicated below and email it back to us by [date].<br><br>Feel free to contact the HR department [contact information] if you have any questions, or you can reach out to your supervisor directly.<br><br>Sincerely,<br><br>[Company]</p>
+      </div>
   </div>
 
 
