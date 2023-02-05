@@ -63,7 +63,7 @@
                                 <div class="right-timeline-card"><img src="{{ event.imgurl }}" loading="lazy" class="image-5">
                                   <div class="_18 medium text lifeevent-title">{{ event.title }}</div>
                                   <div class="_14px _10-top _14">{{ event.description }}</div>
-                                  <div class="add-button start">
+                                  <div class="next-btn timeline">
                                       <a href="{% url 'Students:universal-video-page' event.videoPageId %}" style="text-decoration: none">
                                       <div class="_18-poppins white">Start</div>
                                     </a>
@@ -93,7 +93,7 @@
                     <div class="right-timeline-card">
                       <div class="_18 medium text lifeevent-title">{{ event.title }}</div>
                       <div class="_14px _10-top _14">{{ event.type }}</div>
-                      <div class="add-button start">
+                      <div class="next-btn timeline">
                           <a href="{% url 'Students:module-summary-page' event.summaryPage '1' %}" style="text-decoration: none">
                           <div class="_18-poppins white">Review</div>
                           </a>
@@ -141,7 +141,7 @@
         <div class="column w-col w-col-8">
           <div class="right-column">
  <div class="section-container">
-              <div class="w-layout-grid grid-6">
+              <div class="w-layout-grid grid-6" style="grid-template-columns: 1.25fr 0.25fr .75fr">
                 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30759-fe18aa3b" class="_20-padding-container centered-div">
                   <div class="profile-snapshot top">
                     <div class="profile-image"><img src="{{ profile_image.url }}" loading="lazy" alt="" class="profile-image homepageprofile"></div>
@@ -155,7 +155,7 @@
                     </div>
                   </div>
                   <div class="profile-snapshot bottom">
-                    <div class="w-layout-grid _100-width">
+                    <div class="w-layout-grid _100-width" style="align-items: start">
                       <div class="centered-div _10-padding">
                         <div class="_40-width-picture"><img src="{% static 'images/icons/Icon-material-cake.png' %}" loading="lazy" alt="" class="_40x40"></div>
                         <div class="_14px normal _10-top">
@@ -169,7 +169,7 @@
                         </div>
                       </div>
                       <div class="centered-div _10-padding">
-                        <div class="_40-width-picture"><img src="{% static 'images/icons/Icon material-location-on.png' %}" loading="lazy" alt="" class="_40x40"></div>
+                        <div class="_40-width-picture"><img src="{% static 'images/icons/living-icon.png' %}" loading="lazy" alt="" class="_40x40"></div>
                         <div class="_14px normal _10-top">
                           <div class="_14px normal center">*living*</div>
                         </div>
@@ -180,7 +180,7 @@
                 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3077e-fe18aa3b" class="_20-padding-container centered-div">
                   <div class="centered-div"><img src="{% static 'images/icons/Icon awesome-coins.png' %}" loading="lazy" alt="" class="image-6">
                     <div class="_10-top">
-                      <h1 class="_18 semibold blue">{{ total_points }} XP</h1>
+                      <h1 class="_18 semibold blue" style="text-align: center">{{ total_points }} XP</h1>
                       <div class="centered-text _16px">Last Decision</div>
                       <div class="centered-text green">+ {{ last_points }}</div>
                     </div>
@@ -348,7 +348,7 @@
                    </div>
                     <div class="_10-top _100-width">
                      <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
-                      <div class="add-button">
+                      <div class="next-btn timeline">
                           <div class="_18-poppins white">Add</div>
                       </div>
                           </a>

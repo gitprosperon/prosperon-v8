@@ -33,7 +33,7 @@
             </div>
             <div class="account-ov-wrapper top-spacing">
               <div class="account-ov-information total-spent">
-                <div class="account-title total-spent">$<span class="text-span-3" id="total-spent">*total spent*</span></div>
+                <div class="account-title total-spent" style="color: red">$<span class="text-span-3" id="total-spent">*total spent*</span></div>
                 <div class="sub-text">Spent this month</div>
               </div>
             </div>
@@ -75,7 +75,7 @@
                     <div class="text-block">Incomplete</div>
                   </div>
 
-                  <div class="search-wrapper">
+                  <div class="search-wrapper" style="display: none">
                     <div class="form-block-2 w-form">
                       <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="form-2"><input type="text" class="text-field w-input" maxlength="256" name="field" data-name="Field" placeholder="Search Here" id="field" required="" style="height: 40px"></form>
                       <div class="w-form-done">
@@ -92,9 +92,10 @@
 
                 {% for tramsactiom in new_current_transactions %}
 
-                <div class="_20-padding-container transaction-card" id="all-transactions-card">
-                <div class="left-card">
-                  <div class="icon-wrapper">
+                <div class="_20-padding-container transaction-card" id="all-transactions-card" style="margin-bottom: 10px; margin-top: 10px">
+                <div class="left-card" style="width: 55%">
+
+                    <div class="icon-wrapper">
 
 
                         {% if tramsactiom.category.0 == 'Payment' %}
@@ -124,16 +125,16 @@
 
 
 
-                    <div class="transaction-place-wrapper">
+                    <div class="transaction-place-wrapper" style="min-width: auto">
                     <h4 class="_18px">{{ tramsactiom.name }}</h4>
                   </div>
                   <div class="transaction-amount-wrapper">
                     <div class="_24px medium" style="color: red">- $<span>{{ tramsactiom.amount }}</span></div>
                   </div>
-                </div>
+              </div>
                 <div class="right-card">
                   <div class="date-wrapper">
-                    <div class="_18px normal light-grey">{{ tramsactiom.date }}</div>
+                    <div class="_18px normal light-grey" style="font-size: 14px">{{ tramsactiom.date }}</div>
                   </div>
                   <div class="form-wrapper">
                     <form method="Post">

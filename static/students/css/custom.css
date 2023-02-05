@@ -29,11 +29,20 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+  align-items: center;
 }
 
 .next-btn:hover {
   background-color: #DEF1FF;
   color: #1f79ba;
+}
+
+.next-btn.timeline {
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: auto;
 }
 
 .right-timeline-card.anytime:hover {
@@ -104,4 +113,31 @@
 
 .nav-link-text.selected {
   color: #1f79ba;
+}
+
+._18-poppins {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: Poppins, sans-serif;
+  color: #142450;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 0px;
+}
+
+.section-header-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: center;
 }

@@ -18,8 +18,8 @@
                   <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Category</label>
                   {{ form.category }}
 
-                <div class="_18-poppins" style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Color</div>
-                <div class="color-selector">
+                <div class="_18-poppins" style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px; display: none">Color</div>
+                <div class="color-selector" style="display: none">
 
                     <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
                     <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
@@ -30,8 +30,8 @@
 
                 </div>
                 <div class="save-back-wrapper no-padding">
-                  <a href="{% url 'Students:budget' %}" class="back-button" style="text-decoration: none">Back</a>
-                    <input type="submit" value="Add" data-wait="Please wait..." class="add-budget" style="text-decoration: none; color: white">
+                  <a href="{% url 'Students:budget' %}" class="back-btn" style="text-decoration: none; align-items: center; align-content: center">Back</a>
+                    <input type="submit" value="Add" data-wait="Please wait..." class="next-btn" style="text-decoration: none; color: white">
                 </div>
               </form>
 
