@@ -204,7 +204,7 @@
                     <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
                       <div class="_18" style="font-size: 18px; line-height: 22px">{{ decision.title }}</div>
-                      <div class="_14px _10-top _14">{{ decision.description }}</div>
+                      <div class="_14px _10-top _14">{{ decision.description|slice:":90" }}...</div>
                     </div>
                     <div class="_10-top _100-width">
                     </div>

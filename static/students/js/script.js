@@ -103,6 +103,10 @@ function subscriptionClick(a) {
     }
 }
 
-
+function monthly_expenseClick(a) {
+    if(a.children[2].className === 'price-range-wrapper hidden') {
+        a.children[2].className = 'price-range-wrapper'
+    }
+}
 
 

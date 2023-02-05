@@ -20,15 +20,19 @@
         </div>
       </div>
     </div>
-    <div class="grid-wrapper" style="height: 100%">
+
+    {% if video.page_type != "0" %}
+      <div class="grid-wrapper" style="height: 100%">
       <div class="w-layout-grid grid-18 step1">
         <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-17e1b9de">
           <div class="video-wrapper" style="height: 65vh">
-    <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" class="w-video" style="height: 100%"></iframe>
+            <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" class="w-video" style="height: 100%"></iframe>
           </div>
         </div>
-        <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-17e1b9de" class="div-block-141">
-          <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-17e1b9de" class="_20-padding-container video-notes">
+
+
+          <div id="w-node-c5a806e0-724a-5949-d988-9e528c3a62f9-17e1b9de" class="div-block-141">
+          <div id="w-node-_6eb24419-a21f-45df-39ba-9617e303e0de-17e1b9de" class="_20-padding-container video-notes" style="padding-bottom: 0px">
             <div class="w-layout-grid grid-26">
               <a id="w-node-b39ca9ab-c1fd-34a4-fae6-21b69ddbe15e-17e1b9de" onclick="videoToggle(this, '{{ video.summary|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text clicked" style="text-decoration: none">Summary</a>
               <a id="w-node-_8d2ec2fa-636b-0380-fd65-56c9759ec4fd-17e1b9de" onclick="videoToggle(this, '{{ video.vocab|linebreaksbr }}')" href="#" class="_18-poppins semibold centered-text" style="text-decoration: none">Vocab</a>
@@ -36,16 +40,35 @@
             </div>
             <div class="horizontal"></div>
           </div>
-
             <div class="_20-padding-container description show">
             <div class="horizontal">
               <div class="_14px normal" id="video-info-target">{{ video.summary }}</div>
             </div>
           </div>
-
         </div>
+
+
+
       </div>
     </div>
+    {% else %}
+      <div class="grid-wrapper" style="height: 100%">
+        <div id="w-node-_1ec6b8d4-8954-2eda-b421-883a183f00b4-17e1b9de">
+          <div class="video-wrapper" style="height: 65vh">
+            <iframe src="{{ video.video_link }}" title="W3Schools Free Online Web Tutorials" class="w-video" width="100%" style="height: 100%"></iframe>
+          </div>
+        </div>
+
+
+
+
+    </div>
+
+
+      {% endif %}
+
+
+
     <form method="post" style="width: 100%">
      {% csrf_token %}
          <div class="button-wrapper bottom-spacing">

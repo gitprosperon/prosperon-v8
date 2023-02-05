@@ -81,3 +81,34 @@
 ._20-padding-container.budget-container:hover {
     background-color: rgba(31,121,186,.3);
 }
+
+
+.icon-img.no-radius {
+    border-radius: 0px;
+}
+
+.filter-categories-wrapper.not-selected:hover {
+  background-color: #DEF1FF;
+  color: #1f79ba;
+}
+
+.filter-categories-wrapper:hover {
+  cursor: pointer;
+}
+
+.section-header-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: center;
+}

@@ -29,12 +29,16 @@ class Subscription(models.Model):
     def __str__(self):
         return self.subscription_title + " - " + self.subscription_id
 
-class MonthlyExpenses(models.Model):
+class MonthlyExpense(models.Model):
     monthly_expense_title = models.CharField(max_length=250, null=True, blank=True)
 
+    RANGES = [
+        ("$0-100", "$0-100"),
+        ("$100-200", "$100-200"),
 
+    ]
 
-    monthly_expense_cost = models.IntegerField(null=True, blank=True)
+    monthly_expense_cost = models.IntegerField(null=True, blank=True, choices=RANGES)
 
     def __str__(self):
         return self.monthly_expense_title
@@ -155,6 +159,7 @@ class Student(models.Model):
     total_monthly_expenses = models.IntegerField(null=True, blank=True)
     all_transactions = models.JSONField(null=True, blank=True)
     monthly_transactions = models.JSONField(null=True, blank=True)
+    spending_profile_monthly_payments = models.JSONField(null=True, blank=True)
 
 
 
@@ -264,6 +269,8 @@ class BudgetItemsUniversity(models.Model):
         ('Service', 'Service'),
         ('Payment', 'Payment'),
         ('Income', 'Income'),
+        ('Subscription', 'Subscription'),
+
     ]
     category = models.CharField(max_length=200, null=True, blank=True, choices=CATAGORIES)
     total_per_month = models.IntegerField(null=True, blank=True)

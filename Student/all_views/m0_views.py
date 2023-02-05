@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from Student.forms import UpdateProgressForm
 from Student.models import Student, Major, Location
 from Accounts.models import Account
+from Accounts.forms import AddProfileImage
 
 
 def onboarding_step1(request):
@@ -56,10 +57,15 @@ def onboarding_step3(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    image_form = AddProfileImage(request.POST, request.FILES)
+
+
+
 
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             print(request.POST)
+            print(image_form)
             post_data = request.POST
             progress = post_data['progress']
             first_name = post_data['first-name']
@@ -68,18 +74,23 @@ def onboarding_step3(request):
             gender = post_data['gender']
             ethnicity = post_data['ethnicity']
             location = post_data['location']
+            user_image = post_data['user_image']
             parents = post_data['parents']
             student_major = post_data['major']
             student_model.first_name = first_name
             student_model.last_name = last_name
             student_model.age = age
+
             student_model.live_with_parents = parents
             student_model.location = location
             student_model.gender = gender
             student_model.ethnicity = ethnicity
             student_model.major = Major.objects.get(major_title=student_major)
-
             student_model.save()
+
+            current_user_image = student_user.model.get_user_id(self=user)
+            current_user_image = user_image
+            current_user_image.save()
 
 
 
@@ -117,6 +128,7 @@ def onboarding_step3(request):
             'parentsChoices': parentsChoices,
             'location': location,
             'locationChoices': locationChoices,
+            'image_form': image_form
 
         }
 

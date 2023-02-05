@@ -1,5 +1,6 @@
 from django import forms
 from .models import Student, BudgetItemsUniversity, ModuleSummarie
+from Accounts.models import Account
 
 
 class UpdateProgressForm(forms.ModelForm):
@@ -28,3 +29,6 @@ class NewModuleSummaryForm(forms.ModelForm):
     class Meta:
         model = ModuleSummarie
         fields = ['user', 'users_id', 'module_url', 'module']
+
+
+

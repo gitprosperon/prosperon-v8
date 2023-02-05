@@ -106,13 +106,13 @@
                 </div>
                 <div class="overvoew-btm">
                   <div class="budget-overview-btm-container">
-                    <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">
+                    <div class="div-block"><img src="{% static 'images/icons/total-spent-icon.png' %}" loading="lazy" width="20" alt="">
                       <h1 class="overview-btm-title">Total Spent</h1>
                     </div>
                     <h1 class="number-calculated" >$<span id="total-spent-calculator"></span></h1>
                   </div>
                   <div class="budget-overview-btm-container">
-                    <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">
+                    <div class="div-block"><img src="{% static 'images/icons/remaining-icon.png' %}" loading="lazy" width="20" alt="">
                       <h1 class="overview-btm-title">Remaining</h1>
                     </div>
                     <h1 class="number-calculated">$<span id="total-remaining"></span></h1>
@@ -153,19 +153,21 @@
                     <div class="left-card">
                         <div class="icon-wrapper">
                             {% if budget.category == 'Food and Drink' %}
-                                <img src="{% static 'images/budgeting-images/food drink.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                <img src="{% static 'images/budgeting-images/food drink.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Transportation' %}
-                                 <img src="{% static 'images/budgeting-images/transportation.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/transportation.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Shops' %}
-                                 <img src="{% static 'images/budgeting-images/shop.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/shop.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Transfer' %}
-                                 <img src="{% static 'images/budgeting-images/Transfer.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/Transfer.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Service' %}
-                                 <img src="{% static 'images/budgeting-images/service.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/service.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Payment' %}
-                                 <img src="{% static 'images/budgeting-images/Payment.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/Payment.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Income' %}
-                                 <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                                 <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
+                            {% elif budget.category == 'Subscription' %}
+                                <img src="{% static 'images/budgeting-images/subscriptions-icon.png' %}" loading="lazy" alt="" class="icon-img no-radius">
                             {% endif %}
 
 
@@ -178,7 +180,9 @@
                     <div class="goal-back-progress-bar">
                         {% if budget.current_total|div:budget.total_per_month|mul:100 <= 100 %}
                             <div class="goal-progerss" style="width: {{ budget.current_total|div:budget.total_per_month|mul:100}}%"></div>
-                        {% else%}
+
+
+                        {% else %}
                             <div class="goal-progerss" style="width: 100%; background-color: red"></div>
 
                         {% endif %}
