@@ -88,9 +88,9 @@ def onboarding_step3(request):
             student_model.major = Major.objects.get(major_title=student_major)
             student_model.save()
 
-            current_user_image = student_user.model.get_user_id(self=user)
-            current_user_image = user_image
-            student_user.save()
+            current_user_image = Account.objects.get(user_id=user_id)
+            current_user_image.user_image = user_image
+            current_user_image.save()
 
 
 
