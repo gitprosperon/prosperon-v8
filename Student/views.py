@@ -203,6 +203,8 @@ def transactions(request):
             print(transaction_category)
             transaction_id = public['the_id']
             amount = public['amount']
+            tran_title = public['tran_title']
+
             amount = float(amount)
             category1 = public['category1']
             category2 = public['category2']
@@ -231,7 +233,7 @@ def transactions(request):
             if len(currentTransactions) == 0:
                 new_packaged_transaction = {
                     "date": "2017-01-29",
-                    "name": "Rent Payment",
+                    "name": f"{tran_title}",
                     "associated_budget": f"{transaction_category}",
                     "amount": amount,
                     "checked": "yes",
@@ -288,7 +290,7 @@ def transactions(request):
                     new_packaged_transaction =  {
 
                                  "date":"2017-01-29",
-                                 "name":"Rent Payment",
+                                 "name": f"{tran_title}",
                                  "associated_budget": f"{transaction_category}",
                                  "amount": amount,
                                  "checked" : "yes",

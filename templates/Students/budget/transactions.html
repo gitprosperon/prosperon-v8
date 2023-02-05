@@ -91,7 +91,7 @@
 
 
                 {% for tramsactiom in new_current_transactions %}
-                    {{ tramsactiom.transaction_id }}
+
                 <div class="_20-padding-container transaction-card" id="all-transactions-card">
                 <div class="left-card">
                   <div class="icon-wrapper">
@@ -173,7 +173,8 @@
                                 var Button = document.getElementById('button-' + button)
                                 a.parentElement.children[2].style.display = 'block'
                                  a.parentElement.children[3].children[0].style.display = 'none'
-                                    console.log(a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0])
+                                    console.log(a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML)
+                                 var title = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML
 
                                  Button.onclick = function() {
                                     var budgetTitle = a.value
@@ -192,7 +193,8 @@
                                                   csrfmiddlewaretoken: '{{csrf_token}}',
                                                   action: "post",
                                                   test: theCategory,
-                                                    budget: budgetTitle,
+                                                  budget: budgetTitle,
+                                                  tran_title: title,
                                                   the_id: button,
                                                   amount: cost,
                                                   category1: "{{ tramsactiom.category.0 }}",
