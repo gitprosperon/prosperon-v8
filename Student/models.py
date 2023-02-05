@@ -160,6 +160,10 @@ class Student(models.Model):
     all_transactions = models.JSONField(null=True, blank=True)
     monthly_transactions = models.JSONField(null=True, blank=True)
     spending_profile_monthly_payments = models.JSONField(null=True, blank=True)
+    # 0 = spender
+    # 1 = planner
+    # 2 = frugal
+    spender_type = models.CharField(max_length=100, null=True, blank=True)
 
 
 

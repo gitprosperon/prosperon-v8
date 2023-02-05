@@ -90,7 +90,7 @@ def onboarding_step3(request):
 
             current_user_image = student_user.model.get_user_id(self=user)
             current_user_image = user_image
-            current_user_image.save()
+            student_user.save()
 
 
 

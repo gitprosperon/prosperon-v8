@@ -95,6 +95,7 @@ function transactionsToggle(a, target) {
 
 }
 
+// logic for toggeling subscriptions on spending profile
 function subscriptionClick(a) {
     if(a.children[2].className === 'price-range-wrapper hidden') {
         a.children[2].className = 'price-range-wrapper'
@@ -103,9 +104,14 @@ function subscriptionClick(a) {
     }
 }
 
+// logic for toggeling monthly expenses on spending profile
 function monthly_expenseClick(a) {
     if(a.children[2].className === 'price-range-wrapper hidden') {
         a.children[2].className = 'price-range-wrapper'
+
+
+        console.log(a.children[2].children[0].options.selectedIndex)
+
     }
 }
 

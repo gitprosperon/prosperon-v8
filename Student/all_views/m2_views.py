@@ -11,6 +11,7 @@ def budgeting_step1(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    spending_profile_type = student_model.spender_type
 
     # Checking users cradentials
     if user.is_active and user.has_university == True:
@@ -23,7 +24,7 @@ def budgeting_step1(request):
             newSubscription = request.POST
             print(newSubscription['type'])
 
-
+            # Logic when form request is for a subscription
             if newSubscription['type'] == 'sub':
                 companyName = newSubscription['companyName']
                 subscriptionCost = newSubscription['subscriptionCost']
@@ -64,11 +65,27 @@ def budgeting_step1(request):
                 student_model.save()
 
 
+            # Logic when form request is for a monthly transaction
             elif newSubscription['type'] == 'mon':
                 print('monthly')
                 # getting data for monthly costs
                 companyName = newSubscription['companyName']
+
                 subscriptionCost = newSubscription['subscriptionCost']
+                cleaned_subscription_cost = subscriptionCost.replace('$', '')
+                cleaned_subscription_cost = (cleaned_subscription_cost.partition("-"))
+                subscription_cost_low = int(cleaned_subscription_cost[0])
+                subscription_cost_high = int(cleaned_subscription_cost[2])
+                print(subscription_cost_low)
+                print(subscription_cost_high)
+
+                if spending_profile_type == '0':
+                    print('spender')
+                elif spending_profile_type == '1':
+                    print('planner')
+
+
+
                 transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
                 new_packaged_transaction = {

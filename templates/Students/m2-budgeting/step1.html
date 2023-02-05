@@ -179,20 +179,25 @@ const monthlyAddButtons = document.querySelectorAll('.next-btn.monthly')
         console.log('company name', companyName)
         var selected_option = this.parentElement.children[0].options.selectedIndex
         var subscriptionCost = this.parentElement.children[0].options[selected_option].innerHTML
-        $.ajax({
-              type: "POST",
-              url: '/university/budgeting/step1',
-              data: {
-                  csrfmiddlewaretoken: '{{csrf_token}}',
-                  action: "post",
-                  subscriptionCost: subscriptionCost,
-                  companyName: companyName,
-                  type: 'mon'
+        if(selected_option === 0){
+            console.log('it is 000000')
+        } else {
+            console.log('send ', selected_option)
+            $.ajax({
+                  type: "POST",
+                  url: '/university/budgeting/step1',
+                  data: {
+                      csrfmiddlewaretoken: '{{csrf_token}}',
+                      action: "post",
+                      subscriptionCost: subscriptionCost,
+                      companyName: companyName,
+                      type: 'mon'
 
 
-                }
+                    }
 
-            })
+                })
+        }
 
 
 
