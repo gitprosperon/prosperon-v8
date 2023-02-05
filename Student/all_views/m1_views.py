@@ -66,7 +66,7 @@ def first_job_step2(request):
                 return redirect('/university/video/3')
 
         context = {
-            'the_jobs': the_jobs
+            'the_jobs': the_jobs[0:3]
         }
 
         return render(request, 'Students/m1-first_job/step2.html', context=context)

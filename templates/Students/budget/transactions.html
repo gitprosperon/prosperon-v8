@@ -91,19 +91,35 @@
 
 
                 {% for tramsactiom in new_current_transactions %}
+                    {{ tramsactiom.transaction_id }}
                 <div class="_20-padding-container transaction-card" id="all-transactions-card">
                 <div class="left-card">
                   <div class="icon-wrapper">
-                      {% if tramsactiom.category.0 == 'Shops' %}
-                        {{ tramsactiom.category.0 }}
-                            <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img"></div>
+
+
+                      {% if tramsactiom.category.0 == 'Payment' %}
+                            <img src="{% static 'images/budgeting-images/Payment.svg' %}" loading="lazy" alt="" class="icon-img"></div>
                       {% elif tramsactiom.category.0 == 'Food and Drink' %}
-                            <img src="{% static 'images/icons/food and drink.svg' %}" loading="lazy" alt="" class="icon-img"></div>
-
+                            <img src="{% static 'images/budgeting-images/food drink.svg' %}" loading="lazy" alt="" class="icon-img"></div>
+                        {% elif tramsactiom.category.0 == 'Shops' %}
+                            <img src="{% static 'images/budgeting-images/shop.svg' %}" loading="lazy" alt="" class="icon-img"></div>
+                      {% elif tramsactiom.category.0 == 'Transfer' %}
+                            <img src="{% static 'images/budgeting-images/Transfer.svg' %}" loading="lazy" alt="" class="icon-img"></div>
+                        {% elif tramsactiom.category.0 == 'Service' %}
+                            <img src="{% static 'images/budgeting-images/service.svg' %}" loading="lazy" alt="" class="icon-img"></div>
+                        {% elif tramsactiom.category.0 == 'Transportation' %}
+                            <img src="{% static 'images/budgeting-images/transportation.svg' %}" loading="lazy" alt="" class="icon-img"></div>
+                    {% elif tramsactiom.category.0 == 'Income' %}
+                            <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" alt="" class="icon-img"></div>
                       {% else %}
-                              <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img"></div>
-
+                            <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img"></div>
                       {% endif %}
+
+
+
+
+
+
 
                     <div class="transaction-place-wrapper">
                     <h4 class="_18px">{{ tramsactiom.name }}</h4>
@@ -122,32 +138,51 @@
                         <div id="email-form" class="form">
 
 
-                            <select id="transaction-category" name="transaction-category" data-name="transaction category" onclick="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
-                                <option value="">------ {{ tramsactiom.category.0 }} ------</option>
-                                {% for category in budget_categories %}
-                                    {% if category.category == 'Payment' %}
-                                        <option value="{{ category.title }}">{{ category.title }}</option>
-                                    {% endif %}
-                                    {% if category.category == 'Transfer' %}
-                                        <option value="{{ category.title }}">{{ category.title }}</option>
-                                    {% endif %}
 
-                              {% endfor %}
+
+                            <select id="transaction-category" name="transaction-category" data-name="transaction category" onclick="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
+                                {% if tramsactiom.associated_budget == 'none' %}
+                                 <option value="" >----SELECT A BUDGET----</option>
+                                    {% for budget in budget_categories %}
+
+                                    <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                {% endfor %}
+                                {% else %}
+                                    <option value="{{ tramsactiom.associated_budget }}" selected>{{ tramsactiom.associated_budget }}</option>
+                                    {% for budget in budget_categories %}
+                                        {% if budget.title != tramsactiom.associated_budget  %}
+                                            <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                {% endif %}
+
+
+
+
+
+
+
                             </select>
+
+
+
+
                         <script>
                              function changeTransaction(a, button) {
                                 var Button = document.getElementById('button-' + button)
                                 a.parentElement.children[2].style.display = 'block'
                                  a.parentElement.children[3].children[0].style.display = 'none'
-
+                                    console.log(a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0])
 
                                  Button.onclick = function() {
+                                    var budgetTitle = a.value
                                     var theCategory = a.options[a.selectedIndex].value
                                     a.parentElement.children[2].style.display = 'none'
                                     console.log(a.parentElement.children[3].children[0])
                                      a.parentElement.children[3].children[0].style.display = 'block'
                                      var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML
-                                    console.log(cost)
+                                     console.log(cost)
 
 
                                     $.ajax({
@@ -157,7 +192,8 @@
                                                   csrfmiddlewaretoken: '{{csrf_token}}',
                                                   action: "post",
                                                   test: theCategory,
-                                                  the_id: '{{ tramsactiom.transaction_id }}',
+                                                    budget: budgetTitle,
+                                                  the_id: button,
                                                   amount: cost,
                                                   category1: "{{ tramsactiom.category.0 }}",
                                                   category2: "{{ tramsactiom.category.1 }}"

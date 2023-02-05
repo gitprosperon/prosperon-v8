@@ -81,6 +81,7 @@ def goals(request):
 
     return render(request, 'Students/budget/goals.html')
 
+
 # Budget / Add Goals
 def add_goals(request):
 
@@ -143,7 +144,7 @@ def add_budget(request):
                 instance = form.save(commit=False)
                 instance.user = request.user
                 instance.transactions = {"categoryTransactions": []}
-                instance.budget_id = random.randint(100000000,90000000000)
+                instance.budget_id = random.randint(100000000, 90000000000)
                 instance.users_id = user_id
                 instance.save()
                 return redirect('/university/budget/budget')
@@ -156,6 +157,27 @@ def add_budget(request):
     }
     return render(request, 'Students/budget/add_budget.html', context=context)
 
+# Budget / View Budget
+def view_budget(request, id):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        student_budget = BudgetItemsUniversity.objects.get(budget_id=id)
+        budget_categories = student_budget.CATAGORIES
+
+        budget_purchases = student_budget.transactions
+
+
+
+
+        context = {
+            'student_budget': student_budget,
+            'budget_categories': budget_categories,
+            'budget_purchases': budget_purchases
+        }
+        return render(request, 'Students/budget/view_budget.html', context=context)
+
+
 # Budget / transactions page
 def transactions(request):
     user = request.user
@@ -165,94 +187,156 @@ def transactions(request):
         student = Student.objects.get(user_id_number=user_id)
         budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
 
-        print('test3214')
+
+
+        for cat in budget_categories:
+            print(cat.title)
+
+
+
+
         # Code for receiving transactions with ajax
         if request.POST.get('action') == 'post':
+            print(request.POST)
             public = request.POST
             transaction_category = public['test']
+            print(transaction_category)
             transaction_id = public['the_id']
-
             amount = public['amount']
-            print(amount)
-            print(type(amount))
             amount = float(amount)
-            print(type(amount))
-            print(public)
             category1 = public['category1']
             category2 = public['category2']
+            transaction_budget = public['budget']
+
+            print(transaction_id)
 
 
-
-
-            print(transaction_category)
+            # getting the budgeting category objext in database
             budget_category = BudgetItemsUniversity.objects.get(title=transaction_category)
 
-
-
-
-
-
+            # A users current changed transactions json list
             currentTransactions = budget_category.transactions['categoryTransactions']
+            all_transactions = student.all_transactions['all_transactions']
 
+            for transaction in all_transactions:
+                if transaction['transaction_id'] == transaction_id:
+                    print('they are eqyal')
+                    transaction['checked'] = 'yes'
+                    transaction['associated_budget'] = f"{transaction_category}"
+                    print(transaction)
+                    student.save()
 
+            print(len(currentTransactions))
+            # Checking to see if any transactions exist
+            if len(currentTransactions) == 0:
+                new_packaged_transaction = {
+                    "date": "2017-01-29",
+                    "name": "Rent Payment",
+                    "associated_budget": f"{transaction_category}",
+                    "amount": amount,
+                    "checked": "yes",
+                    "category": [
+                        f"{category1}",
+                        f"{category2}"
+                    ],
+                    "location": {
+                        "lat": 40.740352,
+                        "lon": -74.001761,
+                        "city": "San Francisco",
+                        "region": "CA",
+                        "address": "300 Post St",
+                        "country": "US",
+                        "postal_code": "94108",
+                        "store_number": "1235"
+                    },
+                    "transaction_id": f"{transaction_id}",
+                    "category_id": "19013000",
 
-            new_packaged_transaction =  {
+                }
+                currentTransactions.append(new_packaged_transaction)
 
-                         "date":"2017-01-29",
-                         "name":"Rent Payment",
-                         "amount": amount,
-                         "checked" : "yes",
-                         "category":[
-                            f"{category1}",
-                            f"{category2}"
-                         ],
-                         "location":{
-                            "lat":40.740352,
-                            "lon":-74.001761,
-                            "city":"San Francisco",
-                            "region":"CA",
-                            "address":"300 Post St",
-                            "country":"US",
-                            "postal_code":"94108",
-                            "store_number":"1235"
-                         },
-                         "transaction_id": f"{transaction_id}",
-                         "category_id":"19013000",
+                # Checking to  see if there is a current total for the monthly spend
+                if budget_category.current_total:
+                    budget_category.current_total = int(budget_category.current_total) + amount
+                else:
+                    budget_category.current_total = amount
+                budget_category.save()
 
-                      }
-            currentTransactions.append(new_packaged_transaction)
-
-            if budget_category.current_total:
-                budget_category.current_total = int(budget_category.current_total) + amount
             else:
-                budget_category.current_total = amount
-            budget_category.save()
+
+
+                print('curr tran')
+            # Running logic for either editing or creating new
+            for transact in currentTransactions:
+                print(transact)
+                if transaction_id == transact['transaction_id']:
+                    print(transact['category'][0])
+
+                    print('Now we are editing current one')
+                    transact['checked'] = 'yes'
+                    transact['associated_budget'] = f"{transaction_category}"
+                    transact['category'][0] = category1
+                    budget_category.save()
+
+
+                else:
+                    print('now we are making one')
+
+
+
+                    # Packaging sent transaction
+                    new_packaged_transaction =  {
+
+                                 "date":"2017-01-29",
+                                 "name":"Rent Payment",
+                                 "associated_budget": f"{transaction_category}",
+                                 "amount": amount,
+                                 "checked" : "yes",
+                                 "category":[
+                                    f"{category1}",
+                                    f"{category2}"
+                                 ],
+                                 "location":{
+                                    "lat":40.740352,
+                                    "lon":-74.001761,
+                                    "city":"San Francisco",
+                                    "region":"CA",
+                                    "address":"300 Post St",
+                                    "country":"US",
+                                    "postal_code":"94108",
+                                    "store_number":"1235"
+                                 },
+                                 "transaction_id": f"{transaction_id}",
+                                 "category_id":"19013000",
+
+                              }
+                    currentTransactions.append(new_packaged_transaction)
+
+                    # Checking to  see if there is a current total for the monthly spend
+                    if budget_category.current_total:
+                        budget_category.current_total = int(budget_category.current_total) + amount
+                    else:
+                        budget_category.current_total = amount
+                    budget_category.save()
+
+
+
+
+
+        all_budgets = BudgetItemsUniversity.objects.filter(users_id=user_id)
 
 
         transactions = student.all_transactions
-        new_current_transactions = transactions['all_transactions']
-        budget_category_transactions = BudgetItemsUniversity.objects.filter(users_id=user_id)
-
-        for transact in new_current_transactions:
-            for budgeted_transact in budget_category_transactions:
-                for i in budgeted_transact.transactions['categoryTransactions']:
-                    if i['transaction_id'] == transact['transaction_id']:
-                        transact['checked'] = "yes"
-                        print('it is in')
-
-                        student.save()
-
-
-
-
-
+        all_current_transactions = transactions['all_transactions']
 
         context = {
             'budget_categories': budget_categories,
-            'new_current_transactions': new_current_transactions
+            'new_current_transactions': all_current_transactions,
+            'all_budgets': all_budgets
+
+
         }
         return render(request, 'Students/budget/transactions.html', context=context)
-
 
 
 # Universal Video Page
@@ -458,6 +542,7 @@ def anytime_decision_step2(request, id):
                     "date": "2017-01-29",
                     "name": transaction_title,
                     "checked": "no",
+                    "associated_budget": "none",
                     "amount": monthly_cost,
                     "category": [
                         "Payment",

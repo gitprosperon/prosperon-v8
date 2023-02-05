@@ -142,7 +142,7 @@
                 {% for budget in user_university_budget_items %}
 
 
-
+                <a href="{% url 'Students:view-budget' budget.budget_id %}" style="text-decoration: none">
                 <div class="_20-padding-container budget-container" >
 
 
@@ -152,7 +152,22 @@
 
                     <div class="left-card">
                         <div class="icon-wrapper">
-                            <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="72" alt="" class="icon-img">
+                            {% if budget.category == 'Food and Drink' %}
+                                <img src="{% static 'images/budgeting-images/food drink.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Transportation' %}
+                                 <img src="{% static 'images/budgeting-images/transportation.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Shops' %}
+                                 <img src="{% static 'images/budgeting-images/shop.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Transfer' %}
+                                 <img src="{% static 'images/budgeting-images/Transfer.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Service' %}
+                                 <img src="{% static 'images/budgeting-images/service.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Payment' %}
+                                 <img src="{% static 'images/budgeting-images/Payment.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% elif budget.category == 'Income' %}
+                                 <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" width="72" alt="" class="icon-img">
+                            {% endif %}
+
 
                       </div>
                       <div class="transaction-place-wrapper">
@@ -161,9 +176,9 @@
                       <div class="transaction-amount-wrapper"></div>
                     </div>
                     <div class="goal-back-progress-bar">
-                        {% if budget.current_total|div:budget.total_per_month|mul:100 < 100 %}
+                        {% if budget.current_total|div:budget.total_per_month|mul:100 <= 100 %}
                             <div class="goal-progerss" style="width: {{ budget.current_total|div:budget.total_per_month|mul:100}}%"></div>
-                        {% else %}
+                        {% elif b%}
                             <div class="goal-progerss" style="width: 100%; background-color: red"></div>
 
                         {% endif %}
@@ -189,6 +204,7 @@
                       </div>
                     </div>
               </div>
+            </a>
             {% endfor %}
             {% endif %}
 
@@ -219,6 +235,15 @@ var elements = document.getElementsByClassName('_20-padding-container budget-con
 var total_spent = 0
 for(let i = 0; i < elements.length; i++) {
     var currentSpent = elements[i].children[2].children[0].children[1].children[0].innerHTML
+
+    if(currentSpent === 'None') {
+        elements[i].children[2].children[0].children[1].children[0].innerHTML = '0'
+        console.log('it is none')
+        currentSpent = 0
+
+    }
+
+
     total_spent += Number(currentSpent)
     var total_allocated = elements[i].children[2].children[0].children[3].children[0].innerHTML
 }

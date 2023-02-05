@@ -14,6 +14,8 @@ urlpatterns = [
 
     path('university/budget/budget', views.budget, name='budget'),
     path('university/budget/add_budget', views.add_budget, name='add-budget'),
+    path('university/budget/view_budget/<str:id>', views.view_budget, name='view-budget'),
+
     path('university/budget/transactions', views.transactions, name='transactions'),
 
 

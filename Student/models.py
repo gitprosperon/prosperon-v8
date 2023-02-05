@@ -248,6 +248,9 @@ class BudgetItemsUniversity(models.Model):
     users_id = models.CharField(max_length=100, null=True, blank=True)
     transactions = models.JSONField(null=True, blank=True)
 
+    def __str__(self):
+        return self.users_id + " - " + self.category
+
 
 # Model for all Modules
 class UniversityModule(models.Model):

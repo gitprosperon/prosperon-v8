@@ -86,18 +86,12 @@ function transactionsToggle(a, target) {
             if (incomplete.children[1].children[1].children[0].children[0].children[0].children[3].children[0].style.display === 'none') {
                 allTransactions[i].style.display = 'flex'
 
-
             }
-
         }
-
-
-
-
-
     }
 
 
     showTarget.style.display = 'block'
 
 }
+
