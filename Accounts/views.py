@@ -6,6 +6,11 @@ from django.contrib.auth import login as djlogin
 from Student.models import Student
 
 
+def logout(request):
+
+
+    return render(request, 'MainWebsite/index.html')
+
 def login_student(request):
     return render(request, 'Accounts/login-student.html')
 
@@ -47,6 +52,7 @@ def register_student_account(request):
 
     if request.method == 'POST':
         form = StudentAccountRegistrationForm(request.POST, request.FILES)
+        print(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.user = request.user
@@ -58,10 +64,11 @@ def register_student_account(request):
             user.last_login = datetime.datetime.now()
             user.save()
             djlogin(request, user, backend='django.contrib.auth.backends.ModelBackend')
-
             studentAccountForm = AddStudentAccountForm(request.POST, request.FILES)
             studentUser = studentAccountForm.save(commit=False)
             studentUser.user = request.user
+            class_code = request.POST['class_code']
+            studentUser.class_code = class_code
             studentUser.user_id_number = created_user_id
             studentUser.life_path = {"events": [
                     {

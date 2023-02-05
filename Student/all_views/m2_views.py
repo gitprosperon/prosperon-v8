@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from Student.forms import UpdateProgressForm, NewModuleSummaryForm
-from Student.models import Student, Major, UniversityModule
+from Student.models import Student, Major, UniversityModule, Subscription
 from Accounts.models import Account
+import random
 
 
 
@@ -11,17 +12,99 @@ def budgeting_step1(request):
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
 
+    # Checking users cradentials
     if user.is_active and user.has_university == True:
+        subscriptions = Subscription.objects.all()
+
+        # Handling subscription submissions with AJAX
+        if request.POST.get('action') == 'post':
+            newSubscription = request.POST
+            companyName = newSubscription['companyName']
+            subscriptionCost = newSubscription['subscriptionCost']
+            transaction_id = random.randint(1231456437657543635423452323452345242,9231456437657543635423452323452345242)
+
+            new_packaged_transaction = {
+                "date": "2017-01-29",
+                "name": f"{companyName}",
+                "associated_budget": "none",
+                "amount": subscriptionCost,
+                "checked": "no",
+                "category": [
+                    "Subscription",
+                    "Subscription"
+                ],
+                "location": {
+                    "lat": 40.740352,
+                    "lon": -74.001761,
+                    "city": "San Francisco",
+                    "region": "CA",
+                    "address": "300 Post St",
+                    "country": "US",
+                    "postal_code": "94108",
+                    "store_number": "1235"
+                },
+                "transaction_id": f"{transaction_id}",
+                "category_id": "19013000",
+
+            }
+
+            # Adding subscription to new model
+            currentMonthlyTransactions = student_model.monthly_transactions['monthly_transactions']
+            allTransactions = student_model.all_transactions['all_transactions']
+
+            allTransactions.append(new_packaged_transaction)
+            currentMonthlyTransactions.append(new_packaged_transaction)
+
+            student_model.save()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if request.method == 'POST':
-            progress = request.POST['progress']
-            if student_model.course_progress < progress:
-                student_model.course_progress = progress
+
+            if int(student_model.course_progress) < 15:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                student_model.course_progress = 15
                 student_model.save()
                 return redirect('/university/video/6')
             else:
                 return redirect('/university/video/6')
 
-        return render(request, 'Students/m2-budgeting/step1.html')
+
+        context = {
+            'subscriptions': subscriptions
+        }
+
+
+
+        return render(request, 'Students/m2-budgeting/step1.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
 
@@ -37,7 +120,6 @@ def budgeting_step2(request):
             progress = request.POST['progress']
 
             if student_model.course_progress < progress:
-
                 module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
                 newModule = module_summary_form.save(commit=False)
                 newModule.user = request.user
@@ -45,6 +127,9 @@ def budgeting_step2(request):
                 newModule.module = UniversityModule.objects.get(module_title='Budgeting')
                 newModule.users_id = user_id
                 newModule.save()
+
+
+
 
 
                 student_model.course_progress = progress

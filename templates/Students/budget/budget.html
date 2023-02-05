@@ -178,7 +178,7 @@
                     <div class="goal-back-progress-bar">
                         {% if budget.current_total|div:budget.total_per_month|mul:100 <= 100 %}
                             <div class="goal-progerss" style="width: {{ budget.current_total|div:budget.total_per_month|mul:100}}%"></div>
-                        {% elif b%}
+                        {% else%}
                             <div class="goal-progerss" style="width: 100%; background-color: red"></div>
 
                         {% endif %}

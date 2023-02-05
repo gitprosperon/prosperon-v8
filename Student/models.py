@@ -19,6 +19,29 @@ class Location(models.Model):
         return self.city
 
 
+
+class Subscription(models.Model):
+    subscription_title = models.CharField(max_length=250, null=True, blank=True)
+    subscription_cost = models.IntegerField(null=True, blank=True)
+    subscription_id = models.CharField(max_length=250, null=True, blank=True)
+
+
+    def __str__(self):
+        return self.subscription_title + " - " + self.subscription_id
+
+class MonthlyExpenses(models.Model):
+    monthly_expense_title = models.CharField(max_length=250, null=True, blank=True)
+
+
+
+    monthly_expense_cost = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return self.monthly_expense_title
+
+
+
+
 #Models for get a job
 class Job(models.Model):
     title = models.CharField(max_length=400, null=True, blank=True)

@@ -22,7 +22,7 @@
                 <div class="w-form">
                   <form id="wf-form-add-goal" name="wf-form-add-goal" data-name="add goal" method="get" class="add-budget-form">
                       <input type="text" class="input budget w-input" maxlength="256" name="name" data-name="Name" placeholder="Title" id="name" value="{{ student_budget.title }}">
-                      <input type="number" class="input budget w-input" maxlength="256" name="Max-amount" data-name="Max amount" placeholder="Max Amount" id="Max-amount" required="">
+                      <input type="number" class="input budget w-input" maxlength="256" name="Max-amount" data-name="Max amount" placeholder="Max Amount" id="Max-amount" required="" value="{{ student_budget.total_per_month }}">
                       <select id="Category" name="Category" data-name="Category" class="select-field-2 w-select">
                       <option value="">{{ student_budget.category }}</option>
 
@@ -32,8 +32,7 @@
                                 {% endif %}
                             {% endfor %}
                     </select>
-                    <div class="_18-poppins">Color</div>
-                    <div class="color-selector"><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label></div>
+                    <div class="color-selector" style="display: none;"><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label></div>
                     <div class="save-back-wrapper no-padding">
                       <a href="{% url 'Students:budget' %}" class="back-button w-button">Back</a>
                         <input type="submit" value="Submit" data-wait="Please wait..." class="add-budget w-button">
@@ -49,7 +48,7 @@
           <div class="account-overview-container right">
             <div class="section-warpper">
               <div class="section-header-wrapper">
-                <h1 class="page-section-header"><span>*Budget Category*</span> Transactions</h1>
+                <h1 class="page-section-header"><span>Transactions in</span> {{ student_budget.title }}</h1>
               </div>
               <div class="_20-padding-container budget-container vertical">
                 <div class="transaction-breakdown-header">

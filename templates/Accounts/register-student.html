@@ -16,8 +16,8 @@
           <div class="form-block w-form">
             <form id="email-form" name="email-form" data-name="Email Form" method="post">
                 {% csrf_token %}
-                <label for="University" class="form-title">University</label>
                 <label for="University-6" class="form-title">Class Code</label>
+                <input type="text" class="text-field w-input" name="class_code" value="">
                 <label for="University-6" class="form-title">Email Address</label>
                 {{ form.email }}
                 <label for="University-6" class="form-title">Password</label>
