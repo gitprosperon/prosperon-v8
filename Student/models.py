@@ -203,6 +203,7 @@ class Apartment(models.Model):
     bathrooms = models.CharField(max_length=500, null=True, blank=True)
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
     initial_cost = models.IntegerField(null=True, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
 
 

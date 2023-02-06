@@ -80,11 +80,27 @@ def budgeting_step1(request):
                 print(subscription_cost_high)
 
                 if spending_profile_type == '0':
-                    print('spender')
+                    low = subscription_cost_low + 50
+                    high = subscription_cost_high
+                    random_cost = random.randint(low, high)
+                    print(random_cost, '- spender')
+
                 elif spending_profile_type == '1':
-                    print('planner')
+                    low = subscription_cost_low + 25
+                    high = subscription_cost_high - 25
+                    random_cost = random.randint(low, high)
+                    print(random_cost, '- planner')
+                elif spending_profile_type == '2':
+                    low = subscription_cost_low
+                    high = subscription_cost_high - 50
+                    random_cost = random.randint(low, high)
+                    print(random_cost, '- frugal')
+                else:
+                    random_cost = 0
 
 
+
+                print(random_cost)
 
                 transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
@@ -92,7 +108,7 @@ def budgeting_step1(request):
                     "date": "2017-01-29",
                     "name": f"{companyName}",
                     "associated_budget": "none",
-                    "amount": subscriptionCost,
+                    "amount": random_cost,
                     "checked": "no",
                     "category": [
                         "Subscription",
@@ -120,30 +136,12 @@ def budgeting_step1(request):
                 allTransactions.append(new_packaged_transaction)
                 currentMonthlyTransactions.append(new_packaged_transaction)
 
-                # student_model.save()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                student_model.save()
 
 
         if request.method == 'POST':
 
             if int(student_model.course_progress) < 15:
-
-
-
-
 
 
                 student_model.course_progress = 15
@@ -206,6 +204,9 @@ def budgeting_step3(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    first_name = student_model.first_name
+    last_name = student_model.last_name
+
 
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
@@ -217,6 +218,12 @@ def budgeting_step3(request):
             else:
                 return redirect('/university/onboarding/step3')
 
-        return render(request, 'Students/m2-budgeting/step3.html')
+        context = {
+            'first_name': first_name,
+            'last_name': last_name,
+        }
+
+
+        return render(request, 'Students/m2-budgeting/step3.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')

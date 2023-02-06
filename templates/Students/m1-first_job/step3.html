@@ -21,7 +21,9 @@
 
             {% for job in the_jobs %}
 
-            <div id="w-node-_9283b414-920f-7a40-8e34-0b3784d3f024-bf5ba9ff" class="company-card" onclick="showJobOffer('')">
+
+
+            <div id="w-node-_9283b414-920f-7a40-8e34-0b3784d3f024-bf5ba9ff" style="cursor: pointer" class="company-card" onclick="showJobOffer('{{ job.company }}', '{{ job.logo.url }}', '{{ job.location }}', '{{ job.job_type }}', '{{ job.job_hours }}', '{{ job.salary_range }}', '{{ job.company_401k }}', '{{ job.health }}', '{{ job.dental }}', '{{ job.vision }}', '{{ job.pto }}', '{{ job.student_loan_assist }}', '{{ job.relocation }}', '{{ first_name }}', '{{ last_name }}', '{{ job.pay_structure }}', '{{ job.title }}')">
             <div>
               <div class="w-layout-grid grid-13">
                 <div id="w-node-ecc3fb34-4201-025e-732f-86118bd9f9b2-bf5ba9ff"><img src="{{ job.logo.url }}" loading="lazy" id="w-node-_76bb93b2-2825-4d7d-fc5f-15f570b88405-bf5ba9ff" alt="" class="image"></div>
@@ -64,25 +66,27 @@
             </div>
         </form>
     </div>
-<div class="alert-page-container" id="offer-letter" style="display: none">
-      <div class="job-offer-wrapper">
-        <div class="back-arrow-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-8"></div>
+
+    <div class="alert-page-container" id="offerLetter" style="display: none">
+          <div class="job-offer-wrapper">
+            <div class="back-arrow-wrapper" onclick="backToOffers()"><img src="{% static 'images/icons/BlackArrow.svg' %}" loading="lazy" alt="" class="image-8" style="width: 25px; height: 25px"></div>
+          </div>
+          <div class="job-title-wrapper">
+            <div class="div-block-143"><img id="companyLogo" src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-9"></div>
+            <div>
+              <h1 class="_24px semibold blue" id="job-offer-companyName">*company name*</h1>
+              <h1 class="_18-poppins nomral" id="jobPosition3">*Position*</h1>
+            </div>
+          </div>
+          <div class="scrolling-offer">
+              <p class="job-paragraph">Dear <span id="firstName">First</span> <span id="lastName">Last</span> ,<br><br><span id="companyName-Offer">[Company name]</span> is pleased to offer you the <span id="jobHours">[time commitment]</span> position of <span id="jobPosition2">[position name]</span>.<br><br>If you choose to accept our offer, please review the terms and conditions of your new employment contract below:<br><br>Position:  <span id="jobPosition">[position]</span><br>Working hours: <span id="jobHours2">[time commitment]</span>, <span id="workStyle">[style]</span><br>Compensation: Your pay structure will be <span id="payStructure">[structure]</span> based, annually totalling <span id="jobSalary">[salary amount]</span>.<br>Benefits: As an employee, you will be eligible for the following employee benefits: <span id="401kWrapper">- 401(k)</span><span id="healthWrapper">- Health Insurance</span><span id="dentalWrapper">- Dental Insurance</span><span id="visionWrapper">- Vision Insurance</span><span id="ptoWrapper">- Paid Time Off</span><span id="studentLoanWrapper">- Student Loan Assistance</span><span id="relocationWrapper">- Relocation Reimbursement</span><br><br>To accept our offer,  please sign and date this full-time offer letter as indicated below and email it back to us.<br><br>Feel free to contact the HR department if you have any questions, or you can reach out to your supervisor directly.<br><br>Sincerely,<br><br><span id="companyName2">[Company]</span></p>
+          </div>
       </div>
-      <div class="job-title-wrapper">
-        <div class="div-block-143"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-9"></div>
-        <div>
-          <h1 class="_24px semibold blue">*company name*</h1>
-          <h1 class="_18-poppins nomral">*Position*</h1>
-        </div>
-      </div>
-      <div class="scrolling-offer">
-       <p class="job-paragraph">Dear [Candidate Name],<br><br>[Company name] is offering to extend your current employment status from part-time to full-time, as of [date].<br><br>If you choose to accept our offer, please review the terms and conditions of your new employment contract below:<br><br>Position:  You will be working as a [position] and reporting to the [department name] manager.<br>Working hours: [days/week or weekends] [hours 9am-5pm, 7am-3pm, etc.]<br>Compensation: Your [hourly, weekly, bi-weekly] salary will be [salary amount].<br>Benefits: As a full-time employee, you will be eligible for the following employee benefits: [health insurance, 401k, PTO, etc.] <br><br>To accept our offer,  please sign and date this full-time offer letter as indicated below and email it back to us by [date].<br><br>Feel free to contact the HR department [contact information] if you have any questions, or you can reach out to your supervisor directly.<br><br>Sincerely,<br><br>[Company]</p>
-      </div>
-  </div>
 
 
 
 
+<script src="{% static 'students/m1/script.js' %}" type="text/javascript"></script>
 
 </body>
 
