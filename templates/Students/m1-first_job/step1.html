@@ -55,7 +55,7 @@
 
             {% for job in all_jobs %}
 
-            <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements }}', '{{ job.company_qualifications }}', this)">
+            <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements|linebreaksbr }}', '{{ job.company_qualifications|linebreaksbr }}', '{{ job.dcompany_description|linebreaksbr }}', this)">
                 <img src="../../../media/{{ job.logo }}" loading="lazy" width="150" height="75px" alt="">
             <div class="div-block-5" style="margin-left:10px; border: none; border-radius: 0px; background-color: transparent">
               <div>
@@ -101,7 +101,8 @@
             </div>
 
             <div>
-
+                <h3 class="job-title-main subtitle">Company Description</h3>
+                <p id="job-qualifications" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_description }}</p>
                 <h3 class="job-title-main subtitle">Requirememts</h3>
                 <p id="job-requirmenets" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_requirements }}</p>
 

@@ -2,7 +2,7 @@ var appliedList = [];
 
 
 // logic for changing job
-function changeJob(title, company, location, type, hours, salary, id, logo, requirements, qualifications, object) {
+function changeJob(title, company, location, type, hours, salary, id, logo, requirements, qualifications, description, object) {
     console.log('test')
     var jobTitleTarget = document.getElementById('job-title');
     var jobCompanyTarget = document.getElementById('job-company');

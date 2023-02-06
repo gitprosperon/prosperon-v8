@@ -118,7 +118,7 @@ function monthly_expenseClick(a) {
     } else {
         console.log('fucker123');
         a.children[0].onClick = function () {
-
+            a.children[2].className = 'price-range-wrapper'
         }
     }
 
