@@ -184,7 +184,7 @@
                         <div class="div-block-145"><img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" alt=""></div>
                         <div class="_14-poppins learningobj">{{ video.title }}</div>
                     </div>
-                    <div class="div-block-145"><img src="{% static 'images/icons/right_caret_004A80.svg' %}" loading="lazy" alt="" style="height: 15px"></div>
+                    <div class="div-block-145" style="display: flex; justify-content: flex-end"><img src="{% static 'images/icons/right_caret_004A80.svg' %}" loading="lazy" alt="" style="height: 15px" width="15px"></div>
                     </div>
                   </a>
                 {% endfor %}
@@ -255,6 +255,24 @@
 
         {% endif %}
     </div>
+
+
+
+
+<style>
+
+
+.video-links:hover {
+    opacity: 50%;
+}
+
+
+
+</style>
+
+
+
+
 
 
 </body>
