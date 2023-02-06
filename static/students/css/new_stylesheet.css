@@ -578,7 +578,7 @@
 ._18-poppins.nomral {
   margin-top: 10px;
   color: #707070;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 ._100-width {
@@ -1162,6 +1162,17 @@
   align-items: flex-start;
 }
 
+.section-header-wrapper.lycter-scale {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-bottom: 1px solid #707070;
+}
+
 .page-section-header-2 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -1239,8 +1250,8 @@
   align-content: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  -ms-grid-columns: 0.25fr 0.25fr;
-  grid-template-columns: 0.25fr 0.25fr;
+  -ms-grid-columns: 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 0.5fr;
 }
 
 .grid-16 {
@@ -1274,8 +1285,8 @@
   margin-bottom: 20px;
   font-family: Poppins, sans-serif;
   color: #1f79ba;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 24px;
+  line-height: 30px;
   font-weight: 600;
 }
 
@@ -1802,10 +1813,15 @@
 
 ._14-poppins {
   font-family: Poppins, sans-serif;
+  line-height: 18px;
 }
 
 ._14-poppins.whitr {
   color: #fff;
+}
+
+._14-poppins.learningobj {
+  margin-left: 10px;
 }
 
 .apply-now {
@@ -2717,7 +2733,7 @@
 }
 
 .reoccuring-cost-wrapper {
-  display: block;
+  display: none;
   padding: 20px 40px;
 }
 
@@ -2766,7 +2782,7 @@
 }
 
 .lycter-scales {
-  display: none;
+  display: block;
   padding: 20px 40px;
 }
 
@@ -2878,6 +2894,7 @@
 }
 
 .page-section-header-3 {
+  display: block;
   margin-top: 0px;
   margin-bottom: 0px;
   padding-left: 0px;
@@ -2886,6 +2903,10 @@
   font-size: 24px;
   line-height: 35px;
   font-weight: 600;
+}
+
+.page-section-header-3.hide {
+  display: none;
 }
 
 .heading-41 {
@@ -2969,6 +2990,102 @@
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
+}
+
+.lycter-questions.second {
+  display: none;
+}
+
+.lycter-questions.third {
+  display: none;
+}
+
+.scale {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+}
+
+.text-block-57 {
+  font-family: Poppins, sans-serif;
+  color: #1f79ba;
+}
+
+.radio-buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 250px;
+  margin-right: 20px;
+  margin-left: 20px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.radio-button-field {
+  margin-bottom: 0px;
+}
+
+.radio-button-label-2 {
+  display: none;
+  margin-bottom: 0px;
+}
+
+.form-block {
+  width: 100%;
+  margin-bottom: 0px;
+}
+
+.form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.lycter-others {
+  margin-top: 40px;
+}
+
+.div-block-144 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.div-block-144.bottom {
+  margin-top: 10px;
+}
+
+.div-block-145 {
+  width: 15px;
+  height: 15px;
+}
+
+.div-block-146 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 @media screen and (min-width: 1280px) {
