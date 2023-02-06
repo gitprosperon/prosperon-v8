@@ -92,11 +92,23 @@
         </a>
         {% endif %}
 
+        {% if request.path == '/university/budget/budget' %}
         <a href="{% url 'Students:budget' %}" class="side-bar-link">
-            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+            <div class="nav-link selected"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Budget</h1>
             </div>
         </a>
+        {% else %}
+        <a href="{% url 'Students:budget' %}" class="side-bar-link">
+            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text selected">Budget</h1>
+            </div>
+        </a>
+        {% endif %}
+
+
+
+
 
         <a href="{% url 'Students:goals' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/uw_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">

@@ -110,23 +110,12 @@ function subscriptionClick(a) {
 
 // logic for toggeling monthly expenses on spending profile
 function monthly_expenseClick(a) {
-    var selectedIndex = a.children[2].children[0].options.selectedIndex
-
-    if(a.children[2].className === 'price-range-wrapper hidden') {
-        a.children[2].className = 'price-range-wrapper'
-        console.log(a.children[2].children[0].options.selectedIndex)
-    } else {
-        console.log('fucker123');
-        a.children[0].onClick = function () {
-            a.children[2].className = 'price-range-wrapper'
-        }
+    if (a.parentElement.children[2].style.display === 'none') {
+        a.parentElement.children[2].style.display = 'flex'
+    } else if (a.parentElement.children[2].style.display === 'flex') {
+        a.parentElement.children[2].style.display = 'none'
     }
 
-
-
-     if(selectedIndex !== 0) {
-        a.children[2].className = 'price-range-wrapper hidden'
-    }
 }
 
 

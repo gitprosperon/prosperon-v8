@@ -112,3 +112,8 @@
   -ms-flex-align: start;
   align-items: center;
 }
+
+.nav-link-text.selected {
+  color: #1f79ba;
+}
+

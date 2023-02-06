@@ -2,7 +2,6 @@
 {% load static %}
 {% block stylesheets %}
     <link href="{% static 'students/m2/style.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'students/m2/custom.css' %}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 
@@ -662,8 +661,8 @@
       <div class="w-layout-grid grid-27" >
           {% for expense in monthly_expenses %}
             {% csrf_token %}
-              <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" onclick="monthly_expenseClick(this)">
-                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap">
+              <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
+                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
                       <img src="../../../media/{{ expense.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
                   </div>
                   <div class="company-name-2">

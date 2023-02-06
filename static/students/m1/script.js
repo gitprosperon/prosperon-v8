@@ -146,7 +146,7 @@ function showJobOffer(companyName, companyLogo, jobLocation, jobType, jobHours, 
 
 
     companyNameTarget.innerText = companyName
-    companyLogoTarget.src = companyLogo
+    companyLogoTarget.src = '../../media/' + companyLogo
     jobSalaryTarget.innerText = jobSalary
     nameTarget.innerText = firstName
     lastNameTarget.innerText = lastName
