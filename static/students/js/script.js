@@ -119,6 +119,7 @@ function monthly_expenseClick(a) {
 }
 
 
+
 // logic for toggeling through spending profile page
 var spendingProfileIndex = 0
 function spender_profile_toggle(a){
