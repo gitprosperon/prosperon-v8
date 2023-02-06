@@ -115,8 +115,14 @@ function monthly_expenseClick(a) {
     if(a.children[2].className === 'price-range-wrapper hidden') {
         a.children[2].className = 'price-range-wrapper'
         console.log(a.children[2].children[0].options.selectedIndex)
+    } else {
+        console.log('fucker123');
 
-    } else if(selectedIndex !== 0) {
+    }
+
+    console.log(a.children[0].onClick)
+
+     if(selectedIndex !== 0) {
         a.children[2].className = 'price-range-wrapper hidden'
     }
 }

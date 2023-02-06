@@ -1,0 +1,13 @@
+.month-ranges {
+    font-size: 18px;
+    height: 30px;
+    width: 150px;
+    background-color: transparent;
+    font-family: Poppins;
+    border: 0px
+}
+
+.month-ranges:hover {
+    cursor: pointer;
+    background-color: #7fc9ff;
+}
