@@ -178,11 +178,11 @@
 
 
                   {% for video in current_videos %}
-                  <a href="{{ video.link }}" style="text-decoration: none; color: #1c2126">
-                    <div class="div-block-144">
+                  <a href="{{ video.link }}" style="text-decoration: none; color: #1c2126" class="'video-links">
+                    <div class="div-block-144" style="padding: 10px; display: flex; align-items: center; align-content: center">
                         <div class="div-block-146" style="display: flex; justify-content: space-between">
-                        <div class="div-block-145"><img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" alt=""></div>
-                        <div class="_14-poppins learningobj">{{ video.title }}</div>
+                        <div class="div-block-145"><img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" alt="" style="width: 15px; height: 15px"></div>
+                        <div class="_14-poppins learningobj" style="padding-right: 10px; max-width: 150px">{{ video.title }}</div>
                     </div>
                     <div class="div-block-145" style="display: flex; justify-content: flex-end"><img src="{% static 'images/icons/right_caret_004A80.svg' %}" loading="lazy" alt="" style="height: 15px" width="15px"></div>
                     </div>
