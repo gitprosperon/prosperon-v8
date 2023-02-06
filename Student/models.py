@@ -31,6 +31,7 @@ class Subscription(models.Model):
 
 class MonthlyExpense(models.Model):
     monthly_expense_title = models.CharField(max_length=250, null=True, blank=True)
+    img = models.ImageField(upload_to='monthlyExpenseImages/', null=True, blank=True)
 
     RANGES = [
         ("$0-100", "$0-100"),
