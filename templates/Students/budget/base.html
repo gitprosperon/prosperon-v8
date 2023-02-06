@@ -23,7 +23,6 @@
     <div id="left-nav-container" class="nav-col-left w-col w-col-2">
       <div class="nav-img-container"><img src="{% static 'images/Prosperon-Logo-white-p-1080.png' %}" loading="lazy" width="180" sizes="(max-width: 767px) 180px, 17vw" srcset="{% static 'images/Prosperon-Logo-white-p-1080.png' %} 500w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 800w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 1080w, images/{% static 'images/Prosperon-Logo-white-p-1080.png' %} 1600w, {% static 'images/Prosperon-Logo-white-p-1080.png' %} 1783w" alt=""></div>
         <div class="nav-links-container">
-{{ request.path }}
 
         <div class="nav-link">
             <h1 class="nav-link-text" style="padding-left: 0px; font-weight: 600">University</h1>
@@ -67,23 +66,48 @@
         </a>
         {% endif %}
 
+        {% if request.path == '/university/budget/budget' %}
+        <a href="{% url 'Students:budget' %}" class="side-bar-link">
+            <div class="nav-link selected" style="border-radius: 20px"><img src="{% static 'images/icons/icons_ub_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text selected">Budget</h1>
+            </div>
+        </a>
+        {% else %}
         <a href="{% url 'Students:budget' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/icons_uw_budget.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Budget</h1>
             </div>
         </a>
+        {% endif %}
 
+
+        {% if request.path == '/university/budget/goals' %}
+        <a href="{% url 'Students:goals' %}" class="side-bar-link">
+            <div class="nav-link selected" style="border-radius: 20px"><img src="{% static 'images/icons/ub_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text selected">Goals</h1>
+            </div>
+        </a>
+        {% else %}
         <a href="{% url 'Students:goals' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/uw_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Goals</h1>
             </div>
         </a>
+        {% endif %}
 
+        {% if request.path == '/university/budget/accounts' %}
         <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
-            <div class="nav-link"><img src="{% static 'images/icons/icons_uw_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+            <div class="nav-link selected" style="border-radius: 20px"><img src="{% static 'images/icons/icons_ub_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
+              <h1 class="nav-link-text selected">Bank Accounts</h1>
+            </div>
+        </a>
+        {% else %}
+        <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
+            <div class="nav-link" style="border-radius: 20px"><img src="{% static 'images/icons/icons_uw_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Bank Accounts</h1>
             </div>
         </a>
+        {% endif %}
 
         <a href="{% url 'Budget:budget-budget' %}" class="side-bar-link">
             <div class="nav-link" style="display: none"><img src="{% static 'images/icons/uw_investments.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">

@@ -668,8 +668,8 @@
                   <div class="company-name-2">
                     <h1 class="_14px-2">{{ expense.monthly_expense_title }}</h1>
                   </div>
-                  <div class="price-range-wrapper hidden">
-                          <select class="month-ranges">
+                  <div class="price-range-wrapper hidden" style="display: none;">
+                          <select class="month-ranges" style="font-size: 18px; height: 30px; width: 150px; background-color: transparent; font-family: Poppins">
                             <option value="" style="font-size: 18px; height: 20px; width: 150px; background-color: transparent; font-family: Poppins">Select Range</option>
                               {% for range in monthly_expenses_ranges %}
                                 <option value="">{{ range.0 }}</option>
