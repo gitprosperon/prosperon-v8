@@ -22,7 +22,7 @@ def to_int(value):
 # University Dashboard
 def dashboard(request):
     user = request.user
-
+    page = 'dashboard'
 
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
@@ -68,7 +68,8 @@ def dashboard(request):
             'location': location,
             'total_points': total_points,
             'last_points': last_points,
-            'student_progress': student_progress
+            'student_progress': student_progress,
+            'page': page
         }
 
         return render(request, 'Students/dashboard.html', context=context)
