@@ -23,11 +23,11 @@
                 <div id="w-node-e644155f-9d67-bf7f-b00e-8606120590ad-e4f669d7" class="card-image-wrapper _50">
                     <img src="../../../media/{{ card.img }}" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
                 <div class="card-infor-wrapper _20-padding-container _60-top" style="width: 100%">
-                  <div class="_18-poppins semibold" style="font-size: 18px"><span>{{ card.title }}</span></div>
-                  <div class="_14-poppins" style="width: 100%">Required Credit Score: <span>{{ card.score }}</span></div>
+                  <div class="_18-poppins semibold" style="font-size: 18px;text-align: center"><span>{{ card.title }}</span></div>
+                  <div class="_14-poppins" style="width: 100%; text-align: center">Required Credit Score: <span>{{ card.score }}</span></div>
                   <div class="_10-top centered-text">
                     <div class="create-graph">
-                      <button  class="next-btn" style="width: auto" onclick="showCreditCard('{{ card.title }}', '{{ card.apr }}', '{{ card.yearlyFee }}', '{{ card.atmFee }}', '{{ card.credit_card_descrption }}', '{{ card.feature1 }}', '{{ card.feature2 }}', '{{ card.feature3 }}', '{{ card.feature4 }}', '{{ card.signup_fee }}')">Learn More</button>
+                      <button  class="next-btn" style="width: auto" onclick="showCreditCard('{{ card.title }}', '{{ card.apr }}', '{{ card.yearlyFee }}', '{{ card.atmFee }}', '{{ card.credit_card_descrption }}', '{{ card.feature1 }}', '{{ card.feature2 }}', '{{ card.feature3 }}', '{{ card.feature4 }}', '{{ card.signup_fee }}', '{{ card.img }}')">Learn More</button>
                     </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
           <div class="_40-padding-container white percent-change">
             <div class="_20-bottom">
               <h1 class="_24px-2 semibold _20-left" id="credit-card-name">Bank Name</h1>
-              <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt=""></div>
+              <div><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" id="credit-card-img"></div>
             </div>
             <div>
               <div>

@@ -45,7 +45,7 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
 
 
 // for showing specific
-function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, feature1, feature2, feature3, feature4, signupFee) {
+function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, feature1, feature2, feature3, feature4, signupFee, img) {
     var creditCardPopup = document.getElementById('creditCardPopUp')
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
     var apply_buttonTarget = document.getElementById('applyBtn')
@@ -68,6 +68,7 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     var feature4Target = document.getElementById('feature4')
     var monthlyCostTarget = document.getElementById('effect-monthly-cost')
     var signupFeeTarget = document.getElementById('effect-initial-cost')
+    var creditCardImg = document.getElementById('credit-card-img')
 
     var yearly = Number(yearlyFee)
     var montlyCost = yearly / 12
@@ -81,9 +82,11 @@ function showCreditCard(title, apr, yearlyFee, atmFee, creditCardDescription, fe
     feature2Target.innerText = feature2
     feature3Target.innerText = feature3
     feature4Target.innerText = feature4
-
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
+    creditCardImg.src = '../../../media/' + img
+
+
 
     var costLaterTarget = document.getElementById('effect-monthly-cost-input')
     var costNowTarget = document.getElementById('effect-cost-now-input')

@@ -22,7 +22,7 @@ class Location(models.Model):
 
 class Subscription(models.Model):
     subscription_title = models.CharField(max_length=250, null=True, blank=True)
-    subscription_cost = models.IntegerField(null=True, blank=True)
+    subscription_cost = models.FloatField(null=True, blank=True)
     subscription_id = models.CharField(max_length=250, null=True, blank=True)
 
 
