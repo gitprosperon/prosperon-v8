@@ -385,6 +385,7 @@ def module_summaries(request, id, c):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
 
+
         next_module = summary.module.next_life_event['nextEvent']
         print(next_module)
 
@@ -401,6 +402,9 @@ def module_summaries(request, id, c):
         student.total_points = total_points
         student.save()
 
+        # Code for getting module videos
+        current_module = UniversityModule.objects.get(module_id=id)
+        current_videos = current_module.videos['videos']
 
 
         # Generating unlocked anytime decisions
@@ -448,7 +452,8 @@ def module_summaries(request, id, c):
             'page_type': page_type,
             'anytime_dec': all_unlocked_decisions,
             'modulePoints': modulePoints,
-            'total_points': total_points
+            'total_points': total_points,
+            'current_videos': current_videos,
 
         }
         return render(request, 'Students/module_summary.html', context=context)

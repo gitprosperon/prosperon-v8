@@ -300,6 +300,7 @@ class UniversityModule(models.Model):
     whats_happened = models.TextField(max_length=5000, null=True, blank=True)
     unlocked_decisions = models.CharField(max_length=50000, null=True, blank=True)
     points = models.IntegerField(null=True, blank=True)
+    videos = models.JSONField(null=True, blank=True)
 
 
 
