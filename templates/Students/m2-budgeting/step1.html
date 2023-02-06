@@ -643,8 +643,8 @@
                 <h1 class="_14px-2">{{ subscript.subscription_title }}</h1>
               </div>
               <div class="price-range-wrapper hidden">
-                  <h1 class="_14px-2" id="subscription-cost">{{ subscript.subscription_cost }}</h1>
-                <button type="button" id="" class="next-btn subscrup">add</button>
+                  <h1 class="_14px-2" id="subscription-cost" style="font-size: 18px">$ {{ subscript.subscription_cost }}</h1>
+                <button type="button" id="" class="next-btn subscrup" style="margin-top: 10px">Add</button>
               </div>
         </div>
           {% endfor %}
@@ -662,21 +662,21 @@
           {% for expense in monthly_expenses %}
             {% csrf_token %}
               <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" onclick="monthly_expenseClick(this)">
-                  <div class="logo-icon-wrapper">
-                      <img src="../../../media/{{ expense.img }}" loading="lazy" alt="">
+                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap">
+                      <img src="../../../media/{{ expense.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
                   </div>
                   <div class="company-name-2">
                     <h1 class="_14px-2">{{ expense.monthly_expense_title }}</h1>
                   </div>
                   <div class="price-range-wrapper hidden">
                           <select class="monthly-ranges">
-                            <option value="">-SELECT RANGE-</option>
+                            <option value="" style="font-size: 18px; height: 20px; background-color: transparent; font-family: Poppins; wi">Select Range</option>
                               {% for range in monthly_expenses_ranges %}
                                 <option value="">{{ range.0 }}</option>
                               {% endfor %}
                           </select>
 
-                    <button type="button" id="" class="next-btn monthly">add</button>
+                    <button type="button" id="" class="next-btn monthly" style="margin-top: 10px">Add</button>
                   </div>
               </div>
           {% endfor %}
