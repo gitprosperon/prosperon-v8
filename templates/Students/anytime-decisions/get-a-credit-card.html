@@ -14,12 +14,7 @@
     <div class="grid-wrapper" style="padding: 0px; padding-right: 10px">
 
         <div id="all-credit-card-wrapper" class="blue-gradient" style="display: block;">
-          <div class="apartment-search _40-padding-container transparent">
-            <div class="_18 semibold white">Welcome to Card World</div>
-            <div class="search-area _20-top">
-              <div class="_18-poppins padding">Dallas, TX</div>
-            </div>
-          </div>
+
           <div class="_40-padding-container white">
             <div class="w-layout-grid grid-22 credit-cards" style="justify-items: stretch">
 
@@ -29,7 +24,7 @@
                     <img src="../../../media/{{ card.img }}" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
                 <div class="card-infor-wrapper _20-padding-container _60-top" style="width: 100%">
                   <div class="_18-poppins semibold" style="font-size: 18px"><span>{{ card.title }}</span></div>
-                  <div class="_14-poppins">Required Credit Score: <span>{{ card.score }}</span></div>
+                  <div class="_14-poppins" style="width: 100%">Required Credit Score: <span>{{ card.score }}</span></div>
                   <div class="_10-top centered-text">
                     <div class="create-graph">
                       <button  class="next-btn" style="width: auto" onclick="showCreditCard('{{ card.title }}', '{{ card.apr }}', '{{ card.yearlyFee }}', '{{ card.atmFee }}', '{{ card.credit_card_descrption }}', '{{ card.feature1 }}', '{{ card.feature2 }}', '{{ card.feature3 }}', '{{ card.feature4 }}', '{{ card.signup_fee }}')">Learn More</button>
