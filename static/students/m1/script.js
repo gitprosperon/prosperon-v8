@@ -260,7 +260,7 @@ function showJobOffer2(companyName, companyLogo, jobLocation, jobType, jobHours,
 
 }
 
-function backToOffers() {
+function backToOffers2() {
     var jobOfferTarget = document.getElementById('offerLetter2')
     var offersTarget = document.getElementById('offers2')
 
