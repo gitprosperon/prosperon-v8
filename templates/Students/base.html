@@ -38,9 +38,9 @@
 
         {% if request.path == '/university/dashboard' %}
         <a href="{% url 'Students:dashboard' %}" class="side-bar-link" >
-            <div class="nav-link">
-                <img src="{% static 'images/icons/uw_home.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image" >
-                <h1 class="nav-link-text">Home</h1>
+            <div class="nav-link selected">
+                <img src="{% static 'images/icons/ub_home.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image" >
+                <h1 class="nav-link-text selected">Home</h1>
             </div>
         </a>
         {% else %}
@@ -54,8 +54,8 @@
 
 
        <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
-            <div class="nav-link selected"><img src="{% static 'images/icons/uw_profile.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
-                <h1 class="nav-link-text selected">Profile</h1>
+            <div class="nav-link"><img src="{% static 'images/icons/uw_profile.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
+                <h1 class="nav-link-text">Profile</h1>
             </div>
         </a>
 
