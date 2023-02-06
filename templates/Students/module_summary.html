@@ -197,10 +197,10 @@
             <h1 class="page-section-header">Unlocked Decisions</h1>
           </div>
           <div class="unlocked-decisions">
-            <div class="w-layout-grid grid-15" style="grid-column-gap: 10px; grid-row-gap: 10px">
+            <div class="w-layout-grid grid-15 summary" style="grid-column-gap: 10px; grid-row-gap: 10px">
 
                 {% for decision in anytime_dec %}
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="height: 100%; width: 100%">
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="height: 100%; width: 100%; max-width: 100px">
                     <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
                       <div class="_18" style="font-size: 18px; line-height: 22px">{{ decision.title }}</div>

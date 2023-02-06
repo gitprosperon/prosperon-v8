@@ -1239,8 +1239,8 @@
   align-content: center;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-  -ms-grid-columns: 0.5fr 0.5fr;
-  grid-template-columns: 0.5fr 0.5fr;
+  -ms-grid-columns: 0.25fr 0.25fr;
+  grid-template-columns: 0.25fr 0.25fr;
 }
 
 .grid-16 {
