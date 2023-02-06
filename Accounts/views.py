@@ -93,7 +93,6 @@ def register_student_account(request):
             studentUser.spender_type = 0
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
-            studentUser.monthly_transactions = {"monthly_transactions": []}
             studentUser.spending_profile_monthly_payments = {"spending_profile_monthly_payments": []}
             studentUser.save()
 

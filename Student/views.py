@@ -236,7 +236,7 @@ def transactions(request):
                     "date": "2017-01-29",
                     "name": f"{tran_title}",
                     "associated_budget": f"{transaction_category}",
-                    "amount": f"{amount}",
+                    "amount": amount,
                     "checked": "yes",
                     "category": [
                         f"{category1}",
@@ -293,7 +293,7 @@ def transactions(request):
                                  "date":"2017-01-29",
                                  "name": f"{tran_title}",
                                  "associated_budget": f"{transaction_category}",
-                                 "amount": f"{amount}",
+                                 "amount": amount,
                                  "checked" : "yes",
                                  "category":[
                                     f"{category1}",
@@ -551,7 +551,7 @@ def anytime_decision_step2(request, id):
                     "name": transaction_title,
                     "checked": "no",
                     "associated_budget": "none",
-                    "amount": f"{monthly_cost}",
+                    "amount": monthly_cost,
                     "category": [
                         "Payment",
                         "Computers and Electronics"
