@@ -117,10 +117,12 @@ function monthly_expenseClick(a) {
         console.log(a.children[2].children[0].options.selectedIndex)
     } else {
         console.log('fucker123');
+        a.children[0].onClick = function () {
 
+        }
     }
 
-    console.log(a.children[0].onClick)
+
 
      if(selectedIndex !== 0) {
         a.children[2].className = 'price-range-wrapper hidden'

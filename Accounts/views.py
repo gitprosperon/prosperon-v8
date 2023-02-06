@@ -90,6 +90,7 @@ def register_student_account(request):
             studentUser.last_points_added = 0
             studentUser.total_monthly_expenses = 0
             studentUser.course_progress = 0
+            studentUser.spender_type = 0
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
