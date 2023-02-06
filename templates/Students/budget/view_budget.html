@@ -9,6 +9,17 @@
       <div class="page-title-blue">
         <h1 class="heading-4">Budget - <span>{{ student_budget.title }}</span></h1>
       </div>
+        <div class="delete-popup" id="delete-popup" style="display: none;">
+    <div class="_60-padding vertical">
+      <div class="_24px">
+        <h1 class="_24px">Are you sure you want to delete <span style="font-weight: bold">{{ student_budget.title }}</span>?</h1>
+      </div>
+      <div class="confirm-delete">
+        <button type="button" class="back-btn" onclick="hideDeletePopup()">Cancel</button>
+        <a href="{% url 'Students:delete-budget' student_budget.budget_id %}" class="next-btn">Confirm</a>
+      </div>
+    </div>
+  </div>
     </div>
     <div class="page-divider-container">
       <div class="page-divider w-row">
@@ -19,18 +30,25 @@
             </div>
             <div class="_20-padding-container">
               <div class="pop-up-form-wrapper">
-                <div class="w-form">
-                  <form id="wf-form-add-goal" name="wf-form-add-goal" data-name="add goal" method="get" class="add-budget-form">
-                      <input type="text" class="input budget w-input" maxlength="256" name="name" data-name="Name" placeholder="Title" id="name" value="{{ student_budget.title }}">
+                    <div class="trashWrapper" style="display: flex;" id="trash-can" >
+                        <img class="trashCan" src="{% static 'images/icons/trash-can-red.png' %}" loading="lazy" alt="" onclick="deleteBudgetPopup()">
+                    </div>
+                  <div class="w-form">
+                  <form id="wf-form-add-goal" name="wf-form-add-goal" data-name="add goal" method="post" class="add-budget-form">
+                      {% csrf_token %}
+                    <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Budget Title</label>
+                      <input type="text" class="input budget w-input" maxlength="256" name="budget-title" data-name="Name" placeholder="Title" id="name" value="{{ student_budget.title }}">
+                    <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Max Per Month</label>
                       <input type="number" class="input budget w-input" maxlength="256" name="Max-amount" data-name="Max amount" placeholder="Max Amount" id="Max-amount" required="" value="{{ student_budget.total_per_month }}">
-                      <select id="Category" name="Category" data-name="Category" class="select-field-2 w-select">
-                      <option value="">{{ student_budget.category }}</option>
+                    <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Category</label>
+                      <select id="Category" name="Category" data-name="Category" class="select-field-2 w-select" style="background-color: white">
+                      <option value="{{ student_budget.category }}" style="background-color: white">{{ student_budget.category }}</option>
 
-                          {% for category in budget_categories %}
-                                {% if category.1 != student_budget.category %}
-                                    <option value="">{{ category.1 }}</option>
-                                {% endif %}
-                            {% endfor %}
+                      {% for category in budget_categories %}
+                            {% if category.1 != student_budget.category %}
+                                <option value="{{ category.1 }}">{{ category.1 }}</option>
+                            {% endif %}
+                        {% endfor %}
                     </select>
                     <div class="color-selector" style="display: none;"><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label></div>
                     <div class="save-back-wrapper no-padding">
@@ -96,6 +114,28 @@
   </div>
 </body>
 
+
+
+
+
+<script>
+
+
+function deleteBudgetPopup(){
+    var deletePopup = document.getElementById('delete-popup');
+    if(deletePopup.style.display === 'none') {
+        deletePopup.style.display = 'flex'
+    }
+}
+
+function hideDeletePopup() {
+    var deletePopup = document.getElementById('delete-popup');
+    deletePopup.style.display = 'none'
+}
+
+
+
+</script>
 
 
 

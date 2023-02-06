@@ -1,5 +1,5 @@
 {% extends 'Students/base.html' %}
-
+{% load static %}
 {% block content %}
 
 
@@ -14,7 +14,7 @@
       <div class="anytime-bank-wrapper">
         <div class="w-row">
           <div class="column-4 w-col w-col-1">
-            <div class="left-arriw"><img src="images/Left-arrow.svg" loading="lazy" alt=""></div>
+            <div class="left-arriw"><img src="{% static 'images/icons/anytime-arrow-backwords.png' %}" loading="lazy" alt=""></div>
           </div>
           <div class="column-2 w-col w-col-10">
             <div class="anytime-decision-bank">
@@ -27,8 +27,8 @@
 <div>
     <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-    <div class="_18" style="line-height: 24px">{{ decision.title }}</div>
-    <div class="_14px _10-top _14">*Description*</div>
+    <div class="_18" style="line-height: 24px"><h1 class="title" style="font-size: 18px; font-family: Poppins">{{ decision.title }}</h1></div>
+    <div class="_14px _10-top _14">{{ decision.description|slice:":100" }}...</div>
 </div>
 </div>
 <div class="_10-top _100-width">
@@ -46,14 +46,14 @@
             </div>
           </div>
           <div class="column-3 w-col w-col-1">
-            <div class="right-arrow"><img src="images/Left-arrow.svg" loading="lazy" alt="" class="image-7"><img src="images/Right-arrow.svg" loading="lazy" alt=""></div>
+            <div class="right-arrow"><img src="{% static 'images/icons/anytime-arrow-backwords.png' %}" loading="lazy" alt="" class="image-7"><img src="{% static 'images/icons/anytime-arrow-foward.png' %}" loading="lazy" alt=""></div>
           </div>
         </div>
       </div>
     </div>
     <div class="button-wrapper bottom-spacing">
-      <a href="#" class="button w-button">Back</a>
-      <a href="#" class="button next w-button">Next</a>
+      <a href="/university/dashboard" class="button w-button">Back</a>
+
     </div>
   </div>
 </body>

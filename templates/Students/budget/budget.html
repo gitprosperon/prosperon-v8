@@ -27,7 +27,7 @@
               <div>
                 <div class="total-imcome-container">
                   <h1 class="total-imcome-header">Total Income</h1>
-                  <h1 class="_24px medium green">${{ monthly_salary }}</h1>
+                  <h1 class="_24px medium green">+ ${{ monthly_salary }}</h1>
                 </div>
                 <div class="graph-container">
 
@@ -109,13 +109,13 @@
                     <div class="div-block"><img src="{% static 'images/icons/total-spent-icon.png' %}" loading="lazy" width="20" alt="">
                       <h1 class="overview-btm-title">Total Spent</h1>
                     </div>
-                    <h1 class="number-calculated" >$<span id="total-spent-calculator"></span></h1>
+                    <h1 class="number-calculated" style="color: red;" >- $<span id="total-spent-calculator"></span></h1>
                   </div>
                   <div class="budget-overview-btm-container">
                     <div class="div-block"><img src="{% static 'images/icons/remaining-icon.png' %}" loading="lazy" width="20" alt="">
                       <h1 class="overview-btm-title">Remaining</h1>
                     </div>
-                    <h1 class="number-calculated">$<span id="total-remaining"></span></h1>
+                    <h1 class="number-calculated"><span id="total-remaining-container"></span><span id="total-remaining"></span></h1>
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@
 
                       </div>
                       <div class="transaction-place-wrapper">
-                        <h4 class="_18px">{{ budget.title }}</h4>
+                        <h4 class="_18px">{{ budget.title|slice:":12" }}</h4>
                       </div>
                       <div class="transaction-amount-wrapper"></div>
                     </div>
@@ -202,7 +202,7 @@
                             <div>Oops! Something went wrong while submitting the form.</div>
                           </div>
                         </div>
-                        <h4 class="_24px medium green">$<span id="{{ budget.budget_id }}">{{ budget.current_total }}</span></h4>
+                        <h4 class="_24px medium green">$<span id="{{ budget.budget_id }}">{{ budget.current_total|floatformat }}</span></h4>
                         <h4 class="_24px medium"> / </h4>
                         <h4 class="_24px medium">$<span>{{ budget.total_per_month }}</span></h4>
                       </div>
@@ -253,9 +253,22 @@ for(let i = 0; i < elements.length; i++) {
 }
 var totalSpentTarget = document.getElementById('total-spent-calculator')
 var totalRemainingTarget = document.getElementById('total-remaining')
-totalSpentTarget.innerText = total_spent
+totalSpentTarget.innerText = Math.round(total_spent)
 var remaining = Number(total_allocated) - total_spent
-totalRemainingTarget.innerText = remaining
+totalRemainingTarget.innerText = Math.round(remaining)
+var totalRemainingContainerTarget = document.getElementById('total-remaining-container')
+
+if(remaining <= 0) {
+    totalRemainingTarget.style.color = 'red'
+    totalRemainingContainerTarget.innerText = '- $'
+    totalRemainingContainerTarget.style.color = 'red'
+} else {
+    totalRemainingTarget.style.color = 'green'
+    totalRemainingContainerTarget.innerText = '+ $'
+    totalRemainingContainerTarget.style.color = 'green'
+
+}
+
 
 
 

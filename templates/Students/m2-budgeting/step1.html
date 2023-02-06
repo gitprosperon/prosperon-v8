@@ -2,6 +2,8 @@
 {% load static %}
 {% block stylesheets %}
     <link href="{% static 'students/m2/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'students/m2/custom.css' %}" rel="stylesheet" type="text/css">
+
 
 {% endblock %}
 
@@ -716,7 +718,7 @@ var numChecked = 0
 for(var i = 0; i < radioButtons.length; i++) {
     radioButtons[i].onclick = function() {
         numChecked += 1
-        if(numChecked === 1) {
+        if(numChecked === 15) {
             console.log('it is completed')
             nextButtonToggle.style.display = 'block'
         }

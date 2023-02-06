@@ -147,6 +147,7 @@ def add_budget(request):
                 instance.transactions = {"categoryTransactions": []}
                 instance.budget_id = random.randint(100000000, 90000000000)
                 instance.users_id = user_id
+                instance.current_total = 0
                 instance.save()
                 return redirect('/university/budget/budget')
         else:
@@ -168,6 +169,26 @@ def view_budget(request, id):
 
         budget_purchases = student_budget.transactions
 
+        if request.method == 'POST':
+            post = request.POST
+            print(request.POST)
+            budget_name = post['budget-title']
+            budget_max = post['Max-amount']
+            budget_category = post['Category']
+            print(budget_category)
+
+            for categories in budget_categories:
+                if categories[0] == budget_category:
+                    num = categories[0]
+
+
+
+
+            student_budget.title = budget_name
+            student_budget.total_per_month = budget_max
+            student_budget.category = num
+            student_budget.save()
+
 
 
 
@@ -177,6 +198,18 @@ def view_budget(request, id):
             'budget_purchases': budget_purchases
         }
         return render(request, 'Students/budget/view_budget.html', context=context)
+
+
+# Code for deleting budget
+def delete_budget(request, id):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_budget = BudgetItemsUniversity.objects.get(budget_id=id)
+        student_budget.delete()
+        return redirect('/university/budget/budget')
+
+
+
 
 
 # Budget / transactions page
@@ -490,7 +523,7 @@ def anytime_decision_step2(request, id):
         print(html_path)
         apartments = Apartment.objects.all()
         credit_cards = CreditCard.objects.all()
-        bank_accounts = BankAccount.objects.all()\
+        bank_accounts = BankAccount.objects.all()
 
         student_job_location = str(student.job.job_city)
         student_current_location = str(student.location)
@@ -543,7 +576,7 @@ def anytime_decision_step2(request, id):
 
 
             if monthly_cost != '0':
-                transaction_id = random.randint(1231456437657543635423452323452345242,9231456437657543635423452323452345242)
+                transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
                 new_packaged_transaction = {
 
