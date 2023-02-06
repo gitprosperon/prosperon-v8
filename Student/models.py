@@ -24,6 +24,7 @@ class Subscription(models.Model):
     subscription_title = models.CharField(max_length=250, null=True, blank=True)
     subscription_cost = models.FloatField(null=True, blank=True)
     subscription_id = models.CharField(max_length=250, null=True, blank=True)
+    img = models.ImageField(upload_to='subscriptionImages/', null=True, blank=True)
 
 
     def __str__(self):

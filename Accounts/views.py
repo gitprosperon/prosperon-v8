@@ -4,17 +4,20 @@ import random
 import datetime
 from django.contrib.auth import login as djlogin
 from Student.models import Student
+from django.contrib import auth
 
-
+# Logout Page
 def logout(request):
-
+    auth.logout(request)
 
     return render(request, 'MainWebsite/index.html')
 
+# Login for student
 def login_student(request):
     return render(request, 'Accounts/login-student.html')
 
 
+# Registration choice
 def register_choice(request):
     return render(request, 'Accounts/registration-choice.html')
 

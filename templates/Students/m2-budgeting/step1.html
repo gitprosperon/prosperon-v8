@@ -636,8 +636,8 @@
           {% for subscript in subscriptions %}
             {% csrf_token %}
               <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" onclick="subscriptionClick(this)">
-              <div class="logo-icon-wrapper">
-                  <img src="../../../media/" loading="lazy" alt="">
+              <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap">
+                  <img src="../../../media/{{ subscript.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
               </div>
               <div class="company-name-2">
                 <h1 class="_14px-2">{{ subscript.subscription_title }}</h1>
