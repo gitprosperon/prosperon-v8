@@ -23,7 +23,7 @@
     </div>
     <div class="page-divider-container">
       <div class="page-divider w-row">
-        <div class="page-left-column w-col w-col-4">
+        <div class="page-left-column w-col w-col-4" style="padding: 0px">
           <div class="account-overview-container left">
             <div class="section-header-wrapper">
               <h1 class="page-section-header">Overview</h1>
@@ -51,9 +51,9 @@
                         {% endfor %}
                     </select>
                     <div class="color-selector" style="display: none;"><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label></div>
-                    <div class="save-back-wrapper no-padding">
-                      <a href="{% url 'Students:budget' %}" class="back-button w-button">Back</a>
-                        <input type="submit" value="Submit" data-wait="Please wait..." class="add-budget w-button">
+                    <div class="save-back-wrapper no-padding" style="padding-top: 20px">
+                      <a href="{% url 'Students:budget' %}" class="back-btn" style="text-decoration: none; align-items: center; align-content: center">Back</a>
+                        <input type="submit" value="Change" data-wait="Please wait..." class="next-btn">
                     </div>
                   </form>
 
@@ -62,13 +62,14 @@
             </div>
           </div>
         </div>
-        <div class="column w-col w-col-8">
+        <div class="column w-col w-col-8" style="padding: 0px">
           <div class="account-overview-container right">
             <div class="section-warpper">
               <div class="section-header-wrapper">
                 <h1 class="page-section-header"><span>Transactions in</span> {{ student_budget.title }}</h1>
+
               </div>
-              <div class="_20-padding-container budget-container vertical">
+              <div class="_20-padding-container budget-container vertical" style="">
                 <div class="transaction-breakdown-header">
                   <div class="w-layout-grid grid-5">
                     <div id="w-node-_0812455f-164a-9896-0de4-f10f1f191733-915e969f" class="breakdown-category">
@@ -112,6 +113,7 @@
       </div>
     </div>
   </div>
+
 </body>
 
 

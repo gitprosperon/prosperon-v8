@@ -1474,6 +1474,15 @@
   background-size: auto;
 }
 
+._60-padding.vertical {
+  max-width: 500px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 .heading-36 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -2220,42 +2229,50 @@
 }
 
 .back-btn {
-  padding: 10px 40px;
-  text-decoration: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 150px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   border-style: solid;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #1f79ba;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #fff;
+  font-family: Poppins, sans-serif;
   color: #1f79ba;
   font-size: 18px;
   font-weight: 500;
 }
-
-.back-btn:hover {
-  background-color: #DEF1FF;
-  color: #1f79ba;
-}
-
 
 .next-btn {
-  padding: 10px 40px;
-  text-decoration: none;
-  border-style: solid;
-  border-width: 2px;
-  color: white;
-  border-color: #1f79ba;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 150px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 10px;
   background-color: #1f79ba;
-  border-radius: 5px;
+  font-family: Poppins, sans-serif;
+  color: #fff;
   font-size: 18px;
   font-weight: 500;
-  cursor: pointer;
-  align-items: center;
-}
-
-.next-btn:hover {
-  background-color: #DEF1FF;
-  color: #1f79ba;
 }
 
 .add-monthly-cost {
@@ -2306,6 +2323,37 @@
 
 .lycter-3 {
   display: none;
+}
+
+.delete-popup {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 1001;
+  display: none;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: hsla(0, 0%, 48.6%, 0.5);
+}
+
+.confirm-delete {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 40px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 991px) {

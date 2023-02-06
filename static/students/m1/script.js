@@ -170,3 +170,100 @@ function backToOffers() {
     jobOfferTarget.style.display = 'none'
     offersTarget.style.display = 'block'
 }
+
+function showJobOffer2(companyName, companyLogo, jobLocation, jobType, jobHours, jobSalary, _401k, health, dental, vision, pto, studentLoans, relocation, firstName, lastName, payStructure, jobPosition) {
+    var jobOfferTarget = document.getElementById('offerLetter2')
+    var offersTarget = document.getElementById('offers2')
+    jobOfferTarget.style.display = 'block'
+    offersTarget.style.display = 'none'
+
+    var companyNameTarget = document.getElementById('job-offer-companyName')
+    var companyLogoTarget = document.getElementById('companyLogo')
+    var jobSalaryTarget = document.getElementById('jobSalary')
+    var _401kTarget = document.getElementById('401kWrapper')
+    var healthTarget = document.getElementById('healthWrapper')
+    var dentalTarget = document.getElementById('dentalWrapper')
+    var visionTarget = document.getElementById('visionWrapper')
+    var ptoTarget = document.getElementById('ptoWrapper')
+    var studentLoanTarget = document.getElementById('studentLoanWrapper')
+    var relocationTarget = document.getElementById('relocationWrapper')
+    var nameTarget = document.getElementById('firstName')
+    var lastNameTarget = document.getElementById('lastName')
+    var companyTarget = document.getElementById('companyName-Offer')
+    var companyTarget2 = document.getElementById('companyName2')
+    var payStructureTarget = document.getElementById('payStructure')
+    var jobStyleTarget = document.getElementById('workStyle')
+    var jobHoursTarget = document.getElementById('jobHours')
+    var jobHoursTarget2 = document.getElementById('jobHours2')
+    var jobPositionTarget = document.getElementById('jobPosition')
+    var jobPositionTarget2 = document.getElementById('jobPosition2')
+    var jobPositionTarget3 = document.getElementById('jobPosition3')
+
+    if(_401k === 'Yes') {
+        _401kTarget.style.display = 'block'
+    } else {
+        _401kTarget.style.display = 'none'
+    }
+
+    if(health === 'Yes') {
+        healthTarget.style.display = 'block'
+    } else {
+        healthTarget.style.display = 'none'
+    }
+
+    if(dental === 'Yes') {
+        dentalTarget.style.display = 'block'
+    } else {
+        dentalTarget.style.display = 'none'
+    }
+
+    if(vision === 'Yes') {
+        visionTarget.style.display = 'block'
+    } else {
+        visionTarget.style.display = 'none'
+    }
+
+    if(pto === 'Yes') {
+        ptoTarget.style.display = 'block'
+    } else {
+        ptoTarget.style.display = 'none'
+    }
+
+    if(studentLoans === 'Yes') {
+        studentLoanTarget.style.display = 'block'
+    } else {
+        studentLoanTarget.style.display = 'none'
+    }
+
+    if(relocation === 'Yes') {
+        relocationTarget.style.display = 'block'
+    } else {
+        relocationTarget.style.display = 'none'
+    }
+
+
+    companyNameTarget.innerText = companyName
+    companyLogoTarget.src = '../../media/' + companyLogo
+    jobSalaryTarget.innerText = jobSalary
+    nameTarget.innerText = firstName
+    lastNameTarget.innerText = lastName
+    companyTarget.innerText = companyName
+    companyTarget2.innerText = companyName
+    payStructureTarget.innerText = payStructure
+    jobStyleTarget.innerText = jobType
+    jobHoursTarget.innerText = jobHours
+    jobHoursTarget2.innerText = jobHours
+    jobPositionTarget.innerText = jobPosition
+    jobPositionTarget2.innerText = jobPosition
+    jobPositionTarget3.innerText = jobPosition
+
+
+}
+
+function backToOffers() {
+    var jobOfferTarget = document.getElementById('offerLetter2')
+    var offersTarget = document.getElementById('offers2')
+
+    jobOfferTarget.style.display = 'none'
+    offersTarget.style.display = 'block'
+}

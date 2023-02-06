@@ -9,7 +9,9 @@
     <div class="_40-padding-container wrapper">
       <div class="decision-search">
         <h1 class="_36-bold prosperon-blue centered">What decision would you like to make?</h1>
-        <div class="searchbar"></div>
+        <div class="searchbar" style="display: flex; justify-content: center">
+            <input type="text" id="decisionSearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%; border-radius: 10px" placeholder="Search for Decision">
+        </div>
       </div>
       <div class="anytime-bank-wrapper">
         <div class="w-row">
@@ -33,7 +35,7 @@
 </div>
 <div class="_10-top _100-width">
     <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
-        <div class="add-button">
+        <div class="next-btn timeline">
             <div class="_18-poppins white">Add</div>
         </div>
     </a>
@@ -58,6 +60,29 @@
   </div>
 </body>
 
+<script>
 
+
+// search functionality for anytime decisions
+const decisionSearch =  document.getElementById('decisionSearch');
+    decisionSearch.addEventListener("keyup", (e) => {
+        let currentValue = e.target.value.toLowerCase();
+        let title = document.querySelectorAll('h1.title')
+        title.forEach(title => {
+            if (title.textContent.toLowerCase().includes(currentValue)){
+                title.parentNode.parentNode.parentNode.parentNode.parentNode.style.display = 'block'
+            } else {
+                title.parentNode.parentNode.parentNode.parentNode.parentNode.style.display = 'none'
+
+
+            }
+        })
+    })
+
+
+
+
+
+</script>
 
 {% endblock %}
