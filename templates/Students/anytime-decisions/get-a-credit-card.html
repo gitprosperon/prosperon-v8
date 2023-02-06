@@ -1,6 +1,7 @@
 {% extends 'Students/anytime-decisions/anytime_decision_step2.html' %}
 {% load static %}
 
+
 {% block anytimeTitle %}
     {{ ad.title }}
 {% endblock %}
@@ -24,7 +25,8 @@
 
                 {% for card in credit_cards %}
                 <div id="w-node-_2ffeaa9a-f26b-9e6d-abaa-f434b28d58d0-e4f669d7" class="credit-card-display-wrapper">
-                <div id="w-node-e644155f-9d67-bf7f-b00e-8606120590ad-e4f669d7" class="card-image-wrapper _50"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
+                <div id="w-node-e644155f-9d67-bf7f-b00e-8606120590ad-e4f669d7" class="card-image-wrapper _50">
+                    <img src="../../../media/{{ card.img }}" loading="lazy" height="100px" width="125px" alt="" class="image-2" style="height: 100px; width: 125px"></div>
                 <div class="card-infor-wrapper _20-padding-container _60-top" style="width: 100%">
                   <div class="_18-poppins semibold" style="font-size: 18px"><span>{{ card.title }}</span></div>
                   <div class="_14-poppins">Required Credit Score: <span>{{ card.score }}</span></div>
