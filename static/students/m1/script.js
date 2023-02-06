@@ -14,6 +14,7 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
     var imageTarget = document.getElementById('job-image')
     var jobRequirementsTarget = document.getElementById('job-requirmenets');
     var jobQualificationsTarget = document.getElementById('job-qualifications')
+    var jobDescriptionTarget = document.getElementById('job-description')
     applyButton.setAttribute('value', id)
 
     if(appliedList.includes(id)) {
@@ -33,6 +34,7 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
     imageTarget.src = '../../media/' + logo;
     jobRequirementsTarget.innerHTML = requirements;
     jobQualificationsTarget.innerHTML = qualifications;
+    jobDescriptionTarget.innerHTML = description
 
     var elements = document.getElementsByClassName('job-container')
 
