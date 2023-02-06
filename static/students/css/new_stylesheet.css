@@ -1300,6 +1300,12 @@
   font-weight: 600;
 }
 
+.results-subheader.green {
+  margin-bottom: 0px;
+  color: #0c8c0c;
+  text-align: center;
+}
+
 .fullpage-wrapper {
   display: block;
   height: 100vh;
@@ -1821,6 +1827,15 @@
 }
 
 ._14-poppins.learningobj {
+  margin-left: 10px;
+}
+
+._14-poppins.finances {
+  color: #707070;
+  text-align: center;
+}
+
+._14-poppins.financials {
   margin-left: 10px;
 }
 
@@ -3076,9 +3091,19 @@
   margin-top: 10px;
 }
 
+.div-block-144.right {
+  margin-top: 40px;
+}
+
 .div-block-145 {
   width: 15px;
   height: 15px;
+  background-color: transparent;
+}
+
+.div-block-145.blue {
+  background-color: #1f79ba;
+  color: #1f79ba;
 }
 
 .div-block-146 {
@@ -3086,6 +3111,10 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 1280px) {
