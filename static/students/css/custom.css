@@ -208,3 +208,51 @@
   line-height: 18px;
   font-weight: 400;
 }
+
+.back-arrow {
+  cursor: pointer;
+}
+
+.back-arrow:hover {
+  opacity: .4;
+}
+
+.number {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.number.current-month {
+  color: #1c2126;
+}
+
+.number.current-month.smaller-calendar {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.number.current-month.current-day {
+  border-radius: 16px;
+  background-color: #1f79ba;
+  color: #fff;
+  height: 100%;
+  margin-top: 0px;
+}
+
+.simulate-wrapper {
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+}

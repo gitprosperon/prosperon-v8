@@ -52,7 +52,7 @@
 
       <div id="left-specific-apartment" class="left-grid" style="display: none;">
           <div class="apartment-search background back">
-              <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" onclick="toggleRental()" loading="lazy" width="56" alt="" class="apartment-search-back-img"></div>
+              <img src="{% static 'images/icons/WhiteArrow.svg' %}" onclick="toggleRental()" loading="lazy" width="40" alt="" class="back-arrow"></div>
           <div class="_40-padding-container white percent-change">
             <div>
               <div>
@@ -80,7 +80,7 @@
                 </div>
               </div>
               <div class="description _10-top">
-                <h1 class="_18 semibold">About <span id="apartment-title">apartment</span></h1>
+                <h1 class="_18 semibold">About <span id="apartment-title">Apartment</span></h1>
                 <div class="_18-poppins _5-top" id="apartment-description">Description of the apartment</div>
               </div>
             </div>
@@ -126,7 +126,7 @@
                 <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
 
 
-                    <button type="submit" class="next-btn">Next</button>
+                    <button type="submit" class="next-btn" id="applyBtn" style="display: none">Apply</button>
             </form>
         </div>
         {% endif %}

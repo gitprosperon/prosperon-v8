@@ -13,6 +13,8 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
 
     var costLaterTarget = document.getElementById('effect-monthly-cost-input')
     var costNowTarget = document.getElementById('effect-cost-now-input')
+    var backBtnTarget = document.getElementById('backBtn')
+    var nextBtnTarget = document.getElementById('applyBtn')
 
     costLaterTarget.setAttribute('value', rent)
     costNowTarget.setAttribute('value', init)
@@ -35,9 +37,13 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     if(allRentalCardTarget.style.display === 'block') {
         allRentalCardTarget.style.display = 'none'
         rentalCardTarget.style.display = 'block'
+        backBtnTarget.style.display = 'none'
+        nextBtnTarget.style.display = 'flex'
     } else {
         allRentalCardTarget.style.display = 'block'
         rentalCardTarget.style.display = 'none'
+        backBtnTarget.style.display = 'flex'
+        nextBtnTarget.style.display = 'none'
 
     }
 

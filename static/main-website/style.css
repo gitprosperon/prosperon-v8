@@ -167,7 +167,8 @@
 }
 
 .image-47 {
-  width: 100px;
+  width: 150px;
+  height: 100%;
 }
 
 .uui-logo_component {
@@ -176,7 +177,7 @@
   display: -ms-flexbox;
   display: flex;
   width: auto;
-  height: 2rem;
+  height: 50px;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;

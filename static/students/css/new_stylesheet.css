@@ -279,6 +279,8 @@
   border-radius: 16px;
   background-color: #1f79ba;
   color: #fff;
+  height: 100%;
+  margin-top: 0px;
 }
 
 .number.non-current {
