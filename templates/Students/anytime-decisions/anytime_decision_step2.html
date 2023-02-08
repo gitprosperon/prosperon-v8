@@ -32,6 +32,106 @@
                 <div>
                     <canvas id="myChart"></canvas>
 
+                    <script>
+
+
+
+
+
+
+                    const ctx = document.getElementById('myChart');
+
+                      const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                          labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                          datasets: [{
+                            label: 'Net Worth with decision:',
+                            data: [1,3,2,4,5],
+                            pointRadius: 4,
+                            pointBackgroundColor: 'white',
+                            borderWidth: 1,
+                            tension: 0.5,
+                            fill: 1,
+                            backgroundColor: '#1f79ba',
+
+
+                          }, {
+                            label: 'Net Worth without decision:',
+                            data: [13,3,2,4,5],
+                            borderWidth: 0,
+                            tension: 0.5,
+                            fill: 'origin',
+                            below: 'rgb(255, 0, 0)',
+                            pointRadius: 4,
+                            pointBackgroundColor: '#fffff'
+                          }
+                          ]
+                        },
+                        options: {
+                          scales: {
+                            y: {
+                              beginAtZero: true,
+                              grid: {
+                                  display: false
+                              }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                          },
+                          plugins: {
+                            legend: {
+                              display: false
+                            }
+                          }
+                        }
+                      });
+
+
+
+                      function addDataWith(chart, label, data) {
+                        chart.data.labels.push(label);
+                        chart.data.datasets[0].data.push(data)
+                        chart.update();
+                    }
+
+                    function addDataWithout(chart, data) {
+                        chart.data.datasets[1].data.push(data)
+                        chart.update();
+                    }
+
+
+
+
+                    function removeData(chart) {
+                        chart.data.labels.pop();
+                        chart.data.datasets.forEach((dataset) => {
+                            dataset.data.pop();
+                        });
+                        chart.update();
+                    }
+
+
+
+
+
+
+                    </script>
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
 
@@ -43,7 +143,7 @@
             </div>
             <div class="_18 semibold _10-top">General Information</div>
             <div class="_20-padding-container _10-top">
-              <div class="_18-poppins"><span>*anytime decision name*</span> will cost <span>*X*</span> right now and <span>*Y*</span> every month after that. Your monthly surplus will <span>*increase/decrease*</span> by <span>*Z*</span> each month if you make this decision.</div>
+              <div class="_18-poppins">This anytime decision will cost $<span id="monthly-cost-description-target" style="font-weight: bold"></span> each year and in 5 years, this decision will affect your net worth by a total of $<span id="total-effect-on-netWorth" style="font-weight: bold"></span></div>
             </div>
 
             <form method="post">
@@ -80,85 +180,75 @@
 function createGraph() {
     console.log('create graph')
 
+    // removing previous data for chart
+    removeData(chart)
+    removeData(chart)
+    removeData(chart)
+    removeData(chart)
+    removeData(chart)
+    removeData(chart)
+
+
+    // creating variables for student numbers
     var student_income = '{{ student_income }}'
     var monthlySpending = '{{ student_total_monthly_spending }}'
+    var studentNetWorth = {{ student_current_net_worth }}
 
 
 
 
+    // retreiving values
     var monthlyCostTarget = document.getElementById('effect-monthly-cost').innerText
     var signupFeeTarget = document.getElementById('effect-initial-cost').innerText
 
+    // cleaning values
+    var newMonthlyCostTarget = monthlyCostTarget.replace(",", "")
+    var newSignupFeeTarget = signupFeeTarget.replace(",", "")
 
+    // making values numbers and converting to monthly
     monthlySpending = Number(monthlySpending)
-    student_income = Number(student_income) / 12
-    monthlyCostTarget = Number(monthlyCostTarget)
-    signupFeeTarget = Number(signupFeeTarget)
+    var monthly_student_income = Number(student_income) / 12
+    newMonthlyCostTarget = Number(newMonthlyCostTarget)
+    signupFeeTarget = Number(newSignupFeeTarget)
 
-    var totalMonthlyExpenses = monthlySpending + monthlyCostTarget
-    var yearlyNet = ((student_income - signupFeeTarget)-totalMonthlyExpenses) * 12
+    // Calculating final numbers
+    var totalMonthlyExpenses = monthlySpending - newMonthlyCostTarget
+    var yearlyNet = Number(student_income) + (totalMonthlyExpenses * 12)
+    var startingAmount = studentNetWorth - signupFeeTarget
+    var yearlyNetWithoutExpense = Number(student_income) + (monthlySpending * 12)
+
+
+    // logic for general description
+    var monthlyCostTargetDescription = document.getElementById('monthly-cost-description-target')
+    monthlyCostTargetDescription.innerText = (newMonthlyCostTarget * 12).toLocaleString("en-US");
+    var totalEffectOnNetWorth = document.getElementById('total-effect-on-netWorth')
+    totalEffectOnNetWorth.innerText = ((yearlyNetWithoutExpense * 5) - (yearlyNet * 5)).toLocaleString("en-US");
 
 
     // for handeling with
     var netIncomeList = []
-    for(let i = 1; i <= 5; i++) {
-        var num = yearlyNet * i
+    for(let i = 0; i <= 5; i++) {
+        var num = (yearlyNet * i) + startingAmount
         netIncomeList.push(num)
+        addDataWith(chart, 'year ' + i, num)
     }
+
+
 
 
     // for handeling without
-    var withoutYearlyNet = (student_income - monthlySpending) * 12
     var netIncomeListWithout = []
-    for(let i = 1; i <= 5; i++) {
-        var numb = withoutYearlyNet * i
+    for(let i = 0; i <= 5; i++) {
+        var numb = (yearlyNetWithoutExpense * i) + studentNetWorth
         netIncomeListWithout.push(numb)
+        addDataWithout(chart, numb)
+
     }
 
 
 
 
 
-
-    const ctx = document.getElementById('myChart');
-
-
-
-
-
-
-
-      const chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
-          datasets: [{
-            label: '',
-            data: netIncomeList,
-            borderWidth: 1,
-            tension: 0.5
-
-          }, {
-              label: '',
-              data: netIncomeListWithout,
-              borderWidth: 1,
-              tension: 0.5
-          }
-          ]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
-            }
-          }
-        }
-      });
 
 
 

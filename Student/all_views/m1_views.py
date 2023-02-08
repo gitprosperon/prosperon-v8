@@ -42,9 +42,19 @@ def first_job_step2(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    graduation = student_model.graduation_date.replace("(", "")
+    graduation = graduation.replace(")", "").replace("'", "").partition(",")[0].partition(" ")
+    season = graduation[0]
+    year = graduation[2]
+
+    print(graduation)
+
+
+
+
+
     jobs_applied = student_model.jobs_applied
     jobs_applied = jobs_applied.replace("'", "")
-    print()
 
     if user.is_active and user.has_university == True:
         the_jobs = []
@@ -66,7 +76,10 @@ def first_job_step2(request):
                 return redirect('/university/video/3')
 
         context = {
-            'the_jobs': the_jobs[0:3]
+            'the_jobs': the_jobs[0:3],
+            'graduation': graduation,
+            'season': season,
+            'year': year
         }
 
         return render(request, 'Students/m1-first_job/step2.html', context=context)

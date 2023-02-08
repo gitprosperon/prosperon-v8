@@ -59,6 +59,11 @@ def budgeting_step1(request):
                 currentMonthlyTransactions = student_model.monthly_transactions['monthly_transactions']
                 allTransactions = student_model.all_transactions['all_transactions']
 
+
+                total = float(student_model.total_monthly_expenses) - float(subscriptionCost)
+                student_model.total_monthly_expenses = total
+
+
                 allTransactions.append(new_packaged_transaction)
                 currentMonthlyTransactions.append(new_packaged_transaction)
 
@@ -132,6 +137,9 @@ def budgeting_step1(request):
                 # Adding subscription to new model
                 currentMonthlyTransactions = student_model.monthly_transactions['monthly_transactions']
                 allTransactions = student_model.all_transactions['all_transactions']
+
+                total = float(student_model.total_monthly_expenses) - float(random_cost)
+                student_model.total_monthly_expenses = total
 
                 allTransactions.append(new_packaged_transaction)
                 currentMonthlyTransactions.append(new_packaged_transaction)

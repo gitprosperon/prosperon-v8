@@ -7,6 +7,7 @@ app_name = "Students"
 urlpatterns = [
     # Sidebar Pages
     path('university/dashboard', views.dashboard, name='dashboard'),
+    path('university/simulate/<str:months>', views.simulate, name='simulate'),
 
     # Budgeting pages
     path('university/budget/goals', views.goals, name='goals'),

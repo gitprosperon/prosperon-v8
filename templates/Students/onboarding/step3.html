@@ -85,10 +85,20 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-
-
-
                 </div>
+                <div class="input-container">
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">When do you plan on graduating?</label><br>
+                    <select style="margin-bottom: 40px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="graduation" form="info-form" required="required">
+                        <option value="{% if graduation %}{{ graduation }}{% endif %}">{% if graduation != None %}{{ graduation.0 }}{% endif %}</option>
+                        {% for pc in graduationChoices %}
+                            {% if pc.0 != graduation %}
+                                <option value="{{ pc.0 }}">{{ pc.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+
+
+
                  <div class="input-container" style="padding-bottom: 40px">
                  <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Choose your profile Image</label><br>
                 {{ image_form }}

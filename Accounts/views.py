@@ -92,6 +92,11 @@ def register_student_account(request):
             studentUser.course_progress = 0
             studentUser.spender_type = '0'
             studentUser.all_transactions = {"all_transactions": []}
+            studentUser.total_months_completed = 0
+            studentUser.yearly_salary = 0
+            studentUser.total_monthly_expenses = 0
+            studentUser.current_net_worth = 0
+            studentUser.net_worth_monthly_list = {"net_income_monthly_list": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
             studentUser.spending_profile_monthly_payments = {"spending_profile_monthly_payments": []}
             studentUser.save()

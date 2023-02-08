@@ -166,6 +166,36 @@ class Student(models.Model):
     # 1 = planner
     # 2 = frugal
     spender_type = models.CharField(max_length=100, null=True, blank=True)
+    current_net_worth = models.IntegerField(null=True, blank=True)
+
+    GRADUATION_DATES = (
+        ('Spring 2023', 'Spring 2023'),
+        ('Fall 2023', 'Fall 2023'),
+        ('Spring 2024', 'Spring 2024'),
+        ('Fall 2024', 'Fall 2024'),
+        ('Spring 2025', 'Spring 2025'),
+        ('Fall 2025', 'Fall 2025'),
+    )
+    graduation_date = models.CharField(max_length=200, null=True, blank=True, choices=GRADUATION_DATES)
+    total_months_completed = models.IntegerField(null=True, blank=True)
+
+    MONTHS = (
+        ('1', 'January'),
+        ('2', 'February'),
+        ('3', 'March'),
+        ('4', 'April'),
+        ('5', 'May'),
+        ('6', 'June'),
+        ('7', 'July'),
+        ('8', 'August'),
+        ('9', 'September'),
+        ('10', 'October'),
+        ('11', 'November'),
+        ('12', 'december'),
+    )
+    current_month = models.CharField(max_length=200, null=True, blank=True, choices=MONTHS)
+    net_worth_monthly_list = models.JSONField(null=True, blank=True)
+    completedAnytimeDecisions = models.CharField(max_length=100000, null=True, blank=True)
 
 
 

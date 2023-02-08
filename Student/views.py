@@ -22,14 +22,13 @@ def to_int(value):
 # University Dashboard
 def dashboard(request):
     user = request.user
-    page = 'dashboard'
-
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         student_job_id = student_model.accepted_job
 
+        # Basic information
         first_name = student_model.first_name
         last_name = student_model.last_name
         profile_image = student_user.model.get_user_image(self=user)
@@ -37,14 +36,13 @@ def dashboard(request):
         jobpicked = student_model.accepted_job
         student_progress = student_model.course_progress
 
-
-
+        # Checking to see if there is a job
         if student_model.job is None:
             jobTitle = ''
         else:
             jobTitle = student_model.job.title
 
-
+        # Checking to see if there is a profile image
         if profile_image:
             pass
         else:
@@ -55,6 +53,25 @@ def dashboard(request):
         last_points = student_model.last_points_added
         anytime_dec = AnytimeDecision.objects.all()
 
+        # Filtering for anytime decisions
+        if student_model.unlocked_anytime_decisions != None:
+            # Code for cleaning unlocked anytime decision list
+            user_unlocked_anytimeDecisions = student_model.unlocked_anytime_decisions.replace("'", "")
+            user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.replace("[", "")
+            user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.replace("]", "")
+            user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.split(", ")
+            user_monthly_surplus = (student_model.yearly_salary / 12) + (student_model.total_monthly_expenses)
+            print(user_monthly_surplus)
+
+            decision_list = []
+            for i in user_unlocked_anytimeDecisions:
+                decision = AnytimeDecision.objects.get(decision_id=i)
+                decision_list.append(decision)
+        else:
+            decision_list = ''
+
+        # For passing in monthly
+        monthlyList = student_model.net_worth_monthly_list['net_income_monthly_list']
 
 
         context = {
@@ -62,19 +79,60 @@ def dashboard(request):
             'last_name': last_name,
             'profile_image': profile_image,
             'age': age,
-            'anytime_dec': anytime_dec,
+            'anytime_dec': decision_list,
             'student_path': student_path,
             'jobTitle': jobTitle,
             'location': location,
             'total_points': total_points,
             'last_points': last_points,
             'student_progress': student_progress,
-            'page': page
+            'monthlyList': monthlyList
+
         }
 
         return render(request, 'Students/dashboard.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
+
+def simulate(request, months):
+    user = request.user
+
+    # Seeing if user is active
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student = Student.objects.get(user_id_number=user_id)
+        student_current_month = student.current_month
+
+        student_net_worth = student.current_net_worth
+        student_monthlyIncome = int(student.yearly_salary / 12)
+        monthlyExpenses = student.total_monthly_expenses
+
+        net_worth_list = student.net_worth_monthly_list['net_income_monthly_list']
+
+        index = 0
+        while index < int(months):
+            print('fuck')
+            netWorth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * index)
+            print(netWorth)
+            index += 1
+            net_worth_list.append({"net_worth": f"{netWorth}"})
+
+
+
+        student.current_net_worth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * int(months))
+
+        student.save()
+
+        totalMonths = student.total_months_completed
+        total = int(months) + totalMonths
+        student.total_months_completed = total
+        student.save()
+        return redirect('/university/dashboard')
+
+
+
+    return render(request, 'Students/simulate.html')
 
 
 # Budget / Goals Page
@@ -207,9 +265,6 @@ def delete_budget(request, id):
         student_budget = BudgetItemsUniversity.objects.get(budget_id=id)
         student_budget.delete()
         return redirect('/university/budget/budget')
-
-
-
 
 
 # Budget / transactions page
@@ -493,14 +548,37 @@ def module_summaries(request, id, c):
     else:
         return render(request, 'MainWebsite/index.html')
 
+
 # all anytime decisions
 def anytime_decision_bank(request):
-    anytime_decisions = AnytimeDecision.objects.all()
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student = Student.objects.get(user_id_number=user_id)
 
-    context = {
-        "anytime_decisions": anytime_decisions
-    }
-    return render(request, 'Students/all_anytime_decisions.html', context=context)
+        # Code for cleaning unlocked anytime decision list
+        user_unlocked_anytimeDecisions = student.unlocked_anytime_decisions.replace("'", "")
+        user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.replace("[", "")
+        user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.replace("]", "")
+        user_unlocked_anytimeDecisions = user_unlocked_anytimeDecisions.split(", ")
+        user_monthly_surplus = (student.yearly_salary / 12 ) + (student.total_monthly_expenses)
+        print(user_monthly_surplus)
+
+        decision_list = []
+        for i in user_unlocked_anytimeDecisions:
+            decision = AnytimeDecision.objects.get(decision_id=i)
+            decision_list.append(decision)
+
+
+
+
+
+        context = {
+            "anytime_decisions": decision_list
+        }
+        return render(request, 'Students/all_anytime_decisions.html', context=context)
+
 
 # Specific Anytime Decision
 def anytime_decision(request, id):
@@ -527,6 +605,7 @@ def anytime_decision_step2(request, id):
 
         student_job_location = str(student.job.job_city)
         student_current_location = str(student.location)
+        student_current_net_worth = student.current_net_worth
 
 
 
@@ -642,9 +721,23 @@ def anytime_decision_step2(request, id):
             'bank_accounts': bank_accounts,
             'student': student,
             'student_job_location': student_job_location,
-            'student_current_location': student_current_location
+            'student_current_location': student_current_location,
+            'student_current_net_worth': student_current_net_worth
 
         }
         return render(request, f'Students/anytime-decisions/{html_path}', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+

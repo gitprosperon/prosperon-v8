@@ -60,12 +60,10 @@ def onboarding_step3(request):
     image_form = AddProfileImage(request.POST, request.FILES)
 
 
-
-
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
+            # Getting post data
             print(request.POST)
-            print(image_form)
             post_data = request.POST
             progress = post_data['progress']
             first_name = post_data['first-name']
@@ -77,23 +75,34 @@ def onboarding_step3(request):
             user_image = post_data['user_image']
             parents = post_data['parents']
             student_major = post_data['major']
+            student_graduation = post_data['graduation']
             student_model.first_name = first_name
             student_model.last_name = last_name
             student_model.age = age
 
+            # Updating student information
+            graduationChoices = Student.GRADUATION_DATES
+            for choice in graduationChoices:
+                if choice[0] == student_graduation:
+                    student_model.graduation_date = choice
+                else:
+                    pass
+
+            # Saving current data
             student_model.live_with_parents = parents
             student_model.location = location
             student_model.gender = gender
             student_model.ethnicity = ethnicity
-            student_model.major = Major.objects.get(major_title=student_major)
             student_model.save()
 
+            student_model.major = Major.objects.get(major_title=student_major)
             current_user_image = Account.objects.get(user_id=user_id)
             current_user_image.user_image = user_image
             current_user_image.save()
 
 
 
+            # Making changes if student progress is adiquate
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
                 student_model.save()
@@ -101,6 +110,8 @@ def onboarding_step3(request):
             else:
                 return redirect('/university/onboarding/step4')
 
+
+        # Collecting variables to push to front end
         first_name = student_model.first_name
         last_name = student_model.last_name
         age = student_model.age
@@ -109,10 +120,16 @@ def onboarding_step3(request):
         major = student_model.major
         parents = student_model.live_with_parents
         location = student_model.location
+        graduation = student_model.graduation_date
         genderChoices = Student.GENDER_CHOICES
         ethnicityChoices = Student.ETHNICITY_CHOICES
         parentsChoices = Student.YES_NO
         locationChoices = Location.objects.all()
+        graduationChoices = Student.GRADUATION_DATES
+
+
+
+
 
         context = {
             'first_name': first_name,
@@ -127,7 +144,9 @@ def onboarding_step3(request):
             'parents': parents,
             'parentsChoices': parentsChoices,
             'location': location,
+            'graduation': graduation,
             'locationChoices': locationChoices,
+            'graduationChoices': graduationChoices,
             'image_form': image_form
 
         }
