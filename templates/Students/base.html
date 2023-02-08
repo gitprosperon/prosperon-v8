@@ -146,7 +146,33 @@
         </a>
 
             <div class="calendar-container"><img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
-                <div class="date-text">*Date*</div>
+                <div class="date-text">
+                  {% if student_month == '1' %}
+                    January
+                  {% elif student_month == '2' %}
+                    February
+                  {% elif student_month == '3' %}
+                    March
+                  {% elif student_month == '4' %}
+                    April
+                  {% elif student_month == '5' %}
+                    May
+                  {% elif student_month == '6' %}
+                    June
+                  {% elif student_month == '7' %}
+                    July
+                  {% elif student_month == '8' %}
+                    August
+                  {% elif student_month == '9' %}
+                    September
+                  {% elif student_month == '10' %}
+                    October
+                  {% elif student_month == '11' %}
+                    November
+                  {% elif student_month == '11' %}
+                    December
+                  {% endif %}
+                </div>
             </div>
 
 
@@ -172,7 +198,33 @@
 
         <div class="calendar-container">
             <img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
-          <div class="date-text">*Date*</div>
+          <div class="date-text">
+              {% if student_month == '1' %}
+                January
+              {% elif student_month == '2' %}
+                February
+                {% elif student_month == '3' %}
+                March
+              {% elif student_month == '4' %}
+                April
+              {% elif student_month == '5' %}
+                May
+              {% elif student_month == '6' %}
+                June
+              {% elif student_month == '7' %}
+                July
+              {% elif student_month == '8' %}
+                August
+              {% elif student_month == '9' %}
+                September
+              {% elif student_month == '10' %}
+                October
+              {% elif student_month == '11' %}
+                November
+              {% elif student_month == '11' %}
+                December
+              {% endif %}
+          </div>
         </div>
         <div class="navbar-profile-wrapper">
 

@@ -24,6 +24,7 @@ urlpatterns = [
 
     # Universal Video Page
     path('university/video/<str:id>', views.universal_video, name='universal-video-page'),
+    path('university/video-review/<str:id>/<str:redirect_page>/<str:link_type>', views.review_video, name='video-review-page'),
 
     # Module Summary
     path('university/module_summary/<str:id>/<str:c>', views.module_summaries, name='module-summary-page'),

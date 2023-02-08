@@ -1,5 +1,3 @@
-import json
-
 from django.db import models
 from django.conf import settings
 
@@ -11,6 +9,7 @@ class Major(models.Model):
     def __str__(self):
         return self.major_title
 
+# All locations with associated apartment rent
 class Location(models.Model):
     city = models.CharField(max_length=500, null=True, blank=True)
     average_rent = models.FloatField(null=True, blank=True)
@@ -18,35 +17,30 @@ class Location(models.Model):
     def __str__(self):
         return self.city
 
-
-
+# All subscriptions
 class Subscription(models.Model):
     subscription_title = models.CharField(max_length=250, null=True, blank=True)
     subscription_cost = models.FloatField(null=True, blank=True)
     subscription_id = models.CharField(max_length=250, null=True, blank=True)
     img = models.ImageField(upload_to='subscriptionImages/', null=True, blank=True)
 
-
     def __str__(self):
         return self.subscription_title + " - " + self.subscription_id
 
+# Monthly expenses
 class MonthlyExpense(models.Model):
     monthly_expense_title = models.CharField(max_length=250, null=True, blank=True)
     img = models.ImageField(upload_to='monthlyExpenseImages/', null=True, blank=True)
-
     RANGES = [
         ("$0-100", "$0-100"),
         ("$100-200", "$100-200"),
-
+        ("200-300", "$200-300"),
+        ("300-400", "$300-400"),
     ]
-
     monthly_expense_cost = models.IntegerField(null=True, blank=True, choices=RANGES)
 
     def __str__(self):
         return self.monthly_expense_title
-
-
-
 
 #Models for get a job
 class Job(models.Model):
@@ -110,7 +104,8 @@ class Job(models.Model):
 
     major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
 
-
+class Vehicle(models.Model):
+    vehicle_title = models.CharField(max_length=400, null=True, blank=True)
 
 
 
@@ -191,11 +186,12 @@ class Student(models.Model):
         ('9', 'September'),
         ('10', 'October'),
         ('11', 'November'),
-        ('12', 'december'),
+        ('12', 'December'),
     )
     current_month = models.CharField(max_length=200, null=True, blank=True, choices=MONTHS)
+    current_year = models.CharField(max_length=100000, null=True, blank=True)
     net_worth_monthly_list = models.JSONField(null=True, blank=True)
-    completedAnytimeDecisions = models.CharField(max_length=100000, null=True, blank=True)
+    completedAnytimeDecisions = models.IntegerField(null=True, blank=True)
 
 
 

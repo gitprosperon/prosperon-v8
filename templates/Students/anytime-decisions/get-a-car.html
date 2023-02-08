@@ -1,0 +1,34 @@
+{% extends 'Students/anytime-decisions/anytime_decision_step2.html' %}
+{% load static %}
+
+{% block anytimeTitle %}
+    {{ ad.title }}
+{% endblock %}
+
+{% block anytimeD %}
+{% if id == '4' %}
+
+    <h1>Buy a Car</h1>
+
+
+{% endif %}
+{% endblock %}
+
+    {% block bottomButtons %}
+        {% if id == '4' %}
+        <div class="button-wrapper bottom-spacing">
+            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
+            <div class="back-btn" id="backBtn">
+                <div class="" id="backBtn">Back</div>
+            </div>
+            </a>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="2000">
+                <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="0">
+                <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Car Payment">
+                    <button type="submit" class="next-btn">Next</button>
+            </form>
+        </div>
+        {% endif %}
+    {% endblock %}

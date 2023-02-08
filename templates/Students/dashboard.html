@@ -201,7 +201,39 @@
                 <div class="_20-padding-container box-shadow centered-div">
                   <div class="calendar-wrapper">
                     <div class="month-year-wrapper">
-                      <div class="_24px semibold text"><span>April</span> <span>2023</span></div>
+
+                        <div class="_24px semibold text">
+                          <span>
+                          {% if student_month == '1' %}
+                            January
+                          {% elif student_month == '2' %}
+                            February
+                            {% elif student_month == '3' %}
+                            March
+                          {% elif student_month == '4' %}
+                            April
+                          {% elif student_month == '5' %}
+                            May
+                          {% elif student_month == '6' %}
+                            June
+                          {% elif student_month == '7' %}
+                            July
+                          {% elif student_month == '8' %}
+                            August
+                          {% elif student_month == '9' %}
+                            September
+                          {% elif student_month == '10' %}
+                            October
+                          {% elif student_month == '11' %}
+                            November
+                          {% elif student_month == '11' %}
+                            December
+                          {% endif %}
+                      </span>
+                      <span>{{ current_year }}</span>
+
+                      </div>
+
                     </div>
                     <div class="day-wrapper">
                       <div class="w-layout-grid grid-3">

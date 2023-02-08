@@ -35,6 +35,7 @@ def dashboard(request):
         student_path = student_model.life_path['events']
         jobpicked = student_model.accepted_job
         student_progress = student_model.course_progress
+        current_year = student_model.current_year
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -86,7 +87,9 @@ def dashboard(request):
             'total_points': total_points,
             'last_points': last_points,
             'student_progress': student_progress,
-            'monthlyList': monthlyList
+            'monthlyList': monthlyList,
+            'current_year': current_year,
+
 
         }
 
@@ -104,30 +107,43 @@ def simulate(request, months):
         student = Student.objects.get(user_id_number=user_id)
         student_current_month = student.current_month
 
+
+        # Student financial data
         student_net_worth = student.current_net_worth
         student_monthlyIncome = int(student.yearly_salary / 12)
         monthlyExpenses = student.total_monthly_expenses
-
         net_worth_list = student.net_worth_monthly_list['net_income_monthly_list']
 
+
+        # Calculating net worth at specific moment
         index = 0
         while index < int(months):
-            print('fuck')
+
             netWorth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * index)
             print(netWorth)
             index += 1
             net_worth_list.append({"net_worth": f"{netWorth}"})
 
-
-
         student.current_net_worth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * int(months))
-
         student.save()
 
+
+        # Adding to total number of months
         totalMonths = student.total_months_completed
         total = int(months) + totalMonths
         student.total_months_completed = total
+
+        # Creating current year
+        student_current_year = student.current_year
+
+        test = round(int(months) / 12)
+        student.current_year = test + int(student_current_year)
+        print(student_current_year)
         student.save()
+
+
+
+
         return redirect('/university/dashboard')
 
 
@@ -420,10 +436,13 @@ def transactions(request):
         transactions = student.all_transactions
         all_current_transactions = transactions['all_transactions']
 
+        balance = student.current_net_worth
+
         context = {
             'budget_categories': budget_categories,
             'new_current_transactions': all_current_transactions,
-            'all_budgets': all_budgets
+            'all_budgets': all_budgets,
+            'balance': balance
 
 
         }
@@ -459,6 +478,27 @@ def universal_video(request, id):
                 'video': the_video
             }
             return render(request, 'Students/uni-video.html', context=context)
+    else:
+        return render(request, 'MainWebsite/index.html')
+
+
+# Review Video Page
+def review_video(request, id, redirect_page, link_type):
+    the_video = video.objects.get(id=id)
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        print(request.POST)
+        if user.is_active:
+
+
+            context = {
+                'video': the_video,
+                'redirect_page': redirect_page,
+                'link_type': link_type
+            }
+            return render(request, 'Students/review_video.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
 
@@ -542,6 +582,7 @@ def module_summaries(request, id, c):
             'modulePoints': modulePoints,
             'total_points': total_points,
             'current_videos': current_videos,
+            "c": c
 
         }
         return render(request, 'Students/module_summary.html', context=context)
@@ -634,7 +675,7 @@ def anytime_decision_step2(request, id):
             cost_now = sent_form['cost-now']
             monthly_cost = sent_form['cost-later']
             transaction_title = sent_form['transactiontitle']
-
+            student.current_net_worth = student.current_net_worth - int(cost_now)
 
 
 

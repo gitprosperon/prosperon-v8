@@ -141,6 +141,8 @@ def budgeting_step1(request):
                 total = float(student_model.total_monthly_expenses) - float(random_cost)
                 student_model.total_monthly_expenses = total
 
+                student_model.spending_profile_monthly_payments['spending_profile_monthly_payments'].append(new_packaged_transaction)
+
                 allTransactions.append(new_packaged_transaction)
                 currentMonthlyTransactions.append(new_packaged_transaction)
 
