@@ -51,7 +51,7 @@ function removeSubscription() {
           action: "post",
           dummy: "fucker",
           transaction_id: sub_transaction_id,
-          monthly_price
+          monthly_price: price
 
         }
 

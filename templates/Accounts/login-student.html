@@ -14,8 +14,14 @@
         </div>
         <div class="signup-form">
           <div class="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form" method="get"><label for="University-6" class="form-title">Email Address</label><input type="text" class="text-field w-input" maxlength="256" name="University-4" data-name="University 4" placeholder="" id="University-4" required=""><label for="University-6" class="form-title">Password</label><input type="text" class="text-field w-input" maxlength="256" name="University-3" data-name="University 3" placeholder="" id="University-3" required="">
-              <div class="div-block-4"><input type="submit" value="Sign In" data-wait="Please wait..." class="submit-button w-button"></div>
+            <form id="email-form" name="email-form" data-name="Email Form" method="post">
+                {% csrf_token %}
+                <label for="University-6" class="form-title">Email Address</label>
+                {{ form.username }}
+                <label for="University-6" class="form-title">Password</label>
+                {{ form.password }}
+              <div class="div-block-4">
+                  <input type="submit" value="Sign In" data-wait="Please wait..." class="submit-button w-button"></div>
             </form>
             <div class="w-form-done">
               <div>Thank you! Your submission has been received!</div>

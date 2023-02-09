@@ -161,7 +161,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'Budget.context-processors.account_info',
 )
 
-
+LOGIN_REDIRECT_URL = '/university/dashboard'
 
 # Path where media is stored
 MEDIA_URL = 'media/'

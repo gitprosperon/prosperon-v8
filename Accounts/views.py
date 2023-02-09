@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
-from .forms import BudgetAccountRegistrationForm, StudentAccountRegistrationForm, AddStudentAccountForm, DtcAccountRegistrationForm
+from .forms import BudgetAccountRegistrationForm, StudentAccountRegistrationForm, AddStudentAccountForm, DtcAccountRegistrationForm, LoginUserForm
 import random
 import datetime
 from django.contrib.auth import login as djlogin
+from .models import Account
 from Student.models import Student
 from django.contrib import auth
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import LoginUserForm
+from django.contrib.auth.views import LoginView
+from .models import Account
+
 
 # Logout Page
 def logout(request):
@@ -13,8 +20,12 @@ def logout(request):
     return render(request, 'MainWebsite/index.html')
 
 # Login for student
-def login_student(request):
-    return render(request, 'Accounts/login-student.html')
+class LoginUser(LoginView):
+    template_name = 'Accounts/login-student.html'
+    form_class = LoginUserForm
+
+
+
 
 
 # Registration choice
@@ -159,6 +170,7 @@ def register_dtc_account(request):
             studentUser.total_months_completed = 0
             studentUser.yearly_salary = 0
             studentUser.total_monthly_expenses = 0
+            studentUser.investing_activated = False
             studentUser.current_net_worth = 0
             studentUser.net_worth_monthly_list = {"net_income_monthly_list": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}

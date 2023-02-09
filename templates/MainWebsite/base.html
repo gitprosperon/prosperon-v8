@@ -22,17 +22,32 @@
       <nav role="navigation" class="uui-navbar01_menu w-nav-menu">
         <div class="uui-navbar01_menu-left">
           <a href="{% url 'MainWebsitte:home_page' %}" class="uui-navbar01_link w-nav-link">Home</a>
-          <a href="#" class="uui-navbar01_link w-nav-link">Our Story</a>
-          <a href="#" class="uui-navbar01_link w-nav-link">Product</a>
+          <a href="{% url 'MainWebsitte:our-story' %}" class="uui-navbar01_link w-nav-link">Our Story</a>
+          <a href="{% url 'MainWebsitte:product' %}" class="uui-navbar01_link w-nav-link">Product</a>
           <a href="{% url 'MainWebsitte:all_blogs' %}" class="uui-navbar01_link w-nav-link">Blog</a>
         </div>
         <div class="uui-navbar01_menu-right">
           <div class="uui-navbar01_button-wrapper">
-            <a href="#" class="uui-button w-inline-block">
-              <div class="text-block-81">Pilot Program</div>
-            </a>
+            {% if user.is_active %}
+                {% if user.has_university %}
+                <a href="{% url 'Students:dashboard' %}" class="uui-button w-inline-block">
+                    <div class="text-block-81">University Dashboard</div>
+                </a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'MainWebsitte:pilot-program' %}" class="uui-button w-inline-block">
+                    <div class="text-block-81">Pilot Program</div>
+                </a>
+            {% endif %}
           </div>
-          <a href="{% url 'Accounts:registration-choice' %}" class="uui-navbar01_link left-padding w-nav-link">Sign Up</a>
+            {% if user.is_active %}
+                {% if user.has_university %}
+                    <a href="{% url 'Accounts:logout' %}" class="uui-navbar01_link left-padding w-nav-link">Logout</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'Accounts:login_student' %}" class="uui-navbar01_link left-padding w-nav-link">Sign in</a>
+            {% endif %}
+
         </div>
       </nav>
       <div class="uui-navbar01_menu-button w-nav-button">

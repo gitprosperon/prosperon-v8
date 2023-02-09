@@ -32,7 +32,8 @@
 
   <div class="blog-section subsection wf-section">
     {% for blog in all_blogs %}
-      <div class="category-wrapper">
+      <a href="{% url 'MainWebsitte:blog' blog.blog_id %}">
+        <div class="category-wrapper">
       <div class="w-layout-grid grid-32">
         <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1add-cd3972b3" class="div-block-230">
           <div>
@@ -46,6 +47,7 @@
         <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1ae6-cd3972b3" class="div-block-229"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-57 category"></div>
       </div>
     </div>
+    </a>
     {% endfor %}
 
     <div class="div-block-231">

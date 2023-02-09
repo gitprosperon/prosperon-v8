@@ -9,6 +9,18 @@ def home_page(request):
     return render(request, 'MainWebsite/index.html')
 
 
+# Our Story Page
+def our_stpry(request):
+    return render(request, 'MainWebsite/our-story.html')
+
+# Page to show product
+def product_page(request):
+    return render(request, 'MainWebsite/product.html')
+
+# Page for pilot program
+def pilot_program_page(request):
+    return render(request, 'MainWebsite/pilot-program.html')
+
 # Views for all blogs
 def all_blogs(request):
     all_blogs = BlogArticle.objects.all()
