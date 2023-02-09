@@ -84,7 +84,21 @@ def onboarding_step3(request):
             graduationChoices = Student.GRADUATION_DATES
             for choice in graduationChoices:
                 if choice[0] == student_graduation:
-                    student_model.graduation_date = choice
+                    student_model.graduation_date = choice[0]
+                    year = choice[0].partition(' ')[2]
+                    season = choice[0].partition(' ')[0]
+
+                    if season == 'Fall':
+                        student_model.current_month = '12'
+                        student_model.save()
+
+                    elif season == 'Spring':
+                        student_model.current_month = '5'
+                        student_model.save()
+
+                    student_model.current_year = year
+                    student_model.save()
+                    print('saved')
                 else:
                     pass
 

@@ -112,6 +112,7 @@ class Vehicle(models.Model):
 # Create your models here.
 class Student(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    DTC = models.BooleanField(default=False, null=True, blank=True)
     student_email = models.CharField(max_length=200, null=True, blank=True)
     user_id_number = models.CharField(max_length=250, null=True, blank=True)
     school = models.CharField(max_length=250, null=True, blank=True)
@@ -173,7 +174,6 @@ class Student(models.Model):
     )
     graduation_date = models.CharField(max_length=200, null=True, blank=True, choices=GRADUATION_DATES)
     total_months_completed = models.IntegerField(null=True, blank=True)
-
     MONTHS = (
         ('1', 'January'),
         ('2', 'February'),
@@ -192,7 +192,7 @@ class Student(models.Model):
     current_year = models.CharField(max_length=100000, null=True, blank=True)
     net_worth_monthly_list = models.JSONField(null=True, blank=True)
     completedAnytimeDecisions = models.IntegerField(null=True, blank=True)
-
+    investing_activated = models.BooleanField(null=True, blank=True)
 
 
 
@@ -233,7 +233,17 @@ class Apartment(models.Model):
     initial_cost = models.IntegerField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
-
+class Property(models.Model):
+    title = models.CharField(max_length=500, null=True, blank=True)
+    address = models.CharField(max_length=500, null=True, blank=True)
+    sqFeet = models.CharField(max_length=500, null=True, blank=True)
+    yearly_cost = models.IntegerField(null=True, blank=True)
+    general_information = models.TextField(max_length=500, null=True, blank=True)
+    bedrooms = models.CharField(max_length=500, null=True, blank=True)
+    bathrooms = models.CharField(max_length=500, null=True, blank=True)
+    img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
+    total_cost = models.IntegerField(null=True, blank=True)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
 
 # Model for all anytime Decisions

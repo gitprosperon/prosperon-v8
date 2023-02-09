@@ -9,9 +9,11 @@ urlpatterns = [
     path('university/dashboard', views.dashboard, name='dashboard'),
     path('university/simulate/<str:months>', views.simulate, name='simulate'),
 
-    # Budgeting pages
+    # ----- BUDGETING PAGES ---------- BUDGETING PAGES ---------- BUDGETING PAGES ---------- BUDGETING PAGES ---------- BUDGETING PAGES ---------- BUDGETING PAGES -----
+    path('university/budget/dashboard', views.budgetDashboard, name='budget-dashboard'),
     path('university/budget/goals', views.goals, name='goals'),
     path('university/budget/add-goals', views.add_goals, name='add-goals'),
+
 
     path('university/budget/budget', views.budget, name='budget'),
     path('university/budget/add_budget', views.add_budget, name='add-budget'),

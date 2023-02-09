@@ -3,7 +3,8 @@ import random
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
-from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount
+from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription
+from Student.models import Property
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
 from django import template
@@ -36,6 +37,8 @@ def dashboard(request):
         jobpicked = student_model.accepted_job
         student_progress = student_model.course_progress
         current_year = student_model.current_year
+        investing_activated = student_model.investing_activated
+        monthly_spending_habits = student_model.spending_profile_monthly_payments['spending_profile_monthly_payments']
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -71,8 +74,15 @@ def dashboard(request):
         else:
             decision_list = ''
 
-        # For passing in monthly
+        # For passing in monthly net income list
         monthlyList = student_model.net_worth_monthly_list['net_income_monthly_list']
+
+        # data for more information section
+        monthly_transactions = student_model.monthly_transactions['monthly_transactions']
+        subscriptions = Subscription.objects.all()
+        student_life_path = student_model.life_path['events']
+
+
 
 
         context = {
@@ -89,6 +99,11 @@ def dashboard(request):
             'student_progress': student_progress,
             'monthlyList': monthlyList,
             'current_year': current_year,
+            'monthly_transactions': monthly_transactions,
+            'subscriptions': subscriptions,
+            'student_life_path': student_life_path,
+            'investing_activated': investing_activated,
+            'monthly_spending_habits': monthly_spending_habits
 
 
         }
@@ -97,6 +112,10 @@ def dashboard(request):
     else:
         return render(request, 'MainWebsite/index.html')
 
+
+
+
+# Link to simulate time
 def simulate(request, months):
     user = request.user
 
@@ -149,6 +168,12 @@ def simulate(request, months):
 
 
     return render(request, 'Students/simulate.html')
+
+
+
+
+def budgetDashboard(request):
+    return render(request, 'Students/budget/dashboard.html')
 
 
 # Budget / Goals Page
@@ -291,6 +316,7 @@ def transactions(request):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
+        current_year = student.current_year
 
 
 
@@ -327,6 +353,7 @@ def transactions(request):
 
             for transaction in all_transactions:
                 if transaction['transaction_id'] == transaction_id:
+
                     print('they are eqyal')
                     transaction['checked'] = 'yes'
                     transaction['associated_budget'] = f"{transaction_category}"
@@ -370,61 +397,56 @@ def transactions(request):
                 budget_category.save()
 
             else:
-
-
                 print('curr tran')
-            # Running logic for either editing or creating new
-            for transact in currentTransactions:
-                print(transact)
-                if transaction_id == transact['transaction_id']:
-                    print(transact['category'][0])
 
-                    print('Now we are editing current one')
-                    transact['checked'] = 'yes'
-                    transact['associated_budget'] = f"{transaction_category}"
-                    transact['category'][0] = category1
-                    budget_category.save()
+                # Running logic for either editing or creating new
+                for transact in currentTransactions:
+                    print(transact)
+                    if transaction_id == transact['transaction_id']:
+                        print('Now we are editing current one')
 
 
-                else:
-                    print('now we are making one')
-
-
-
-                    # Packaging sent transaction
-                    new_packaged_transaction =  {
-
-                                 "date":"2017-01-29",
-                                 "name": f"{tran_title}",
-                                 "associated_budget": f"{transaction_category}",
-                                 "amount": amount,
-                                 "checked" : "yes",
-                                 "category":[
-                                    f"{category1}",
-                                    f"{category2}"
-                                 ],
-                                 "location":{
-                                    "lat":40.740352,
-                                    "lon":-74.001761,
-                                    "city":"San Francisco",
-                                    "region":"CA",
-                                    "address":"300 Post St",
-                                    "country":"US",
-                                    "postal_code":"94108",
-                                    "store_number":"1235"
-                                 },
-                                 "transaction_id": f"{transaction_id}",
-                                 "category_id":"19013000",
-
-                              }
-                    currentTransactions.append(new_packaged_transaction)
-
-                    # Checking to  see if there is a current total for the monthly spend
-                    if budget_category.current_total:
-                        budget_category.current_total = int(budget_category.current_total) + amount
+                        transact['checked'] = 'yes'
+                        transact['associated_budget'] = f"{transaction_category}"
+                        transact['category'][0] = category1
+                        budget_category.save()
                     else:
-                        budget_category.current_total = amount
-                    budget_category.save()
+                        print('New transaction to sent and packaged to budget')
+
+                        # Packaging sent transaction
+                        new_packaged_transaction =  {
+
+                                     "date":"2017-01-29",
+                                     "name": f"{tran_title}",
+                                     "associated_budget": f"{transaction_category}",
+                                     "amount": amount,
+                                     "checked" : "yes",
+                                     "category":[
+                                        f"{category1}",
+                                        f"{category2}"
+                                     ],
+                                     "location":{
+                                        "lat":40.740352,
+                                        "lon":-74.001761,
+                                        "city":"San Francisco",
+                                        "region":"CA",
+                                        "address":"300 Post St",
+                                        "country":"US",
+                                        "postal_code":"94108",
+                                        "store_number":"1235"
+                                     },
+                                     "transaction_id": f"{transaction_id}",
+                                     "category_id":"19013000",
+
+                                  }
+                        currentTransactions.append(new_packaged_transaction)
+
+                        # Checking to  see if there is a current total for the monthly spend
+                        if budget_category.current_total:
+                            budget_category.current_total = int(budget_category.current_total) + amount
+                        else:
+                            budget_category.current_total = amount
+                        budget_category.save()
 
 
 
@@ -442,7 +464,8 @@ def transactions(request):
             'budget_categories': budget_categories,
             'new_current_transactions': all_current_transactions,
             'all_budgets': all_budgets,
-            'balance': balance
+            'balance': balance,
+            'current_year': current_year
 
 
         }
@@ -512,12 +535,12 @@ def module_summaries(request, id, c):
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
+        current_year = student.current_year
 
 
+        # Getting next module
         next_module = summary.module.next_life_event['nextEvent']
-        print(next_module)
 
-        print(next_module['title'])
 
         # Defining page type for buttons on front end
         page_type = c
@@ -550,13 +573,19 @@ def module_summaries(request, id, c):
 
         # Checking to see if there are any unlocked anytime decisions
         unlocked = student.unlocked_anytime_decisions
-
         if unlocked is None:
             student.unlocked_anytime_decisions = all_unlocked_decision_ids
             student.save()
         else:
-            pass
-
+            # cleaning unlocked from database
+            unlocked = student.unlocked_anytime_decisions.replace("'", '').replace("[", "").replace("]", "").split(", ")
+            for i in all_unlocked_decision_ids:
+                if i in unlocked:
+                    pass
+                else:
+                    unlocked.append(i)
+                    student.unlocked_anytime_decisions = unlocked
+                    student.save()
 
         # appending upcoming life event to timeline
         if c == '0':
@@ -574,6 +603,10 @@ def module_summaries(request, id, c):
 
 
 
+
+
+
+
         context = {
             'summary': summary,
             'summary_title': summary_title,
@@ -582,7 +615,9 @@ def module_summaries(request, id, c):
             'modulePoints': modulePoints,
             'total_points': total_points,
             'current_videos': current_videos,
-            "c": c
+            'c': c,
+            'current_year': current_year,
+
 
         }
         return render(request, 'Students/module_summary.html', context=context)
@@ -631,6 +666,7 @@ def anytime_decision(request, id):
     return render(request, 'Students/anytime-decision.html', context=context)
 
 
+# The second step for the anytime decisions
 def anytime_decision_step2(request, id):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -641,6 +677,7 @@ def anytime_decision_step2(request, id):
         html_path = ad.step2_path
         print(html_path)
         apartments = Apartment.objects.all()
+        properties = Property.objects.all()
         credit_cards = CreditCard.objects.all()
         bank_accounts = BankAccount.objects.all()
 
@@ -670,31 +707,23 @@ def anytime_decision_step2(request, id):
 
             }
 
-
-
+            # creating variables from form
             cost_now = sent_form['cost-now']
             monthly_cost = sent_form['cost-later']
             transaction_title = sent_form['transactiontitle']
             student.current_net_worth = student.current_net_worth - int(cost_now)
 
-
-
-
+            # Cleaning and and doing logic on monthly expenses
             monthly_cost = monthly_cost.replace(',', '')
             monthly_cost = float(monthly_cost)
             print(type(monthly_cost))
             student_current_monthhly_expenses = student.total_monthly_expenses
             student.total_monthly_expenses = student_current_monthhly_expenses - monthly_cost
 
-
-
-
-
             student.save()
 
 
-
-
+            # Only running if it has a monthly cost that isn't 0
             if monthly_cost != '0':
                 transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
@@ -724,6 +753,7 @@ def anytime_decision_step2(request, id):
 
                 }
 
+                # Appending monthly transaction to monthly transaction list
                 student_montly_transactions = student.monthly_transactions['monthly_transactions']
                 student_montly_transactions.append(new_packaged_transaction)
                 student.monthly_transactions['monthly_transactions'] = student_montly_transactions
@@ -735,9 +765,6 @@ def anytime_decision_step2(request, id):
                 print(current_all_transactions)
 
                 student.save()
-
-
-
 
 
 
@@ -763,7 +790,8 @@ def anytime_decision_step2(request, id):
             'student': student,
             'student_job_location': student_job_location,
             'student_current_location': student_current_location,
-            'student_current_net_worth': student_current_net_worth
+            'student_current_net_worth': student_current_net_worth,
+            'properties': properties
 
         }
         return render(request, f'Students/anytime-decisions/{html_path}', context=context)

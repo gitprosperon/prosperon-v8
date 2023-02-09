@@ -256,3 +256,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+._20-padding-container.more-information:hover {
+   background-color: #EFEFEF;
+  cursor: pointer;
+  opacity: 80%;
+}

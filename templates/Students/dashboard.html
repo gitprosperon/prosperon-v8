@@ -153,7 +153,7 @@
         </div>
         <div class="column w-col w-col-8">
           <div class="right-column">
- <div class="section-container">
+            <div class="section-container">
               <div class="w-layout-grid grid-6" style="grid-template-columns: 1.25fr 0.25fr .75fr">
                 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30759-fe18aa3b" class="_20-padding-container centered-div">
                   <div class="profile-snapshot top" style="width: 100%">
@@ -208,7 +208,7 @@
                             January
                           {% elif student_month == '2' %}
                             February
-                            {% elif student_month == '3' %}
+                          {% elif student_month == '3' %}
                             March
                           {% elif student_month == '4' %}
                             April
@@ -420,19 +420,31 @@
 
                         <script>
 
+                            // Checking to see if investing has been activated
+                            var investing_status = '{{ investing_activated }}'
+                            var average_mutule_fund_rate;
+
+                            if (investing_status === 'True') {
+                                average_mutule_fund_rate = 1.082
+                            } else if (investing_status === 'False') {
+                                console.log('status is false ')
+                                average_mutule_fund_rate = 1
+                            }
+
                             var newList = []
                             {% for i in monthlyList %}
                                 newList.push({{i.net_worth}})
 
                             {% endfor %}
                             console.log(newList)
-
+                            var inflationRate = 1.125
 
                             var anotherList = []
 
                             for(let i = 0; i < newList.length; i++) {
                                 if(i % 12 === 0 ) {
-                                    anotherList.push(newList[i])
+                                    var final = newList[i] * inflationRate * average_mutule_fund_rate
+                                    anotherList.push(final)
                                 }
                             }
 
@@ -465,7 +477,7 @@
                                 data: anotherList,
                                 backgroundColor: '#1f79ba',
                                 borderWidth: 1,
-                                tension: 0.1,
+                                tension: 0.35,
                                 fill: 'origin',
                                 below: 'rgb(255, 0, 0)',
                                 pointRadius: 0,
@@ -507,92 +519,162 @@
 
 
 
-            <div class="section-warpper" style="display: none">
+            <div class="section-warpper" style="display: block">
               <div>
                 <h1 class="page-section-header">More Information</h1>
               </div>
               <div class="_10-top">
                 <div class="w-layout-grid grid-8">
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307d7-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Previous Devisions</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307db-fe18aa3b" alt="">
+
+
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307d7-fe18aa3b" class="_20-padding-container more-information" >
+                    <div class="horizontal" onclick="moreInformationToggle(this)">
+                      <div class="_24px normal">Previous Decisions</div>
+                        <img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307db-fe18aa3b" alt="">
                     </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307dc-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">My Career</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e7-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Previous Budgets</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307eb-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307ec-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307ef-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Previous Goals</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307f3-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307f4-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307dc-fe18aa3b" class="_10-top" style="display: none">
+                        <div class="w-layout-grid grid-7">
+                            {% for event in student_life_path %}
+                                {% if event.type == 'Anytime Decision' %}
+
+
+
+                                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="justify-content: space-between; width: 200px">
+
+
+                                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
+                                      <div class="_18" style="font-size: 18px; line-height: 22px">{{ event.title }}</div>
+                                      <div class="_14px _10-top _14">{{ event.description|slice:":90" }}...</div>
+                                    </div>
+
+
+                                  </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                   </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307f7-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Loans</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307fb-fe18aa3b" alt="">
+
+
+
+
+                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information">
+                    <div class="horizontal" onclick="moreInformationToggle(this)">
+                      <div class="_24px normal">My Subscriptions</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307fc-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307ff-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Investments</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd30803-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30804-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30807-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Taxes</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd3080b-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3080c-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3080f-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Skills &amp; Certifications</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd30813-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30814-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30817-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">My Insurance</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd3081b-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3081c-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
-                    </div>
-                  </div>
-                  <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3081f-fe18aa3b" class="_20-padding-container">
-                    <div class="horizontal">
-                      <div class="_24px normal">Real Estate</div><img src="images/Drowdown.svg" loading="lazy" id="w-node-ed09823b-3717-1360-ceaf-ff020bd30823-fe18aa3b" alt="">
-                    </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30824-fe18aa3b" class="_10-top hidden">
-                      <div class="_18px">*Prior Information*</div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
+                      <div class="_18px">
+                        <div class="w-layout-grid grid-27" >
+                          {% for transaction in monthly_transactions %}
+                              {% if transaction.category.1 == 'Subscription' %}
+                                    {% for subb in subscriptions %}
+                                        {% if transaction.name == subb.subscription_title %}
+
+
+
+                            {% csrf_token %}
+                              <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
+                                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
+                                      <img src="../../../media/{{ subb.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
+                                  </div>
+                                  <div class="company-name-2">
+                                    <h1 class="_14px-2">{{ transaction.name }}</h1>
+                                  </div>
+                                  <div class="price-range-wrapper hidden" style="display: none;">
+                                        <h1 class="_14px-2" id="subscription-cost" style="font-size: 18px">{{ transaction.amount }}</h1>
+                                        <button type="button" id="{{ transaction.transaction_id }}" class="back-btn remove-subscription" style="margin-top: 10px; color: red">Remove</button>
+                                  </div>
+                              </div>
+                                    {% endif %}
+                                {% endfor %}
+                          {% endif %}
+
+                          {% endfor %}
+                        </div>
+
+
+
+
+
+                      </div>
                     </div>
                   </div>
+
+
+
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information" >
+                    <div class="horizontal" onclick="moreInformationToggle(this)">
+                      <div class="_24px normal">My Housing</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
+                    </div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
+                      <div class="_18px">
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information" >
+                    <div class="horizontal" onclick="moreInformationToggle(this)">
+                      <div class="_24px normal">Career</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
+                    </div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
+                      <div class="_18px">
+
+
+
+
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information" >
+                    <div class="horizontal" onclick="moreInformationToggle(this)">
+                      <div class="_24px normal">My Spending Habits</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
+                    </div>
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
+                      <div class="_18px">
+                            <div class="w-layout-grid grid-27" >
+                              {% for habit in monthly_spending_habits %}
+                                {% csrf_token %}
+                                  <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
+                                      <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
+                                          <img src="../../../media/{{ habit.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
+                                      </div>
+                                      <div class="company-name-2">
+                                        <h1 class="_14px-2">{{ habit.name }}</h1>
+                                      </div>
+                                      <div class="price-range-wrapper hidden" style="display: none;">
+                                              <select class="month-ranges" style="font-size: 18px; height: 30px; width: 150px; background-color: transparent; font-family: Poppins">
+                                                <option value="" style="font-size: 18px; height: 20px; width: 150px; background-color: transparent; font-family: Poppins">Select Range</option>
+                                                  {% for range in monthly_expenses_ranges %}
+                                                    <option value="">{{ range.0 }}</option>
+                                                  {% endfor %}
+                                              </select>
+
+                                        <button type="button" id="" class="next-btn monthly" style="margin-top: 10px">Add</button>
+                                      </div>
+                                  </div>
+                              {% endfor %}
+                          </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
                 </div>
               </div>
             </div>

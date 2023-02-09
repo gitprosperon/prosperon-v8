@@ -41,7 +41,7 @@
                 November
               {% elif student_month == '11' %}
                 December
-              {% endif %}- 2022 </h1>
+              {% endif %}- {{ current_year }} </h1>
 
 
           <div class="arrow-wrapper right"><img src="images/right-arrow.svg" loading="lazy" alt="" class="arrow"></div>
@@ -173,11 +173,18 @@
 
                             <select id="transaction-category" name="transaction-category" data-name="transaction category" class="select-transaction-class" onclick="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
                                 {% if tramsactiom.associated_budget == 'none' %}
-                                 <option value="" >-SELECT-</option>
+                                 <option value="" >--{{ tramsactiom.category.0 }}--</option>
                                     {% for budget in budget_categories %}
-
-                                    <option value="{{ budget.title }}" >{{ budget.title }}</option>
-                                {% endfor %}
+                                        {% if  budget.category == tramsactiom.category.0 %}
+                                            <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <option value="" >--OTHER--</option>
+                                    {% for budget in budget_categories %}
+                                        {% if  budget.category != tramsactiom.category.0 %}
+                                            <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        {% endif %}
+                                    {% endfor %}
                                 {% else %}
                                     <option value="{{ tramsactiom.associated_budget }}" selected>{{ tramsactiom.associated_budget }}</option>
                                     {% for budget in budget_categories %}
@@ -237,6 +244,7 @@
                                 }
 
 
+                                                                     console.log('adfasdfasdfasdfasdfasdfadsf')
 
 
 

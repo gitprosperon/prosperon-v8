@@ -116,8 +116,8 @@ def budgeting_step1(request):
                     "amount": random_cost,
                     "checked": "no",
                     "category": [
-                        "Subscription",
-                        "Subscription"
+                        "Payment",
+                        "Payment"
                     ],
                     "location": {
                         "lat": 40.740352,

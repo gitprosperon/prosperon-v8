@@ -157,7 +157,7 @@
                           type: "POST",
                           url: '{% url 'Budget:budget-dashboard' %}',
                           data: {
-                              transaction_id: '{{ transaction.transaction_id }}',
+                              transaction_id: '',
                               new_category: selectedCat,
                               csrfmiddlewaretoken: "{{ csrf_token }}",
                               action: "post",

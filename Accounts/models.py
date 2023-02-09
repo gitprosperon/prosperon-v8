@@ -81,6 +81,8 @@ class Account(AbstractBaseUser):
         return self.user_id
 
     has_university = models.BooleanField(default=False)
+    demo = models.BooleanField(default=False, null=True, blank=True )
+
     has_budget = models.BooleanField(default=False)
 
     def check_if_budget(self):
