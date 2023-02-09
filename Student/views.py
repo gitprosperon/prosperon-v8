@@ -113,8 +113,6 @@ def dashboard(request):
         return render(request, 'MainWebsite/index.html')
 
 
-
-
 # Link to simulate time
 def simulate(request, months):
     user = request.user
@@ -170,8 +168,7 @@ def simulate(request, months):
     return render(request, 'Students/simulate.html')
 
 
-
-
+# Budget / Dashboard
 def budgetDashboard(request):
     return render(request, 'Students/budget/dashboard.html')
 

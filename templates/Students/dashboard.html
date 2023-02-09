@@ -572,7 +572,7 @@
                                         {% if transaction.name == subb.subscription_title %}
 
 
-
+                            <form method="post">
                             {% csrf_token %}
                               <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
                                   <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
@@ -586,6 +586,7 @@
                                         <button type="button" id="{{ transaction.transaction_id }}" class="back-btn remove-subscription" style="margin-top: 10px; color: red">Remove</button>
                                   </div>
                               </div>
+                            </form>
                                     {% endif %}
                                 {% endfor %}
                           {% endif %}
@@ -706,7 +707,10 @@ simulateBtnTarget.addEventListener('click', simulateRun)
 
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 <script src="{% static 'students/js/dashboard.js' %}" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 {% endblock %}

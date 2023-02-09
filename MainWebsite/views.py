@@ -14,7 +14,7 @@ def all_blogs(request):
     all_blogs = BlogArticle.objects.all()
 
     context = {
-        'all_blogs': all_blogs
+        'all_blogs': all_blogs[:3]
     }
     return render(request, 'MainWebsite/blog/all_blogs.html', context=context)
 

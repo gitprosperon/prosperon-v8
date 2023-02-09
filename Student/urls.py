@@ -1,6 +1,6 @@
 from django.urls import path
 from .all_views import m0_views, m1_views, m2_views
-from Student import views
+from Student import views, functions
 app_name = "Students"
 
 
@@ -13,6 +13,10 @@ urlpatterns = [
     path('university/budget/dashboard', views.budgetDashboard, name='budget-dashboard'),
     path('university/budget/goals', views.goals, name='goals'),
     path('university/budget/add-goals', views.add_goals, name='add-goals'),
+
+    path('university/budget/remove-subscription', functions.remove_subscriptions, name='remove-subscription'),
+
+
 
 
     path('university/budget/budget', views.budget, name='budget'),

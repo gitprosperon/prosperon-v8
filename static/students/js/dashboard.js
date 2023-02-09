@@ -18,7 +18,7 @@ simulateBtnTarget.addEventListener('click', simulateRun)
 
 function moreInformationToggle(a) {
     var element = a.parentElement.children[1]
-    console.log(element)
+
 
     var carrotImage = a.children[1]
 
@@ -31,14 +31,30 @@ function moreInformationToggle(a) {
     }
 }
 
-
+// for removing subscription
 function removeSubscription() {
-    console.log(this.id)
+    this.parentElement.parentElement.parentElement.style.display = 'none'
+    console.log('remove the bitch')
+    var elm = this
+    var sub_transaction_id = this.id
+    var token = this.parentElement.parentElement.parentElement.children[0].value
+    $.ajax({
+      type: "POST",
+      url: '/university/budget/remove-subscription',
+      data: {
+          csrfmiddlewaretoken: token,
+          action: "post",
+          dummy: "fucker",
+          transaction_id: sub_transaction_id,
+
+        }
+
+    })
+
 }
 
 
 const elements = document.getElementsByClassName('back-btn remove-subscription')
-
 
 for(let i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', removeSubscription)

@@ -10,6 +10,7 @@ class BlogArticle(models.Model):
     ]
     page_type = models.CharField(max_length=500, null=True, blank=True, choices=PAGETYPES)
     blog_id = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     section_1_title = models.CharField(max_length=500, null=True, blank=True)
     section_1_content = models.TextField(null=True, blank=True)
     section_2_title = models.CharField(max_length=500, null=True, blank=True)
