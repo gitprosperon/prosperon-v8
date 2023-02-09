@@ -683,7 +683,27 @@
       </div>
     </div>
   </div>
+<script>
 
+function showSimulate(){
+var simulateBtnTarget = document.getElementById('simulateBtn')
+    simulateBtnTarget.style.display = 'block'
+
+}
+
+function simulateRun() {
+    var selectIndex = this.parentElement.children[0].options.selectedIndex
+    var selectedData = this.parentElement.children[0].options[selectIndex].value
+    location.replace("/university/simulate/" + selectedData)
+
+}
+
+//
+var simulateBtnTarget = document.getElementById('simulateBtn')
+simulateBtnTarget.addEventListener('click', simulateRun)
+
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="{% static 'students/js/dashboard.js' %}" type="text/javascript"></script>
 
