@@ -26,7 +26,7 @@ def remove_subscriptions(request):
                     monthly_transactions.remove(transaction)
 
             student_model.monthly_transactions['monthly_transactions'] = monthly_transactions
-            student_model.save()
+            #student_model.save()
 
 
         return redirect('/university/dashboard')

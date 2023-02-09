@@ -35,6 +35,11 @@ function moreInformationToggle(a) {
 function removeSubscription() {
     this.parentElement.parentElement.parentElement.style.display = 'none'
     console.log('remove the bitch')
+
+    var price = this.parentElement.parentElement.children[2].children[0].innerHTML
+
+
+
     var elm = this
     var sub_transaction_id = this.id
     var token = this.parentElement.parentElement.parentElement.children[0].value
@@ -46,6 +51,7 @@ function removeSubscription() {
           action: "post",
           dummy: "fucker",
           transaction_id: sub_transaction_id,
+          monthly_price
 
         }
 
