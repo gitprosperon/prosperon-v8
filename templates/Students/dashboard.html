@@ -662,14 +662,40 @@
                     <div class="horizontal" onclick="moreInformationToggle(this)">
                       <div class="_24px normal">Career</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
-                      <div class="_18px">
 
-
-
-
-
-
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top">
+                      <div class="_18px">{{ jobpicked.title }} - {{ jobpicked.company }}</div>
+                      <div class="_18px sub" style="color: #707070"s>{{ jobpicked.company }}</div>
+                      <div class="_10-top">
+                        <div class="w-layout-grid grid-28">
+                          <div id="w-node-ca2764b5-a82a-7fea-0fde-87fbf97dfd07-fe18aa3b"><img src="../../media/{{ jobpicked.logo }}" loading="lazy" alt=""></div>
+                          <div id="w-node-a208040e-2a16-50b7-5ecf-d875a6f17c1b-fe18aa3b">
+                            <div>
+                              <div class="mycareer-oucome">
+                                <h1 class="mycareer-breakdown">Salary:</h1>
+                                <h1 class="mycareer-breakdown">${{ salary|intcomma }}</h1>
+                              </div>
+                              <div class="mycareer-oucome">
+                                <h1 class="mycareer-breakdown">Location:</h1>
+                                <h1 class="mycareer-breakdown">{{ jobpicked.location }}</h1>
+                              </div>
+                              <div class="mycareer-oucome">
+                                <h1 class="mycareer-breakdown">Hours:</h1>
+                                <h1 class="mycareer-breakdown">{{ jobpicked.job_hours }}</h1>
+                              </div>
+                              <div class="mycareer-oucome">
+                                <h1 class="mycareer-breakdown">Type:</h1>
+                                <h1 class="mycareer-breakdown">{{ jobpicked.job_type }}</h1>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="w-node-_5f2a760e-ed7a-469a-04de-81735d683412-fe18aa3b">
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Job Application</div>
+                              </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
