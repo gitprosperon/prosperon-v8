@@ -147,6 +147,9 @@ def first_job_step4(request):
                 the_jobs.append(job)
                 print('the jobs',the_jobs)
 
+                # For packaging module results
+
+
 
         # Handling Request
         if request.method == 'POST':
@@ -155,8 +158,8 @@ def first_job_step4(request):
             studentProgress = int(student_model.course_progress)
             # Only updating if course progress meets requirement
             if studentProgress == 11:
-                # Creating new module summary object
 
+                # Creating new module summary object
                 module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
                 newModule = module_summary_form.save(commit=False)
                 newModule.user = request.user
@@ -165,10 +168,12 @@ def first_job_step4(request):
                 newModule.users_id = user_id
                 newModule.save()
 
+                # Grabbing the accepted job
                 acceptedJob = request.POST['accepted-job']
                 student_model.accepted_job = acceptedJob
                 student_job = Job.objects.get(job_id=acceptedJob)
 
+                # Cleaning salary range
                 cleaned_salary = student_job.salary_range.replace('$', '')
                 cleaned_salary = cleaned_salary.replace(',', '')
                 cleaned_salary = cleaned_salary.partition('-')
@@ -177,7 +182,26 @@ def first_job_step4(request):
                 salary = random.randint(int(min), int(max))
                 student_model.yearly_salary = salary
 
+                # Packaging benefits into module results
+                company_401k = student_job.company_401k
+                health = ['health', student_job.health]
+                dental = ['dental', student_job.dental]
+                vision = ['vision', student_job.vision]
+                pto = ['paid time off', student_job.pto]
+                student_loan_assist = ['student loan assist', student_job.student_loan_assist]
+                relocation = ['relocation', student_job.relocation]
+                result_json = {"module_results": []}
 
+                benefits = [company_401k, health, dental, vision, pto, student_loan_assist, relocation]
+                for benefit in benefits:
+                    if benefit[1] == 'Yes':
+                        packaged = {"title": benefit[0]}
+                        result_json['module_results']. append(packaged)
+
+                newModule.module_results = result_json
+                newModule.save()
+
+                # Adding course progress if needed
                 student_model.course_progress = progress
                 student_model.job = student_job
                 student_model.save()

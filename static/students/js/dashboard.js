@@ -1,19 +1,3 @@
-function showSimulate(){
-var simulateBtnTarget = document.getElementById('simulateBtn')
-    simulateBtnTarget.style.display = 'block'
-
-}
-
-function simulateRun() {
-    var selectIndex = this.parentElement.children[0].options.selectedIndex
-    var selectedData = this.parentElement.children[0].options[selectIndex].value
-    location.replace("/university/simulate/" + selectedData)
-
-}
-
-//
-var simulateBtnTarget = document.getElementById('simulateBtn')
-simulateBtnTarget.addEventListener('click', simulateRun)
 
 
 function moreInformationToggle(a) {
@@ -34,12 +18,7 @@ function moreInformationToggle(a) {
 // for removing subscription
 function removeSubscription() {
     this.parentElement.parentElement.parentElement.style.display = 'none'
-    console.log('remove the bitch')
-
     var price = this.parentElement.parentElement.children[2].children[0].innerHTML
-
-
-
     var elm = this
     var sub_transaction_id = this.id
     var token = this.parentElement.parentElement.parentElement.children[0].value
@@ -52,16 +31,38 @@ function removeSubscription() {
           dummy: "fucker",
           transaction_id: sub_transaction_id,
           monthly_price: price
-
         }
-
     })
-
+}
+const elements = document.getElementsByClassName('back-btn remove-subscription')
+for(let i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', removeSubscription)
 }
 
 
-const elements = document.getElementsByClassName('back-btn remove-subscription')
+function changeSpendingHabit() {
+    console.log('change spending habit')
+    var theSelectedIndex = this.parentElement.children[1].options.selectedIndex
+    var token = this.parentElement.parentElement.children[0].children[0].value
+    var tran_id = this.id
+    if (theSelectedIndex !== 0) {
+        var selectedValue = this.parentElement.children[1].options[theSelectedIndex].value
+        $.ajax({
+          type: "POST",
+          url: '/university/budget/update_spending_habit',
+          data: {
+              csrfmiddlewaretoken: token,
+              action: "post",
+              transaction_id: tran_id,
+              new_range: selectedValue
+            }
+        })
+    } else {
+        console.log('user needs to select range')
+    }
+}
 
-for(let i = 0; i < elements.length; i++) {
-    elements[i].addEventListener('click', removeSubscription)
+const spendingHabitElements = document.getElementsByClassName('next-btn spending-habit')
+for(let i = 0; i < spendingHabitElements.length; i++) {
+    spendingHabitElements[i].addEventListener('click', changeSpendingHabit)
 }

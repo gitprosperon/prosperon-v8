@@ -7,13 +7,15 @@ def account_info(request):
     if user.is_active:
         account = Account.objects.filter(pk=request.user.pk)
         user_id = account.model.get_user_id(self=user)
-        first_name = account.model.get_first_name(self=user)
-        user_image = account.model.get_user_image(self=user)
-        student_total_monthly_spending = Student.objects.get(user_id_number=user_id).total_monthly_expenses
-        student_income = Student.objects.get(user_id_number=user_id).yearly_salary
-        student_month = Student.objects.get(user_id_number=user_id).current_month
-        student_year = Student.objects.get(user_id_number=user_id).current_year
 
+        user_image = account.model.get_user_image(self=user)
+        student = Student.objects.get(user_id_number=user_id)
+        student_total_monthly_spending = student.total_monthly_expenses
+        student_income = student.yearly_salary
+        student_month = student.current_month
+        student_year = student.current_year
+        pilot = student.pilot
+        first_name = student.first_name
 
         if student_month == '4':
             print('it is wa')
@@ -26,7 +28,8 @@ def account_info(request):
             'student_total_monthly_spending': student_total_monthly_spending,
             'student_income': student_income,
             'student_month': student_month,
-            'student_year': student_year
+            'student_year': student_year,
+            'pilot': pilot
         }
 
     else:

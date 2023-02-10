@@ -15,14 +15,11 @@ urlpatterns = [
     path('university/budget/add-goals', views.add_goals, name='add-goals'),
 
     path('university/budget/remove-subscription', functions.remove_subscriptions, name='remove-subscription'),
-
-
-
+    path('university/budget/update_spending_habit', functions.update_spending_habit, name='update-spending-habit'),
 
     path('university/budget/budget', views.budget, name='budget'),
     path('university/budget/add_budget', views.add_budget, name='add-budget'),
     path('university/budget/delete/<str:id>', views.delete_budget, name='delete-budget'),
-
     path('university/budget/view_budget/<str:id>', views.view_budget, name='view-budget'),
 
     path('university/budget/transactions', views.transactions, name='transactions'),
@@ -55,6 +52,8 @@ urlpatterns = [
 
     #Goals Urls
 
+    # Pilot Specific pages
+    path('university/pilot-survey', views.pilot_survey, name='pilot-survey'),
 
 ]
 

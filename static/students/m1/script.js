@@ -18,7 +18,6 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
     var jobQualificationsTarget = document.getElementById('job-qualifications')
     var jobDescriptionTarget = document.getElementById('job-description')
     applyButton.setAttribute('value', id)
-
     if(appliedList.includes(id)) {
         applyButton.innerText = 'Applied';
         applyButton.style.backgroundColor = 'green'
@@ -26,7 +25,6 @@ function changeJob(title, company, location, type, hours, salary, id, logo, requ
         applyButton.innerText = 'Apply';
         applyButton.style.backgroundColor = '#1f79ba'
     }
-
     jobTitleTarget.innerText = title;
     jobCompanyTarget.innerText = company;
     jobLocationTarget.innerHTML = location;
@@ -55,11 +53,11 @@ function changeToApplied(a) {
     var appliedTarget = document.getElementById('jobs-applied');
     var getAJobContaonerTarget = document.getElementById('get-a-job-container')
     if(appliedList.includes(button.value)) {
-        console.log('yes')
     } else {
         appliedList.push(button.value);
-        console.log('no')
-
+        var applied_num = document.getElementById('num-applied')
+        var final_num = appliedList.length
+        applied_num.innerText = final_num
     }
     button.innerText = 'Applied';
     button.style.backgroundColor = 'green';
@@ -71,7 +69,6 @@ function changeToApplied(a) {
         alert.style.display = 'flex'
         getAJobContaonerTarget.style.display = 'none'
     }
-
 }
 
 

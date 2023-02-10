@@ -1,26 +1,30 @@
 {% extends 'Students/base.html' %}
 {% load static %}
-
+{% load humanize %}
 
 {% block content %}
+
+    {{ j }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="full-page-wrapper">
     <div class="section-container">
       <div class="page-title-blue">
         <h1 class="heading-4">Dashboard</h1>
-        <div class="simulate-wrapper">
+        {% if student_progress < 17 %}
 
-            <select  onchange="showSimulate()" style="padding-left: 10px; padding-right: 10px; border-radius: 5px; margin-bottom: 0px; width: 150px; height: 30px; font-size: 14px; color: #1c2126; font-family: Poppins; font-weight: 500; cursor: pointer" id="cars" class="text-field" name="location" form="info-form">
-                        <option value="">Simulate</option>
-                        <option value="1" id="oneMonth">1 Month</option>
-                        <option value="6" id="sixMonths">6 Months</option>
-                        <option value="12" id="oneYear">1 Year</option>
-                        <option value="24" id="oneYear">2 Years</option>
-                        <option value="60" id="fiveYears">5 Years</option>
-        </select>
-
-            <button type="submit" class="back-btn" id="simulateBtn" style="display: none; height: 30px; padding: 0px; width: 100px; font-size: 14px; margin-left: 10px">Simulate</button>
-        </div>
+        {% else %}
+          <div class="simulate-wrapper">
+            <select onchange="showSimulate()" style="padding-left: 10px; padding-right: 10px; border-radius: 5px; margin-bottom: 0px; width: 150px; height: 30px; font-size: 14px; color: #1c2126; font-family: Poppins; font-weight: 500; cursor: pointer" id="cars" class="text-field" name="location" form="info-form">
+                <option value="">Simulate</option>
+                <option value="1" id="oneMonth">1 Month</option>
+                <option value="6" id="sixMonths">6 Months</option>
+                <option value="12" id="oneYear">1 Year</option>
+                <option value="24" id="oneYear">2 Years</option>
+                <option value="60" id="fiveYears">5 Years</option>
+             </select>
+             <button type="submit" class="back-btn" id="simulateBtn" style="display: none; height: 30px; padding: 0px; width: 100px; font-size: 14px; margin-left: 10px">Simulate</button>
+            </div>
+        {% endif %}
       </div>
     </div>
     <div class="page-divider-container">
@@ -61,7 +65,37 @@
                         </a>
 
 
-                        {% endif %}
+                    {% endif %}
+                    {% if event.title == 'Goals' and pilot == True %}
+
+
+
+                        <div class="w-layout-grid timeline-grid">
+                          <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
+                            <div class="timeline-line"></div><img src="{% static 'images/icons/uncomplete-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
+                            <div class="timeline-line bottom" style="background-color: #B2D8FF"></div>
+                          </div>
+                          <div id="w-node-fe83bceb-a5f7-9da2-db5b-f0eac4a3eefd-fe18aa3b" class="timeline-grid-right">
+                            <div class="w-row">
+                              <div class="column-7 w-col w-col-2">
+                                <div class="div-block-140"></div>
+                              </div>
+
+                                <div class="w-col w-col-10">
+                                <div class="right-timeline-card"><img src="{% static 'students/images/task-completed-text-written-notebook-keyboard-chart-glasses-task-completed-text-written-notebook-keyboard-224371289.jpg' %}" loading="lazy" class="image-5">
+                                  <div class="_18 medium text lifeevent-title">Complete Pilot</div>
+                                  <div class="_14px _10-top _14">Thanks so much for trying out ProsperOn! We hope you enjoyed!</div>
+                                     <a href="{% url 'Students:pilot-survey' %}" style="text-decoration: none">
+                                    <div class="next-btn timeline">
+                                      <div class="_18-poppins white">Complete Survey</div>
+                                  </div>
+                                     </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% else %}
                         <div class="w-layout-grid timeline-grid">
                           <div id="w-node-_63dec499-8f66-84f5-daf0-21c467f699f8-fe18aa3b" class="timeline-left-col">
                             <div class="timeline-line"></div><img src="{% static 'images/icons/uncomplete-Event-icon.jpg' %}" loading="lazy" width="54" alt="" class="image-4">
@@ -89,6 +123,9 @@
                         </div>
 
 
+
+
+                    {% endif %}
 
                 {% elif event.status == 'completed' %}
 
@@ -184,7 +221,7 @@
                       <div class="centered-div _10-padding" style="justify-content: start; padding: 10px">
                         <div class="_40-width-picture" style="width: 25px; height: 25px"><img src="{% static 'images/icons/living-icon.png' %}" loading="lazy" alt="" class="_40x40" style="width: 25px; height: 25px"></div>
                         <div class="_14px normal _10-top">
-                          <div class="_14px normal center">Move Out!</div>
+                          <div class="_14px normal center">{{ living_situation }}</div>
                         </div>
                       </div>
                     </div>
@@ -635,6 +672,8 @@
 
                       </div>
                     </div>
+
+
                   </div>
 
 
@@ -646,9 +685,10 @@
                       <div class="_18px">
                             <div class="w-layout-grid grid-27" >
                               {% for habit in monthly_spending_habits %}
-                                {% csrf_token %}
                                   <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
                                       <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
+                                          {% csrf_token %}
+
                                           <img src="../../../media/{{ habit.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
                                       </div>
                                       <div class="company-name-2">
@@ -658,18 +698,15 @@
                                           <label for="month-ranges" >Simulate</label>
                                           <select class="month-ranges" id="month-ranges" style="font-size: 18px; height: 30px; width: 150px; background-color: transparent; font-family: Poppins">
                                                 <option value="" style="font-size: 18px; height: 20px; width: 150px; background-color: transparent; font-family: Poppins">Select Range</option>
-                                                  {% for range in monthly_expenses_ranges %}
-                                                    <option value="">{{ range.0 }}</option>
-                                                  {% endfor %}
-                                              </select>
-
-                                        <button type="button" id="" class="next-btn monthly" style="margin-top: 10px">Add</button>
+                                                {% for range in spending_profile_ranges %}
+                                                <option value="{{ range.0 }}">{{ range.0 }}</option>
+                                                {% endfor %}
+                                          </select>
+                                        <button type="button" id="{{ habit.transaction_id }}" class="next-btn spending-habit" style="margin-top: 10px">Add</button>
                                       </div>
                                   </div>
                               {% endfor %}
                           </div>
-
-
                       </div>
                     </div>
                   </div>
@@ -688,6 +725,7 @@
   </div>
 <script>
 
+{% if student_progress > 17 %}
 function showSimulate(){
 var simulateBtnTarget = document.getElementById('simulateBtn')
     simulateBtnTarget.style.display = 'block'
@@ -704,6 +742,9 @@ function simulateRun() {
 //
 var simulateBtnTarget = document.getElementById('simulateBtn')
 simulateBtnTarget.addEventListener('click', simulateRun)
+
+{% endif %}
+
 
 
 </script>

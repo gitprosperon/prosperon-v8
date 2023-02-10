@@ -3,7 +3,7 @@ import random
 from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
-from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription
+from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription, MonthlyExpense
 from Student.models import Property
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
@@ -35,10 +35,12 @@ def dashboard(request):
         profile_image = student_user.model.get_user_image(self=user)
         student_path = student_model.life_path['events']
         jobpicked = student_model.accepted_job
-        student_progress = student_model.course_progress
+        student_progress = int(student_model.course_progress)
         current_year = student_model.current_year
         investing_activated = student_model.investing_activated
         monthly_spending_habits = student_model.spending_profile_monthly_payments['spending_profile_monthly_payments']
+        spending_profile_ranges = MonthlyExpense.RANGES
+        living_situation = student_model.living_situation
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -82,7 +84,8 @@ def dashboard(request):
         subscriptions = Subscription.objects.all()
         student_life_path = student_model.life_path['events']
 
-
+        job = Job.objects.get(job_id=jobpicked)
+        salary = student_model.yearly_salary
 
 
         context = {
@@ -103,7 +106,12 @@ def dashboard(request):
             'subscriptions': subscriptions,
             'student_life_path': student_life_path,
             'investing_activated': investing_activated,
-            'monthly_spending_habits': monthly_spending_habits
+            'monthly_spending_habits': monthly_spending_habits,
+            'spending_profile_ranges': spending_profile_ranges,
+            'living_situation': living_situation,
+            'jobpicked': job,
+            'salary': salary
+
 
 
         }
@@ -533,11 +541,10 @@ def module_summaries(request, id, c):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         current_year = student.current_year
-
+        module_results = summary.module_results
 
         # Getting next module
         next_module = summary.module.next_life_event['nextEvent']
-
 
         # Defining page type for buttons on front end
         page_type = c
@@ -614,6 +621,7 @@ def module_summaries(request, id, c):
             'current_videos': current_videos,
             'c': c,
             'current_year': current_year,
+            'module_results': module_results['module_results']
 
 
         }
@@ -701,8 +709,14 @@ def anytime_decision_step2(request, id):
                 "title": f"{ad.title}",
                 "type": "Anytime Decision",
                 "description": f"{ad.description}",
-
             }
+
+            # Checking to see if decision has to do with location
+            if ad.title == "Move Out":
+                print('it is equal to move out')
+            if ad.title == "Buy a Property":
+                print('it is own')
+
 
             # creating variables from form
             cost_now = sent_form['cost-now']
@@ -710,7 +724,9 @@ def anytime_decision_step2(request, id):
             transaction_title = sent_form['transactiontitle']
             student.current_net_worth = student.current_net_worth - int(cost_now)
 
-            # Cleaning and and doing logic on monthly expenses
+            #
+
+            # Cleaning and doing logic on monthly expenses
             monthly_cost = monthly_cost.replace(',', '')
             monthly_cost = float(monthly_cost)
             print(type(monthly_cost))
@@ -796,6 +812,9 @@ def anytime_decision_step2(request, id):
         return render(request, 'MainWebsite/index.html')
 
 
+# Pilot survey qualtrix page
+def pilot_survey(request):
+    return render(request, 'Students/pilot_survey.html')
 
 
 

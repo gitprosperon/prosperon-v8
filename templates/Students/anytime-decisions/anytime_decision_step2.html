@@ -58,7 +58,7 @@
 
                           }, {
                             label: 'Net Worth without decision:',
-                            data: [13,3,2,4,5],
+                            data: [1,3,2,4,5],
                             borderWidth: 0,
                             tension: 0.5,
                             fill: 'origin',
@@ -222,7 +222,7 @@ function createGraph() {
     var monthlyCostTargetDescription = document.getElementById('monthly-cost-description-target')
     monthlyCostTargetDescription.innerText = (newMonthlyCostTarget * 12).toLocaleString("en-US");
     var totalEffectOnNetWorth = document.getElementById('total-effect-on-netWorth')
-    totalEffectOnNetWorth.innerText = ((yearlyNetWithoutExpense * 5) - (yearlyNet * 5)).toLocaleString("en-US");
+    totalEffectOnNetWorth.innerText = ((yearlyNetWithoutExpense * 5) - (yearlyNet * 5) + signupFeeTarget).toLocaleString("en-US");
 
 
     // for handeling with

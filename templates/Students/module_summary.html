@@ -224,16 +224,17 @@
 
               </div>
               <div id="w-node-_8d2a2f93-eb9e-3633-3e1b-91187eb2282a-962fd150" class="_20-padding-container _100">
-                <h1 class="impact-header">Module Results</h1>
-                <h1 class="results-subheader green">+ $3289.34</h1>
-                <div class="_14-poppins finances">Monthly Salary</div>
-                <div class="financial-break">
-                  <div class="div-block-144 right">
-                    <div class="div-block-146">
-                      <div class="div-block-145 blue"></div>
-                      <div class="_14-poppins financials">401(k) benefits</div>
-                    </div>
-                  </div>
+                <h1 class="impact-header" style="font-size: 24px; line-height: 24px">Module Results</h1>
+
+                <div class="results-subheader" style="padding-top: 10px">
+
+                    {% for result in module_results %}
+                        <div class="benefits-mycareer">
+                            <div class="div-block-145 blue"></div>
+                            <div class="_14-poppins">{{ result.title }}</div>
+                        </div>
+                    {% endfor %}
+
                 </div>
               </div>
               <div id="w-node-_58acb94a-0ad7-7d90-10e6-2c0303aeb53c-962fd150" class="_20-padding-container _100 centered-div">

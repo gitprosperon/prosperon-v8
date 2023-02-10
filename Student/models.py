@@ -97,12 +97,13 @@ class Job(models.Model):
     pto = models.CharField(max_length=100, null=True, choices=YES_NO, blank=True)
     student_loan_assist = models.CharField(max_length=100, null=True, choices=YES_NO, blank=True)
     relocation = models.CharField(max_length=100, null=True, choices=YES_NO, blank=True)
-
     company_requirements = models.TextField(max_length=10000, null=True, blank=True)
     company_qualifications = models.TextField(max_length=10000, null=True, blank=True)
     company_description = models.TextField(max_length=10000, null=True, blank=True)
-
     major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.job_id + ' - ' + self.title
 
 class Vehicle(models.Model):
     vehicle_title = models.CharField(max_length=400, null=True, blank=True)
@@ -114,19 +115,20 @@ class Student(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     DTC = models.BooleanField(default=False, null=True, blank=True)
     student_email = models.CharField(max_length=200, null=True, blank=True)
+    pilot = models.BooleanField(null=True, blank=True)
     user_id_number = models.CharField(max_length=250, null=True, blank=True)
     school = models.CharField(max_length=250, null=True, blank=True)
     class_code = models.CharField(max_length=250, null=True, blank=True)
     course_progress = models.CharField(max_length=200, null=True, blank=True)
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
-    age = models.CharField(max_length=20, null=True, blank=True)
+    age = models.CharField(max_length=200, null=True, blank=True)
     YES_NO = [
-        ("Yes", "Yes"),
-        ("No", "No"),
-
+        ("I Live With My Parents", "I Live With My Parents"),
+        ("I Rent", "I Rent"),
+        ("I own", "I own"),
     ]
-    live_with_parents = models.CharField(max_length=20, choices=YES_NO, null=True, blank=True)
+    living_situation = models.CharField(max_length=2000, choices=YES_NO, null=True, blank=True)
     location = models.CharField(max_length=20, null=True, blank=True)
 
     GENDER_CHOICES = (
@@ -337,8 +339,7 @@ class UniversityModule(models.Model):
     unlocked_decisions = models.CharField(max_length=50000, null=True, blank=True)
     points = models.IntegerField(null=True, blank=True)
     videos = models.JSONField(null=True, blank=True)
-
-
+    module_results = models.JSONField(null=True, blank=True)
 
 
     def __str__(self):
@@ -354,6 +355,8 @@ class ModuleSummarie(models.Model):
     what_happened = models.CharField(max_length=500, null=True, blank=True)
     unlocked_decisions = models.CharField(max_length=5000, null=True, blank=True)
     points_earned = models.CharField(max_length=500, null=True, blank=True)
+    module_results = models.JSONField(null=True, blank=True)
+
 
     def __str__(self):
         return self.users_id + ' - ' + self.module_url

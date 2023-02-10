@@ -103,7 +103,7 @@ def onboarding_step3(request):
                     pass
 
             # Saving current data
-            student_model.live_with_parents = parents
+            student_model.living_situation = parents
             student_model.location = location
             student_model.gender = gender
             student_model.ethnicity = ethnicity
@@ -132,7 +132,7 @@ def onboarding_step3(request):
         gender = student_model.gender
         ethnicity = student_model.ethnicity
         major = student_model.major
-        parents = student_model.live_with_parents
+        parents = student_model.living_situation
         location = student_model.location
         graduation = student_model.graduation_date
         genderChoices = Student.GENDER_CHOICES

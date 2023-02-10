@@ -65,7 +65,7 @@
                     </select>
                 </div>
                  <div class="input-container">
-                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Do you still live with your parents?</label><br>
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">What is your current living situation?</label><br>
                       <select style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="parents" form="info-form">
                         <option value="{% if parents %}{{ parents }}{% endif %}">{% if parents %}{{ parents }}{% endif %}</option>
                         {% for pc in parentsChoices %}
@@ -100,7 +100,7 @@
 
 
 
-                 <div class="input-container" style="padding-bottom: 40px">
+                 <div class="input-container" style="padding-bottom: 40px; display: none">
                  <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Choose your profile Image</label><br>
                 {{ image_form }}
 
