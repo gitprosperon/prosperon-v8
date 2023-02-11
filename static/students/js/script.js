@@ -151,42 +151,47 @@ function spender_profile_toggle(a){
         document.getElementById(conatinerList[spendingProfileIndex].id).style.display = 'block'
     }
 
-    console.log(spendingProfileIndex)
-    var nextButtonToggle = document.getElementById('next-btn-toggle');
+    // Next Buttons
+    var nextButtonToggle = document.getElementById('lycher-scale-next');
     var NextButtonWithLink = document.getElementById('next-btn');
+    var ButtonToggle = document.getElementById('next-btn-toggle')
 
 
+    // back buttons
+    var lycherScaleBackButton = document.getElementById('lycher-scale-back')
     var backButtonToggle = document.getElementById('toggle-back-button')
     var backButtonWithLink = document.getElementById('back-button-with-link')
 
+    var spenderProfile_progress = document.getElementById('spender-profile-step-progress').innerText
+    console.log('test', spenderProfile_progress.innerText)
+
+
+
 
     if(spendingProfileIndex === 0) {
+
         console.log('equal to 0')
         backButtonToggle.style.display = 'none'
-        backButtonWithLink.style.display = 'flex'
+        lycherScaleBackButton.style.display = 'flex'
+        NextButtonWithLink.style.display = 'none'
+        nextButtonToggle.style.display = 'none';
 
-        var radioButtons = document.getElementsByClassName('w-form-formradioinput w-radio-input')
 
-        // checking to see how many radio buttons are checked
-        var numChecked = 0
-        for(let i = 0; radioButtons.length; i++) {
-            if (radioButtons[i].checked === true) {
-                numChecked += 1
-                console.log('it is checked')
-            }
-        }
     }
     if(spendingProfileIndex === 1) {
         backButtonToggle.style.display = 'flex'
         backButtonWithLink.style.display = 'none'
+        lycherScaleBackButton.style.display = 'none'
+        NextButtonWithLink.style.display = 'none'
+        nextButtonToggle.style.display = 'none';
+
     }
     if(spendingProfileIndex === 2) {
         nextButtonToggle.style.display = 'none';
         NextButtonWithLink.style.display = 'flex';
-    } else {
-        nextButtonToggle.style.display = 'flex';
-        NextButtonWithLink.style.display = 'none';
+        ButtonToggle.style.display = 'none'
     }
+
 }
 
 
@@ -202,6 +207,8 @@ function toggleLycterScale(a) {
     var lycterScaleNextBtn = document.getElementById('lycher-scale-next')
     var step_progress_target = document.getElementById('spender-profile-step-progress')
     var backButtonWithLink = document.getElementById('back-button-with-link')
+    var ButtonToggle = document.getElementById('next-btn-toggle')
+
 
     if(a.innerHTML === 'Next') {
         LycterScalesIndex += 1
@@ -233,9 +240,12 @@ function toggleLycterScale(a) {
     }
     if(LycterScalesIndex === 1) {
         lucterScaleBackBtn.style.display = 'block'
+        ButtonToggle.style.display = 'none'
     }
     if(LycterScalesIndex === 2) {
         lycterScaleNextBtn.style.display = 'none'
+        ButtonToggle.style.display = 'none'
+
     } else {
         lycterScaleNextBtn.style.display = 'block'
     }

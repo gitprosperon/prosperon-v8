@@ -607,33 +607,26 @@
                               {% if transaction.category.1 == 'Subscription' %}
                                     {% for subb in subscriptions %}
                                         {% if transaction.name == subb.subscription_title %}
-
-
-                            <form method="post">
-                            {% csrf_token %}
-                              <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
-                                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
-                                      <img src="../../../media/{{ subb.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
-                                  </div>
-                                  <div class="company-name-2">
-                                    <h1 class="_14px-2">{{ transaction.name }}</h1>
-                                  </div>
-                                  <div class="price-range-wrapper hidden" style="display: none;">
-                                        <h1 class="_14px-2" id="subscription-cost" style="font-size: 18px">{{ transaction.amount }}</h1>
-                                        <button type="button" id="{{ transaction.transaction_id }}" class="back-btn remove-subscription" style="margin-top: 10px; color: red">Remove</button>
-                                  </div>
-                              </div>
-                            </form>
-                                    {% endif %}
-                                {% endfor %}
-                          {% endif %}
-
+                                            <form method="post">
+                                            {% csrf_token %}
+                                              <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card">
+                                                  <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
+                                                        <img src="../../../media/{{ subb.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
+                                                  </div>
+                                                  <div class="company-name-2">
+                                                        <h1 class="_14px-2">{{ transaction.name }}</h1>
+                                                  </div>
+                                                  <div class="price-range-wrapper hidden" style="display: none;">
+                                                        <h1 class="_14px-2" id="subscription-cost" style="font-size: 18px">{{ transaction.amount }}</h1>
+                                                        <button type="button" id="{{ transaction.transaction_id }}" class="back-btn remove-subscription" style="margin-top: 10px; color: red">Remove</button>
+                                                  </div>
+                                              </div>
+                                            </form>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
                           {% endfor %}
                         </div>
-
-
-
-
 
                       </div>
                     </div>
@@ -650,9 +643,6 @@
 
 
 
-
-
-
                       </div>
                     </div>
                   </div>
@@ -663,7 +653,7 @@
                       <div class="_24px normal">Career</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>
 
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top">
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
                       <div class="_18px">{{ jobpicked.title }} - {{ jobpicked.company }}</div>
                       <div class="_18px sub" style="color: #707070"s>{{ jobpicked.company }}</div>
                       <div class="_10-top">
@@ -692,7 +682,27 @@
                           <div id="w-node-_5f2a760e-ed7a-469a-04de-81735d683412-fe18aa3b">
                               <div class="benefits-mycareer">
                                   <div class="div-block-145 blue"></div>
-                                  <div class="_14-poppins">Job Application</div>
+                                  <div class="_14-poppins">Company 401k: {{ jobpicked.company_401k }}</div>
+                              </div>
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Health Insurance: {{ jobpicked.health }}</div>
+                              </div>
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Dental Insurance: {{ jobpicked.dental }}</div>
+                              </div>
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Vision Insurance: {{ jobpicked.vision }}</div>
+                              </div>
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Payed Time Off: {{ jobpicked.pto }}</div>
+                              </div>
+                              <div class="benefits-mycareer">
+                                  <div class="div-block-145 blue"></div>
+                                  <div class="_14-poppins">Relocation: {{ jobpicked.relocation }}</div>
                               </div>
                           </div>
                         </div>
@@ -703,7 +713,7 @@
                   </div>
 
 
-                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information" >
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307df-fe18aa3b" class="_20-padding-container more-information" style="overflow: scroll">
                     <div class="horizontal" onclick="moreInformationToggle(this)">
                       <div class="_24px normal">My Spending Habits</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>

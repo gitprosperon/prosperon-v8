@@ -179,19 +179,36 @@ def budgeting_step2(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    spender_category = student_model.spender_type
+
+
+
 
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             progress = request.POST['progress']
 
             if student_model.course_progress < progress:
+
+                if spender_category == '0':
+                    spender_type = 'Spender'
+                elif spender_category == '1':
+                    spender_type = 'Planner'
+                elif spender_category == '2':
+                    spender_type = 'Frugal'
+                else:
+                    spender_type = ''
+
                 module_summary_form = NewModuleSummaryForm(request.POST, request.FILES)
                 newModule = module_summary_form.save(commit=False)
                 newModule.user = request.user
                 newModule.module_url = 'budgeting'
                 newModule.module = UniversityModule.objects.get(module_title='Budgeting')
                 newModule.users_id = user_id
+                packaged = {"module_results":  [{"title":  "Budgeting Unlocked"}, {"title":  "Simulation Unlocked"}, {"title": f"You are a {spender_type}"}]}
+                newModule.module_results = packaged
                 newModule.save()
+                print('sent234')
 
 
 

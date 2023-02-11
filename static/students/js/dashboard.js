@@ -6,11 +6,11 @@ function moreInformationToggle(a) {
 
     var carrotImage = a.children[1]
 
-    if(element.style.display === 'flex') {
+    if(element.style.display === 'block') {
         element.style.display = 'none'
         carrotImage.style.transform = 'rotate(0deg)'
     } else if (element.style.display === 'none') {
-        element.style.display = 'flex'
+        element.style.display = 'block'
         carrotImage.style.transform = 'rotate(90deg)'
     }
 }

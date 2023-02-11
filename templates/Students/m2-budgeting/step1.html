@@ -615,10 +615,7 @@
     </div>
 
 
-    <div class="" style="display: flex; padding-bottom: 60px">
-        <button class="back-btn" type="submit" id="lycher-scale-back" style="font-weight: 600;display: none; margin-right: 40px" onclick="toggleLycterScale(this)">Back</button>
-        <button type="submit" class="next-btn" id="lycher-scale-next" style="font-weight: 600" onclick="toggleLycterScale(this)">Next</button>
-    </div>
+
 
 
 
@@ -695,12 +692,20 @@
 
 
 
+
+
+
+
+
+
+
+
              <button type="button" class="back-btn" style="font-weight: 600; display: none;" onclick="spender_profile_toggle(this)" id="toggle-back-button">Back</button>
              <a href="{% url 'Students:universal-video-page' '5' %}" class="back-btn" style="font-weight: 600" id="back-button-with-link">Back</a>
-
+            <button class="back-btn" type="button" id="lycher-scale-back" style="font-weight: 600;display: none; margin-right: 40px" onclick="toggleLycterScale(this)">Back</button>
 
              <button type="button" class="next-btn" style="font-weight: 600; display: none" onclick="spender_profile_toggle(this)" id="next-btn-toggle">Next</button>
-
+            <button type="button" class="next-btn" id="lycher-scale-next" style="font-weight: 600" onclick="toggleLycterScale(this)">Next</button>
              <button type="submit" class="next-btn" style="font-weight: 600;display: none" id="next-btn">Next</button>
         </div>
 
@@ -714,14 +719,33 @@
 // LOGIC FOR GETTING REQUIRED SUBSCRIPTIONS
 var radioButtons = document.getElementsByClassName('w-form-formradioinput w-radio-input')
 var nextButtonToggle = document.getElementById('next-btn-toggle');
+var lycer_scale_back = document.getElementById('lycher-scale-back')
+
+
+for (let i = 0; i < radioButtons.length; i++) {
+    console.log(radioButtons[i].checked)
+}
+
+
+
+
+
+
+
 
 var numChecked = 0
 for(var i = 0; i < radioButtons.length; i++) {
     radioButtons[i].onclick = function() {
         numChecked += 1
-        if(numChecked === 15) {
-            console.log('it is completed')
+        var actuallyChecked = 0
+        for(var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked === true) {
+                actuallyChecked += 1
+            }
+        }
+        if (actuallyChecked === 15) {
             nextButtonToggle.style.display = 'block'
+
         }
     }
 }

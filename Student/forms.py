@@ -28,7 +28,7 @@ class NewModuleSummaryForm(forms.ModelForm):
 
     class Meta:
         model = ModuleSummarie
-        fields = ['user', 'users_id', 'module_url', 'module']
+        fields = ['user', 'users_id', 'module_url', 'module', 'module_results']
 
 
 
