@@ -84,6 +84,7 @@ def dashboard(request):
         subscriptions = Subscription.objects.all()
         student_life_path = student_model.life_path['events']
 
+
         job = Job.objects.get(job_id=jobpicked)
         salary = student_model.yearly_salary
 
