@@ -126,6 +126,8 @@ def add_property(request):
             full_life_path.append(upcoming_module)
             new = {"events": full_life_path}
             student_model.life_path = new
+            student_model.living_situation = "I Own"
+
             student_model.save()
 
 
@@ -257,7 +259,7 @@ def remove_rental(request):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         student_net_worth = student_model.current_net_worth
-        student_properties = student_model.properties['properties']
+        student_properties = student_model.properties
         current_months_completed = student_model.total_months_completed
 
         months_simulated = 0
@@ -267,7 +269,18 @@ def remove_rental(request):
         # Getting ajax request
         if request.POST.get('action') == 'post':
             print('remove rental')
-            print(request.POST)
+            post = request.POST
+            property_id = post['property_id']
+            monthly_cost = post['monthly_cost']
+
+            for prop in student_properties['properties']:
+                if prop['property_id'] == property_id:
+                    print('they are equal ')
+                    student_properties['properties'].remove(prop)
+                    student_model.properties = student_properties
+                    student_model.save()
+
+
 
             return redirect('/university/dashboard')
 

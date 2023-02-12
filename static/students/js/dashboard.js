@@ -102,10 +102,12 @@ for(let i = 0; i < sell_btns.length; i++) {
 
 
 function cancelRental(){
-    console.log('remove rentals')
-    var property_cost = this.parentElement.parentElement.children[1].children[1].children[4].innerHTML.replace("$", "").replace(",", "")
-    var monthly_cost = this.parentElement.parentElement.children[1].children[1].children[5].value
-    var token = this.parentElement.parentElement.children[1].children[1].children[6].value
+    var property_id = this.id
+    console.log(property_id)
+    var monthly_cost = this.parentElement.parentElement.children[0].children[1].children[5].innerHTML.replace("$", "").replace(",", "")
+
+
+    var token = this.parentElement.parentElement.children[0].children[1].children[6].value
     this.parentElement.style.display = 'none'
     $.ajax({
       type: "POST",
@@ -114,6 +116,9 @@ function cancelRental(){
           csrfmiddlewaretoken: token,
           action: "post",
           monthly_cost: monthly_cost,
+          property_id: property_id
+
+
 
         }
     })
