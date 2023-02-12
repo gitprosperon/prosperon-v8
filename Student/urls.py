@@ -55,6 +55,10 @@ urlpatterns = [
     # Pilot Specific pages
     path('university/pilot-survey', views.pilot_survey, name='pilot-survey'),
 
+    # Functions
+    path('university/add-property', functions.add_property, name='add-property'),
+    path('university/sell-property', functions.sell_property, name='sell-property'),
+
 ]
 
 

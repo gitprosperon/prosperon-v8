@@ -40,7 +40,10 @@ def dashboard(request):
         investing_activated = student_model.investing_activated
         monthly_spending_habits = student_model.spending_profile_monthly_payments['spending_profile_monthly_payments']
         spending_profile_ranges = MonthlyExpense.RANGES
+        current_year_calculated = int(student_model.current_month) // 12
         living_situation = student_model.living_situation
+        apartment = student_model.apartments
+        properties = student_model.properties['properties']
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -85,7 +88,6 @@ def dashboard(request):
         student_life_path = student_model.life_path['events']
 
         try:
-
             job = Job.objects.get(job_id=jobpicked)
         except:
             job = ''
@@ -115,9 +117,10 @@ def dashboard(request):
             'spending_profile_ranges': spending_profile_ranges,
             'living_situation': living_situation,
             'jobpicked': job,
-            'salary': salary
-
-
+            'salary': salary,
+            'apartment': apartment,
+            'properties': properties,
+            'current_year_calculated': current_year_calculated
 
         }
 
@@ -183,8 +186,22 @@ def simulate(request, months):
 
 # Budget / Dashboard
 def budgetDashboard(request):
-    return render(request, 'Students/budget/dashboard.html')
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
 
+        # Basic user information
+        current_net_worth = student_model.current_net_worth
+
+
+        context = {
+            'current_net_worth': current_net_worth
+        }
+        return render(request, 'Students/budget/dashboard.html', context=context)
+    else:
+        return render(request, 'MainWebsite/index.html')
 
 # Budget / Goals Page
 def goals(request):
@@ -694,6 +711,7 @@ def anytime_decision_step2(request, id):
         student_job_location = str(student.job.job_city)
         student_current_location = str(student.location)
         student_current_net_worth = student.current_net_worth
+        student_current_month = student.current_month
 
 
 
@@ -718,7 +736,8 @@ def anytime_decision_step2(request, id):
 
             # Checking to see if decision has to do with location
             if ad.title == "Move Out":
-                print('it is equal to move out')
+                student.living_situation = 'I Rent'
+                student.save()
             if ad.title == "Buy a Property":
                 print('it is own')
 
@@ -809,7 +828,8 @@ def anytime_decision_step2(request, id):
             'student_job_location': student_job_location,
             'student_current_location': student_current_location,
             'student_current_net_worth': student_current_net_worth,
-            'properties': properties
+            'properties': properties,
+            'student_current_month': student_current_month
 
         }
         return render(request, f'Students/anytime-decisions/{html_path}', context=context)

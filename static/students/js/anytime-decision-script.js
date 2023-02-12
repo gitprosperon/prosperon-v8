@@ -10,6 +10,7 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     var apartmentDescriptionTarget = document.getElementById('apartment-description');
     var effectMonthlyCostTarget = document.getElementById('effect-monthly-cost');
     var effectInitialCostTarget = document.getElementById('effect-initial-cost');
+    var apartCity = document.getElementById('apartment_city')
 
     var costLaterTarget = document.getElementById('effect-monthly-cost-input')
     var costNowTarget = document.getElementById('effect-cost-now-input')

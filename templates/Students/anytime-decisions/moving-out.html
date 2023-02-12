@@ -57,7 +57,7 @@
             <div>
               <div>
                 <h1 class="_36-bold" id="apartment-title">*Apartment*</h1>
-                <h1 class="_18" id="apartment-address">*address*</h1>
+                <h1 class="_18" id="apartment-address">*address* <span id="apartment_city"></span></h1>
               </div>
               <div class="_10-top horizontal">
                 <div class="w-layout-grid grid-23">
@@ -91,18 +91,39 @@
 <script>
 
 // search functionality for housing
-    const citySearch = document.getElementById('citySearch');
-    citySearch.addEventListener("keyup", (e) => {
-        let currentValue = e.target.value.toLowerCase();
-        let city = document.querySelectorAll('h1.city');
-        city.forEach(city => {
-            if (city.textContent.toLowerCase().includes(currentValue)) {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
-            } else {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
-            }
-        })
+const citySearch = document.getElementById('citySearch');
+citySearch.addEventListener("keyup", (e) => {
+    let currentValue = e.target.value.toLowerCase();
+    let city = document.querySelectorAll('h1.city');
+    city.forEach(city => {
+        if (city.textContent.toLowerCase().includes(currentValue)) {
+            city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+        } else {
+            city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+        }
     })
+})
+
+
+var button = document.getElementById('applyBtn')
+
+function test123(){
+    var title = document.getElementById()
+    var address = document.getElementById()
+    var city = document.getElementById()
+    var bed = document.getElementById()
+    var bath = document.getElementById()
+    var description = document.getElementById()
+
+
+}
+
+button.addEventListener('click', test123)
+
+
+
+
+
 
 
 </script>

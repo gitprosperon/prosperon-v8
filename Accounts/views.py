@@ -24,14 +24,9 @@ class LoginUser(LoginView):
     template_name = 'Accounts/login-student.html'
     form_class = LoginUserForm
 
-
-
-
-
 # Registration choice
 def register_choice(request):
     return render(request, 'Accounts/registration-choice.html')
-
 
 # Create your views here.
 def register_budget_account(request):
@@ -60,10 +55,8 @@ def register_budget_account(request):
 
     return render(request, 'Accounts/register-budget-account.html', context=context)
 
-
 # Registration for student account
 def register_student_account(request):
-
     if request.method == 'POST':
         form = StudentAccountRegistrationForm(request.POST, request.FILES)
         print(request.POST)
@@ -81,6 +74,7 @@ def register_student_account(request):
             studentAccountForm = AddStudentAccountForm(request.POST, request.FILES)
             studentUser = studentAccountForm.save(commit=False)
             studentUser.user = request.user
+            studentUser.pilot = True
             class_code = request.POST['class_code']
             studentUser.class_code = class_code
             studentUser.user_id_number = created_user_id
@@ -105,7 +99,9 @@ def register_student_account(request):
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.total_months_completed = 0
             studentUser.yearly_salary = 0
+            studentUser.properties = {"properties": []}
             studentUser.total_monthly_expenses = 0
+            studentUser.investing_activated = False
             studentUser.current_net_worth = 0
             studentUser.net_worth_monthly_list = {"net_income_monthly_list": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
@@ -163,10 +159,12 @@ def register_dtc_account(request):
             studentUser.total_points = 0
             studentUser.dtc = True
             studentUser.last_points_added = 0
+            studentUser.pilot = True
             studentUser.total_monthly_expenses = 0
             studentUser.course_progress = 0
             studentUser.spender_type = '0'
             studentUser.all_transactions = {"all_transactions": []}
+            studentUser.properties = {"properties": []}
             studentUser.total_months_completed = 0
             studentUser.yearly_salary = 0
             studentUser.total_monthly_expenses = 0

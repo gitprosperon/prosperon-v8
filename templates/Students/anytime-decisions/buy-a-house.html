@@ -29,77 +29,86 @@
           <div class="create-graph">
 
             <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}', '{{ apartment.general_information }}', '{{ apartment.total_cost }}')">
-
                 <img src="../../../media/{{ apartment.img }}" loading="lazy" width="200" height="160" srcset="../../../media/{{ apartment.img }} 500w, ../../../media/{{ apartment.img }} 800w, ../../../media/{{ apartment.img }} 1080w, ../../../media/{{ apartment.img }} 1600w, ../../../media/{{ apartment.img }} 2000w, ../../../media/{{ apartment.img }} 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
-        <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
-          <div class="_18-poppins centered-text">{{ apartment.title }}</div>
-          <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}</div>
-            <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState"><h1 class="city">Boston, Ma</h1></div>
-          <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed / {{ apartment.bathrooms }} bath</div>
-          <div class="_18px _10-top _14 apartment-padding amount">${{ apartment.yearly_cost|div:12|floatformat|intcomma }}</div>
-        </div>
-      </div>
-             </div>
+                <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
+                <div class="_18-poppins centered-text">{{ apartment.title }}</div>
+                <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}, </div>
+                <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState">
+                    <h1 class="city" id="property-city">{{ apartment.location }}</h1>
+                </div>
+                <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed / {{ apartment.bathrooms }} bath</div>
+                <div class="_18px _10-top _14 apartment-padding amount">${{ apartment.total_cost|intcomma }}</div>
+                </div>
+            </div>
+            </div>
 
         {% endfor %}
     </div>
   </div>
 </div>
 
-
-      <div id="left-specific-apartment" class="left-grid" style="display: none;">
-          <div class="apartment-search background back">
-              <img src="{% static 'images/icons/WhiteArrow.svg' %}" onclick="toggleRental()" loading="lazy" width="40" alt="" class="back-arrow"></div>
-          <div class="_40-padding-container white percent-change">
-            <div>
-              <div>
-                <h1 class="_36-bold" id="apartment-title">*Apartment*</h1>
-                <h1 class="_18" id="apartment-address">*address*</h1>
-              </div>
-              <div class="_10-top horizontal">
-                <div class="w-layout-grid grid-23">
-                  <div id="w-node-_2ebce160-23b2-b95f-bbfd-fc591c3e4565-dab43b3e" class="apartment-info-wrapper _10-padding">
-                    <div id="w-node-_40e944fe-9d38-2d22-134b-6fdf53d9f49e-dab43b3e" class="apartment-breakdown-titles">Monthly Rent</div>
-                    <div class="apartment-breakdown-titles _5-top">$<span id="apartment-monthly-rent">1,234</span>/mo</div>
-                  </div>
-                  <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f74879-dab43b3e" class="apartment-info-wrapper _10-padding">
-                    <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f7487a-dab43b3e" class="apartment-breakdown-titles">Bedrooms</div>
-                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-bedroom">1</span> bd</div>
-                  </div>
-                  <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c421-dab43b3e" class="apartment-info-wrapper _10-padding">
-                    <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c422-dab43b3e" class="apartment-breakdown-titles">Bathrooms</div>
-                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-bathroom">1</span> ba</div>
-                  </div>
-                  <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575e-dab43b3e" class="apartment-info-wrapper _10-padding">
-                    <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575f-dab43b3e" class="apartment-breakdown-titles">Square Ft</div>
-                    <div class="apartment-breakdown-titles _5-top"><span id="apartment-sqft">704</span> sq ft</div>
-                  </div>
-                </div>
-              </div>
-              <div class="description _10-top">
-                <h1 class="_18 semibold">About <span id="apartment-title">Apartment</span></h1>
-                <div class="_18-poppins _5-top" id="apartment-description">Description of the apartment</div>
-              </div>
-            </div>
+<div id="left-specific-apartment" class="left-grid" style="display: none;">
+  <div class="apartment-search background back">
+      <img src="{% static 'images/icons/WhiteArrow.svg' %}" onclick="toggleRental()" loading="lazy" width="40" alt="" class="back-arrow"></div>
+  <div class="_40-padding-container white percent-change">
+    <div>
+      <div>
+        <h1 class="_36-bold" id="apartment-title">*Apartment*</h1>
+        <h1 class="_18" id="apartment-address">*address* <span id=""></span></h1>
+      </div>
+      <div class="_10-top horizontal">
+        <div class="w-layout-grid grid-23">
+          <div id="w-node-_2ebce160-23b2-b95f-bbfd-fc591c3e4565-dab43b3e" class="apartment-info-wrapper _10-padding">
+            <div id="w-node-_40e944fe-9d38-2d22-134b-6fdf53d9f49e-dab43b3e" class="apartment-breakdown-titles">Monthly Rent</div>
+            <div class="apartment-breakdown-titles _5-top">$<span id="apartment-monthly-rent">1,234</span>/mo</div>
+          </div>
+          <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f74879-dab43b3e" class="apartment-info-wrapper _10-padding">
+            <div id="w-node-_531aa455-c1e7-ed2b-77cb-d34227f7487a-dab43b3e" class="apartment-breakdown-titles">Bedrooms</div>
+            <div class="apartment-breakdown-titles _5-top"><span id="apartment-bedroom">1</span> bd</div>
+          </div>
+          <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c421-dab43b3e" class="apartment-info-wrapper _10-padding">
+            <div id="w-node-_95a3d334-08e8-3b91-27ae-0873f863c422-dab43b3e" class="apartment-breakdown-titles">Bathrooms</div>
+            <div class="apartment-breakdown-titles _5-top"><span id="apartment-bathroom">1</span> ba</div>
+          </div>
+          <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575e-dab43b3e" class="apartment-info-wrapper _10-padding">
+            <div id="w-node-_1bcef999-6155-a51f-eeee-6d289726575f-dab43b3e" class="apartment-breakdown-titles">Square Ft</div>
+            <div class="apartment-breakdown-titles _5-top"><span id="apartment-sqft">704</span> sq ft</div>
           </div>
         </div>
+      </div>
+      <div class="description _10-top">
+        <h1 class="_18 semibold">About <span id="apartment-title">Apartment</span></h1>
+        <div class="_18-poppins _5-top" id="apartment-description">Description of the apartment</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script>
 
 // search functionality for housing
-    const citySearch = document.getElementById('citySearch');
-    citySearch.addEventListener("keyup", (e) => {
-        let currentValue = e.target.value.toLowerCase();
-        let city = document.querySelectorAll('h1.city');
-        city.forEach(city => {
-            if (city.textContent.toLowerCase().includes(currentValue)) {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
-            } else {
-                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
-            }
-        })
+const citySearch = document.getElementById('citySearch');
+citySearch.addEventListener("keyup", (e) => {
+    let currentValue = e.target.value.toLowerCase();
+    let city = document.querySelectorAll('h1.city');
+    city.forEach(city => {
+        if (city.textContent.toLowerCase().includes(currentValue)) {
+            city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+        } else {
+            city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+        }
     })
+})
+
+
+
+
+
+
+
+
+
 
 
 </script>
@@ -108,8 +117,8 @@
 {% endif %}
 {% endblock %}
 
-    {% block bottomButtons %}
-        {% if id == '5' %}
+{% block bottomButtons %}
+    {% if id == '5' %}
         <div class="button-wrapper bottom-spacing">
             <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
             <div class="back-btn" id="backBtn">
@@ -121,13 +130,60 @@
                 <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
                 <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
                 <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
+                <a href="{% url 'Students:dashboard' %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
 
-
-                    <button type="submit" class="next-btn" id="applyBtn" style="display: none">Apply</button>
             </form>
         </div>
-        {% endif %}
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
-    {% endblock %}
+    {% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+
+var button = document.getElementById('applyBtn')
+
+function test123(){
+    var apartment_title = document.getElementById('apartment-title').innerText
+    var address = document.getElementById('apartment-address').innerText
+    var costNow = document.getElementById('effect-initial-cost').innerText
+    var city = document.getElementById('property-city')
+    var monthly_rent = document.getElementById('effect-monthly-cost').innerText
+    var bed = document.getElementById('apartment-bedroom').innerText
+    var bath = document.getElementById('apartment-bathroom').innerText
+
+
+    $.ajax({
+      type: "POST",
+      url: '/university/add-property',
+      data: {
+          csrfmiddlewaretoken: '{{csrf_token}}',
+          action: "post",
+          title: apartment_title,
+          type: "House",
+          the_address: address,
+          city: city,
+          costNow: costNow,
+          monthly_rent: monthly_rent,
+          bed: bed,
+          bath: bath,
+          current_month: "{{ student_current_month }}"
+
+
+
+
+
+        }
+    })
+}
+
+button.addEventListener('click', test123)
+
+
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
+{% endblock %}
 

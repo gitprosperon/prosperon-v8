@@ -5,7 +5,6 @@
 
 <body class="body-2">
   <div class="fullpage-wrapper">
-
     <div class="_40-padding-container wrapper">
       <div class="decision-search">
         <h1 class="_36-bold prosperon-blue centered">What decision would you like to make?</h1>
@@ -21,29 +20,26 @@
           <div class="column-2 w-col w-col-10">
             <div class="anytime-decision-bank">
               <div class="w-layout-grid grid-25">
-
-
-{% for decision in anytime_decisions %}
-<div class="w-layout-grid grid-7">
-<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="justify-content: space-between">
-<div>
-    <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
-<div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-    <div class="_18" style="line-height: 24px"><h1 class="title" style="font-size: 18px; font-family: Poppins">{{ decision.title }}</h1></div>
-    <div class="_14px _10-top _14">{{ decision.description|slice:":100" }}...</div>
-</div>
-</div>
-<div class="_10-top _100-width">
-    <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
-        <div class="next-btn timeline">
-            <div class="_18-poppins white">Add</div>
-        </div>
-    </a>
-</div>
-</div>
-</div>
-{% endfor %}
-
+                {% for decision in anytime_decisions %}
+                <div class="w-layout-grid grid-7">
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="justify-content: space-between">
+                <div>
+                    <div><img src="{{ decision.img.url }}" loading="lazy" width="200px" height="110" class="image-5" alt=""></div>
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
+                    <div class="_18" style="line-height: 24px"><h1 class="title" style="font-size: 18px; font-family: Poppins">{{ decision.title }}</h1></div>
+                    <div class="_14px _10-top _14">{{ decision.description|slice:":100" }}...</div>
+                </div>
+                </div>
+                <div class="_10-top _100-width">
+                    <a href="{% url 'Anytime:anytime-decision' decision.id %}" style="text-decoration: none">
+                        <div class="next-btn timeline">
+                            <div class="_18-poppins white">Add</div>
+                        </div>
+                    </a>
+                </div>
+                </div>
+                </div>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -55,11 +51,9 @@
     </div>
     <div class="button-wrapper bottom-spacing">
       <a href="/university/dashboard" class="button w-button">Back</a>
-
     </div>
   </div>
 </body>
-
 <script>
 
 
@@ -73,14 +67,9 @@ const decisionSearch =  document.getElementById('decisionSearch');
                 title.parentNode.parentNode.parentNode.parentNode.parentNode.style.display = 'block'
             } else {
                 title.parentNode.parentNode.parentNode.parentNode.parentNode.style.display = 'none'
-
-
             }
         })
     })
-
-
-
 
 
 </script>

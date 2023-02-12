@@ -1,6 +1,7 @@
 {% extends 'Students/base.html' %}
 {% load static %}
 {% load humanize %}
+{% load mathfilters %}
 
 {% block content %}
 
@@ -460,23 +461,22 @@
 
                             // Checking to see if investing has been activated
                             var investing_status = '{{ investing_activated }}'
+                            var years_calculated = '{{ current_year_calculated }}'
                             var average_mutule_fund_rate;
 
                             if (investing_status === 'True') {
                                 average_mutule_fund_rate = 1.082
                             } else if (investing_status === 'False') {
-                                console.log('status is false ')
+
                                 average_mutule_fund_rate = 1
                             }
 
                             var newList = []
                             {% for i in monthlyList %}
                                 newList.push({{i.net_worth}})
-
                             {% endfor %}
-                            console.log(newList)
-                            var inflationRate = 1.125
 
+                            var inflationRate = 1.125
                             var anotherList = []
 
                             for(let i = 0; i < newList.length; i++) {
@@ -486,67 +486,62 @@
                                 }
                             }
 
-                            console.log('just another list')
-                            console.log(anotherList)
-
-                        var currentAge = {{ age }}
-
-                        var diff = 65 - currentAge
-                        var lablesList = []
-
-                        var ageIndex = 0
-                        while(ageIndex <= diff) {
-                            var age = ageIndex + currentAge
-                            lablesList.push(age)
-                            ageIndex += 1
-
-                        }
-                        console.log(lablesList)
 
 
-                          const ctx = document.getElementById('myChart');
+                            var currentAge = {{ age }}
+                            var diff = 65 - currentAge
+                            var lablesList = []
 
-                          new Chart(ctx, {
-                            type: 'line',
-                            data: {
-                              labels: lablesList,
-                              datasets: [{
-                                label: 'Net Worth By Age',
-                                data: anotherList,
-                                backgroundColor: '#1f79ba',
-                                borderWidth: 1,
-                                tension: 0.35,
-                                fill: 'origin',
-                                below: 'rgb(255, 0, 0)',
-                                pointRadius: 0,
+                            var ageIndex = 0
+                            while(ageIndex <= diff) {
+                                var age = ageIndex + currentAge
+                                lablesList.push(age)
+                                ageIndex += 1
+                            }
 
-                              }]
-                            },
-                            options: {
-                              scales: {
-                                y: {
-                                  beginAtZero: true,
 
+                            const ctx = document.getElementById('myChart');
+                            new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                  labels: lablesList,
+                                  datasets: [{
+                                    label: 'Net Worth By Age',
+                                    data: anotherList,
+                                    backgroundColor: '#1f79ba',
+                                    borderWidth: 1,
+                                    tension: 0.35,
+                                    fill: 'origin',
+                                    below: 'rgb(255, 0, 0)',
+                                    pointRadius: 0,
+
+                                  }]
                                 },
-                                y: {
-                                    beginAtZero: true,
-                                grid: {
-                                    display: false
-                            }
-                            },
-                            x: {
-                                grid: {
-                                    display: false
+                                options: {
+                                  scales: {
+                                    y: {
+                                      beginAtZero: true,
+
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    grid: {
+                                        display: false
                                 }
-                            }
-                              },
-                                plugins: {
-                                    legend: {
-                                      display: false
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
                                     }
-                                  }
                                 }
-                          });
+                                  },
+                                    plugins: {
+                                        legend: {
+                                          display: false
+                                        }
+                                      }
+                                    }
+                              });
                         </script>
                     </div>
 
@@ -574,19 +569,12 @@
                         <div class="w-layout-grid grid-7">
                             {% for event in student_life_path %}
                                 {% if event.type == 'Anytime Decision' %}
-
-
-
                                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30795-fe18aa3b" class="_20-padding-container alternative" style="justify-content: space-between; width: 200px">
-
-
-                                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
-                                      <div class="_18" style="font-size: 18px; line-height: 22px">{{ event.title }}</div>
-                                      <div class="_14px _10-top _14">{{ event.description|slice:":90" }}...</div>
+                                        <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30798-fe18aa3b" class="_10-top">
+                                            <div class="_18" style="font-size: 18px; line-height: 22px">{{ event.title }}</div>
+                                            <div class="_14px _10-top _14">{{ event.description|slice:":90" }}...</div>
+                                        </div>
                                     </div>
-
-
-                                  </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
@@ -627,7 +615,6 @@
                                 {% endif %}
                           {% endfor %}
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -638,11 +625,46 @@
                     <div class="horizontal" onclick="moreInformationToggle(this)">
                       <div class="_24px normal">My Housing</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>
-                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
+
+
+                    <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none; overflow: scroll" >
                       <div class="_18px">
+                        <div class="w-layout-grid grid-27">
+                            {% if apartment %}
+                            <div id="" class="_20-padding-container alternative apartments" >
+                                <img src="../../../media/" loading="lazy" width="200" height="160" srcset="../../../media/{{ apartment.img }} 500w, ../../../media/{{ apartment.img }} 800w, ../../../media/{{ apartment.img }} 1080w, ../../../media/{{ apartment.img }} 1600w, ../../../media/{{ apartment.img }} 2000w, ../../../media/{{ apartment.img }} 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
 
-
-
+                                <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
+                                <div class="_18-poppins centered-text">Rental</div>
+                                <div class="_18px _10-top _14 apartment-padding"></div>
+                                <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState">
+                                    <h1 class="city">{{ apartment.location }}</h1>
+                                </div>
+                                <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed /{{ apartment.bathrooms }}  bath</div>
+                                <div class="_18px _10-top _14 apartment-padding amount">$ {{ apartment.yearly_cost|div:12|intcomma }} / month</div>
+                                </div>
+                            <button type="button" id="{{ property.property_id }}" class="back-btn remove-housing" style="margin-top: 10px; color: red">End</button>
+                            </div>
+                            {% endif %}
+                            {% for property in properties %}
+                            <div id="" class="_20-padding-container alternative apartments" >
+                                <img src="../../../media/" loading="lazy" width="200" height="160" srcset="../../../media/{{ apartment.img }} 500w, ../../../media/{{ apartment.img }} 800w, ../../../media/{{ apartment.img }} 1080w, ../../../media/{{ apartment.img }} 1600w, ../../../media/{{ apartment.img }} 2000w, ../../../media/{{ apartment.img }} 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
+                                <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
+                                    <div class="_18-poppins centered-text">{{ property.property_type }}</div>
+                                    <div class="_18px _10-top _14 apartment-padding"></div>
+                                    <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState">
+                                        <h1 class="city">{{ property.title }}</h1>
+                                    </div>
+                                    <div class="_18px _10-top _14 apartment-padding">{{ property.bed }} bed /{{ property.bath }}  bath</div>
+                                    <div class="_18px _10-top _14 apartment-padding amount">$ {{ property.costNow|intcomma }} </div>
+                                    <input type="hidden" value="{{ property.monthly_rent }}">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ property.month_purchased }}">
+                                </div>
+                             <button type="button" id="{{ property.property_id }}" class="back-btn remove-housing" style="margin-top: 10px; color: red">Sell</button>
+                            </div>
+                            {% endfor %}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -652,7 +674,6 @@
                     <div class="horizontal" onclick="moreInformationToggle(this)">
                       <div class="_24px normal">Career</div><img src="{% static 'images/icons/right_caret_004A80.svg'  %}" loading="lazy" width="10px" id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e3-fe18aa3b" alt="">
                     </div>
-
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
                       <div class="_18px">{{ jobpicked.title }} - {{ jobpicked.company }}</div>
                       <div class="_18px sub" style="color: #707070"s>{{ jobpicked.company }}</div>
@@ -708,8 +729,6 @@
                         </div>
                       </div>
                     </div>
-
-
                   </div>
 
 
