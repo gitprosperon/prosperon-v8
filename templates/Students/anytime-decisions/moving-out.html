@@ -31,7 +31,7 @@
         {% for apartment in apartments %}
           <div class="create-graph">
 
-            <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}', '{{ apartment.general_information }}', '{{ apartment.initial_cost }}')">
+            <div id="" class="_20-padding-container alternative apartments" onclick="toggleRental('{{ apartment.title }}', '{{ apartment.address }}', '{{ apartment.yearly_cost|div:12|floatformat|intcomma }}', '{{ apartment.bedrooms }}', '{{ apartment.bathrooms }}', '{{ apartment.sqFeet }}', '{{ apartment.general_information }}', '{{ apartment.initial_cost }}', '{{ apartment.location }}')">
 
                 <img src="../../../media/{{ apartment.img }}" loading="lazy" width="200" height="160" srcset="../../../media/{{ apartment.img }} 500w, ../../../media/{{ apartment.img }} 800w, ../../../media/{{ apartment.img }} 1080w, ../../../media/{{ apartment.img }} 1600w, ../../../media/{{ apartment.img }} 2000w, ../../../media/{{ apartment.img }} 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
         <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
@@ -57,7 +57,7 @@
             <div>
               <div>
                 <h1 class="_36-bold" id="apartment-title">*Apartment*</h1>
-                <h1 class="_18" id="apartment-address">*address* <span id="apartment_city"></span></h1>
+                <h1 class="_18" id="apartment-address">*address* </h1><h1 class="_18" id="apartment_city"></h1>
               </div>
               <div class="_10-top horizontal">
                 <div class="w-layout-grid grid-23">
@@ -105,20 +105,7 @@ citySearch.addEventListener("keyup", (e) => {
 })
 
 
-var button = document.getElementById('applyBtn')
 
-function test123(){
-    var title = document.getElementById()
-    var address = document.getElementById()
-    var city = document.getElementById()
-    var bed = document.getElementById()
-    var bath = document.getElementById()
-    var description = document.getElementById()
-
-
-}
-
-button.addEventListener('click', test123)
 
 
 
@@ -132,26 +119,79 @@ button.addEventListener('click', test123)
 {% endif %}
 {% endblock %}
 
-    {% block bottomButtons %}
-        {% if id == '1' %}
-        <div class="button-wrapper bottom-spacing">
-            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
-            <div class="back-btn" id="backBtn">
-                <div class="" id="backBtn">Back</div>
-            </div>
-            </a>
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
-                <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
-                <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
-
-
-                    <button type="submit" class="next-btn" id="applyBtn" style="display: none">Apply</button>
-            </form>
+{% block bottomButtons %}
+    {% if id == '1' %}
+    <div class="button-wrapper bottom-spacing">
+        <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
+        <div class="back-btn" id="backBtn">
+            <div class="" id="backBtn">Back</div>
         </div>
-        {% endif %}
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
-    {% endblock %}
+        </a>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
+            <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
+            <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
+
+            <a href="{% url 'Students:dashboard' %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
+        </form>
+    </div>
+    {% endif %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
+
+
+<script>
+
+var button = document.getElementById('applyBtn')
+
+function test123(){
+    var apartment_title = document.getElementById('apartment-title').innerText
+    var address = document.getElementById('apartment-address').innerText
+    var costNow = document.getElementById('effect-initial-cost').innerText
+    var city = document.getElementById('apartment_city').innerText
+    var monthly_rent = document.getElementById('effect-monthly-cost').innerText
+    var bed = document.getElementById('apartment-bedroom').innerText
+    var bath = document.getElementById('apartment-bathroom').innerText
+
+
+    $.ajax({
+      type: "POST",
+      url: '/university/add-rental',
+      data: {
+          csrfmiddlewaretoken: '{{csrf_token}}',
+          action: "post",
+          title: apartment_title,
+          type: "Rental",
+          the_address: address,
+          city: city,
+          costNow: costNow,
+          monthly_rent: monthly_rent,
+          bed: bed,
+          bath: bath,
+          current_month: '{{ student_current_month }}'
+
+
+
+
+
+
+        }
+    })
+
+
+
+
+
+}
+
+button.addEventListener('click', test123)
+
+
+</script>
+
+
+
+
+{% endblock %}
 

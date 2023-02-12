@@ -170,6 +170,7 @@ def register_dtc_account(request):
             studentUser.total_monthly_expenses = 0
             studentUser.investing_activated = False
             studentUser.current_net_worth = 0
+            studentUser.accounts = {"accounts": []}
             studentUser.net_worth_monthly_list = {"net_income_monthly_list": []}
             studentUser.monthly_transactions = {"monthly_transactions": []}
             studentUser.spending_profile_monthly_payments = {"spending_profile_monthly_payments": []}

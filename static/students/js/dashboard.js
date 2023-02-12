@@ -101,12 +101,33 @@ for(let i = 0; i < sell_btns.length; i++) {
 }
 
 
+function cancelRental(){
+    console.log('remove rentals')
+    var property_cost = this.parentElement.parentElement.children[1].children[1].children[4].innerHTML.replace("$", "").replace(",", "")
+    var monthly_cost = this.parentElement.parentElement.children[1].children[1].children[5].value
+    var token = this.parentElement.parentElement.children[1].children[1].children[6].value
+    this.parentElement.style.display = 'none'
+    $.ajax({
+      type: "POST",
+      url: '/university/remove-rental',
+      data: {
+          csrfmiddlewaretoken: token,
+          action: "post",
+          monthly_cost: monthly_cost,
+
+        }
+    })
+
+}
 
 
 
 
-
-
+// Code for selling properties
+var sell_btns = document.getElementsByClassName('back-btn remove-rental')
+for(let i = 0; i < sell_btns.length; i++) {
+    sell_btns[i].addEventListener('click', cancelRental)
+}
 
 
 

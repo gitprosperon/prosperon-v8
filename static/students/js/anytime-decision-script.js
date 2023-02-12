@@ -1,4 +1,4 @@
-function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
+function toggleRental(title, address, rent, bed, bath, sqft, desc, init, location){
     var rentalCardTarget = document.getElementById('left-specific-apartment');
     var allRentalCardTarget = document.getElementById('all-rentals-card');
     var apartmentTitleTarget = document.getElementById('apartment-title');
@@ -32,6 +32,7 @@ function toggleRental(title, address, rent, bed, bath, sqft, desc, init){
     apartmentDescriptionTarget.innerText = desc
     effectMonthlyCostTarget.innerText = rent
     effectInitialCostTarget.innerText = init
+    apartCity.innerText = location
 
 
 
@@ -111,21 +112,18 @@ function backToCards() {
     var AllCardsTarget = document.getElementById('all-credit-card-wrapper')
     var backButton = document.getElementById('backBtn')
 
-
     backButton.style.opacity = '100%'
     AllCardsTarget.style.display = 'block'
     creditCardPopup.style.display = 'none'
-
 }
 
 // code to show bank account
-function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankFeature1, bankFeature2, bankFeature3, bankFeature4, signupFee) {
-    console.log('penis')
+function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankFeature1, bankFeature2, bankFeature3, bankFeature4, signupFee, img) {
     var bankAccountPopUpTarget = document.getElementById('bankAccountPopUp')
     var allBankTarget = document.getElementById('all-bank-account-wrapper')
     var backButton = document.getElementById('backBtn')
     var apply_buttonTarget = document.getElementById('applyBtn')
-
+    var imgTarget = document.getElementById('bank-img')
 
    //handling targets
     var bankAccountNameTarget = document.getElementById('bank-account-name')
@@ -144,15 +142,11 @@ function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankF
     var yearly = Number(bankFee)
     var montlyCost = yearly / 12
 
-
     var costLaterTarget = document.getElementById('effect-monthly-cost-input')
     var costNowTarget = document.getElementById('effect-cost-now-input')
 
     costLaterTarget.setAttribute('value', montlyCost)
     costNowTarget.setAttribute('value', signupFee)
-    console.log('penis')
-
-
 
     bankAccountNameTarget.innerText = title
     apyTarget.innerText = apy
@@ -172,7 +166,7 @@ function showBankAccount(title, apy, bankFee, bankATMFee, bankDescription, bankF
     monthlyCostTarget.innerText = montlyCost
     signupFeeTarget.innerText = signupFee
 
-
+    imgTarget.src = '../../../media/' + img
 
 
 

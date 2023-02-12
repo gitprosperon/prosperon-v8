@@ -58,6 +58,8 @@ urlpatterns = [
     # Functions
     path('university/add-property', functions.add_property, name='add-property'),
     path('university/sell-property', functions.sell_property, name='sell-property'),
+    path('university/add-rental', functions.add_rental, name='add-rental'),
+    path('university/remove-rental', functions.remove_rental, name='remove-rental'),
 
 ]
 

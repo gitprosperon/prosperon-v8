@@ -194,10 +194,22 @@ def budgetDashboard(request):
 
         # Basic user information
         current_net_worth = student_model.current_net_worth
+        investing_activated = student_model.investing_activated
+        current_year_calculated = int(student_model.current_month) // 12
+        monthlyList = student_model.net_worth_monthly_list['net_income_monthly_list']
+        age = student_model.age
+        transactions = student_model.all_transactions
+        all_current_transactions = transactions['all_transactions']
 
 
         context = {
-            'current_net_worth': current_net_worth
+            'current_net_worth': current_net_worth,
+            'investing_activated': investing_activated,
+            'current_year_calculated': current_year_calculated,
+            'monthlyList': monthlyList,
+            'age': age,
+            'all_current_transactions': all_current_transactions[:3]
+
         }
         return render(request, 'Students/budget/dashboard.html', context=context)
     else:

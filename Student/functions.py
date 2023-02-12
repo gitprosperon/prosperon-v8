@@ -58,11 +58,11 @@ def update_spending_habit(request):
     else:
         return render(request, 'MainWebsite/index.html')
 
-
-
 # Path for adding properties
 def add_property(request):
     user = request.user
+    print('trying to add a property')
+
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
@@ -88,8 +88,8 @@ def add_property(request):
             # Changing students financials based on cost
             student_net_worth -= round(float(costNow))
             student_model.current_net_worth = student_net_worth
-
-
+            student_monthly_expenses = student_model.total_monthly_expenses - int(float(monthly_rent))
+            student_model.total_monthly_expenses = student_monthly_expenses
 
             # Packaging new property
             new_property = {
@@ -104,10 +104,32 @@ def add_property(request):
                 "property_id": f"{property_id}",
                 "month_purchased": f"{month_purchased}"
             }
-
             student_model.properties['properties'].append(new_property)
             print(student_model.properties)
             student_model.save()
+
+            # Adding to life path tree
+            full_life_path = student_model.life_path['events']
+
+            # removed object
+            upcoming_module = student_model.life_path['events'][-1]
+            del full_life_path[-1]
+
+            # Adding anytime Decision
+            anytime = {
+                "title": "Buy a House",
+                "type": "Anytime Decision",
+                "description": "Learn about buying a house and do it!",
+            }
+
+            full_life_path.append(anytime)
+            full_life_path.append(upcoming_module)
+            new = {"events": full_life_path}
+            student_model.life_path = new
+            student_model.save()
+
+
+
 
             return redirect('/university/dashboard')
 
@@ -151,3 +173,103 @@ def sell_property(request):
 
 
         return redirect('/university/dashboard')
+
+# Path for adding properties
+def add_rental(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        student_net_worth = student_model.current_net_worth
+        student_properties = student_model.properties['properties']
+        current_months_completed = student_model.total_months_completed
+        print(request.POST)
+
+        # Basic information
+        post = request.POST
+        property_title = post['title']
+        property_type = post['type']
+        the_address = post['the_address']
+        costNow = post['costNow']
+        city = post['city']
+        monthly_rent = (post['monthly_rent']).replace(",", "")
+        month_purchased = post['current_month']
+        bed = post['bed']
+        bath = post['bath']
+        property_id = random.randint(100000000, 999999999999)
+
+        # Changing students financials based on cost
+        student_net_worth -= round(float(costNow))
+        student_model.current_net_worth = student_net_worth
+        student_monthly_expenses = student_model.total_monthly_expenses - int(float(monthly_rent))
+        student_model.total_monthly_expenses = student_monthly_expenses
+
+        # Packaging new property
+        new_property = {
+            "title": f"{property_title}",
+            "property_type": f"{property_type}",
+            "address": f"{the_address}",
+            "costNow": f"{costNow}",
+            "city": f"{city}",
+            "monthly_rent": f"{monthly_rent}",
+            "bed": f"{bed}",
+            "bath": f"{bath}",
+            "property_id": f"{property_id}",
+            "month_purchased": f"{month_purchased}"
+        }
+        student_model.properties['properties'].append(new_property)
+        print(student_model.properties)
+        student_model.save()
+
+
+        # Adding to life path tree
+        full_life_path = student_model.life_path['events']
+
+        # removed object
+        upcoming_module = student_model.life_path['events'][-1]
+        del full_life_path[-1]
+
+        # Adding anytime Decision
+        anytime = {
+            "title": "Move Out",
+            "type": "Anytime Decision",
+            "description": "In this module, users will evaluate the benefits of staying home versus the benefits of mo",
+        }
+        full_life_path.append(anytime)
+        full_life_path.append(upcoming_module)
+        new = {"events": full_life_path}
+        student_model.life_path = new
+        student_model.save()
+
+        # Changing living situation status
+        the_apartnment = Apartment.objects.get(address=the_address)
+        student_model.apartments = the_apartnment
+        student_model.living_situation = "I Rent"
+        student_model.save()
+
+        return redirect('/university/dashboard')
+
+def remove_rental(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        student_net_worth = student_model.current_net_worth
+        student_properties = student_model.properties['properties']
+        current_months_completed = student_model.total_months_completed
+
+        months_simulated = 0
+        cleaned_months = 12 - (current_months_completed - ((current_months_completed // 12) * 12))
+
+
+        # Getting ajax request
+        if request.POST.get('action') == 'post':
+            print('remove rental')
+            print(request.POST)
+
+            return redirect('/university/dashboard')
+
+
+

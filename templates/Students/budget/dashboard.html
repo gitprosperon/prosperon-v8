@@ -65,18 +65,124 @@
         </div>
         <div class="column w-col w-col-8">
           <div class="account-overview-container right">
-            <div class="section-warpper">
-              <div class="section-header-wrapper">
-                <h1 class="page-section-header">Net Worth</h1>
+
+
+              <div class="section-warpper">
+              <div>
+                <h1 class="page-section-header">Net Worth Timeline</h1>
               </div>
-              <div class="_20-padding-container"></div>
+              <div class="_10-top">
+                <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307d7-fe18aa3b" class="_20-padding-container">
+
+                    <div class="horizontal" style="height: 400px; width: 100%" >
+
+                          <canvas id="myChart" style="height: 100%; width: 100%"></canvas>
+
+
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                        <script>
+
+                            // Checking to see if investing has been activated
+                            var investing_status = '{{ investing_activated }}'
+                            var years_calculated = '{{ current_year_calculated }}'
+                            var average_mutule_fund_rate;
+
+                            if (investing_status === 'True') {
+                                average_mutule_fund_rate = 1.082
+                            } else if (investing_status === 'False') {
+
+                                average_mutule_fund_rate = 1
+                            }
+
+                            var newList = []
+                            {% for i in monthlyList %}
+                                newList.push({{i.net_worth}})
+                            {% endfor %}
+
+                            var inflationRate = 1.125
+                            var anotherList = []
+
+                            for(let i = 0; i < newList.length; i++) {
+                                if(i % 12 === 0 ) {
+                                    var final = newList[i] * inflationRate * average_mutule_fund_rate
+                                    anotherList.push(final)
+                                }
+                            }
+
+
+
+                            var currentAge = {{ age }}
+                            var diff = 65 - currentAge
+                            var lablesList = []
+
+                            var ageIndex = 0
+                            while(ageIndex <= diff) {
+                                var age = ageIndex + currentAge
+                                lablesList.push(age)
+                                ageIndex += 1
+                            }
+
+
+                            const ctx = document.getElementById('myChart');
+                            new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                  labels: lablesList,
+                                  datasets: [{
+                                    label: 'Net Worth By Age',
+                                    data: anotherList,
+                                    backgroundColor: '#1f79ba',
+                                    borderWidth: 1,
+                                    tension: 0.35,
+                                    fill: 'origin',
+                                    below: 'rgb(255, 0, 0)',
+                                    pointRadius: 0,
+
+                                  }]
+                                },
+                                options: {
+                                  scales: {
+                                    y: {
+                                      beginAtZero: true,
+
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    grid: {
+                                        display: false
+                                }
+                                },
+                                x: {
+                                    grid: {
+                                        display: false
+                                    }
+                                }
+                                  },
+                                    plugins: {
+                                        legend: {
+                                          display: false
+                                        }
+                                      }
+                                    }
+                              });
+                        </script>
+                    </div>
+
+                </div>
+              </div>
             </div>
+
+
+
+
+
             <div class="section-warpper">
               <div class="section-header-wrapper">
                 <h1 class="page-section-header">Top 3 Goals</h1>
-                <div class="more-wrapper">
-                  <div class="more-text">More Goals</div><img src="images/Drowdown.svg" loading="lazy" width="10" height="10" alt="" class="image">
-                </div>
+                <a href="{% url 'Students:transactions'  %}" style="text-decoration: none; color: #707070" class="more-wrapper text">
+                        <div class="more-text">More Goals</div><img src="{% static 'images/icons/right_caret_004A80.svg' %}" loading="lazy" width="10" height="10" alt="" class="image">
+                    </a>
               </div>
 
                 {% for goal in goals %}
@@ -103,77 +209,164 @@
                   </div>
                 </a>
                 {% endfor %}
-
             </div>
+
+
+
+
             <div class="section-warpper">
               <div class="section-header-wrapper">
                 <h1 class="page-section-header">Today&#x27;s Transactions</h1>
-                <div class="more-wrapper">
-                  <div class="more-text">More Transactions</div><img src="images/Drowdown.svg" loading="lazy" width="10" height="10" alt="" class="image">
-                </div>
+                    <a href="{% url 'Students:transactions'  %}" style="text-decoration: none; color: #707070" class="more-wrapper text">
+                        <div class="more-text">More Transactions</div><img src="{% static 'images/icons/right_caret_004A80.svg' %}" loading="lazy" width="10" height="10" alt="" class="image">
+                    </a>
               </div>
 
 
-                {% for transaction in transaction_data %}
-                <div class="_20-padding-container transaction-card">
-                <div class="left-card">
-                  <div class="icon-wrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img"></div>
-                  <div class="transaction-place-wrapper">
-                    <h4 class="_18px">{{ transaction.name }}</h4>
-                  </div>
-                  <div class="transaction-amount-wrapper">
-                    <div class="_24px medium green">+ $<span>{{ transaction.amount }}</span></div>
-                  </div>
-                </div>
+                {% for tramsactiom in all_current_transactions %}
 
+                <div class="_20-padding-container transaction-card" id="all-transactions-card" style="margin-bottom: 10px; margin-top: 10px">
+                <div class="left-card" style="width: 55%">
+                      <div class="icon-wrapper">
+                      {% if tramsactiom.category.0 == 'Payment' %}
+                                <img src="{% static 'images/budgeting-images/Payment.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Food and Drink' %}
+                                <img src="{% static 'images/budgeting-images/food drink.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Shops' %}
+                                <img src="{% static 'images/budgeting-images/shop.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Transfer' %}
+                                <img src="{% static 'images/budgeting-images/Transfer.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Service' %}
+                                <img src="{% static 'images/budgeting-images/service.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Transportation' %}
+                                <img src="{% static 'images/budgeting-images/transportation.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Income' %}
+                                <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif tramsactiom.category.0 == 'Subscription' %}
+                                <img src="{% static 'images/budgeting-images/subscriptions-icon.png' %}" loading="lazy" alt="" class="icon-img no-radius">
 
-                <div class="right-card" id="right-card" >
-                    <h5 class="_18px normal light-grey">{{ transaction.date }}</h5>
-                    <select id="select-{{ transaction.transaction_id }}" name="selected">
-                          <option value="{{ transaction.category.0 }}">{{ transaction.category.0 }}</option>
-                          <option value="Food and Drink">Food and Drink</option>
-                          <option value="Transportation">Transportation</option>
-                          <option value="Shops">Shops</option>
-                          <option value="Transfer">Transfer</option>
-                          <option value="Service">Service</option>
-                          <option value="Payment">Payment</option>
-                          <option value="Income">Income</option>
-                    </select>
-                    <div class="check-wrapper"><img src="images/Green-check.svg" loading="lazy" width="35" height="35" alt=""></div>
-
-                    <button type="button" class="submit-button" id="{{ transaction.transaction_id }}" onclick="sendChangedTransaction(this)">Correct</button>
-                </div>
+                            {% else %}
+                                <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="icon-img">
+                            {% endif %}
+                      </div>
+                      <div class="transaction-place-wrapper" style="min-width: auto">
+                        <h4 class="_18px">{{ tramsactiom.name }}</h4>
+                      </div>
+                      <div class="transaction-amount-wrapper">
+                        <div class="_24px medium" style="color: red">- $<span>{{ tramsactiom.amount }}</span></div>
+                      </div>
               </div>
+                <div class="right-card">
+                  <div class="date-wrapper">
+                    <div class="_18px normal light-grey" style="font-size: 14px">{{ tramsactiom.date }}</div>
+                  </div>
+                  <div class="form-wrapper">
+                    <form method="Post">
+                      <div class="form-block">
+                        <div id="email-form" class="form">
 
-<script>
-                function sendChangedTransaction(a) {
+                        <select id="transaction-category" name="transaction-category" data-name="transaction category" class="select-transaction-class" onchange="changeTransaction(this, '{{ tramsactiom.transaction_id }}')">
+                            {% if tramsactiom.associated_budget == 'none' %}
+                             <option value="" >--{{ tramsactiom.category.0 }}--</option>
+                                {% for budget in budget_categories %}
+                                    {% if  budget.category == tramsactiom.category.0 %}
+                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                <option value="" >--OTHER--</option>
+                                {% for budget in budget_categories %}
+                                    {% if  budget.category != tramsactiom.category.0 %}
+                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <option value="{{ tramsactiom.associated_budget }}" selected>{{ tramsactiom.associated_budget }}</option>
+                                {% for budget in budget_categories %}
+                                    {% if budget.title != tramsactiom.associated_budget  %}
+                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                    {% endif %}
+                                {% endfor %}
 
-                    var categorySelectedIndex = a.parentElement.children['selected'].selectedIndex
-                    a.parentElement.children['selected'].onclick
-                    var selectedCat = a.parentElement.children['selected'].options[categorySelectedIndex].value
+                            {% endif %}
+                        </select>
 
 
-                        console.log('test')
-                        $.ajax({
-                          type: "POST",
-                          url: '{% url 'Budget:budget-dashboard' %}',
-                          data: {
-                              transaction_id: '',
-                              new_category: selectedCat,
-                              csrfmiddlewaretoken: "{{ csrf_token }}",
-                              action: "post",
+                        <script>
+
+
+                         function changeTransaction(a, button) {
+
+                            var Button = document.getElementById('button-' + button)
+                            a.parentElement.children[2].style.display = 'block'
+                             a.parentElement.children[3].children[0].style.display = 'none'
+                                console.log(a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML)
+                             var title = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML
+
+                             Button.onclick = function() {
+                                var budgetTitle = a.value
+                                var theCategory = a.options[a.selectedIndex].value
+                                a.parentElement.children[2].style.display = 'none'
+                                console.log(a.parentElement.children[3].children[0])
+                                 a.parentElement.children[3].children[0].style.display = 'block'
+                                 var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML
+                                 console.log(cost)
+
+
+                                $.ajax({
+                                          type: "POST",
+                                          url: '/university/budget/transactions',
+                                          data: {
+                                              csrfmiddlewaretoken: '{{csrf_token}}',
+                                              action: "post",
+                                              test: theCategory,
+                                              budget: budgetTitle,
+                                              tran_title: title,
+                                              the_id: button,
+                                              amount: cost,
+                                              category1: "{{ tramsactiom.category.0 }}",
+                                              category2: "{{ tramsactiom.category.1 }}"
+
+                                            }
+
+                                        })
+                                }
+
+
+
+
                             }
 
-                })(jQuery);
+
+                                                                 console.log('adfasdfasdfasdfasdfasdfadsf')
 
 
 
-                    }
 
 
 
-</script>
-                {% endfor %}
+                    </script>
+
+                        {% if tramsactiom.checked != 'yes' %}
+                        <input type="button" value="Correct" data-wait="Please wait..." class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
+                        {% else %}
+                            <input type="button" value="Correct" data-wait="Please wait..." style="display: none;" class="submit-button" id="button-{{ tramsactiom.transaction_id }}">
+                        {% endif %}
+
+                        <div class="" style="padding-left: 20px">
+
+                        {% if tramsactiom.checked == 'yes' %}
+                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" style="display: block;" width="35" height="35" alt="" ></div>
+                        {% else %}
+                            <img src="{% static 'images/icons/green-check-icon.png' %}" loading="lazy" width="35" height="35" alt="" style="display: none;" id="check-{{ tramsactiom.transaction_id }}"></div>
+                        {% endif %}
+                        </div>
+                  </form>
+                  </div>
+
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
 
 
             </div>

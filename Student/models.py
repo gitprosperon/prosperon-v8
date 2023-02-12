@@ -209,6 +209,7 @@ class Student(models.Model):
     investing_activated = models.BooleanField(null=True, blank=True)
     apartments = models.ForeignKey(Apartment, on_delete=models.CASCADE, null=True, blank=True)
     properties = models.JSONField(null=True, blank=True)
+    accounts = models.JSONField(null=True, blank=True)
 
 
 

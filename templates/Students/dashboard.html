@@ -642,11 +642,15 @@
                                 </div>
                                 <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed /{{ apartment.bathrooms }}  bath</div>
                                 <div class="_18px _10-top _14 apartment-padding amount">$ {{ apartment.yearly_cost|div:12|intcomma }} / month</div>
-                                </div>
-                            <button type="button" id="{{ property.property_id }}" class="back-btn remove-housing" style="margin-top: 10px; color: red">End</button>
+                                <input type="hidden" value="{{ apartment.yearly_cost|div:12|intcomma }}">
+                                {% csrf_token %}
+
+                            </div>
+                            <button type="button" id="{{ property.property_id }}" class="back-btn remove-rental"  style="margin-top: 10px; color: red">End</button>
                             </div>
                             {% endif %}
                             {% for property in properties %}
+                            {% if property.property_type != 'Rental' %}
                             <div id="" class="_20-padding-container alternative apartments" >
                                 <img src="../../../media/" loading="lazy" width="200" height="160" srcset="../../../media/{{ apartment.img }} 500w, ../../../media/{{ apartment.img }} 800w, ../../../media/{{ apartment.img }} 1080w, ../../../media/{{ apartment.img }} 1600w, ../../../media/{{ apartment.img }} 2000w, ../../../media/{{ apartment.img }} 2560w" sizes="(max-width: 479px) 75vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 99vw" alt="" class="apartment-img">
                                 <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
@@ -661,8 +665,18 @@
                                     {% csrf_token %}
                                     <input type="hidden" value="{{ property.month_purchased }}">
                                 </div>
-                             <button type="button" id="{{ property.property_id }}" class="back-btn remove-housing" style="margin-top: 10px; color: red">Sell</button>
+                                <button type="button" id="{{ property.property_id }}" class="back-btn remove-housing" style="margin-top: 10px; color: red">Sell</button>
                             </div>
+                            {% endif %}
+
+
+
+
+
+
+
+
+
                             {% endfor %}
                         </div>
                       </div>
