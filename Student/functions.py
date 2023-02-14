@@ -329,6 +329,34 @@ def add_account(request):
 
                 }
 
+                # Adding to life path tree
+                full_life_path = student_model.life_path['events']
+
+                # removed object
+                upcoming_module = student_model.life_path['events'][-1]
+                del full_life_path[-1]
+
+                # Adding anytime Decision
+                if cardType == 'CreditCard':
+                    card_type = 'Credit Card'
+                elif cardType == 'BankAccount':
+                    card_type = 'Bank'
+
+
+                anytime = {
+                    "title": f"Open a {card_type} Account",
+                    "type": "Anytime Decision",
+                    "description": f"Learn about opening a {card_type} account and how to find the best bank account for you",
+                }
+
+                full_life_path.append(anytime)
+                full_life_path.append(upcoming_module)
+                new = {"events": full_life_path}
+                student_model.life_path = new
+                student_model.living_situation = "I Own"
+
+                student_model.save()
+
                 accounts.append(packaged_bank)
                 student_model.accounts['accounts'] = accounts
                 student_model.save()
@@ -359,28 +387,36 @@ def add_account(request):
                     student_model.accounts['accounts'] = accounts
                     student_model.save()
 
+                    # Adding to life path tree
+                    full_life_path = student_model.life_path['events']
+
+                    # removed object
+                    upcoming_module = student_model.life_path['events'][-1]
+                    del full_life_path[-1]
+
+                    # Adding anytime Decision
+                    if cardType == 'CreditCard':
+                        card_type = 'Credit Card'
+                    elif cardType == 'BankAccount':
+                        card_type = 'Bank'
+
+                    anytime = {
+                        "title": f"Open a {card_type} Account",
+                        "type": "Anytime Decision",
+                        "description": f"Learn about opening a {card_type} account and how to find the best bank account for you",
+                    }
+
+                    full_life_path.append(anytime)
+                    full_life_path.append(upcoming_module)
+                    new = {"events": full_life_path}
+                    student_model.life_path = new
+                    student_model.living_situation = "I Own"
+
+                    student_model.save()
+
 
 
             return redirect('/university/dashboard')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
