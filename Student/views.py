@@ -511,6 +511,40 @@ def transactions(request):
         return render(request, 'Students/budget/transactions.html', context=context)
 
 
+# Budget / accounts
+def accounts(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student = Student.objects.get(user_id_number=user_id)
+        budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
+        current_year = student.current_year
+        student_accounts = student.accounts['accounts']
+        net_worth = student.current_net_worth
+
+        # Calculating real estate value
+        housing = student.properties['properties']
+
+        if housing == []:
+            total_real_estate_value = 0
+        else:
+            total_real_estate_value = 0
+            for prop in housing:
+                cost = int(prop['costNow'])
+                total_real_estate_value += cost
+                print(total_real_estate_value)
+
+
+        context = {
+            'student_accounts': student_accounts,
+            'net_worth': net_worth,
+            'total_real_estate_value': total_real_estate_value
+
+        }
+        return render(request, 'Students/budget/accounts.html', context=context)
+
+
 # Universal Video Page
 def universal_video(request, id):
     the_video = video.objects.get(id=id)

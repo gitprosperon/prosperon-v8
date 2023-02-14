@@ -285,4 +285,103 @@ def remove_rental(request):
             return redirect('/university/dashboard')
 
 
+def add_account(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        accounts = student_model.accounts['accounts']
+
+
+
+        # Getting ajax request
+        if request.POST.get('action') == 'post':
+            print('add account')
+            print(request.POST)
+            post = request.POST
+            cardType = post['cardType']
+            bankName = post['bankName']
+            image = post['image']
+            apy = post['apy']
+            yearlyFee = post['yearlyFee']
+            atmFee = post['atmFee']
+            description = post['description']
+            bankFeature1 = post['bankFeature1']
+            bankFeature2 = post['bankFeature2']
+            bankFeature3 = post['bankFeature3']
+            bankFeature4 = post['bankFeature4']
+
+            if accounts == []:
+
+                packaged_bank = {
+                    'cardType': cardType,
+                    'bankName': bankName,
+                    'image': image,
+                    'apy': apy,
+                    'yearlyFee': yearlyFee,
+                    'atmFee': atmFee,
+                    'description': description,
+                    'bankFeature1': bankFeature1,
+                    'bankFeature2': bankFeature2,
+                    'bankFeature3': bankFeature3,
+                    'bankFeature4': bankFeature4
+
+                }
+
+                accounts.append(packaged_bank)
+                student_model.accounts['accounts'] = accounts
+                student_model.save()
+
+            else:
+
+                if bankName in accounts:
+                    pass
+                else:
+                    print('we can add a new one now')
+
+                    packaged_bank = {
+                        'cardType': cardType,
+                        'bankName': bankName,
+                        'image': image,
+                        'apy': apy,
+                        'yearlyFee': yearlyFee,
+                        'atmFee': atmFee,
+                        'description': description,
+                        'bankFeature1': bankFeature1,
+                        'bankFeature2': bankFeature2,
+                        'bankFeature3': bankFeature3,
+                        'bankFeature4': bankFeature4
+
+                    }
+
+                    accounts.append(packaged_bank)
+                    student_model.accounts['accounts'] = accounts
+                    student_model.save()
+
+
+
+            return redirect('/university/dashboard')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

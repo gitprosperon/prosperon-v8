@@ -24,6 +24,7 @@ urlpatterns = [
 
     path('university/budget/transactions', views.transactions, name='transactions'),
 
+    path('university/budget/accounts', views.accounts, name='accounts'),
 
     # Universal Video Page
     path('university/video/<str:id>', views.universal_video, name='universal-video-page'),
@@ -60,6 +61,7 @@ urlpatterns = [
     path('university/sell-property', functions.sell_property, name='sell-property'),
     path('university/add-rental', functions.add_rental, name='add-rental'),
     path('university/remove-rental', functions.remove_rental, name='remove-rental'),
+    path('university/add-account', functions.add_account, name='add-account'),
 
 ]
 

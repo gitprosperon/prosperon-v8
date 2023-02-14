@@ -1,0 +1,155 @@
+{% extends 'Students/budget/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+
+
+{% block content %}
+
+<body class="body-2">
+  <div class="full-page-wrapper">
+    <div class="section-container">
+      <div class="page-title-blue">
+        <h1 class="heading-4">Bank Accounts</h1>
+      </div>
+    </div>
+    <div class="page-divider-container">
+      <div class="page-divider w-row">
+        <div class="page-left-column w-col w-col-4">
+          <div class="account-overview-container left">
+            <div class="section-header-wrapper">
+              <h1 class="page-section-header">Overview</h1>
+            </div>
+            <div class="account-ov-wrapper">
+              <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Checking &amp; Savings</div>
+                <div class="account-balance">$<span>{{ net_worth|intcomma }}</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/Liabilities-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Credit Cards</div>
+                <div class="account-balance">$<span>400</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Investments</div>
+                <div class="account-balance">$<span>0</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/Liabilities-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Loans</div>
+                <div class="account-balance">$<span>0</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing">
+              <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
+                <div class="account-title">Real Estate</div>
+                <div class="account-balance">$<span>{{ total_real_estate_value }}</span></div>
+              </div>
+            </div>
+            <div class="account-ov-wrapper top-spacing net-worth">
+              <div class="account-ov-information net-wroth">
+                <div class="account-title net-worth">Net Worth:</div>
+                <div class=""><span id="total-balance" style="font-size: 20px; font-weight: bold">*Balance*</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="account-overview-container left"></div>
+          <div class="account-overview-container left"></div>
+        </div>
+        <div class="column w-col w-col-8">
+          <div class="account-overview-container right">
+            <div class="section-warpper">
+
+              <div class="section-header-wrapper">
+                <h1 class="page-section-header">Bank Accounts</h1>
+              </div>
+
+
+                    <div class="_20-padding-container accounts-container" style="background-color: #F4F6F8">
+                        <div class="w-layout-grid grid-10">
+                        {% for account in student_accounts %}
+                            {% if account.cardType == 'BankAccount' %}
+                              <div id="w-node-_99aaa931-4bd2-e2e5-4b95-ea1970be2422-2dacfc80" class="div-block-3" style="background-color: white; padding: 20px">
+                                  <img src="{{ account.image }}" loading="lazy" id="w-node-_6bad997d-512a-ce75-0fe6-424a62ffcee7-2dacfc80" alt="" class="image-3" style="border-radius: 20px">
+                                <h1 class="account-title-card">{{ account.bankName }}</h1>
+                              </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        <a href="{% url 'Anytime:anytime-decision' '2' %}" style="text-decoration: none;" class="add-a-card-container">
+                          <div id="w-node-_8296f6a0-cfa7-f5d8-419c-fb4775c77359-2dacfc80" style="background-color: white; padding: 20px" class="div-block-3 add-card"><img src="{% static 'images/icons/light-blue-cross.png' %}" loading="lazy" width="83" id="w-node-_8296f6a0-cfa7-f5d8-419c-fb4775c7735a-2dacfc80" alt="" class="add-card-img">
+                            <h1 class="account-title-card">Add Card</h1>
+                          </div>
+                        </a>
+
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="section-warpper">
+
+              <div class="section-header-wrapper">
+                <h1 class="page-section-header">Credit Cards</h1>
+              </div>
+
+
+                  <div class="_20-padding-container accounts-container" style="background-color: #F4F6F8"r>
+                    <div class="w-layout-grid grid-10">
+
+
+                    {% for account in student_accounts %}
+                        {% if account.cardType == 'CreditCard' %}
+                          <div id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80880-2dacfc80" class="div-block-3" style="background-color: white; padding: 20px">
+                                  <img src="{{ account.image }}" loading="lazy" id="w-node-_6bad997d-512a-ce75-0fe6-424a62ffcee7-2dacfc80" alt="" class="image-3" style="border-radius: 20px">
+                                <h1 class="account-title-card">{{ account.bankName }}</h1>
+                          </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <a href="{% url 'Anytime:anytime-decision' '3' %}" style="text-decoration: none;" class="add-a-card-container">
+                      <div id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80884-2dacfc80" style="background-color: white; padding: 20px" class="div-block-3 add-card"><img src="{% static 'images/icons/light-blue-cross.png' %}" loading="lazy" width="83" id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80885-2dacfc80" alt="" class="add-card-img">
+                        <h1 class="account-title-card">Add Card</h1>
+                      </div>
+                    </a>
+                    </div>
+                  </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+
+
+
+var balances = document.getElementsByClassName('account-balance')
+
+
+var totalBalance = 0
+for (let i = 0; i < balances.length; i++) {
+    var balance = balances[i].innerText.replace("$", "").replace(",", "")
+    var cleanedBalance = Number(balance)
+    totalBalance += cleanedBalance
+
+}
+
+console.log(totalBalance)
+
+var totalBalanceTarget = document.getElementById('total-balance')
+
+totalBalanceTarget.innerHTML = totalBalance.toLocaleString("en-US", {style:"currency", currency:"USD"});
+
+
+</script>
+
+{% endblock %}

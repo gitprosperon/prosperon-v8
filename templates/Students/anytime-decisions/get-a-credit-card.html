@@ -115,22 +115,87 @@
 {% endif %}
 {% endblock %}
 
-    {% block bottomButtons %}
-        {% if id == '3' %}
-        <div class="button-wrapper bottom-spacing">
-            <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
-            <div class="back-btn" id="backBtn">
-                <div class="" id="backBtn" >Back</div>
-            </div>
-            </a>
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
-                <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
-                <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Credit Card Payment">
-
-                    <button type="submit" id="applyBtn" class="next-btn" style="display: none;">Apply</button>
-            </form>
+{% block bottomButtons %}
+    {% if id == '3' %}
+    <div class="button-wrapper bottom-spacing">
+        <a href="/{{ ad.back_btn_link }}" style="text-decoration: none">
+        <div class="back-btn" id="backBtn">
+            <div class="" id="backBtn" >Back</div>
         </div>
-        {% endif %}
-    {% endblock %}
+        </a>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
+            <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
+            <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Credit Card Payment">
+            <a href="{% url 'Students:dashboard' %}" style="text-decoration: none">
+                <button type="button" id="applyBtn" class="next-btn" style="display: none;">Apply</button>
+            </a>
+        </form>
+    </div>
+    {% endif %}
+
+
+
+
+
+<script>
+
+
+function addAccount() {
+    console.log('add account')
+    var bankName = document.getElementById('credit-card-name').innerText
+    var bankImage = document.getElementById('credit-card-img').src
+    var apy = document.getElementById('apr').innerText
+    var yearlyFee = document.getElementById('yearlyFee').innerText
+    var atmFee = document.getElementById('atmFee').innerText
+    var description = document.getElementById('creditCardDescription').innerText
+    var bankFeature1 = document.getElementById('feature1').innerText
+    var bankFeature2 = document.getElementById('feature2').innerText
+    var bankFeature3 = document.getElementById('feature3').innerText
+    var bankFeature4 = document.getElementById('feature4').innerText
+
+    $.ajax({
+        type: "POST",
+        url: '/university/add-account',
+        data: {
+            csrfmiddlewaretoken: '{{csrf_token}}',
+            action: "post",
+            cardType: 'CreditCard',
+            bankName: bankName,
+            image: bankImage,
+            apy: apy,
+            yearlyFee: yearlyFee,
+            atmFee: atmFee,
+            description: description,
+            bankFeature1: bankFeature1,
+            bankFeature2: bankFeature2,
+            bankFeature3: bankFeature3,
+            bankFeature4: bankFeature4
+
+        }
+    })
+}
+
+document.getElementById('applyBtn').addEventListener('click', addAccount)
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'students/js/anytime-decision-script.js' %}" type="text/javascript"></script>
+{% endblock %}
