@@ -141,24 +141,25 @@ class Student(models.Model):
         ("I own", "I own"),
     ]
     living_situation = models.CharField(max_length=2000, choices=YES_NO, null=True, blank=True)
-    location = models.CharField(max_length=20, null=True, blank=True)
+    location = models.CharField(max_length=200, null=True, blank=True)
 
     GENDER_CHOICES = (
         ('Female', 'Female'),
         ('Male', 'Male'),
+        ('Non-Binary', 'Non-Binary'),
         ('Not Specified', 'Not Specified'),
     )
-    gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True, blank=True)
+    gender = models.CharField(max_length=200, choices=GENDER_CHOICES, null=True, blank=True)
     ETHNICITY_CHOICES = (
-        ('white', 'White'),
-        ('black', 'Black or African American'),
-        ('latin', 'Hispanic or Latino'),
-        ('native american', 'American Indian or Alaska Native'),
-        ('asian', 'Asian'),
-        ('islander or hawaiian', 'Native Hawaiian or Other Pacific Islander'),
-        ('other', 'Multiracial/Other'),
+        ('White', 'White'),
+        ('Black or African American', 'Black or African American'),
+        ('Hispanic or Latino', 'Hispanic or Latino'),
+        ('American Indian or Alaska Native', 'American Indian or Alaska Native'),
+        ('Asian', 'Asian'),
+        ('Native Hawaiian or Other Pacific Islander', 'Native Hawaiian or Other Pacific Islander'),
+        ('Multiracial/Other', 'Multiracial/Other'),
     )
-    ethnicity = models.CharField(max_length=20, choices=ETHNICITY_CHOICES, null=True, blank=True)
+    ethnicity = models.CharField(max_length=200, choices=ETHNICITY_CHOICES, null=True, blank=True)
     major = models.ForeignKey(Major, on_delete=models.CASCADE, null=True, blank=True)
     jobs_applied = models.CharField(max_length=100, null=True, blank=True)
     accepted_job = models.CharField(max_length=100, null=True, blank=True)
@@ -185,6 +186,8 @@ class Student(models.Model):
         ('Fall 2024', 'Fall 2024'),
         ('Spring 2025', 'Spring 2025'),
         ('Fall 2025', 'Fall 2025'),
+        ('Spring 2026', 'Spring 2026'),
+        ('Fall 2026', 'Fall 2026'),
     )
     graduation_date = models.CharField(max_length=200, null=True, blank=True, choices=GRADUATION_DATES)
     total_months_completed = models.IntegerField(null=True, blank=True)

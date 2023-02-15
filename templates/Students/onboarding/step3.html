@@ -77,14 +77,14 @@
                 </div>
                 <div class="input-container">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Where do you live?</label><br>
-                    <select style="margin-bottom: 40px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="location" form="info-form">
-                        <option value="{% if location %}{{ location }}{% endif %}">{% if location %}{{ location }}{% endif %}</option>
+                    <input type="text" list="my-locations" class="text-field" width="100%" name="location" value="{% if location %}{{ location }}{% endif %}" id="locations-input">
+                    <datalist id="my-locations" style="width: 10%">
                         {% for pc in locationChoices %}
                             {% if pc != location %}
                                 <option value="{{ pc }}">{{ pc }}</option>
                             {% endif %}
                         {% endfor %}
-                    </select>
+                    </datalist>
                 </div>
                 <div class="input-container">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">When do you plan on graduating?</label><br>
@@ -101,10 +101,10 @@
 
 
                  <div class="input-container" style="padding-bottom: 40px; display: none">
-                 <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Choose your profile Image</label><br>
-                {{ image_form }}
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Choose your profile Image</label><br>
+                    {{ image_form }}
 
-                </div>
+                 </div>
 
 
                 <div class="button-wrapper forform">
@@ -120,7 +120,23 @@
 
 <script>
 
-
+  const input = document.getElementById('locations-input');
+  const options = document.getElementById('my-locations').options;
+  input.addEventListener('blur', () => {
+    const inputValue = input.value;
+    let valid = false;
+    for (let i = 0; i < options.length; i++) {
+      if (inputValue === options[i].value) {
+        valid = true;
+        break;
+      }
+    }
+    if (!valid) {
+      alert('Please select a valid option from the list');
+      input.style.borderBottom = '2px solid red'
+      input.value = '';
+    }
+  });
 
 
 </script>
