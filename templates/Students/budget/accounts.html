@@ -101,7 +101,7 @@
                   <div class="_20-padding-container accounts-container" style="background-color: #F4F6F8"r>
                     <div class="w-layout-grid grid-10">
 
-
+                    {% if student_accounts != '[]' %}
                     {% for account in student_accounts %}
                         {% if account.cardType == 'CreditCard' %}
                           <div id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80880-2dacfc80" class="div-block-3" style="background-color: white; padding: 20px">
@@ -110,6 +110,7 @@
                           </div>
                         {% endif %}
                     {% endfor %}
+                    {% endif %}
 
                     <a href="{% url 'Anytime:anytime-decision' '3' %}" style="text-decoration: none;" class="add-a-card-container">
                       <div id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80884-2dacfc80" style="background-color: white; padding: 20px" class="div-block-3 add-card"><img src="{% static 'images/icons/light-blue-cross.png' %}" loading="lazy" width="83" id="w-node-_61348bf3-8ee5-0440-8681-c24fcdf80885-2dacfc80" alt="" class="add-card-img">

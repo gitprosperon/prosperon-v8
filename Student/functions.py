@@ -36,6 +36,7 @@ def remove_subscriptions(request):
     else:
         return render(request, 'MainWebsite/index.html')
 
+
 # For updating spending habit
 def update_spending_habit(request):
     user = request.user
@@ -57,6 +58,7 @@ def update_spending_habit(request):
 
     else:
         return render(request, 'MainWebsite/index.html')
+
 
 # Path for adding properties
 def add_property(request):
@@ -135,6 +137,7 @@ def add_property(request):
 
             return redirect('/university/dashboard')
 
+
 # Path for adding properties
 def sell_property(request):
     user = request.user
@@ -175,6 +178,7 @@ def sell_property(request):
 
 
         return redirect('/university/dashboard')
+
 
 # Path for adding properties
 def add_rental(request):
@@ -250,8 +254,49 @@ def add_rental(request):
         student_model.living_situation = "I Rent"
         student_model.save()
 
+        # Adding transaction amount
+        transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
+        new_packaged_transaction = {
+            "date": "2017-01-29",
+            "name": property_title,
+            "checked": "no",
+            "associated_budget": "none",
+            "amount": monthly_rent,
+            "category": [
+                "Payment",
+                "Rent Payment"
+            ],
+            "location": {
+                "lat": 40.740352,
+                "lon": -74.001761,
+                "city": "San Francisco",
+                "region": "CA",
+                "address": "300 Post St",
+                "country": "US",
+                "postal_code": "94108",
+                "store_number": "1235"
+            },
+            "transaction_id": f"{transaction_id}",
+            "category_id": "19013000",
+        }
+        student_montly_transactions = student_model.monthly_transactions['monthly_transactions']
+        student_montly_transactions.append(new_packaged_transaction)
+        student_model.monthly_transactions['monthly_transactions'] = student_montly_transactions
+        current_all_transactions = student_model.all_transactions['all_transactions']
+        print(current_all_transactions)
+        current_all_transactions.append(new_packaged_transaction)
+        print(current_all_transactions)
+        student_model.save()
+
+
+
+
+
+
         return redirect('/university/dashboard')
 
+
+# Path for removing rental property
 def remove_rental(request):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -264,7 +309,6 @@ def remove_rental(request):
 
         months_simulated = 0
         cleaned_months = 12 - (current_months_completed - ((current_months_completed // 12) * 12))
-
 
         # Getting ajax request
         if request.POST.get('action') == 'post':
@@ -279,8 +323,6 @@ def remove_rental(request):
                     student_properties['properties'].remove(prop)
                     student_model.properties = student_properties
                     student_model.save()
-
-
 
             return redirect('/university/dashboard')
 
@@ -419,5 +461,36 @@ def add_account(request):
             return redirect('/university/dashboard')
 
 
+def anytime_decision_handeler(request, id):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        ad = AnytimeDecision.objects.get(decision_id=id)
+
+        # Adding points for anytime decision
+        ad_points = ad.points
+        student_model.last_points_added = ad.points
+        print(student_model.last_points_added)
+
+        student_model.save()
+        student_model.total_points = student_model.total_points + ad_points
+        print(student_model.total_points)
+        student_model.save()
+
+        print('anutome saved')
 
 
+
+
+
+
+
+        print('we are handeling the anytime decision')
+
+        return redirect('/university/dashboard')
+
+
+    else:
+        return render(request, 'MainWebsite/index.html')

@@ -99,6 +99,7 @@ def register_student_account(request):
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.total_months_completed = 0
             studentUser.yearly_salary = 0
+            studentUser.accounts = {"accounts": []}
             studentUser.properties = {"properties": []}
             studentUser.total_monthly_expenses = 0
             studentUser.investing_activated = False

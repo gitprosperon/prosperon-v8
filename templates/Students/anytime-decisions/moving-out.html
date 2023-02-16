@@ -133,7 +133,7 @@ citySearch.addEventListener("keyup", (e) => {
             <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
             <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
 
-            <a href="{% url 'Students:dashboard' %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
+            <a href="{% url 'Students:anytime-handeler' id %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
         </form>
     </div>
     {% endif %}

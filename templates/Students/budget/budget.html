@@ -172,6 +172,11 @@
                                  <img src="{% static 'images/budgeting-images/income.svg' %}" loading="lazy" width="72" alt="" class="icon-img no-radius">
                             {% elif budget.category == 'Subscription' %}
                                 <img src="{% static 'images/budgeting-images/subscriptions-icon.png' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif budget.category == 'Miscellaneous' %}
+                                <img src="{% static 'images/icons/110136_colors_512x512.png' %}" loading="lazy" alt="" class="icon-img no-radius">
+                            {% elif budget.category == 'Other' %}
+                                <img src="{% static 'images/icons/other-icon.png' %}" loading="lazy" alt="" class="icon-img no-radius">
+
                             {% endif %}
 
 

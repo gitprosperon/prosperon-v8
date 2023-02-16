@@ -39,7 +39,7 @@
                 October
               {% elif student_month == '11' %}
                 November
-              {% elif student_month == '11' %}
+              {% elif student_month == '12' %}
                 December
               {% endif %}- {{ current_year }} </h1>
 
@@ -192,19 +192,15 @@
 
                             var Button = document.getElementById('button-' + button)
                             a.parentElement.children[2].style.display = 'block'
-                             a.parentElement.children[3].children[0].style.display = 'none'
-                                console.log(a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML)
-                             var title = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML
+                            a.parentElement.children[3].children[0].style.display = 'none'
+                            var title = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML
 
                              Button.onclick = function() {
                                 var budgetTitle = a.value
                                 var theCategory = a.options[a.selectedIndex].value
                                 a.parentElement.children[2].style.display = 'none'
-                                console.log(a.parentElement.children[3].children[0])
-                                 a.parentElement.children[3].children[0].style.display = 'block'
-                                 var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML
-                                 console.log(cost)
-
+                                a.parentElement.children[3].children[0].style.display = 'block'
+                                var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML
 
                                 $.ajax({
                                           type: "POST",
@@ -221,17 +217,11 @@
                                               category2: "{{ tramsactiom.category.1 }}"
 
                                             }
-
                                         })
                                 }
-
-
-
-
                             }
 
 
-                                                                 console.log('adfasdfasdfasdfasdfasdfadsf')
 
 
 

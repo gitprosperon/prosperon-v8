@@ -357,14 +357,6 @@ def transactions(request):
         budget_categories = BudgetItemsUniversity.objects.filter(users_id=user_id)
         current_year = student.current_year
 
-
-
-        for cat in budget_categories:
-            print(cat.title)
-
-
-
-
         # Code for receiving transactions with ajax
         if request.POST.get('action') == 'post':
             print(request.POST)
@@ -379,8 +371,6 @@ def transactions(request):
             category1 = public['category1']
             category2 = public['category2']
             transaction_budget = public['budget']
-
-            print(transaction_id)
 
 
             # getting the budgeting category objext in database
@@ -454,7 +444,6 @@ def transactions(request):
 
                         # Packaging sent transaction
                         new_packaged_transaction =  {
-
                                      "date":"2017-01-29",
                                      "name": f"{tran_title}",
                                      "associated_budget": f"{transaction_category}",
@@ -475,8 +464,7 @@ def transactions(request):
                                         "store_number":"1235"
                                      },
                                      "transaction_id": f"{transaction_id}",
-                                     "category_id":"19013000",
-
+                                     "category_id": "19013000",
                                   }
                         currentTransactions.append(new_packaged_transaction)
 
@@ -488,12 +476,7 @@ def transactions(request):
                         budget_category.save()
 
 
-
-
-
         all_budgets = BudgetItemsUniversity.objects.filter(users_id=user_id)
-
-
         transactions = student.all_transactions
         all_current_transactions = transactions['all_transactions']
 
@@ -609,6 +592,9 @@ def module_summaries(request, id, c):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         current_year = student.current_year
+        student_month = student.current_month
+
+        print('current year', current_year)
         module_results = summary.module_results
 
         # Getting next module
@@ -689,7 +675,8 @@ def module_summaries(request, id, c):
             'current_videos': current_videos,
             'c': c,
             'current_year': current_year,
-            'module_results': module_results['module_results']
+            'module_results': module_results['module_results'],
+            'student_month': student_month
 
 
         }
@@ -794,7 +781,7 @@ def anytime_decision_step2(request, id):
             transaction_title = sent_form['transactiontitle']
             student.current_net_worth = student.current_net_worth - int(cost_now)
 
-            #
+
 
             # Cleaning and doing logic on monthly expenses
             monthly_cost = monthly_cost.replace(',', '')
@@ -811,7 +798,6 @@ def anytime_decision_step2(request, id):
                 transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
                 new_packaged_transaction = {
-
                     "date": "2017-01-29",
                     "name": transaction_title,
                     "checked": "no",
@@ -833,7 +819,6 @@ def anytime_decision_step2(request, id):
                     },
                     "transaction_id": f"{transaction_id}",
                     "category_id": "19013000",
-
                 }
 
                 # Appending monthly transaction to monthly transaction list

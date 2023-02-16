@@ -9,6 +9,7 @@ class Major(models.Model):
     def __str__(self):
         return self.major_title
 
+
 # All locations with associated apartment rent
 class Location(models.Model):
     city = models.CharField(max_length=500, null=True, blank=True)
@@ -16,6 +17,7 @@ class Location(models.Model):
 
     def __str__(self):
         return self.city
+
 
 # All subscriptions
 class Subscription(models.Model):
@@ -27,6 +29,7 @@ class Subscription(models.Model):
     def __str__(self):
         return self.subscription_title + " - " + self.subscription_id
 
+
 # Monthly expenses
 class MonthlyExpense(models.Model):
     monthly_expense_title = models.CharField(max_length=250, null=True, blank=True)
@@ -34,13 +37,14 @@ class MonthlyExpense(models.Model):
     RANGES = [
         ("$0-100", "$0-100"),
         ("$100-200", "$100-200"),
-        ("200-300", "$200-300"),
-        ("300-400", "$300-400"),
+        ("$200-300", "$200-300"),
+        ("$300-400", "$300-400"),
     ]
     monthly_expense_cost = models.IntegerField(null=True, blank=True, choices=RANGES)
 
     def __str__(self):
         return self.monthly_expense_title
+
 
 # Models for get a job
 class Job(models.Model):
@@ -105,9 +109,11 @@ class Job(models.Model):
     def __str__(self):
         return self.job_id + ' - ' + self.title
 
+
 # Model for vehicles
 class Vehicle(models.Model):
     vehicle_title = models.CharField(max_length=400, null=True, blank=True)
+
 
 # Model for all fake apartments
 class Apartment(models.Model):
@@ -121,6 +127,7 @@ class Apartment(models.Model):
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
     initial_cost = models.IntegerField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+
 
 # Create your models here.
 class Student(models.Model):
@@ -142,7 +149,6 @@ class Student(models.Model):
     ]
     living_situation = models.CharField(max_length=2000, choices=YES_NO, null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)
-
     GENDER_CHOICES = (
         ('Female', 'Female'),
         ('Male', 'Male'),
@@ -178,7 +184,6 @@ class Student(models.Model):
     # 2 = frugal
     spender_type = models.CharField(max_length=100, null=True, blank=True)
     current_net_worth = models.IntegerField(null=True, blank=True)
-
     GRADUATION_DATES = (
         ('Spring 2023', 'Spring 2023'),
         ('Fall 2023', 'Fall 2023'),
@@ -214,9 +219,6 @@ class Student(models.Model):
     properties = models.JSONField(null=True, blank=True)
     accounts = models.JSONField(null=True, blank=True)
 
-
-
-
     def __str__(self):
         return self.student_email + ' - ' + self.user_id_number
 
@@ -233,10 +235,9 @@ class video(models.Model):
     vocab = models.TextField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
 
-
-
     def __str__(self):
         return self.video_id + ' - ' + self.title
+
 
 # Properties
 class Property(models.Model):
@@ -250,6 +251,7 @@ class Property(models.Model):
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
     total_cost = models.IntegerField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
+
 
 # Model for all anytime Decisions
 class AnytimeDecision(models.Model):
@@ -267,12 +269,11 @@ class AnytimeDecision(models.Model):
     back_btn_link = models.CharField(max_length=5000, null=True, blank=True)
     summary = models.TextField(max_length=5000, null=True, blank=True)
     points = models.IntegerField(null=True, blank=True)
-
     img = models.ImageField(upload_to='anytimeImages/', null=True, blank=True)
-
 
     def __str__(self):
         return self.decision_id + ' - ' + self.title
+
 
 # Credit Cards
 class CreditCard(models.Model):
@@ -289,6 +290,7 @@ class CreditCard(models.Model):
     credit_card_descrption = models.CharField(max_length=500, null=True, blank=True)
     signup_fee = models.CharField(max_length=500, null=True, blank=True)
 
+
 # Bank Accounts
 class BankAccount(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
@@ -304,6 +306,7 @@ class BankAccount(models.Model):
     bank_feature4 = models.CharField(max_length=500, null=True, blank=True)
     bank_signup_fee = models.CharField(max_length=500, null=True, blank=True)
 
+
 # Model for all budgets
 class BudgetItemsUniversity(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
@@ -318,7 +321,8 @@ class BudgetItemsUniversity(models.Model):
         ('Payment', 'Payment'),
         ('Income', 'Income'),
         ('Subscription', 'Subscription'),
-
+        ('Miscellaneous', 'Miscellaneous'),
+        ('Other', 'Other'),
     ]
     category = models.CharField(max_length=200, null=True, blank=True, choices=CATAGORIES)
     total_per_month = models.IntegerField(null=True, blank=True)
@@ -328,6 +332,7 @@ class BudgetItemsUniversity(models.Model):
 
     def __str__(self):
         return self.users_id + " - " + self.category
+
 
 # Model for all Modules
 class UniversityModule(models.Model):
@@ -343,9 +348,9 @@ class UniversityModule(models.Model):
     videos = models.JSONField(null=True, blank=True)
     module_results = models.JSONField(null=True, blank=True)
 
-
     def __str__(self):
         return self.module_title
+
 
 # Model for module summaries
 class ModuleSummarie(models.Model):
@@ -357,7 +362,6 @@ class ModuleSummarie(models.Model):
     unlocked_decisions = models.CharField(max_length=5000, null=True, blank=True)
     points_earned = models.CharField(max_length=500, null=True, blank=True)
     module_results = models.JSONField(null=True, blank=True)
-
 
     def __str__(self):
         return self.users_id + ' - ' + self.module_url
