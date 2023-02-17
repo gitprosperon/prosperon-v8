@@ -130,7 +130,7 @@ citySearch.addEventListener("keyup", (e) => {
                 <input type="hidden"  id="effect-cost-now-input" name="cost-now" value="1">
                 <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
                 <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
-                <a href="{% url 'Students:dashboard' %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
+                <a href="{% url 'Students:anytime-handeler' id %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
 
             </form>
         </div>
@@ -168,7 +168,6 @@ function test123(){
           monthly_rent: monthly_rent,
           bed: bed,
           bath: bath,
-          city: city,
           current_month: '{{ student_current_month }}'
 
 

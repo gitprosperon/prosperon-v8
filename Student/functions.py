@@ -92,6 +92,8 @@ def add_property(request):
             student_model.current_net_worth = student_net_worth
             student_monthly_expenses = student_model.total_monthly_expenses - int(float(monthly_rent))
             student_model.total_monthly_expenses = student_monthly_expenses
+            student_model.save()
+
 
             # Packaging new property
             new_property = {
@@ -165,6 +167,7 @@ def sell_property(request):
             num_months = current_months_completed - int(month_purchased)
             num_years = num_months // 12
             answer = round(float(initial_cost) * (1 + .051 / num_years) ** (num_years))
+            print('price for selling house:', answer)
 
             for prop in student_properties:
                 if prop['property_id'] == property_id:
