@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class BlogArticle(models.Model):
@@ -20,3 +21,18 @@ class BlogArticle(models.Model):
 
     def __str__(self):
         return self.blog_title + ' - ' + self.blog_id
+
+
+class ContactModelForm(models.Model):
+    name = models.CharField(max_length=500, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.date = timezone.now()
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.email + ' - ' + f'{self.date.date()}'
