@@ -17,6 +17,12 @@ def to_int(value):
     return int(value)
 
 
+def compounding_growth(principal, interest_rate, time, monthlyIncome, MonthlyExpenses):
+    # Calculate the compound interest
+    compound_interest = (principal + ((monthlyIncome + MonthlyExpenses) * time) * ((1 + ( (interest_rate / 100) / 12 )) ** (time / 12)))
+    return compound_interest
+
+
 
 # ------- UNIVERSITY MAIN VIEWS -----------
 
@@ -139,6 +145,7 @@ def simulate(request, months):
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
         student_current_month = student.current_month
+        investing_activated = student.investing_activated
 
 
         # Student financial data
@@ -148,20 +155,29 @@ def simulate(request, months):
         net_worth_list = student.net_worth_monthly_list['net_income_monthly_list']
 
 
-        # Calculating net worth at specific moment
-        index = 0
-        while index < int(months):
+        mutule_fund_rate = 5.12
 
-            netWorth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * index)
-            print(netWorth)
+        surplus = student_monthlyIncome + monthlyExpenses
+        print(surplus)
+
+        # Calculating net worth each month
+        index = 0
+        net_worth = student_net_worth
+        while index < int(months):
             index += 1
+            netWorth = compounding_growth(net_worth, mutule_fund_rate, index, student_monthlyIncome, monthlyExpenses)
+            print(netWorth)
+
+
             net_worth_list.append({"net_worth": f"{netWorth}"})
 
-        student.current_net_worth = student_net_worth + ((student_monthlyIncome + monthlyExpenses) * int(months))
+        total_current_net_worth = compounding_growth(net_worth, mutule_fund_rate, int(months), student_monthlyIncome, monthlyExpenses)
+        student.current_net_worth = total_current_net_worth
+        student.net_worth_monthly_list['net_income_monthly_list'] = net_worth_list
         student.save()
 
 
-        # Adding to total number of months
+        # adding months to total number of months
         totalMonths = student.total_months_completed
         total = int(months) + totalMonths
         student.total_months_completed = total
@@ -171,7 +187,7 @@ def simulate(request, months):
 
         test = round(int(months) / 12)
         student.current_year = test + int(student_current_year)
-        print(student_current_year)
+
         student.save()
 
 
@@ -371,10 +387,15 @@ def transactions(request):
             category1 = public['category1']
             category2 = public['category2']
             transaction_budget = public['budget']
+            print('')
+            print('')
+            print('')
+
+            print(transaction_budget)
 
 
             # getting the budgeting category objext in database
-            budget_category = BudgetItemsUniversity.objects.get(title=transaction_category)
+            budget_category = BudgetItemsUniversity.objects.get(budget_id=transaction_budget)
 
             # A users current changed transactions json list
             currentTransactions = budget_category.transactions['categoryTransactions']
@@ -433,7 +454,7 @@ def transactions(request):
                     print(transact)
                     if transaction_id == transact['transaction_id']:
                         print('Now we are editing current one')
-
+                        print(transact['associated_budget'])
 
                         transact['checked'] = 'yes'
                         transact['associated_budget'] = f"{transaction_category}"

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
+
 class MyAccountManager(BaseUserManager):
     def create_user(self, email, username, password):
         if not email:
@@ -98,3 +99,4 @@ class Account(AbstractBaseUser):
 
     def get_changed_transactions(self):
         return self.changed_transactions
+

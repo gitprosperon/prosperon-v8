@@ -6,11 +6,12 @@ from django.contrib.auth import login as djlogin
 from .models import Account
 from Student.models import Student
 from django.contrib import auth
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import LoginUserForm
-from django.contrib.auth.views import LoginView
-from .models import Account
+from django.urls import reverse_lazy
+from django.contrib.auth.hashers import check_password
+
 
 
 # Logout Page
@@ -21,8 +22,30 @@ def logout(request):
 
 # Login for student
 class LoginUser(LoginView):
+
+    from django.contrib.auth.hashers import check_password
+
+    password = 'Jbstvc112'
+    hashed_password = 'pbkdf2_sha256$390000$rd2cxfcNPUcdg7BPkFTjhb$tFUoJMwfZOhB+Dl4Eya95p5d9Ptw/eV59EQ+jjiadgE='
+
+    if check_password(password, hashed_password):
+        print('# Passwords match')
+    else:
+        print('# Passwords do not match')
+
+
+
+
     template_name = 'Accounts/login-student.html'
     form_class = LoginUserForm
+    print('test234234234234234234234')
+
+
+
+
+
+
+
 
 # Registration choice
 def register_choice(request):
@@ -67,7 +90,8 @@ def register_student_account(request):
             user.user_id = created_user_id
             user.has_university = True
             user.username = created_user_id
-            user.set_password(user.password)
+            user.set_password(form.cleaned_data['password'])
+            print(user.password)
             user.last_login = datetime.datetime.now()
             user.save()
             djlogin(request, user, backend='django.contrib.auth.backends.ModelBackend')

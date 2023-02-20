@@ -63,6 +63,7 @@ urlpatterns = [
     path('university/remove-rental', functions.remove_rental, name='remove-rental'),
     path('university/add-account', functions.add_account, name='add-account'),
     path('university/anytime-decision-handeler/<str:id>', functions.anytime_decision_handeler, name='anytime-handeler'),
+    path('university/updateSpendingProfile', functions.update_spender_profile, name='update-Spending-Profile'),
 
 ]
 

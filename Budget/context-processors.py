@@ -16,6 +16,7 @@ def account_info(request):
         student_year = student.current_year
         pilot = student.pilot
         first_name = student.first_name
+        student_course_progress = int(student.course_progress)
 
         if student_month == '4':
             print('it is wa')
@@ -29,7 +30,8 @@ def account_info(request):
             'student_income': student_income,
             'student_month': student_month,
             'student_year': student_year,
-            'pilot': pilot
+            'pilot': pilot,
+            'student_course_progress': student_course_progress
         }
 
     else:

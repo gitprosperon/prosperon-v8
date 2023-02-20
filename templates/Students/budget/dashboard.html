@@ -84,28 +84,19 @@
                         <script>
 
                             // Checking to see if investing has been activated
-                            var investing_status = '{{ investing_activated }}'
-                            var years_calculated = '{{ current_year_calculated }}'
-                            var average_mutule_fund_rate;
-
-                            if (investing_status === 'True') {
-                                average_mutule_fund_rate = 1.082
-                            } else if (investing_status === 'False') {
-
-                                average_mutule_fund_rate = 1
-                            }
-
                             var newList = []
                             {% for i in monthlyList %}
-                                newList.push({{i.net_worth}})
+                                {{ i }}
                             {% endfor %}
+
+                            console.log(newList)
 
                             var inflationRate = 1.125
                             var anotherList = []
 
                             for(let i = 0; i < newList.length; i++) {
                                 if(i % 12 === 0 ) {
-                                    var final = newList[i] * inflationRate * average_mutule_fund_rate
+                                    var final = newList[i]
                                     anotherList.push(final)
                                 }
                             }

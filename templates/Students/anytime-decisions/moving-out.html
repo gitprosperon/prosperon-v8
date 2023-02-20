@@ -17,8 +17,7 @@
     <div class="_24px semibold white">Searching for apartments in...</div>
     <div class="search-area _10-top">
 
-
-        {% if student_job_location == student_current_location and student.job.job_type != 'Remote' %}
+        {% if student_job_location != student_current_location and student.job.job_type != 'Remote' %}
             <h1 class="_18-poppins padding" id="citySearch">{{ student.job.job_city }}</h1>
         {% else %}
             <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%" placeholder="Search for housing">

@@ -55,3 +55,5 @@ class LoginUserForm(AuthenticationForm):
     username = forms.CharField(max_length=150, required=True, widget=forms.TextInput(attrs={'class': 'text-field w-input', 'id': 'email'}))
     password = forms.CharField(label='Password', required=True, widget=forms.PasswordInput(attrs={'class': 'text-field w-input', 'placeholder': '**********'}))
 
+
+

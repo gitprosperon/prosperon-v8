@@ -164,20 +164,20 @@
                              <option value="" >--{{ tramsactiom.category.0 }}--</option>
                                 {% for budget in budget_categories %}
                                     {% if  budget.category == tramsactiom.category.0 %}
-                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        <option value="{{ budget.budget_id }}" >{{ budget.title }}</option>
                                     {% endif %}
                                 {% endfor %}
                                 <option value="" >--OTHER--</option>
                                 {% for budget in budget_categories %}
                                     {% if  budget.category != tramsactiom.category.0 %}
-                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        <option value="{{ budget.budget_id }}" >{{ budget.title }}</option>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
                                 <option value="{{ tramsactiom.associated_budget }}" selected>{{ tramsactiom.associated_budget }}</option>
                                 {% for budget in budget_categories %}
                                     {% if budget.title != tramsactiom.associated_budget  %}
-                                        <option value="{{ budget.title }}" >{{ budget.title }}</option>
+                                        <option value="{{ budget.budget_id }}" >{{ budget.title }}</option>
                                     {% endif %}
                                 {% endfor %}
 
@@ -196,9 +196,9 @@
                             var title = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[1].children[0].innerHTML
 
                              Button.onclick = function() {
-                                console.log('test234234242')
+                                console.log('a')
                                 var budgetTitle = a.value
-                                var theCategory = a.options[a.selectedIndex].value
+                                var theCategory = a.options[a.selectedIndex].innerText
                                 a.parentElement.children[2].style.display = 'none'
                                 a.parentElement.children[3].children[0].style.display = 'block'
                                 var cost = a.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].children[2].children[0].children[0].innerHTML

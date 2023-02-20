@@ -14,21 +14,20 @@
         </div>
         <div class="signup-form">
           <div class="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form" method="post">
-                {% csrf_token %}
+            <form name="login-form" data-name="Email Form" method="Post">
                 <label for="University-6" class="form-title">Email Address</label>
                 {{ form.username }}
                 <label for="University-6" class="form-title">Password</label>
+
                 {{ form.password }}
-              <div class="div-block-4">
-                  <input type="submit" value="Sign In" data-wait="Please wait..." class="submit-button w-button"></div>
+
+
+
+                    {% csrf_token %}
+                  <button type="submit" value="Sign In" data-wait="Please wait..." class="submit-button w-button">
+
             </form>
-            <div class="w-form-done">
-              <div>Thank you! Your submission has been received!</div>
-            </div>
-            <div class="w-form-fail">
-              <div>Oops! Something went wrong while submitting the form.</div>
-            </div>
+
           </div>
         </div>
         <div class="signup-logo" style="margin-top: 60px"><img src="images/Prosperon-Logo.png" loading="lazy" sizes="(max-width: 479px) 33vw, (max-width: 767px) 36vw, (max-width: 991px) 37vw, 40vw" srcset="images/Prosperon-Logo-p-500.png 500w, images/Prosperon-Logo-p-800.png 800w, images/Prosperon-Logo-p-1080.png 1080w, images/Prosperon-Logo-p-1600.png 1600w, images/Prosperon-Logo-p-2000.png 2000w, images/Prosperon-Logo-p-2600.png 2600w, images/Prosperon-Logo-p-3200.png 3200w, images/Prosperon-Logo.png 7428w" alt=""></div>

@@ -330,6 +330,7 @@ def remove_rental(request):
             return redirect('/university/dashboard')
 
 
+# Path to add bank or credit account
 def add_account(request):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -464,6 +465,7 @@ def add_account(request):
             return redirect('/university/dashboard')
 
 
+# Path for handeling anytime decisions
 def anytime_decision_handeler(request, id):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -494,6 +496,30 @@ def anytime_decision_handeler(request, id):
 
         return redirect('/university/dashboard')
 
+
+    else:
+        return render(request, 'MainWebsite/index.html')
+
+
+# For updating spending habit
+def update_spender_profile(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+
+
+        if request.POST.get('action') == 'post':
+            print(request.POST)
+            post = request.POST
+            spenderType = post['spenderType']
+
+            student_model.spender_type = spenderType
+            student_model.save()
+
+
+            return redirect('/university/dashboard')
 
     else:
         return render(request, 'MainWebsite/index.html')
