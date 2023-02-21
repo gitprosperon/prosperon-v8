@@ -46,6 +46,7 @@ def dashboard(request):
         investing_activated = student_model.investing_activated
         monthly_spending_habits = student_model.spending_profile_monthly_payments['spending_profile_monthly_payments']
         spending_profile_ranges = MonthlyExpense.RANGES
+        monthly_expenses = MonthlyExpense.objects.all()
         current_year_calculated = int(student_model.current_month) // 12
         living_situation = student_model.living_situation
         apartment = student_model.apartments
@@ -126,7 +127,8 @@ def dashboard(request):
             'salary': salary,
             'apartment': apartment,
             'properties': properties,
-            'current_year_calculated': current_year_calculated
+            'current_year_calculated': current_year_calculated,
+            'monthly_expenses': monthly_expenses
 
         }
 

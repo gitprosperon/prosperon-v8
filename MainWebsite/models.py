@@ -36,3 +36,12 @@ class ContactModelForm(models.Model):
 
     def __str__(self):
         return self.email + ' - ' + f'{self.date.date()}'
+
+class Tool(models.Model):
+    name = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    html_path = models.CharField(max_length=500, null=True, blank=True)
+    tool_id = models.CharField(max_length=5000, null=True, blank=True)
+
+
+

@@ -1,5 +1,6 @@
 {% extends 'Students/budget/base.html' %}
 {% load static %}
+{% load humanize %}
 {% load mathfilters %}
 
 
@@ -27,7 +28,7 @@
               <div>
                 <div class="total-imcome-container">
                   <h1 class="total-imcome-header">Total Income</h1>
-                  <h1 class="_24px medium green">+ ${{ monthly_salary }}</h1>
+                  <h1 class="_24px medium green">+ ${{ monthly_salary|intcomma }}</h1>
                 </div>
                 <div class="graph-container">
 
@@ -50,7 +51,7 @@
 
                     {% for budget in user_university_budget_items %}
 
-                    var budgetItemCategory = '{{ budget.category }}'
+                    var budgetItemCategory = '{{ budget.title }}'
                     var budgetCosts = {{ budget.total_per_month }}
 
                     allBudgetItemCategories.push(budgetItemCategory)

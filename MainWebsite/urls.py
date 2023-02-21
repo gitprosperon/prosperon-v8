@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from . import tool_views
 
 app_name = "MainWebsitte"
 
@@ -13,5 +14,10 @@ urlpatterns = [
     path("testimonials", views.testamonials, name='testimonials'),
     path('all-blogs', views.all_blogs, name='all_blogs'),  # Blogs page
     path('blog/<str:id>', views.blog, name='blog'),  # Blogs page
+
+
+    # TOOL PAGES
+    path("mortgage-calculator", tool_views.mortgage_calculator, name='mortgage-calculator'),
+    path("tool/<str:id>", tool_views.tool_page, name='mortgage-calculator'),
 
 ]

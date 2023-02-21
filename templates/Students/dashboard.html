@@ -5,7 +5,6 @@
 
 {% block content %}
 
-    {{ j }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="full-page-wrapper">
     <div class="section-container">
@@ -754,15 +753,28 @@
                     <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307e4-fe18aa3b" class="_10-top" style="display: none">
                       <div class="_18px">
                             <div class="w-layout-grid grid-27" >
+
+
+
+
                               {% for habit in monthly_spending_habits %}
+                                {% for i in monthly_expenses %}
+                                    {% if i.monthly_expense_title == habit.name %}
+
                                   <div id="w-node-cc15f417-e4bb-565b-c521-96277a83fb04-e55e6eae" class="reoccuring-cost-card" >
                                       <div class="logo-icon-wrapper" style="display: flex; align-content: center; justify-content: center; flex-wrap: wrap" onclick="monthly_expenseClick(this)">
                                           {% csrf_token %}
 
-                                          <img src="../../../media/{{ habit.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
+                                          <img src="../../../media/{{ i.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
                                       </div>
                                       <div class="company-name-2">
                                         <h1 class="_14px-2">{{ habit.name }}</h1>
+                                      </div>
+                                      <div class="company-name-2">
+                                        <h1 class="_24px">${{ habit.amount|intcomma }}</h1>
+                                      </div>
+                                      <div class="company-name-2">
+                                        <h1 class="_14px">/ a month</h1>
                                       </div>
                                       <div class="price-range-wrapper hidden" style="display: none;">
                                           <label for="month-ranges" >Simulate</label>
@@ -775,6 +787,8 @@
                                         <button type="button" id="{{ habit.transaction_id }}" class="next-btn spending-habit" style="margin-top: 10px">Add</button>
                                       </div>
                                   </div>
+                                        {% endif %}
+                                    {% endfor %}
                               {% endfor %}
                           </div>
                       </div>

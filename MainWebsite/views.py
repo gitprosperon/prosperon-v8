@@ -69,6 +69,9 @@ def blog(request, id):
     print(page_type)
 
     context = {
-        'all_blogs': all_blogs
+        'the_Blog': all_blogs
     }
     return render(request, f'MainWebsite/blog/{page_type}.html', context=context)
+
+
+
