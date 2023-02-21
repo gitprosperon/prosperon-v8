@@ -77,7 +77,7 @@
                 </div>
                 <div class="input-container">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Where do you live?</label><br>
-                    <input type="text" list="my-locations" class="text-field" width="100%" name="location" value="{% if location %}{{ location }}{% endif %}" id="locations-input">
+                    <input type="text" list="my-locations" class="text-field" width="100%" name="location" value="{% if location %}{{ location }}{% endif %}" id="locations-input" style="margin-bottom: 20px">
                     <datalist id="my-locations" style="width: 10%">
                         {% for pc in locationChoices %}
                             {% if pc != location %}
@@ -97,7 +97,7 @@
                             {% endif %}
                         {% endfor %}
                     </select>
-
+                </div>
 
 
                  <div class="input-container" style="padding-bottom: 40px; display: none">
