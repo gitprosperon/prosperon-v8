@@ -7,7 +7,6 @@ from .forms import ContactForm
 
 # Index Page
 def home_page(request):
-
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -19,8 +18,6 @@ def home_page(request):
             form.email = email
             form.message = message
             form.save()
-
-
     else:
         form = ContactForm(request.POST)
 
@@ -48,7 +45,25 @@ def product_page(request):
 
 # Page for pilot program
 def pilot_program_page(request):
-    return render(request, 'MainWebsite/pilot-program.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            post = request.POST
+            name = post['name']
+            email = post['email']
+            message = post['message']
+            form.name = name
+            form.email = email
+            form.message = message
+            form.save()
+
+    else:
+        form = ContactForm(request.POST)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'MainWebsite/pilot-program.html', context=context)
 
 
 # Views for all blogs
@@ -73,5 +88,10 @@ def blog(request, id):
     }
     return render(request, f'MainWebsite/blog/{page_type}.html', context=context)
 
+
+
+# Terms and conditions page
+def terms_and_conditions(request):
+    return render(request, 'MainWebsite/terms-and-conditions.html')
 
 

@@ -15,6 +15,7 @@ urlpatterns = [
     path('all-blogs', views.all_blogs, name='all_blogs'),  # Blogs page
     path('blog/<str:id>', views.blog, name='blog'),  # Blogs page
 
+    path('terms-and-conditions', views.terms_and_conditions, name='terms-and-conditions'),  # Our story page
 
     # TOOL PAGES
     path("mortgage-calculator", tool_views.mortgage_calculator, name='mortgage-calculator'),
