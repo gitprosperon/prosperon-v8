@@ -3,6 +3,7 @@ from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItems
 from Student.models import Property
 from Accounts.models import Account
 import random
+from Student.forms import AddBudgetForm
 
 
 # Path for removing subscriptions
@@ -520,6 +521,62 @@ def update_spender_profile(request):
 
 
             return redirect('/university/dashboard')
+
+    else:
+        return render(request, 'MainWebsite/index.html')
+
+
+def create_budget(request):
+    user = request.user
+    if user.is_active and user.has_university == True:
+        print('create budget')
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student_model = Student.objects.get(user_id_number=user_id)
+        student_monthly_income = int(student_model.yearly_salary) / 12
+        print(student_monthly_income)
+
+
+
+        categories = [
+            ['Food and Dining', 'Food and Drink'],
+            ['Transportation', 'Transportation'],
+            ['Shops', 'Shops'],
+            ['Transfers', 'Transfer'],
+            ['Payment', 'Payment'],
+            ['Subscription', 'Subscription'],
+            ['Miscellaneous', 'Miscellaneous'],
+        ]
+
+        index = 0
+
+        while index < len(categories):
+            form = AddBudgetForm()
+            form = form.save(commit=False)
+            form.user = user
+            form.title = categories[index][0]
+            form.budget_id = random.randint(100000000, 90000000000)
+            form.category = categories[index][1]
+            form.transactions = {"categoryTransactions": []}
+            number = student_monthly_income / len(categories)
+            form.current_total = 0
+            form.total_per_month = number
+            form.users_id = user_id
+            form.save()
+
+
+
+
+
+
+
+
+            index += 1
+
+
+
+        return redirect('/university/budget/budget')
+
 
     else:
         return render(request, 'MainWebsite/index.html')

@@ -232,9 +232,24 @@
                       <h3 class="_24px semibold text add-goal" style="color: #1f79ba">Add Budget +</h3>
                     </div>
                   </div>
-                  <div class="day-counter-wrapper"></div>
                 </div>
                 </a>
+
+
+                {% if not user_university_budget_items %}
+                <a href="{% url 'Students:create-budget' %}" class="no-text-decoration">
+                <div class="goals-card add-goal" style="background-color: #1f79ba; color: white">
+                  <div class="goal-middle-section">
+                    <div class="goalcard-contents-wrapper add-goal">
+                      <h3 class="_24px semibold text add-goal" style="color: white">Build Budget</h3>
+                    </div>
+                  </div>
+                </div>
+                </a>
+                {% endif %}
+
+
+
             </div>
           </div>
         </div>
