@@ -196,7 +196,7 @@ def first_job_step4(request):
                 for benefit in benefits:
                     if benefit[1] == 'Yes':
                         packaged = {"title": benefit[0]}
-                        result_json['module_results']. append(packaged)
+                        result_json['module_results'].append(packaged)
 
                 newModule.module_results = result_json
                 newModule.save()
