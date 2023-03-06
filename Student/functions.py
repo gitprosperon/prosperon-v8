@@ -396,11 +396,14 @@ def add_account(request):
                     "description": f"Learn about opening a {card_type} account and how to find the best bank account for you",
                 }
 
+                print('card type : ', card_type)
+
                 full_life_path.append(anytime)
                 full_life_path.append(upcoming_module)
                 new = {"events": full_life_path}
                 student_model.life_path = new
-                student_model.living_situation = "I Own"
+
+                print('MODEL SAVED')
 
                 student_model.save()
 

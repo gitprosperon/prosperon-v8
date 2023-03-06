@@ -1,5 +1,6 @@
 import random
 
+import humanize
 from django.shortcuts import render, redirect
 from Student.forms import UpdateProgressForm
 from Student.models import Student, Major, Job, ModuleSummarie, UniversityModule
@@ -167,6 +168,14 @@ def first_job_step4(request):
                 student_loan_assist = ['student loan assist', student_job.student_loan_assist]
                 relocation = ['relocation', student_job.relocation]
                 result_json = {"module_results": []}
+
+                number = 13414
+                print()
+
+                packaged_salary = {"title": f"Monthly Salary: ${humanize.intcomma(round(salary/12))}"}
+                result_json['module_results'].append(packaged_salary)
+
+
 
                 benefits = [company_401k, health, dental, vision, pto, student_loan_assist, relocation]
                 for benefit in benefits:
