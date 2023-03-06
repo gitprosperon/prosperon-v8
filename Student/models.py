@@ -39,6 +39,10 @@ class MonthlyExpense(models.Model):
         ("$100-200", "$100-200"),
         ("$200-300", "$200-300"),
         ("$300-400", "$300-400"),
+        ("$400-500", "$400-500"),
+        ("$500-750", "$500-750"),
+        ("$750-1000", "$750-1000"),
+        ("$1000-1500", "$1000-1500"),
     ]
     monthly_expense_cost = models.IntegerField(null=True, blank=True, choices=RANGES)
 
