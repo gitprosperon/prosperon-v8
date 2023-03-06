@@ -24,7 +24,7 @@
 </head>
 
 <div class="top-right-popup" style="display: none" id="topRightPopup">
-<div class="div-block-148"><img src="{% static 'images/icons/red-closed.png' %}" loading="lazy" width="20px" height="20px" alt="" class="" style="margin-top: 20px; margin-right: 20px" onclick="profileToggle()"></div>
+<div class="div-block-148"><img src="{% static 'images/icons/red-closed.png' %}" loading="lazy" width="20px" height="20px" alt="" class="navbar-ex-hover" style="margin-top: 20px; margin-right: 20px" onclick="profileToggle()"></div>
     <ul role="list" class="list">
       <li>
         <a href="{% url 'MainWebsitte:home_page' %}" style="text-decoration: none;">
@@ -68,7 +68,7 @@
         {% endif %}
 
 
-       <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
+       <a href="{% url 'Students:dashboard' %}" class="side-bar-link" style="display: none">
             <div class="nav-link"><img src="{% static 'images/icons/uw_profile.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
                 <h1 class="nav-link-text">Profile</h1>
             </div>
@@ -129,7 +129,7 @@
 
 
 
-        <a href="" class="side-bar-link">
+        <a href="" class="side-bar-link" style="display: none;">
             <div class="nav-link"><img src="{% static 'images/icons/lw_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Goals</h1>
             </div>
@@ -161,7 +161,7 @@
       <div class="top-bar-container" style="cursor: pointer"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30"  alt="" style="cursor: pointer" onclick="navbarOpen()" class="navbar-hamburger-img">
         <div class="navbar-right-container">
 
-        <a href="{% url 'Budget:budget-notifications' %}" class="side-bar-link">
+        <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
               <div class="notification-container">
                   <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
               </div>
@@ -169,31 +169,7 @@
 
             <div class="calendar-container"><img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
                 <div class="date-text">
-                  {% if student_month == '1' %}
-                    January
-                  {% elif student_month == '2' %}
-                    February
-                  {% elif student_month == '3' %}
-                    March
-                  {% elif student_month == '4' %}
-                    April
-                  {% elif student_month == '5' %}
-                    May
-                  {% elif student_month == '6' %}
-                    June
-                  {% elif student_month == '7' %}
-                    July
-                  {% elif student_month == '8' %}
-                    August
-                  {% elif student_month == '9' %}
-                    September
-                  {% elif student_month == '10' %}
-                    October
-                  {% elif student_month == '11' %}
-                    November
-                  {% elif student_month == '12' %}
-                    December
-                  {% endif %}
+                    {{ student_year }}
                 </div>
             </div>
 
@@ -212,7 +188,7 @@
 
     <div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30" alt="" id="navbar" onclick="navbarOpen()" class="navbar-hamburger-img" style="cursor: pointer">
       <div class="navbar-right-container">
-          <a href="{% url 'Budget:budget-notifications' %}" id='topnav-notification' class="side-bar-link">
+          <a href="" id='topnav-notification' class="side-bar-link">
               <div class="notification-container">
                 <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
             </div>
@@ -221,31 +197,7 @@
         <div class="calendar-container">
             <img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
           <div class="date-text">
-              {% if student_month == '1' %}
-                January
-              {% elif student_month == '2' %}
-                February
-                {% elif student_month == '3' %}
-                March
-              {% elif student_month == '4' %}
-                April
-              {% elif student_month == '5' %}
-                May
-              {% elif student_month == '6' %}
-                June
-              {% elif student_month == '7' %}
-                July
-              {% elif student_month == '8' %}
-                August
-              {% elif student_month == '9' %}
-                September
-              {% elif student_month == '10' %}
-                October
-              {% elif student_month == '11' %}
-                November
-              {% elif student_month == '12' %}
-                December
-              {% endif %}
+              {{ student_year }}
           </div>
         </div>
         <div class="navbar-profile-wrapper" onclick="profileToggle()">

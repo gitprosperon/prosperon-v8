@@ -34,11 +34,13 @@
             </div>
         </a>
 
+        <div style="display: none">
        <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
             <div class="nav-link"><img src="{% static 'images/icons/uw_profile.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
                 <h1 class="nav-link-text">Profile</h1>
             </div>
         </a>
+        </div>
 
         <div class="nav-title">
                 <h1 class="nav-title-text" style="padding-left: 0px; font-weight: 600">Tools</h1>
@@ -80,7 +82,7 @@
         </a>
         {% endif %}
 
-
+        <div style="display: none">
         {% if request.path == '/university/budget/goals' %}
         <a href="{% url 'Students:goals' %}" class="side-bar-link">
             <div class="nav-link selected" style="border-radius: 20px"><img src="{% static 'images/icons/ub_goals.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
@@ -94,6 +96,7 @@
             </div>
         </a>
         {% endif %}
+        </div>
 
         {% if request.path == '/university/budget/accounts' %}
         <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
@@ -127,7 +130,7 @@
       <div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30"  alt="" onclick="navbarOpen()" class="navbar-hamburger-img">
         <div class="navbar-right-container">
 
-        <a href="{% url 'Budget:budget-notifications' %}" class="side-bar-link">
+        <a href="{% url 'Students:dashboard' %}" class="side-bar-link">
               <div class="notification-container">
                   <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
               </div>
@@ -135,32 +138,7 @@
 
             <div class="calendar-container"><img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
                 <div class="date-text">
-                    {% if student_month == '1' %}
-                January
-              {% elif student_month == '2' %}
-                February
-                {% elif student_month == '3' %}
-                March
-              {% elif student_month == '4' %}
-                April
-              {% elif student_month == '5' %}
-                May
-              {% elif student_month == '6' %}
-                June
-              {% elif student_month == '7' %}
-                July
-              {% elif student_month == '8' %}
-                August
-              {% elif student_month == '9' %}
-                September
-              {% elif student_month == '10' %}
-                October
-              {% elif student_month == '11' %}
-                November
-              {% elif student_month == '12' %}
-                December
-              {% endif %}
-
+                   {{ student_year }}
                 </div>
             </div>
 
@@ -177,52 +155,27 @@
   </div>
 
 
-    <div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30" alt="" id="navbar" onclick="navbarOpen()" class="navbar-hamburger-img">
-      <div class="navbar-right-container">
-          <a href="{% url 'Budget:budget-notifications' %}" id='topnav-notification' class="side-bar-link">
-              <div class="notification-container">
-                <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
-            </div>
-          </a>
-
-        <div class="calendar-container">
-            <img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
-          <div class="date-text">{% if student_month == '1' %}
-                January
-              {% elif student_month == '2' %}
-                February
-                {% elif student_month == '3' %}
-                March
-              {% elif student_month == '4' %}
-                April
-              {% elif student_month == '5' %}
-                May
-              {% elif student_month == '6' %}
-                June
-              {% elif student_month == '7' %}
-                July
-              {% elif student_month == '8' %}
-                August
-              {% elif student_month == '9' %}
-                September
-              {% elif student_month == '10' %}
-                October
-              {% elif student_month == '11' %}
-                November
-              {% elif student_month == '12' %}
-                December
-              {% endif %}</div>
+<div class="top-bar-container"><img src="{% static 'budget/images/Nav-bar-Hamburger-budget.png' %}" loading="lazy" width="30" alt="" id="navbar" onclick="navbarOpen()" class="navbar-hamburger-img">
+  <div class="navbar-right-container">
+      <a href="{% url 'Budget:budget-notifications' %}" id='topnav-notification' class="side-bar-link">
+          <div class="notification-container">
+            <img src="{% static 'images/icons/topnav_notifications.svg' %}" loading="lazy" width="30" height="30" alt="" class="notification">
         </div>
-        <div class="navbar-profile-wrapper">
+      </a>
 
-
-
-          <div class="profile-imagine-wrapper"><img src="{% static 'images/icons/profile-icon2.png' %}" loading="lazy" width="30" height="30" alt="" class="profile-image"></div>
-          <div class="navbar-name">{{ first_name }}</div>
-          <div class="navbar-dowpdown-wrapper"><img src="{% static 'images/icons/topnav_caret.svg' %}" loading="lazy" width="20" height="20" alt="" class="navbar-drop-down"></div>
-        </div>
+    <div class="calendar-container">
+        <img src="{% static 'images/icons/topnav_calendar.svg' %}" loading="lazy" width="25" height="25" alt="" class="calendar">
+      <div class="date-text">
+            {{ student_year }}
       </div>
     </div>
+    <div class="navbar-profile-wrapper">
+      <div class="profile-imagine-wrapper"><img src="{% static 'images/icons/profile-icon2.png' %}" loading="lazy" width="30" height="30" alt="" class="profile-image"></div>
+      <div class="navbar-name">{{ first_name }}</div>
+      <div class="navbar-dowpdown-wrapper"><img src="{% static 'images/icons/topnav_caret.svg' %}" loading="lazy" width="20" height="20" alt="" class="navbar-drop-down"></div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -239,20 +192,13 @@
 
 <script>
 
-    function navbarOpen() {
-        var navbarOverlay = document.getElementById('navbar-overlay');
-
-        if(navbarOverlay.style.display ==='none') {
-            navbarOverlay.style.display ='flex';
-        } else if (navbarOverlay.style.display ==='flex'){
-            navbarOverlay.style.display = 'none';
-
-        }
+function navbarOpen() {
+    var navbarOverlay = document.getElementById('navbar-overlay');
+    if(navbarOverlay.style.display ==='none') {
+        navbarOverlay.style.display ='flex';
+    } else if (navbarOverlay.style.display ==='flex'){
+        navbarOverlay.style.display = 'none';
     }
-
-
-
-
-
+}
 
 </script>

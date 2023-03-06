@@ -11,8 +11,8 @@ def first_job_step1(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
-    all_jobs = Job.objects.all()
-    print('request', request.POST)
+    student_major = student_model.major
+    all_jobs = Job.objects.filter(major=student_major)
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             jobs = request.POST['jobs']
@@ -20,10 +20,7 @@ def first_job_step1(request):
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
                 student_model.jobs_applied = [jobs]
-                print('jobs applied')
-                print(student_model.jobs_applied)
                 student_model.save()
-                print('complete')
                 return redirect('/university/video/2')
             else:
                 return redirect('/university/video/2')
@@ -46,13 +43,6 @@ def first_job_step2(request):
     graduation = graduation.replace(")", "").replace("'", "").partition(",")[0].partition(" ")
     season = graduation[0]
     year = graduation[2]
-
-    print(graduation)
-
-
-
-
-
     jobs_applied = student_model.jobs_applied
     jobs_applied = jobs_applied.replace("'", "")
 
@@ -61,12 +51,9 @@ def first_job_step2(request):
         jobs = Job.objects.all()
         for job in jobs:
             if job.job_id in jobs_applied:
-
                 the_jobs.append(job)
-                print(the_jobs)
 
         if request.method == 'POST':
-            print(request.POST)
             progress = request.POST['progress']
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
@@ -81,7 +68,6 @@ def first_job_step2(request):
             'season': season,
             'year': year
         }
-
         return render(request, 'Students/m1-first_job/step2.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
@@ -89,8 +75,6 @@ def first_job_step2(request):
 
 def first_job_step3(request):
     user = request.user
-
-    print('first job step 3')
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
@@ -103,23 +87,15 @@ def first_job_step3(request):
             if job.job_id in jobs_applied:
                 the_jobs.append(job)
 
-
-
         if request.method == 'POST':
-            print(request.POST)
             progress = request.POST['progress']
             student_progress = int(student_model.course_progress)
             if student_progress < 10:
                 student_model.course_progress = progress
                 student_model.save()
-
-
-
                 return redirect('/university/video/4')
             else:
                 return redirect('/university/video/4')
-
-
 
         context = {
             'the_jobs': the_jobs[0:2]

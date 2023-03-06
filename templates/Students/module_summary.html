@@ -229,9 +229,9 @@
                 <div class="results-subheader" style="padding-top: 10px">
 
                     {% for result in module_results %}
-                        <div class="benefits-mycareer">
+                        <div class="benefits-mycareer" style="padding-bottom: 10px">
                             <div class="div-block-145 blue"></div>
-                            <div class="_14-poppins">{{ result.title }}</div>
+                            <div class="_14-poppins" style="margin-left: 10px">{{ result.title }}</div>
                         </div>
                     {% endfor %}
 
@@ -276,7 +276,7 @@
     </div>
     <div class="button-wrapper bottom-spacing">
         {% if page_type == '0' %}
-        <a href="{% url 'Students:first-job-step4'  %}" style="text-decoration: none">
+        <a href="/university/{{ module_back_btn }}" style="text-decoration: none">
         <div class="back-btn" style="text-decoration: none">
         <div class="" style="text-decoration: none">Back</div>
       </div>

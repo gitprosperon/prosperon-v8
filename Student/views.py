@@ -636,6 +636,7 @@ def module_summaries(request, id, c):
 
         # Code for getting module videos
         current_module = UniversityModule.objects.get(module_id=id)
+        module_back_btn = current_module.back_btn
         current_videos = current_module.videos['videos']
 
 
@@ -682,12 +683,6 @@ def module_summaries(request, id, c):
                 student.life_path['events'].append(next_module)
                 student.save()
 
-
-
-
-
-
-
         context = {
             'summary': summary,
             'summary_title': summary_title,
@@ -699,7 +694,8 @@ def module_summaries(request, id, c):
             'c': c,
             'current_year': current_year,
             'module_results': module_results['module_results'],
-            'student_month': student_month
+            'student_month': student_month,
+            'module_back_btn': module_back_btn
 
 
         }

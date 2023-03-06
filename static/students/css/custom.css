@@ -271,8 +271,23 @@
   margin-top: 10px;
 }
 
-
-
 .navbar-profile-wrapper:hover {
   opacity: 70%;
+}
+.navbar-text-hover{
+  font-size: 18px;
+  color: #1f79ba;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.navbar-ex-hover:hover {
+  opacity: 30%;
+  cursor: pointer;
+}
+
+.navbar-text-hover:hover {
+  opacity: 70%;
+  cursor: pointer;
 }

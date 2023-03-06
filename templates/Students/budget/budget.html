@@ -262,25 +262,24 @@
 // for calculating total spend and remaining on student/budget/budget
 var elements = document.getElementsByClassName('_20-padding-container budget-container')
 var total_spent = 0
+var final_allocated = 0
 for(let i = 0; i < elements.length; i++) {
     var currentSpent = elements[i].children[2].children[0].children[1].children[0].innerHTML
-
     if(currentSpent === 'None') {
         elements[i].children[2].children[0].children[1].children[0].innerHTML = '0'
         console.log('it is none')
         currentSpent = 0
-
     }
-
-
     total_spent += Number(currentSpent)
     var total_allocated = elements[i].children[2].children[0].children[3].children[0].innerHTML
+    final_allocated += Number(total_allocated)
 }
+
 var totalSpentTarget = document.getElementById('total-spent-calculator')
 var totalRemainingTarget = document.getElementById('total-remaining')
 totalSpentTarget.innerText = Math.round(total_spent)
-var remaining = Number(total_allocated) - total_spent
-totalRemainingTarget.innerText = Math.round(remaining)
+var remaining = Number(final_allocated) - total_spent
+totalRemainingTarget.innerText = Math.round(remaining).toLocaleString()
 var totalRemainingContainerTarget = document.getElementById('total-remaining-container')
 
 if(remaining <= 0) {
