@@ -2205,6 +2205,12 @@
 }
 
 .scenario-popup {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 1000000;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3410,7 +3416,7 @@
   }
 
   .scenario-popup {
-    height: 91vh;
+    height: 100vh;
   }
 
   .right-timeline-card.anytime {
