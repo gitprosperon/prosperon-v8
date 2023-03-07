@@ -222,9 +222,11 @@ class Student(models.Model):
     apartments = models.ForeignKey(Apartment, on_delete=models.CASCADE, null=True, blank=True)
     properties = models.JSONField(null=True, blank=True)
     accounts = models.JSONField(null=True, blank=True)
+    avaliable_scenarios = models.CharField(max_length=900, null=True, blank=True)
 
     def __str__(self):
         return self.student_email + ' - ' + self.user_id_number
+
 
 # Model for all video pages
 class video(models.Model):
@@ -371,4 +373,18 @@ class ModuleSummarie(models.Model):
 
     def __str__(self):
         return self.users_id + ' - ' + self.module_url
+
+
+# Model for scenarios
+class Scenario(models.Model):
+    title = models.CharField(max_length=5000, null=True, blank=True)
+    scenario_id = models.CharField(max_length=100, null=True, blank=True)
+    description = models.CharField(max_length=5000, null=True, blank=True)
+    cost = models.IntegerField(null=True, blank=True)
+    image = models.ImageField(upload_to='scenarioImages/', null=True, blank=True)
+
+    def __str__(self):
+        return self.scenario_id + ' - ' + self.title
+
+
 

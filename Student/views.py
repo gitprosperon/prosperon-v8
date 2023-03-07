@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import video
 from Accounts.models import Account
 from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription, MonthlyExpense
-from Student.models import Property
+from Student.models import Property, Scenario
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
 from django import template
@@ -51,6 +51,9 @@ def dashboard(request):
         living_situation = student_model.living_situation
         apartment = student_model.apartments
         properties = student_model.properties['properties']
+        avaliable_scenarios = list(student_model.avaliable_scenarios.split(','))
+        scenario_choice = random.choice(avaliable_scenarios)
+        the_scenario = Scenario.objects.get(scenario_id=scenario_choice)
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -128,7 +131,8 @@ def dashboard(request):
             'apartment': apartment,
             'properties': properties,
             'current_year_calculated': current_year_calculated,
-            'monthly_expenses': monthly_expenses
+            'monthly_expenses': monthly_expenses,
+            'the_scenario': the_scenario
 
         }
 
@@ -232,6 +236,7 @@ def budgetDashboard(request):
         return render(request, 'Students/budget/dashboard.html', context=context)
     else:
         return render(request, 'MainWebsite/index.html')
+
 
 # Budget / Goals Page
 def goals(request):

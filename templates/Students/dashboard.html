@@ -5,6 +5,45 @@
 
 {% block content %}
 
+  <div class="scenario-popup">
+    <div class="scenario-wrapper">
+      <div class="columns w-row">
+        <div class="column-5 w-col w-col-6">
+          <div class="_40-padding-container scenario">
+            <div class="scenario-top-wrapper">
+              <div class="div-block-137">
+                <div class="scenario dropshadow hidden">
+                  <h1 class="_18 semibold no-bottom">Scenario</h1>
+                </div>
+                <h1 class="_18 semibold">{{ the_scenario.title }}</h1>
+                <div class="_18-poppins">{{ the_scenario.description }}</div>
+              </div>
+              <div class="total-cost">
+                <h1 class="_18 semibold total-cost">Total Cost:</h1>
+                <h1 class="_18 semibold total-cost">$<span>{{ the_scenario.cost }}</span></h1>
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <a href="{% url 'Students:scenario-handeler' the_scenario.scenario_id %}" class="scenario-button no w-button">No</a>
+              <a href="" class="scenario-button yes w-button">Yes</a>
+            </div>
+          </div>
+        </div>
+        <div class="column-6 w-col w-col-6">
+          <div class="scenario-image" style="background-image: url('../../media/{{ the_scenario.image }}')">
+            <div class="scenario dropshadow">
+              <h1 class="_18 semibold no-bottom">Scenario</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="full-page-wrapper">
     <div class="section-container">

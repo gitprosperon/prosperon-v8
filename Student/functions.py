@@ -373,7 +373,6 @@ def add_account(request):
                     'bankFeature2': bankFeature2,
                     'bankFeature3': bankFeature3,
                     'bankFeature4': bankFeature4
-
                 }
 
                 # Adding to life path tree
@@ -389,22 +388,16 @@ def add_account(request):
                 elif cardType == 'BankAccount':
                     card_type = 'Bank'
 
-
                 anytime = {
                     "title": f"Open a {card_type} Account",
                     "type": "Anytime Decision",
                     "description": f"Learn about opening a {card_type} account and how to find the best bank account for you",
                 }
 
-                print('card type : ', card_type)
-
                 full_life_path.append(anytime)
                 full_life_path.append(upcoming_module)
                 new = {"events": full_life_path}
                 student_model.life_path = new
-
-                print('MODEL SAVED')
-
                 student_model.save()
 
                 accounts.append(packaged_bank)
@@ -412,12 +405,10 @@ def add_account(request):
                 student_model.save()
 
             else:
-
                 if bankName in accounts:
                     pass
                 else:
                     print('we can add a new one now')
-
                     packaged_bank = {
                         'cardType': cardType,
                         'bankName': bankName,
@@ -463,8 +454,6 @@ def add_account(request):
                     student_model.living_situation = "I Own"
 
                     student_model.save()
-
-
 
             return redirect('/university/dashboard')
 
@@ -529,6 +518,7 @@ def update_spender_profile(request):
         return render(request, 'MainWebsite/index.html')
 
 
+# For creating pre-built budget
 def create_budget(request):
     user = request.user
     if user.is_active and user.has_university == True:
@@ -583,3 +573,14 @@ def create_budget(request):
 
     else:
         return render(request, 'MainWebsite/index.html')
+
+
+# For handeling scenarios
+def scenario_handeler(request, id):
+    user = request.user
+    if user.is_active and user.has_university:
+        print('we can handel the scenario')
+        print(id)
+
+        return redirect('/university/dashboard')
+

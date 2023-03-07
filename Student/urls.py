@@ -66,6 +66,9 @@ urlpatterns = [
     path('university/updateSpendingProfile', functions.update_spender_profile, name='update-Spending-Profile'),
     path('university/create-budget', functions.create_budget, name='create-budget'),
 
+    # Scenario Functions
+    path('university/scenario-handeler/<str:id>/<str:answer>', functions.scenario_handeler, name='scenario-handeler'),
+
 ]
 
 
