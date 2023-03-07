@@ -1,9 +1,54 @@
 from django.shortcuts import render, redirect
 from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription
-from Student.models import Property
+from Student.models import Property, Scenario
 from Accounts.models import Account
 import random
 from Student.forms import AddBudgetForm
+
+
+
+def add_transaction(user, request, title, associated_budget, category, cost):
+    if user.is_active and user.has_university == True:
+        transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
+
+        new_packaged_transaction = {
+            "date": "2017-01-29",
+            "name": title,
+            "checked": "no",
+            "associated_budget": associated_budget,
+            "amount": cost,
+            "category": [
+                f"{category}",
+                f"{category}"
+            ],
+            "location": {
+                "lat": 40.740352,
+                "lon": -74.001761,
+                "city": "San Francisco",
+                "region": "CA",
+                "address": "300 Post St",
+                "country": "US",
+                "postal_code": "94108",
+                "store_number": "1235"
+            },
+            "transaction_id": f"{transaction_id}",
+            "category_id": "19013000",
+        }
+
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        student = Student.objects.get(user_id_number=user_id)
+
+        current_all_transactions = student.all_transactions['all_transactions']
+
+        current_all_transactions.append(new_packaged_transaction)
+
+
+        student.save()
+
+        print('scenario transaction saved')
+
+
 
 
 # Path for removing subscriptions
@@ -576,11 +621,29 @@ def create_budget(request):
 
 
 # For handeling scenarios
-def scenario_handeler(request, id):
+def scenario_handeler(request, id, answer):
     user = request.user
     if user.is_active and user.has_university:
+        scenario = Scenario.objects.get(scenario_id=id)
         print('we can handel the scenario')
         print(id)
+        print('answer: ', answer)
 
-        return redirect('/university/dashboard')
+        # If answer is no
+        if answer == '0':
+            print('ans is no')
+            return redirect('/university/dashboard')
+        elif answer == '1':
+            print('ans is yess')
+            cost = scenario.cost
+            transaction_title = scenario.transaction_title
+            category = scenario.scenario_category
+
+            print(category)
+
+            add_transaction(user, request, transaction_title, 'none', category, cost)
+
+
+
+            return redirect('/university/dashboard')
 

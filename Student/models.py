@@ -382,6 +382,8 @@ class Scenario(models.Model):
     description = models.CharField(max_length=5000, null=True, blank=True)
     cost = models.IntegerField(null=True, blank=True)
     image = models.ImageField(upload_to='scenarioImages/', null=True, blank=True)
+    transaction_title = models.CharField(max_length=500, null=True, blank=True)
+    scenario_category = models.CharField(max_length=500, null=True, blank=True, choices=BudgetItemsUniversity.CATAGORIES)
 
     def __str__(self):
         return self.scenario_id + ' - ' + self.title
