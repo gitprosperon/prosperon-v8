@@ -223,6 +223,7 @@ class Student(models.Model):
     properties = models.JSONField(null=True, blank=True)
     accounts = models.JSONField(null=True, blank=True)
     avaliable_scenarios = models.CharField(max_length=900, null=True, blank=True)
+    scenario_display = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.student_email + ' - ' + self.user_id_number

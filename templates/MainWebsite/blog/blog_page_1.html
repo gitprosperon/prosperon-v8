@@ -1,8 +1,27 @@
 {% extends 'MainWebsite/base.html' %}
+{% load static %}
 
 {% block content %}
 
-{{ the_Blog.section_1_content }}
+<body>
+<div>
+    <a href="{% url 'MainWebsitte:all_blogs' %}" class="button back-btn" style="margin-left: 10px; text-decoration: none">Back</a>
+</div>
+  <div class="blog-section blog-post header wf-section" style="background-image: url('../../../static/main-website/images/BG-9-p-3200.jpg')">
+    <div>
+      <h1 class="blog-post-heading white-text">{{ the_Blog.blog_title }}</h1>
+    </div>
+  </div>
+  <div class="div-block-235">
+    <h3>{{ the_Blog.section_1_title }}</h3>
+    <p class="blogparagraph-1">{{ the_Blog.section_1_content }}</p>
+    <div style="width: auto"><img src="{{ the_Blog.blog_image.url }}" loading="lazy" alt="" class="image-1" width="auto" style="object-fit: contain "></div>
+    <h3>{{ the_Blog.section_2_title }}</h3>
+    <p class="blogparagraph-1">{{ the_Blog.section_2_content }}</p>
+    <h3>{{ the_Blog.section_3_title }}</h3>
+    <p class="blogparagraph-1">{{ the_Blog.section_3_content }}</p>
 
+  </div>
+</body>
 
 {% endblock %}

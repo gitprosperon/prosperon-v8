@@ -5,7 +5,8 @@
 
 {% block content %}
 
-  <div class="scenario-popup" style="display: none;">
+{% if student_progress >= 19 %}
+  <div class="scenario-popup" style="display: {{ scenario_display }};">
     <div class="scenario-wrapper">
       <div class="columns w-row">
         <div class="column-5 w-col w-col-6">
@@ -24,8 +25,8 @@
               </div>
             </div>
             <div class="button-wrapper">
-              <a href="{% url 'Students:scenario-handeler' the_scenario.scenario_id '1' %}" class="scenario-button no w-button">No</a>
-              <a href="" class="scenario-button yes w-button">Yes</a>
+              <a href="{% url 'Students:scenario-handeler' the_scenario.scenario_id '0' %}" class="scenario-button no w-button">No</a>
+              <a href="{% url 'Students:scenario-handeler' the_scenario.scenario_id '1' %}" class="scenario-button yes w-button">Yes</a>
             </div>
           </div>
         </div>
@@ -39,6 +40,7 @@
       </div>
     </div>
   </div>
+{% endif %}
 
 
 

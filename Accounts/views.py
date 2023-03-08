@@ -125,6 +125,8 @@ def register_student_account(request):
             studentUser.yearly_salary = 0
             studentUser.accounts = {"accounts": []}
             studentUser.properties = {"properties": []}
+            studentUser.avaliable_scenarios = '1,2'
+            studentUser.scenario_display = 'flex'
             studentUser.total_monthly_expenses = 0
             studentUser.investing_activated = False
             studentUser.current_net_worth = 0
@@ -190,6 +192,8 @@ def register_dtc_account(request):
             studentUser.spender_type = '0'
             studentUser.all_transactions = {"all_transactions": []}
             studentUser.properties = {"properties": []}
+            studentUser.avaliable_scenarios = '1,2'
+            studentUser.scenario_display = 'flex'
             studentUser.total_months_completed = 0
             studentUser.yearly_salary = 0
             studentUser.total_monthly_expenses = 0

@@ -54,6 +54,7 @@ def dashboard(request):
         avaliable_scenarios = list(student_model.avaliable_scenarios.split(','))
         scenario_choice = random.choice(avaliable_scenarios)
         the_scenario = Scenario.objects.get(scenario_id=scenario_choice)
+        scenario_display = student_model.scenario_display
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -132,7 +133,8 @@ def dashboard(request):
             'properties': properties,
             'current_year_calculated': current_year_calculated,
             'monthly_expenses': monthly_expenses,
-            'the_scenario': the_scenario
+            'the_scenario': the_scenario,
+            'scenario_display': scenario_display
 
         }
 
