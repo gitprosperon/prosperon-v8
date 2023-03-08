@@ -4106,6 +4106,54 @@
   margin-bottom: 20px;
 }
 
+.div-block-239 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px 20px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  background-color: #1f79ba;
+  text-align: center;
+}
+
+.add-button.start {
+  margin-top: 20px;
+}
+
+._18-poppins {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: Poppins, sans-serif;
+  color: #142450;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+._18-poppins.white {
+  color: #fff;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 1280px) {
+  ._18-poppins {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
 @media screen and (min-width: 1440px) {
   .avatarkit-mg-20px-bottom {
     margin-bottom: 20px;
@@ -5145,6 +5193,11 @@
     color: #1e2022;
     font-size: 32px;
     line-height: 46px;
+  }
+
+  ._18-poppins {
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 

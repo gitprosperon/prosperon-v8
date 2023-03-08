@@ -5,6 +5,7 @@ from django.utils import timezone
 class BlogArticle(models.Model):
     blog_title = models.CharField(max_length=500, null=True, blank=True)
     blog_image = models.ImageField(upload_to='blogImages/', null=True, blank=True)
+    date_published = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     PAGETYPES = [
         ("blog_page_1", "blog_page_1"),
         ("blog_page_2", "blog_page_2"),

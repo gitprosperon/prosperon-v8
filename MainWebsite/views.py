@@ -28,6 +28,7 @@ def home_page(request):
     return render(request, 'MainWebsite/index.html', context=context)
 
 
+#
 def testamonials(request):
 
     return render(request, 'MainWebsite/testamonials.html')
@@ -87,7 +88,6 @@ def blog(request, id):
         'the_Blog': all_blogs
     }
     return render(request, f'MainWebsite/blog/{page_type}.html', context=context)
-
 
 
 # Terms and conditions page

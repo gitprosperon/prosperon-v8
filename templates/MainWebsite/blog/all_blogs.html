@@ -16,12 +16,6 @@
           <div class="search-function">
             <div class="form-block w-form">
               <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-6"><input type="email" class="text-field-12 w-input" maxlength="256" name="email" data-name="Email" placeholder="Search Blog" id="email"><input type="submit" value="Search" data-wait="Please wait..." class="next-btn w-button"></form>
-              <div class="w-form-done">
-                <div>Thank you! Your submission has been received!</div>
-              </div>
-              <div class="w-form-fail">
-                <div>Oops! Something went wrong while submitting the form.</div>
-              </div>
             </div>
           </div>
         </div>
@@ -44,63 +38,42 @@
             <div class="text-block-90">{{ blog.description }}</div>
           </div>
         </div>
-        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1ae6-cd3972b3" class="div-block-229"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-57 category"></div>
+        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1ae6-cd3972b3" class="div-block-229"><img src="../../media/{{ blog.blog_image }}" loading="lazy" alt="" class="image-57 category"></div>
       </div>
     </div>
     </a>
     {% endfor %}
 
-    <div class="div-block-231">
+    <div class="div-block-231" style="display: none;">
       <a href="#" class="back-btn-2 w-button">Load More</a>
     </div>
+
     <div class="div-block-232">
       <h1 class="heading-60">Latest posts</h1>
       <div class="text-block-91">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#x27;s standard dummy text ever since the 1500s, when an unkno</div>
     </div>
-    <div class="last-posts">
+
+      <div class="last-posts">
       <div class="w-layout-grid grid-33">
-        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1b0c-cd3972b3" class="back-shadow">
+
+          {% for blog in all_blogs %}
+          <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1b0c-cd3972b3" class="back-shadow">
           <div class="postcardimgwrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-58"></div>
           <div class="postcardwrapper">
             <div>
-              <div>*Date of publish*</div>
+              <div>{{ blog.date_published }}</div>
             </div>
-            <h1 class="heading-61">Something about financial topics?</h1>
-            <div class="text-block-92">Read More</div>
+            <h1 class="heading-61" style="margin-bottom: 10px">{{ blog.blog_title }}</h1>
+            <a href="{% url 'MainWebsitte:blog' blog.blog_id %}" class="add-button start" style="text-decoration: none; color: white">Learn More</a>
           </div>
         </div>
-        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1b17-cd3972b3" class="back-shadow">
-          <div class="postcardimgwrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-58"></div>
-          <div class="postcardwrapper">
-            <div>
-              <div>*Date of publish*</div>
-            </div>
-            <h1 class="heading-61">Something about financial topics?</h1>
-            <div class="text-block-92">Read More</div>
-          </div>
-        </div>
-        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1b22-cd3972b3" class="back-shadow">
-          <div class="postcardimgwrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-58"></div>
-          <div class="postcardwrapper">
-            <div>
-              <div>*Date of publish*</div>
-            </div>
-            <h1 class="heading-61">Something about financial topics?</h1>
-            <div class="text-block-92">Read More</div>
-          </div>
-        </div>
-        <div id="w-node-_98d9ebe3-6600-ac03-1759-5fd71ccf1b2d-cd3972b3" class="back-shadow">
-          <div class="postcardimgwrapper"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" alt="" class="image-58"></div>
-          <div class="postcardwrapper">
-            <div>
-              <div>*Date of publish*</div>
-            </div>
-            <h1 class="heading-61">Something about financial topics?</h1>
-            <div class="text-block-92">Read More</div>
-          </div>
-        </div>
+          {% endfor %}
       </div>
     </div>
+
+
+
+
   </div>
   <div class="div-block-233">
     <div class="div-block-234">
@@ -109,12 +82,6 @@
     <div class="search-function bottom">
       <div class="form-block w-form">
         <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-6 bottom"><input type="email" class="text-field-12 w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="Search Blog" id="email-2"><input type="submit" value="Search" data-wait="Please wait..." class="next-btn w-button"></form>
-        <div class="w-form-done">
-          <div>Thank you! Your submission has been received!</div>
-        </div>
-        <div class="w-form-fail">
-          <div>Oops! Something went wrong while submitting the form.</div>
-        </div>
       </div>
     </div>
   </div>
