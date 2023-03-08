@@ -3,6 +3,7 @@ from Student.forms import UpdateProgressForm
 from Student.models import Student, Major, Location
 from Accounts.models import Account
 from Accounts.forms import AddProfileImage
+import datetime
 
 
 def onboarding_step1(request):
@@ -58,6 +59,9 @@ def onboarding_step3(request):
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
     image_form = AddProfileImage(request.POST, request.FILES)
+    current_year = datetime.datetime.now()
+    current_month = datetime.datetime.now().month
+    print(current_month)
 
 
     if user.is_active and user.has_university == True:
@@ -69,6 +73,21 @@ def onboarding_step3(request):
             first_name = post_data['first-name']
             last_name = post_data['last-name']
             age = post_data['age']
+            month = int(post_data['month'])
+            day = post_data['day']
+            year = int(post_data['year'])
+
+            if current_month >= month:
+                adjusted_age = current_year.year - int(year)
+                print(adjusted_age, 'adj age')
+                student_model.age = adjusted_age
+            elif current_month < month:
+                adjusted_age = (current_year.year - int(year)) - 1
+                print(adjusted_age, 'adj age')
+                student_model.age = adjusted_age
+
+
+
             gender = post_data['gender']
             ethnicity = post_data['ethnicity']
             location = post_data['location']
@@ -78,7 +97,9 @@ def onboarding_step3(request):
             student_graduation = post_data['graduation']
             student_model.first_name = first_name
             student_model.last_name = last_name
-            student_model.age = age
+            student_model.birth_month = month
+            student_model.birth_year = year
+            student_model.birth_day = day
 
             # Updating student information
             graduationChoices = Student.GRADUATION_DATES

@@ -19,11 +19,20 @@
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Last Name</label><br>
                     <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="last-name" data-name="Name" placeholder="" id="last-name" value="{% if last_name %}{{ last_name }}{% endif %}">
                 </div>
-                <div class="input-container">
+                <div class="input-container" style="display: none">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Age</label><br>
                     <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="age" data-name="Name" placeholder="" id="age" value="{% if age %}{{ age }}{% endif %}">
                 </div>
-
+                <div class="input-container">
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Birthday</label><br>
+                    <div class="" style="display: flex; flex-direction: row; justify-content: space-between">
+                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="month" data-name="Name" placeholder="Month" id="age" value="{% if birth_month %}{{ birth_month }}{% endif %}">
+                        <p>/</p>
+                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="day" data-name="Name" placeholder="Day" id="age" value="{% if birth_day %}{{ birth_day }}{% endif %}">
+                        <p>/</p>
+                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="year" data-name="Name" placeholder="Year" id="age" value="{% if birth_year %}{{ birth_year }}{% endif %}">
+                    </div>
+                </div>
 
 
                 <div class="input-container">
