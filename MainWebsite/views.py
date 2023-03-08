@@ -28,7 +28,7 @@ def home_page(request):
     return render(request, 'MainWebsite/index.html', context=context)
 
 
-#
+# page for testamonials
 def testamonials(request):
 
     return render(request, 'MainWebsite/testamonials.html')

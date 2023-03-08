@@ -129,6 +129,9 @@ def onboarding_step3(request):
         first_name = student_model.first_name
         last_name = student_model.last_name
         age = student_model.age
+        birth_day = student_model.birth_day
+        birth_month = student_model.birth_month
+        birth_year = student_model.birth_year
         gender = student_model.gender
         ethnicity = student_model.ethnicity
         major = student_model.major
@@ -149,6 +152,9 @@ def onboarding_step3(request):
             'first_name': first_name,
             'last_name': last_name,
             'age': age,
+            'birth_day': birth_day,
+            'birth_month': birth_month,
+            'birth_year': birth_year,
             'gender': gender,
             'ethnicity': ethnicity,
             'majors': majors,

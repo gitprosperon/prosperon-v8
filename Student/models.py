@@ -146,6 +146,11 @@ class Student(models.Model):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
     age = models.CharField(max_length=200, null=True, blank=True)
+    birth_day = models.CharField(max_length=200, null=True, blank=True)
+    birth_month = models.CharField(max_length=200, null=True, blank=True)
+    birth_year = models.CharField(max_length=200, null=True, blank=True)
+
+
     YES_NO = [
         ("I Live With My Parents", "I Live With My Parents"),
         ("I Rent", "I Rent"),
