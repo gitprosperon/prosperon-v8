@@ -280,7 +280,7 @@
                 <div class="_20-padding-container box-shadow centered-div">
                   <div class="calendar-wrapper">
                     <div class="month-year-wrapper">
-
+                        {% if student_progress != 4 %}
                         <div class="_24px semibold text">
                           <span>
                           {% if student_month == '1' %}
@@ -308,11 +308,41 @@
                           {% elif student_month == '12' %}
                             December
                           {% endif %}
-                      </span>
+                        </span>
                       <span>- {{ current_year }}</span>
-
                       </div>
-
+                    {% else %}
+                       <div class="_24px semibold text">
+                          <span>
+                          {% if todays_date.month == 1 %}
+                            January
+                          {% elif todays_date.month == 2 %}
+                            February
+                          {% elif todays_date.month == 3 %}
+                            March
+                          {% elif todays_date.month == 4 %}
+                            April
+                          {% elif todays_date.month == 5 %}
+                            May
+                          {% elif todays_date.month == 6 %}
+                            June
+                          {% elif todays_date.month == 7 %}
+                            July
+                          {% elif todays_date.month == 8 %}
+                            August
+                          {% elif todays_date.month == 9 %}
+                            September
+                          {% elif todays_date.month == 10 %}
+                            October
+                          {% elif todays_date.month == 11 %}
+                            November
+                          {% elif todays_date.month == 12 %}
+                            December
+                          {% endif %}
+                        </span>
+                      <span>- {{ todays_date.year }}</span>
+                      </div>
+                    {% endif %}
                     </div>
                     <div class="day-wrapper">
                       <div class="w-layout-grid grid-3">
@@ -344,32 +374,36 @@
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306f0-fe18aa3b" class="number non-current smaller">
                           <div>30</div>
                         </div>
+                          {% if student_progress != 4 %}
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306f3-fe18aa3b" class="number current-month smaller-calendar current-day">
-                          <div>01</div>
+                          {% else %}
+                        <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306f6-fe18aa3b" class="number current-month smaller-calendar">
+                          {% endif %}
+                          <div>1</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306f6-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>02</div>
+                          <div>2</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306f9-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>03</div>
+                          <div>3</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306fc-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>04</div>
+                          <div>4</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd306ff-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>05</div>
+                          <div>5</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30702-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>06</div>
+                          <div>6</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30705-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>07</div>
+                          <div>7</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd30708-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>08</div>
+                          <div>8</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3070b-fe18aa3b" class="number current-month smaller-calendar">
-                          <div>09</div>
+                          <div>9</div>
                         </div>
                         <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd3070e-fe18aa3b" class="number current-month smaller-calendar">
                           <div>10</div>
@@ -453,7 +487,7 @@
               </div>
             </div>
 
-          {% if student_progress != '4' %}
+          {% if student_progress != 4 %}
             <div class="section-warpper">
               <div>
                 <h1 class="page-section-header">Recommended Anytime Decisions</h1>
@@ -870,6 +904,23 @@ simulateBtnTarget.addEventListener('click', simulateRun)
 
 {% endif %}
 
+
+{% if student_progress == 4 %}
+
+var elements = document.getElementsByClassName('number current-month smaller-calendar')
+var todays_day = '{{ todays_date.day }}'
+    console.log(todays_day)
+
+for (let i = 0; i < elements.length; i ++) {
+    console.log(elements[i].children[0].innerHTML)
+    if (elements[i].children[0].innerHTML === todays_day) {
+        elements[i].className = 'number current-month smaller-calendar current-day'
+    }
+
+}
+
+
+{% endif %}
 
 
 </script>

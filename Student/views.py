@@ -8,6 +8,7 @@ from Student.models import Property, Scenario
 from .forms import AddBudgetForm, NewModuleSummaryForm
 import json
 from django import template
+import datetime
 
 
 register = template.Library()
@@ -55,6 +56,8 @@ def dashboard(request):
         scenario_choice = random.choice(avaliable_scenarios)
         the_scenario = Scenario.objects.get(scenario_id=scenario_choice)
         scenario_display = student_model.scenario_display
+        todays_date = datetime.date.today()
+
 
         # Checking to see if there is a job
         if student_model.job is None:
@@ -134,7 +137,8 @@ def dashboard(request):
             'current_year_calculated': current_year_calculated,
             'monthly_expenses': monthly_expenses,
             'the_scenario': the_scenario,
-            'scenario_display': scenario_display
+            'scenario_display': scenario_display,
+            'todays_date': todays_date
 
         }
 
