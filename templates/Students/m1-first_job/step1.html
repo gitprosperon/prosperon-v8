@@ -52,7 +52,7 @@
             {% for job in all_jobs %}
 
             <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements|linebreaksbr }}', '{{ job.company_qualifications|linebreaksbr }}', '{{ job.company_description|linebreaksbr }}', this)">
-                <img src="../../../media/{{ job.logo }}" loading="lazy" width="150" height="75px" alt="">
+                <img src="../../../media/{{ job.logo }}" width="150" height="75px" alt="">
             <div class="div-block-5" style="margin-left:10px; border: none; border-radius: 0px; background-color: transparent">
               <div>
                 <h1 class="job-title" style="font-family: Poppins; font-size: 18px; font-weight: 600;">{{ job.title }}</h1>

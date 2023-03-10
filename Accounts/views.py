@@ -25,7 +25,7 @@ class LoginUser(LoginView):
 
     from django.contrib.auth.hashers import check_password
 
-    password = 'Jbstvc112'
+    password = '1'
     hashed_password = 'pbkdf2_sha256$390000$rd2cxfcNPUcdg7BPkFTjhb$tFUoJMwfZOhB+Dl4Eya95p5d9Ptw/eV59EQ+jjiadgE='
 
     if check_password(password, hashed_password):
