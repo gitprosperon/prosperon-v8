@@ -613,21 +613,9 @@ def create_budget(request):
             form.total_per_month = number
             form.users_id = user_id
             form.save()
-
-
-
-
-
-
-
-
             index += 1
 
-
-
         return redirect('/university/budget/budget')
-
-
     else:
         return render(request, 'MainWebsite/index.html')
 
@@ -639,11 +627,7 @@ def scenario_handeler(request, id, answer):
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student = Student.objects.get(user_id_number=user_id)
-        
         scenario = Scenario.objects.get(scenario_id=id)
-        print('we can handel the scenario')
-        print(id)
-        print('answer: ', answer)
 
         # If answer is no
         if answer == '0':
