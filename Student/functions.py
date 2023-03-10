@@ -588,22 +588,18 @@ def create_budget(request):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         student_monthly_income = int(student_model.yearly_salary) / 12
-        print(student_monthly_income)
-
-
 
         categories = [
             ['Food and Dining', 'Food and Drink'],
             ['Transportation', 'Transportation'],
             ['Shops', 'Shops'],
-            ['Transfers', 'Transfer'],
-            ['Payment', 'Payment'],
-            ['Subscription', 'Subscription'],
+            ['Housing', 'Payment'],
+            ['Entertainment', 'Payment'],
+            ['Subscriptions', 'Subscription'],
             ['Miscellaneous', 'Miscellaneous'],
         ]
 
         index = 0
-
         while index < len(categories):
             form = AddBudgetForm()
             form = form.save(commit=False)
