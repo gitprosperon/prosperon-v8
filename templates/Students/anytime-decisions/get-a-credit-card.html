@@ -154,7 +154,6 @@ function addAccount() {
     var bankFeature2 = document.getElementById('feature2').innerText
     var bankFeature3 = document.getElementById('feature3').innerText
     var bankFeature4 = document.getElementById('feature4').innerText
-
     $.ajax({
         type: "POST",
         url: '/university/add-account',
@@ -175,6 +174,8 @@ function addAccount() {
 
         }
     })
+    console.log('success')
+
 }
 
 document.getElementById('applyBtn').addEventListener('click', addAccount)

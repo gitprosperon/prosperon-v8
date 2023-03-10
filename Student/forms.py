@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, BudgetItemsUniversity, ModuleSummarie
+from .models import Student, BudgetItemsUniversity, ModuleSummarie, BankAccount
 from Accounts.models import Account
 
 

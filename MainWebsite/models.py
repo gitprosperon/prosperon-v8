@@ -19,6 +19,10 @@ class BlogArticle(models.Model):
     section_2_content = models.TextField(null=True, blank=True)
     section_3_title = models.CharField(max_length=500, null=True, blank=True)
     section_3_content = models.TextField(null=True, blank=True)
+    section_4_title = models.CharField(max_length=500, null=True, blank=True)
+    section_4_content = models.TextField(null=True, blank=True)
+    section_5_title = models.CharField(max_length=500, null=True, blank=True)
+    section_5_content = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.blog_title + ' - ' + self.blog_id

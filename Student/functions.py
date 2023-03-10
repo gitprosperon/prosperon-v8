@@ -7,7 +7,7 @@ from Student.forms import AddBudgetForm
 
 
 
-def add_transaction(user, request, title, associated_budget, category, cost, date):
+def add_transaction(user, request, title, associated_budget, category, cost, date, student):
     if user.is_active and user.has_university == True:
         transaction_id = random.randint(1231456437657543635423452323452345242, 9231456437657543635423452323452345242)
 
@@ -38,9 +38,10 @@ def add_transaction(user, request, title, associated_budget, category, cost, dat
 
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
-        student = Student.objects.get(user_id_number=user_id)
         current_all_transactions = student.all_transactions['all_transactions']
         current_all_transactions.append(new_packaged_transaction)
+        student.all_transactions['all_transactions'] = current_all_transactions
+        print(student.all_transactions)
 
 
 
@@ -379,6 +380,8 @@ def remove_rental(request):
 # Path to add bank or credit account
 def add_account(request):
     user = request.user
+    print('trying to add a acc')
+
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
@@ -394,6 +397,7 @@ def add_account(request):
             post = request.POST
             cardType = post['cardType']
             bankName = post['bankName']
+            decision_id = post['decision_id']
             image = post['image']
             apy = post['apy']
             yearlyFee = post['yearlyFee']
@@ -405,6 +409,7 @@ def add_account(request):
             bankFeature4 = post['bankFeature4']
 
             if accounts == []:
+                print('adding account')
 
                 packaged_bank = {
                     'cardType': cardType,
@@ -420,18 +425,26 @@ def add_account(request):
                     'bankFeature4': bankFeature4
                 }
 
+                accounts.append(packaged_bank)
+                student_model.accounts['accounts'] = accounts
+                student_model.save()
+
                 # Adding to life path tree
                 full_life_path = student_model.life_path['events']
 
                 # removed object
                 upcoming_module = student_model.life_path['events'][-1]
+                print('upcomiu', upcoming_module)
                 del full_life_path[-1]
+
 
                 # Adding anytime Decision
                 if cardType == 'CreditCard':
                     card_type = 'Credit Card'
                 elif cardType == 'BankAccount':
                     card_type = 'Bank'
+                else:
+                    card_type = 't'
 
                 anytime = {
                     "title": f"Open a {card_type} Account",
@@ -443,10 +456,12 @@ def add_account(request):
                 full_life_path.append(upcoming_module)
                 new = {"events": full_life_path}
                 student_model.life_path = new
+                print(student_model.life_path)
                 student_model.save()
+                print('life path saved')
 
-                accounts.append(packaged_bank)
-                student_model.accounts['accounts'] = accounts
+
+
                 student_model.save()
 
             else:
@@ -478,6 +493,7 @@ def add_account(request):
 
                     # removed object
                     upcoming_module = student_model.life_path['events'][-1]
+                    print('upcomiu', upcoming_module)
                     del full_life_path[-1]
 
                     # Adding anytime Decision
@@ -485,6 +501,8 @@ def add_account(request):
                         card_type = 'Credit Card'
                     elif cardType == 'BankAccount':
                         card_type = 'Bank'
+                    else:
+                        card_type = 't'
 
                     anytime = {
                         "title": f"Open a {card_type} Account",
@@ -496,11 +514,9 @@ def add_account(request):
                     full_life_path.append(upcoming_module)
                     new = {"events": full_life_path}
                     student_model.life_path = new
-                    student_model.living_situation = "I Own"
-
                     student_model.save()
 
-            return redirect('/university/dashboard')
+            return redirect(f'/university/anytime-decision-handeler/{decision_id}')
 
 
 # Path for handeling anytime decisions
@@ -647,10 +663,11 @@ def scenario_handeler(request, id, answer):
             year = student.current_year
             month = student.current_month
             packaged_date = f"{year}-{month}-1"
-            add_transaction(user, request, transaction_title, 'none', category, cost, packaged_date)
+            add_transaction(user, request, transaction_title, 'none', category, cost, packaged_date, student)
 
             student.scenario_display = 'none'
             student.save()
+            print('fully handled')
 
 
 

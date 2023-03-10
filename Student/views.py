@@ -30,6 +30,7 @@ def compounding_growth(principal, interest_rate, time, monthlyIncome, MonthlyExp
 # University Dashboard
 def dashboard(request):
     user = request.user
+    print(user)
     if user.is_active and user.has_university == True:
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
