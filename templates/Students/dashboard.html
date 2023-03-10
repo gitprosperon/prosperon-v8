@@ -884,6 +884,19 @@
   </div>
 <script>
 
+
+window.onload = function() {
+  if (!sessionStorage.getItem('reloaded')) {
+    sessionStorage.setItem('reloaded', true);
+    location.reload();
+  } else {
+    sessionStorage.removeItem('reloaded');
+  }
+};
+
+
+
+
 {% if student_progress > 17 %}
 function showSimulate(){
 var simulateBtnTarget = document.getElementById('simulateBtn')
