@@ -48,6 +48,7 @@ def register_budget_account(request):
             created_user_id = random.randint(100000000000,999999990000)
             user.user_id = created_user_id
             user.has_budget = True
+            user.changed_transactions = {"user_accounts": []}
             user.username = created_user_id
             user.set_password(user.password)
             user.last_login = datetime.datetime.now()

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="onboarding-container">
     <div class="header-container">
-        <h1 class="onboarding-title-header" style="font-family: Poppins; font-size: 36px">Let's learn More About You</h1>
+        <h1 class="onboarding-title-header" style="font-family: Poppins; font-size: 36px">Let's Learn More About You</h1>
         <h1 class="onboarding-subheader" style="font-family: Poppins; font-size: 24px"> </h1>
     </div>
     <div class="form-container">
@@ -88,7 +88,7 @@
                     </select>
                 </div>
                 <div class="input-container">
-                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Where do you live?</label><br>
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Where do you live? (Closest City)</label><br>
                     <input type="text" list="my-locations" class="text-field" width="100%" name="location" value="{% if location %}{{ location }}{% endif %}" id="locations-input" style="margin-bottom: 20px">
                     <datalist id="my-locations" style="width: 10%">
                         {% for pc in locationChoices %}

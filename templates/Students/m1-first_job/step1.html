@@ -13,8 +13,8 @@
 <body style="padding: 0px; margin: 0px">
 <div class="alert-page-wrapper" style="display: none;" id="alert">
     <div class="alert-page-container" style="max-width: 1000px; margin-top: 0px">
-        <p class="alert-box-title" style="margin-bottom: 5px">Thanks for applying!</p>
-        <p class="alert-box-text">Now that you've applied to some jobs, employers will review your application. They will get back to you shortly.</p>
+        <p class="alert-box-title" style="font-family: 'Poppins', sans-serif; margin-bottom: 5px">Thanks for applying!</p>
+        <p class="alert-box-text" style="font-family: 'Poppins', sans-serif;">Now that you've applied to some jobs, employers will review your application. They will get back to you shortly.</p>
         <div>
 
 
@@ -42,9 +42,9 @@
     <div class="number-of-applied-container" style="background-color: white; padding: 10px">
       <h1 class="heading-3">Applied to <span style="font-weight: bold; color: black " id="num-applied">0</span> / 5  </h1>
     </div>
-    <div class="get-a-job-wrapper">
+    <div class="get-a-job-wrapper" style="height: 100%;">
       <div class="columns w-row">
-        <div class="column-3 w-col w-col-4" style="padding-left: 0px">
+        <div class="column-3 w-col w-col-4" style="padding-left: 0px; height: 800px; overflow: scroll">
           <div class="div-block-4">
             <h1 class="heading-4">Jobs</h1>
           </div>
@@ -52,13 +52,13 @@
             {% for job in all_jobs %}
 
             <div class="job-container" onclick="changeJob('{{ job.title }}', '{{ job.company }}', '{{ job.location }}','{{ job.job_type }}','{{ job.job_hours }}', '{{ job.salary_range }}','{{ job.job_id }}', '{{ job.logo }}', '{{ job.company_requirements|linebreaksbr }}', '{{ job.company_qualifications|linebreaksbr }}', '{{ job.company_description|linebreaksbr }}', this)">
-                <img src="../../../media/{{ job.logo }}" width="150" height="75px" alt="">
+                <img src="../../../media/{{ job.logo }}" width="150" style="max-width: 120px" height="75px" alt="">
             <div class="div-block-5" style="margin-left:10px; border: none; border-radius: 0px; background-color: transparent">
               <div>
-                <h1 class="job-title" style="font-family: Poppins; font-size: 18px; font-weight: 600;">{{ job.title }}</h1>
-                <h1 class="job-company" style="font-family: Poppins; font-size: 14px; font-weight: 500; color: #707070">{{ job.company }}</h1>
+                <h1 class="job-title" style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600;">{{ job.title }}</h1>
+                <h1 class="job-company" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: #707070">{{ job.company }}</h1>
               </div>
-              <h1 class="job-company" style="font-family: Poppins; font-size: 14px; font-weight: 500; color: #707070">{{ job.location }}</h1>
+              <h1 class="job-company" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: #707070">{{ job.location }}</h1>
             </div>
           </div>
         {% endfor %}
@@ -72,21 +72,21 @@
                   <div class="job-left-col">
                     <div>
 
-                        <h1 class="job-title-main" id="job-title">{{ all_jobs.0.title }}</h1>
-                      <h1 class="job-title-main subtitle" id="job-company">{{ all_jobs.0.company }}</h1>
+                        <h1 class="job-title-main" id="job-title" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.title }}</h1>
+                      <h1 class="job-title-main subtitle" id="job-company" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.company }}</h1>
                     </div>
                     <div class="benefits-container">
                       <div class="div-block-6"><img src="{% static 'students/m1/images/map-marker.svg' %}" loading="lazy" width="34" alt="" class="benefits-image">
-                        <h1 class="benefits-text" id="job-location">{{ all_jobs.0.location }}</h1>
+                        <h1 class="benefits-text" id="job-location" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.location }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/building.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="job-type">{{ all_jobs.0.job_type }}</h1>
+                        <h1 class="benefits-text" id="job-type" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.job_type }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/clock.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="job-hours">{{ all_jobs.0.job_hours }}</h1>
+                        <h1 class="benefits-text" id="job-hours" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.job_hours }}</h1>
                       </div>
                       <div class="div-block-6"><img src="{% static 'students/m1/images/dollar.svg' %}" loading="lazy" width="34" alt="">
-                        <h1 class="benefits-text" id="salary-range">{{ all_jobs.0.salary_range }}</h1>
+                        <h1 class="benefits-text" id="salary-range" style="font-family: 'Poppins', sans-serif;">{{ all_jobs.0.salary_range }}</h1>
                       </div>
                     </div>
                       <button class="next-btn" style="font-weight: 500" id="apply-to-job-button" value="{{ job.job_id }}" onclick="changeToApplied(this)">Apply</button>
@@ -98,12 +98,12 @@
 
             <div>
                 <h3 class="job-title-main subtitle" style="margin-top: 10px">Company Description</h3>
-                <p id="job-description" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_description }}</p>
+                <p id="job-description" style="font-family: 'Poppins', sans-serif; color: #707070; font-size: 14px">{{ all_jobs.0.company_description }}</p>
                 <h3 class="job-title-main subtitle">Requirememts</h3>
-                <p id="job-requirmenets" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_requirements }}</p>
+                <p id="job-requirmenets" style="font-family: 'Poppins', sans-serif; color: #707070; font-size: 14px">{{ all_jobs.0.company_requirements }}</p>
 
                 <h3 class="job-title-main subtitle">Qualifications</h3>
-                <p id="job-qualifications" style="color: #707070; font-size: 14px">{{ all_jobs.0.company_qualifications }}</p>
+                <p id="job-qualifications" style="font-family: 'Poppins', sans-serif; color: #707070; font-size: 14px">{{ all_jobs.0.company_qualifications }}</p>
 
             </div>
 

@@ -1,4 +1,5 @@
 {% extends 'MainWebsite/base.html' %}
+{% load static %}
 
 {% block content %}
 <body>
@@ -54,7 +55,7 @@
               <div class="timeline_text">Three College Roommates Googled &quot;Top Five Problems in the World&quot;</div>
               <div class="timeline_text subtext">During the height of the Covid-19 pandemic, three college roommates decided to start a business. With only a few decent ideas in mind, they Googled &quot;Top 5 problems in the world&quot; and made the discovery that 45 million people hold $1.7 trillion in student loan debt. <br><br>A solution was born that leveraged compounding interest in the securities markets to return interest to the borrower as a retirement account. This idea became &quot;581 Lending Co.&quot;and our target audience was nursing students. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Da-Boys.JPG" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Da-Boys-p-500.jpg 500w, images/Da-Boys-p-800.jpg 800w, images/Da-Boys-p-1080.jpg 1080w, images/Da-Boys-p-1600.jpg 1600w, images/Da-Boys-p-2000.jpg 2000w, images/Da-Boys-p-2600.jpg 2600w, images/Da-Boys-p-3200.jpg 3200w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Da-Boys-p-3200.jpg' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Da-Boys-p-3200.jpg' %} 500w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 800w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 1080w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 1600w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 2000w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 2600w, {% static 'main-website/images/Da-Boys-p-3200.jpg' %} 3200w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260e68" class="timeline_item">
@@ -69,7 +70,7 @@
               <div class="timeline_text">Post Graduation Life Calculator (PGLC)<br></div>
               <div class="timeline_text subtext">After months of meetings, our team determined tackling the &quot;student debt crisis&quot; was both legal and feasible. We rebranded to MediFirst Financial (Medical First Financial) to better serve our nursing audience, and built a tool called the Post Graduation Life Calculator (PGLC). This tool helped high school students looking to go into the medical field understand the burden of their debt. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/PGLC.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/PGLC-p-500.png 500w, images/PGLC.png 629w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/PGLC.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/PGLC.png' %} 500w, {% static 'main-website/images/PGLC.png' %} 629w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260e77" class="timeline_item">
@@ -97,7 +98,7 @@
               <div class="timeline_text">MetaFirst Financial - Advisor Marketplace<br></div>
               <div class="timeline_text subtext">Turns out disrupting the student loan industry is both expensive and extraordinarily difficult. <br><br>In response, our team pivoted towards the wealth management industry to address inefficiencies with online prospecting. Here came the MetaFirst Advisor Marketplace, a platform that connects financial advisors to clients in need. </div>
             </div>
-            <div class="timeline_image-wrapper margin-bottom-medium"><img src="images/Screen-Shot-2023-01-03-at-1.12.25-PM.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Screen-Shot-2023-01-03-at-1.12.25-PM-p-500.png 500w, images/Screen-Shot-2023-01-03-at-1.12.25-PM-p-800.png 800w, images/Screen-Shot-2023-01-03-at-1.12.25-PM.png 946w" alt=""></div>
+            <div class="timeline_image-wrapper margin-bottom-medium"><img src="{% static 'main-website/images/Screen-Shot-2023-01-03-at-1.12.25-PM.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Screen-Shot-2023-01-03-at-1.12.25-PM.png' %} 500w, {% static 'main-website/images/Screen-Shot-2023-01-03-at-1.12.25-PM.png' %} 800w,{% static 'main-website/images/Screen-Shot-2023-01-03-at-1.12.25-PM.png' %} 946w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260e94" class="timeline_item">
@@ -112,7 +113,7 @@
               <div class="timeline_text">Education - Beta Test #1<br></div>
               <div class="timeline_text subtext"><br><br>Our team realized a marketplace only works when there is a constant flow of demand for advisors. The problem is most people don&#x27;t know working with an advisor is an option. When we asked ourselves why, we discovered a lack of financial education and awareness among our peers. <br><br>Our focus quickly shifted to providing financial education to freshman in college in order to create a foundation. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Beta-1.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Beta-1-p-500.png 500w, images/Beta-1.png 756w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Beta-1.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Beta-1.png' %} 500w, {% static 'main-website/images/Beta-1.png' %} 756w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260ea8" class="timeline_item">
@@ -127,7 +128,7 @@
               <div class="timeline_text">Education - Beta Test #2<br></div>
               <div class="timeline_text subtext">The second version of the experience was guided and students used their real data to create an accurate budget and goals. We ran tests again in 5 different classes at Quinnipiac, capturing an audience of over 100 freshman and sophomore students. <br></div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Beta-2.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Beta-2-p-500.png 500w, images/Beta-2.png 745w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Beta-2.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Beta-2.png' %} 500w, {% static 'main-website/images/Beta-2.png' %} 745w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260eb8" class="timeline_item">
@@ -142,7 +143,7 @@
               <div class="timeline_text">ProsperOn - Budgeting Tool<br></div>
               <div class="timeline_text subtext">After many deep discussions and a few pros and cons lists, our team decided to pivot for a third time to real time budgeting with an education core. The biggest reason for the change was so we could create an active solution that delivers more real time value. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Screen-Shot-2023-01-03-at-1.14.54-PM.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Screen-Shot-2023-01-03-at-1.14.54-PM-p-500.png 500w, images/Screen-Shot-2023-01-03-at-1.14.54-PM-p-800.png 800w, images/Screen-Shot-2023-01-03-at-1.14.54-PM-p-1080.png 1080w, images/Screen-Shot-2023-01-03-at-1.14.54-PM.png 1167w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Screen-Shot-2023-01-03-at-1.14.54-PM.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Screen-Shot-2023-01-03-at-1.14.54-PM.png' %} 500w, {% static 'main-website/images/Screen-Shot-2023-01-03-at-1.14.54-PM.png' %} 800w, {% static 'main-website/images/Screen-Shot-2023-01-03-at-1.14.54-PM.png' %} 1080w, {% static 'main-website/images/Screen-Shot-2023-01-03-at-1.14.54-PM.png' %} 1167w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260ec7" class="timeline_item">
@@ -157,7 +158,7 @@
               <div class="timeline_text">Learn and Earn Budgeting Tool<br></div>
               <div class="timeline_text subtext">After consulting our advisors, we discovered an incredible opportunity leveraging blockchain to provide a true learn and earn model. Our coin was called the PRC (personal responsibility coin) and was going to be built over the Algorand blockchain. <br><br>Turns out building on a brand new technology is both expensive and extraordinarily difficult. </div>
             </div>
-            <div class="timeline_image-wrapper margin-bottom-medium"><img src="images/Learn-and-Earn.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Learn-and-Earn-p-500.png 500w, images/Learn-and-Earn-p-800.png 800w, images/Learn-and-Earn.png 875w" alt=""></div>
+            <div class="timeline_image-wrapper margin-bottom-medium"><img src="{% static 'main-website/images/Learn-and-Earn.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Learn-and-Earn.png' %} 500w, {% static 'main-website/images/Learn-and-Earn.png' %} 800w, {% static 'main-website/images/Learn-and-Earn.png' %} 875w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260ed9" class="timeline_item">
@@ -172,7 +173,7 @@
               <div class="timeline_text">Finalist (Round of 16) National Venture Competition<br></div>
               <div class="timeline_text subtext">After that gut punch, we decided to take all of our lessons and to go back to the basics... Education and awareness create a foundation to build on, and that&#x27;s where we needed to start. <br><br>We crafted a model that leveraged simulation for real time application, gamification for engagement, and personalization for an increased retention rate. The kicker being, the platform is a budgeting tool at its core, so it can be adopted for real time use after the simulation is complete. Think paper trading, but for life. <br><br>We took this framework to the New Venture Championship, an international business competition, hosted by the University of Oregon. Here, we made it all the way to the round of 16. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/NVC.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/NVC-p-500.png 500w, images/NVC.png 600w" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/NVC.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/NVC.png' %} 500w, {% static 'main-website/images/NVC.png' %} 600w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260eee" class="timeline_item">
@@ -201,7 +202,7 @@
               <div class="timeline_text">ProsperOn U - Pilot V1<br></div>
               <div class="timeline_text subtext">Riding the momentum from our competition run, we decided to start building an MVP version of our 7th product. The build took just under 6 months and we had all hands on deck. We finished at the beginning of October, and launched our first pilot program two weeks later. <br><br>The program ran at Quinnipiac University with 150 students in the School of Business. We monetized the pilot by getting sponsored by Northwestern Mutual Wealth Management as we explored a partnership model. <br><br>After the completion of the pilot, our results were positive with a 28% increase of understanding per topic covered, and a 84% retention rate overall. 90% of those who finished would have continued if they could. </div>
             </div>
-            <div class="timeline_image-wrapper margin-bottom-medium"><img src="images/Dashboard.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/Dashboard-p-500.png 500w, images/Dashboard-p-800.png 800w, images/Dashboard-p-1080.png 1080w, images/Dashboard-p-1600.png 1600w, images/Dashboard.png 1920w" alt=""></div>
+            <div class="timeline_image-wrapper margin-bottom-medium"><img src="{% static 'main-website/images/Dashboard.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/Dashboard.png' %} 500w, {% static 'main-website/images/Dashboard.png' %} 800w, {% static 'main-website/images/Dashboard.png' %} 1080w, {% static 'main-website/images/Dashboard.png' %} 1600w, {% static 'main-website/images/Dashboard.png' %} 1920w" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260f10" class="timeline_item">
@@ -216,7 +217,7 @@
               <div class="timeline_text">Invited to join Mass Fintech Hub (MFH)<br></div>
               <div class="timeline_text subtext">Shortly after closing our pilot program, we were invited to join the Mass Fintech Hub out of Boston, MA. MFH is a community of financial institutions, venture capitalists, colleges/universities, and Massachusetts startups who are making an impact in Fintech. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Mass-Fintech-Hub.png" loading="lazy" width="480" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Mass-Fintech-Hub.png' %}" loading="lazy" width="480" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260f1f" class="timeline_item">
@@ -231,7 +232,7 @@
               <div class="timeline_text">Accepted into Fintech Sandbox Data Access Residency Program<br></div>
               <div class="timeline_text subtext">As we prepared to build out the full version of our product, we got accepted into the Fintech Sandbox Data Access Residency Program. This program provides access to some of the top data providers in the world, and will play a crucial part in reaching our desired level of accuracy within our simulation. </div>
             </div>
-            <div class="timeline_image-wrapper"><img src="images/Fintech-Sandbox.png" loading="lazy" width="480" alt=""></div>
+            <div class="timeline_image-wrapper"><img src="{% static 'main-website/images/Fintech-Sandbox.png' %}" loading="lazy" width="480" alt=""></div>
           </div>
         </div>
         <div data-w-id="0cfdef9a-2aaf-7897-1795-cce897260f2e" class="timeline_item">
@@ -246,7 +247,7 @@
               <div class="timeline_text">ProsperOn U - Pilot V2<br></div>
               <div class="timeline_text subtext">Starting this March, Pilot v2 will be available for testing across New England. This Pilot Program represents our first true simulated experience, and will function the same way as our full scale product.  Click below to learn more!</div>
             </div>
-            <div class="timeline_image-wrapper margin-bottom-medium"><img src="images/course-dash-comp.png" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="images/course-dash-comp-p-500.png 500w, images/course-dash-comp-p-800.png 800w, images/course-dash-comp-p-1080.png 1080w, images/course-dash-comp-p-1600.png 1600w, images/course-dash-comp.png 1925w" alt=""></div>
+            <div class="timeline_image-wrapper margin-bottom-medium"><img src="{% static 'main-website/images/course-dash-comp.png' %}" loading="lazy" width="480" sizes="(max-width: 479px) 100vw, (max-width: 767px) 48px, (max-width: 991px) 36vw, (max-width: 1439px) 37vw, 470px" srcset="{% static 'main-website/images/course-dash-comp.png' %} 500w, {% static 'main-website/images/course-dash-comp.png' %} 800w, {% static 'main-website/images/course-dash-comp.png' %} 1080w, {% static 'main-website/images/course-dash-comp.png' %} 1600w, {% static 'main-website/images/course-dash-comp.png' %} 1925w" alt=""></div>
             <div class="uui-navbar01_button-wrapper ourstory-pilot">
               <a href="#" class="uui-button home-stats-button w-inline-block">
                 <div class="text-block-81">Pilot Program</div>
@@ -288,7 +289,7 @@
   <div class="brix---section-2 wf-section">
     <div class="brix---container-default-2 w-container">
       <div class="brix---mg-bottom-48px">
-        <div data-w-id="0b8d43e9-9307-4247-c80e-a54d0630d67a" style="-webkit-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="brix---inner-container-574px---center">
+        <div data-w-id="0b8d43e9-9307-4247-c80e-a54d0630d67a" style="" class="brix---inner-container-574px---center">
           <div class="brix---text-center">
             <div class="brix---mg-bottom-16px">
               <div class="brix---color-neutral-802">
@@ -298,9 +299,9 @@
           </div>
         </div>
       </div>
-      <div data-w-id="0b8d43e9-9307-4247-c80e-a54d0630d680" style="-webkit-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="w-layout-grid brix---grid-3-columns-gap-row-72px">
+      <div data-w-id="0b8d43e9-9307-4247-c80e-a54d0630d680" class="w-layout-grid brix---grid-3-columns-gap-row-72px">
         <div class="div-block-228">
-          <a href="#" class="brix---avatar-image-square w-inline-block"><img srcset="images/tony-headshot-p-500.jpeg 500w, images/tony-headshot-p-800.jpeg 800w, images/tony-headshot.jpeg 968w" src="images/tony-headshot.jpeg" sizes="(max-width: 479px) 100vw, (max-width: 991px) 228px, (max-width: 1439px) 28vw, 387.328125px" alt="" class="brix---avatar-image-link"></a>
+          <a href="#" class="brix---avatar-image-square w-inline-block"><img srcset="{% static 'main-website/images/tony-headshot-p-500.jpeg' %} 500w, {% static 'main-website/images/tony-headshot-p-500.jpeg' %} 800w, {% static 'main-website/images/tony-headshot-p-500.jpeg' %} 968w" src="{% static 'main-website/images/tony-headshot-p-500.jpeg' %}" sizes="(max-width: 479px) 100vw, (max-width: 991px) 228px, (max-width: 1439px) 28vw, 387.328125px" alt="" class="brix---avatar-image-link"></a>
           <div class="brix---testimonial-v6-content-card">
             <div class="brix---mg-bottom-24px-2">
               <a href="#" class="brix---text-decoration-none w-inline-block">
@@ -315,12 +316,12 @@
               </div>
             </div>
             <div class="w-layout-grid brix---social-media-grid-left">
-              <a href="https://www.linkedin.com/in/tony-cerce/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="images/linkedin-social-media-icon-brix-templates.svg" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
+              <a href="https://www.linkedin.com/in/tony-cerce/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="{% static 'main-website/images/linkedin-social-media-icon-brix-templates.svg' %}" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
             </div>
           </div>
         </div>
         <div>
-          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="images/ben-headshot.jpeg" alt="" class="brix---avatar-image-link"></a>
+          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="{% static 'main-website/images/ben-headshot.jpeg' %}" alt="" class="brix---avatar-image-link"></a>
           <div class="brix---testimonial-v6-content-card">
             <div class="brix---mg-bottom-24px-2">
               <a href="#" class="brix---text-decoration-none w-inline-block">
@@ -335,12 +336,12 @@
               </div>
             </div>
             <div class="w-layout-grid brix---social-media-grid-left">
-              <a href="https://www.linkedin.com/in/benjaminoweber/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="images/linkedin-social-media-icon-brix-templates.svg" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
+              <a href="https://www.linkedin.com/in/benjaminoweber/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="{% static 'main-website/images/linkedin-social-media-icon-brix-templates.svg' %}" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
             </div>
           </div>
         </div>
         <div>
-          <a href="#" class="brix---avatar-image-square w-inline-block"><img srcset="images/aidan-headshot-p-500.jpeg 500w, images/aidan-headshot-p-800.jpeg 800w, images/aidan-headshot.jpeg 970w" src="images/aidan-headshot.jpeg" sizes="(max-width: 479px) 100vw, (max-width: 991px) 228px, (max-width: 1439px) 28vw, 387.34375px" alt="" class="brix---avatar-image-link"></a>
+          <a href="#" class="brix---avatar-image-square w-inline-block"><img srcset="{% static 'main-website/images/aidan-headshot-p-500.jpeg' %} 500w, {% static 'main-website/images/aidan-headshot-p-500.jpeg' %} 800w, {% static 'main-website/images/aidan-headshot-p-500.jpeg' %} 970w" src="{% static 'main-website/images/aidan-headshot-p-500.jpeg' %}" sizes="(max-width: 479px) 100vw, (max-width: 991px) 228px, (max-width: 1439px) 28vw, 387.34375px" alt="" class="brix---avatar-image-link"></a>
           <div class="brix---testimonial-v6-content-card">
             <div class="brix---mg-bottom-24px-2">
               <a href="#" class="brix---text-decoration-none w-inline-block">
@@ -355,12 +356,12 @@
               </div>
             </div>
             <div class="w-layout-grid brix---social-media-grid-left">
-              <a href="https://www.linkedin.com/in/aidan-rausch/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="images/linkedin-social-media-icon-brix-templates.svg" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
+              <a href="https://www.linkedin.com/in/aidan-rausch/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="{% static 'main-website/images/linkedin-social-media-icon-brix-templates.svg' %}" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
             </div>
           </div>
         </div>
         <div>
-          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="images/jake-headshot.jpeg" alt="" class="brix---avatar-image-link jake"></a>
+          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="{% static 'main-website/images/jake-headshot.jpeg' %}" alt="" class="brix---avatar-image-link jake"></a>
           <div class="brix---testimonial-v6-content-card">
             <div class="brix---mg-bottom-24px-2">
               <a href="#" class="brix---text-decoration-none w-inline-block">
@@ -375,12 +376,12 @@
               </div>
             </div>
             <div class="w-layout-grid brix---social-media-grid-left">
-              <a href="https://www.linkedin.com/in/jake-scurrah-021bb019a/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="images/linkedin-social-media-icon-brix-templates.svg" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
+              <a href="https://www.linkedin.com/in/jake-scurrah-021bb019a/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="{% static 'main-website/images/linkedin-social-media-icon-brix-templates.svg' %}" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
             </div>
           </div>
         </div>
         <div>
-          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="images/kyle-headshot.jpeg" alt="" class="brix---avatar-image-link"></a>
+          <a href="#" class="brix---avatar-image-square w-inline-block"><img src="{% static 'main-website/images/kyle-headshot.jpeg' %}" alt="" class="brix---avatar-image-link"></a>
           <div class="brix---testimonial-v6-content-card">
             <div class="brix---mg-bottom-24px-2">
               <a href="#" class="brix---text-decoration-none w-inline-block">
@@ -395,7 +396,7 @@
               </div>
             </div>
             <div class="w-layout-grid brix---social-media-grid-left">
-              <a href="https://www.linkedin.com/in/kyle-trusch-84119211b/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="images/linkedin-social-media-icon-brix-templates.svg" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
+              <a href="https://www.linkedin.com/in/kyle-trusch-84119211b/" target="_blank" class="brix---icon-square-36px w-inline-block"><img src="{% static 'main-website/images/linkedin-social-media-icon-brix-templates.svg' %}" alt="Linkedin - Elements Webflow Library - BRIX Templates"></a>
             </div>
           </div>
         </div>

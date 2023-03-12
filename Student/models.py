@@ -154,7 +154,7 @@ class Student(models.Model):
     YES_NO = [
         ("I Live With My Parents", "I Live With My Parents"),
         ("I Rent", "I Rent"),
-        ("I own", "I own"),
+        ("I Own", "I Own"),
     ]
     living_situation = models.CharField(max_length=2000, choices=YES_NO, null=True, blank=True)
     location = models.CharField(max_length=200, null=True, blank=True)

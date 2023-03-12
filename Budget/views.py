@@ -6,6 +6,8 @@ from Accounts.models import Account
 from Budget.models import BankAccount, MonthlySummary
 import requests
 from .forms import UpdateChangedTransactions
+import random
+from .plaid_integrations import plaid_get_Transactions
 
 # creating env object
 env = environ.Env()
@@ -42,7 +44,7 @@ def addAccount(request):
             "country_codes": ["US"],
             "language": "en",
             "webhook": "https://www.prosperon-university.com/",
-            "redirect_uri": "https://www.prosperon-university.com/oauth.html",
+            "redirect_uri": "https://www.prosperon-university.com/budget/oauth.html",
 
         }
 
@@ -61,11 +63,43 @@ def addAccount(request):
 # Authenticaction for plaid
 def oauth(request):
     user = request.user
+    account = Account.objects.filter(pk=request.user.pk)
+    user_id = account.model.get_user_id(self=user)
+    changed_transactions = account.model.get_changed_transactions(self=user)
+    print(changed_transactions['user_accounts'])
+
+
     if request.POST.get('action') == 'post':
         print('this is accounts test')
+        public = request.POST['public_token']
+
+        url = 'https://development.plaid.com/item/public_token/exchange'
+
+        headers = {
+            'Content-Type': 'application/json'
+        }
+
+        data = {
+            "client_id": f"{CLIENT_ID}",
+            "secret": f"{SECRET}",
+            "public_token": f"{public}",
+
+        }
+
+        r = requests.post(url, headers=headers, json=data)
+        print(r.json())
+
+        access_token = r.json()['access_token']
+
+        print(access_token)
+        account_id = random.randint(100000000000, 999999990000)
+        packaged = {"account_token": f"{access_token}", "id": f"{account_id}"}
+        changed_transactions = changed_transactions['user_accounts'].append(packaged)
+        changed_transactions.save()
 
 
-    return render(request, 'Budget/o-auth.html')
+    return render(request, 'Budget/oauth.html')
+
 
 
 # Budget Dashboard
@@ -78,59 +112,32 @@ def budget_dashboard(request):
         bank_accounts = BankAccount.objects.filter(users_id=user_id)
         goals = Goal.objects.filter(users_id=user_id)
 
-
+        print(bank_accounts)
         # receiving AJAX from changing a transaction category
         if request.POST.get('action') == 'post':
             public = request.POST
-            category = public['new_category']
-            transaction_id = public['transaction_id']
-            packeged_transaction = {'category': f'{category}', 'transaction_id': f'{transaction_id}'}
-            changed_transactions['changedTransactions'].append(packeged_transaction)
-            print(changed_transactions)
-
-            form = UpdateChangedTransactions(request.POST)
-            if form.is_valid():
-                instance = request.user
-                instance.changed_transactions = changed_transactions
-                instance.save()
+            print(public)
 
 
 
-        # Getting all accounts
-        for account in bank_accounts:
-            token = account.token
-            url = 'https://development.plaid.com/transactions/get'
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            data = {
-                "client_id": F"{CLIENT_ID}",
-                "secret": f"{SECRET}",
-                "access_token": f'{token}',
-                "start_date": "2022-11-02",
-                "end_date": "2023-11-04",
-                "options": {
-                    "count": 3,
-                    "offset": 0
-                }
-            }
 
-            # Transaction data received
-            transaction_data = requests.post(url, headers=headers, json=data).json()['transactions']
+        account_transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-05bf2bcd-db3e-4756-8ed3-3703f99bd4ad')
+        print('ficdafd', account_transactions)
+
+
+
+        if changed_transactions['user_accounts'] == []:
+            print('there are no accounts')
 
 
 
 
 
 
-    context = {
-        'transaction_data': transaction_data,
-        'goals': goals
-    }
 
 
 
-    return render(request, 'Budget/dashboard.html', context=context)
+    return render(request, 'Budget/dashboard.html')
 
 
 # Goals page

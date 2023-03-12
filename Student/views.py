@@ -343,7 +343,7 @@ def view_budget(request, id):
             budget_name = post['budget-title']
             budget_max = post['Max-amount']
             budget_category = post['Category']
-            print(budget_category)
+            print('changed budget')
 
             for categories in budget_categories:
                 if categories[0] == budget_category:
@@ -356,6 +356,8 @@ def view_budget(request, id):
             student_budget.total_per_month = budget_max
             student_budget.category = num
             student_budget.save()
+
+            return redirect('/university/budget/budget')
 
 
 
