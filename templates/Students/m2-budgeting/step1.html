@@ -624,7 +624,7 @@
                   <img src="../../../media/{{ subscript.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
               </div>
               <div class="company-name-2">
-                <h1 class="_14px-2">{{ subscript.subscription_title }}</h1>
+                <h1 class="_14px-2" style="font-family: 'Poppins', sans-serif">{{ subscript.subscription_title }}</h1>
               </div>
               <div class="price-range-wrapper hidden">
                   <h1 class="_14px-2" id="subscription-cost" style="font-size: 18px">{{ subscript.subscription_cost }}</h1>
@@ -651,11 +651,11 @@
                       <img src="../../../media/{{ expense.img }}" loading="lazy" alt="" style="width: 100px; height: 100px">
                   </div>
                   <div class="company-name-2">
-                    <h1 class="_14px-2">{{ expense.monthly_expense_title }}</h1>
+                    <h1 class="_14px-2" style="font-family: 'Poppins', sans-serif">{{ expense.monthly_expense_title }}</h1>
                   </div>
                   <div class="price-range-wrapper hidden" style="display: none;">
-                          <select class="month-ranges" style="font-size: 18px; height: 30px; width: 150px; background-color: transparent; font-family: Poppins">
-                            <option value="" style="font-size: 18px; height: 20px; width: 150px; background-color: transparent; font-family: Poppins">Select Range</option>
+                          <select class="month-ranges" style="font-size: 18px; height: 30px; width: 150px; background-color: transparent; font-family: 'Poppins', sans-serif">
+                            <option value="" style="font-size: 18px; height: 20px; width: 150px; background-color: transparent; font-family: 'Poppins', sans-serif">Select Range</option>
                               {% for range in monthly_expenses_ranges %}
                                 <option value="">{{ range.0 }}</option>
                               {% endfor %}
