@@ -274,7 +274,7 @@ for(let i = 0; i < transactionElements.length; i++) {
     console.log(TotalSpent)
 }
 
-document.getElementById('total-spent').innerText = Math.round(totalSpent * 100) / 100
+document.getElementById('total-spent').innerText = (Math.round(totalSpent * 100) / 100).toLocaleString()
 
 </script>
 <script src="{% static 'students/js/script.js' %}" type="text/javascript"></script>

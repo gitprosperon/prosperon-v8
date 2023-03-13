@@ -206,7 +206,7 @@ class Student(models.Model):
     graduation_date = models.CharField(max_length=200, null=True, blank=True, choices=GRADUATION_DATES)
     total_months_completed = models.IntegerField(null=True, blank=True)
     MONTHS = (
-        ('1', 'January'),
+        ('1 ', 'January'),
         ('2', 'February'),
         ('3', 'March'),
         ('4', 'April'),
@@ -393,6 +393,7 @@ class Scenario(models.Model):
 
     def __str__(self):
         return self.scenario_id + ' - ' + self.title
+
 
 
 

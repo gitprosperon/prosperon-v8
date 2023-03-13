@@ -523,6 +523,7 @@
               </div>
               <div class="_10-top">
                 <div id="w-node-ed09823b-3717-1360-ceaf-ff020bd307d7-fe18aa3b" class="_20-padding-container">
+                    <h1 class="_18" style="padding-bottom: 20px">Current Net worth:  <span style="color: #1f79ba"> $</span><span id="net-worth-span" style="color: #1f79ba;"></span></h1>
 
                     <div class="horizontal" style="height: 400px; width: 100%" >
 
@@ -560,6 +561,9 @@
                                 }
                             }
 
+                            console.log('net worht timeline: ', (Math.round((anotherList[anotherList.length - 1] * 100) / 100).toLocaleString()))
+
+                            document.getElementById('net-worth-span').innerText = Math.round((anotherList[anotherList.length - 1] * 100) / 100).toLocaleString()
 
 
                             var currentAge = {{ age }}
