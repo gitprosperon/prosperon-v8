@@ -89,8 +89,10 @@ def dashboard(request):
 
             decision_list = []
             for i in user_unlocked_anytimeDecisions:
-                decision = AnytimeDecision.objects.get(decision_id=i)
-                decision_list.append(decision)
+                if i not in student_model.completedAnytimeDecisions:
+                    print(i)
+                    decision = AnytimeDecision.objects.get(decision_id=i)
+                    decision_list.append(decision)
         else:
             decision_list = ''
 
@@ -166,10 +168,7 @@ def simulate(request, months):
         student_monthlyIncome = int(student.yearly_salary / 12)
         monthlyExpenses = student.total_monthly_expenses
         net_worth_list = student.net_worth_monthly_list['net_income_monthly_list']
-
-
         mutule_fund_rate = 5.12
-
         surplus = student_monthlyIncome + monthlyExpenses
         print(surplus)
 
@@ -179,16 +178,12 @@ def simulate(request, months):
         while index < int(months):
             index += 1
             netWorth = compounding_growth(net_worth, mutule_fund_rate, index, student_monthlyIncome, monthlyExpenses)
-            print(netWorth)
-
-
             net_worth_list.append({"net_worth": f"{netWorth}"})
 
         total_current_net_worth = compounding_growth(net_worth, mutule_fund_rate, int(months), student_monthlyIncome, monthlyExpenses)
         student.current_net_worth = total_current_net_worth
         student.net_worth_monthly_list['net_income_monthly_list'] = net_worth_list
         student.save()
-
 
         # adding months to total number of months
         totalMonths = student.total_months_completed
@@ -197,18 +192,17 @@ def simulate(request, months):
 
         # Creating current year
         student_current_year = student.current_year
-
         test = round(int(months) / 12)
         student.current_year = test + int(student_current_year)
 
+        # Changing students age
+        current_year = test + int(student_current_year)
+        test4 = current_year - int(student.birth_year)
+        student.age = test4
+
         student.save()
 
-
-
-
         return redirect('/university/dashboard')
-
-
 
     return render(request, 'Students/simulate.html')
 

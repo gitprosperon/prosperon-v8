@@ -91,6 +91,7 @@ def onboarding_step3(request):
             gender = post_data['gender']
             ethnicity = post_data['ethnicity']
             location = post_data['location']
+            desired_work_location = post_data['desired_location']
             user_image = post_data['user_image']
             parents = post_data['parents']
             student_major = post_data['major']
@@ -126,6 +127,8 @@ def onboarding_step3(request):
             # Saving current data
             student_model.living_situation = parents
             student_model.location = location
+            student_model.desired_location = desired_work_location
+
             student_model.gender = gender
             student_model.ethnicity = ethnicity
             student_model.save()
@@ -158,6 +161,7 @@ def onboarding_step3(request):
         major = student_model.major
         parents = student_model.living_situation
         location = student_model.location
+        desired_location = student_model.desired_location
         graduation = student_model.graduation_date
         genderChoices = Student.GENDER_CHOICES
         ethnicityChoices = Student.ETHNICITY_CHOICES
@@ -185,6 +189,7 @@ def onboarding_step3(request):
             'parents': parents,
             'parentsChoices': parentsChoices,
             'location': location,
+            'desired_location': desired_location,
             'graduation': graduation,
             'locationChoices': locationChoices,
             'graduationChoices': graduationChoices,

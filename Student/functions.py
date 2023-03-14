@@ -181,9 +181,6 @@ def add_property(request):
 
             student_model.save()
 
-
-
-
             return redirect('/university/dashboard')
 
 
@@ -197,8 +194,6 @@ def sell_property(request):
         student_net_worth = student_model.current_net_worth
         student_properties = student_model.properties['properties']
         current_months_completed = student_model.total_months_completed
-
-
 
         # Getting ajax request
         if request.POST.get('action') == 'post':
@@ -527,26 +522,25 @@ def anytime_decision_handeler(request, id):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         ad = AnytimeDecision.objects.get(decision_id=id)
+        comp_anytime = student_model.completedAnytimeDecisions
+        if comp_anytime == None:
+            student_model.completedAnytimeDecisions = id
+            student_model.save()
+        else:
+            new = comp_anytime.split(",")
+            new.append(id)
+            new = (str(new)).replace("'", '').replace("[", "").replace("]", "").replace(" ", "")
+            student_model.completedAnytimeDecisions = new
+            print('new: ', student_model.completedAnytimeDecisions)
+            student_model.save()
 
         # Adding points for anytime decision
         ad_points = ad.points
         student_model.last_points_added = ad.points
-        print(student_model.last_points_added)
-
-        student_model.save()
         student_model.total_points = student_model.total_points + ad_points
         print(student_model.total_points)
+
         student_model.save()
-
-        print('anutome saved')
-
-
-
-
-
-
-
-        print('we are handeling the anytime decision')
 
         return redirect('/university/dashboard')
 

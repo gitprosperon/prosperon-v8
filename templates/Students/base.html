@@ -90,13 +90,13 @@
 
 
         {% if request.path == '/university/budget/dashboard' %}
-        <a href="{% url 'Students:budget-dashboard' %}" class="side-bar-link">
+        <a href="{% url 'Students:budget-dashboard' %}" class="side-bar-link" style="display: none;">
             <div class="nav-link selected"><img src="{% static 'images/icons/ub_dashboard.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
                 <h1 class="nav-link-text selected">Dashboard</h1>
             </div>
         </a>
         {% else %}
-        <a href="{% url 'Students:budget-dashboard' %}" class="side-bar-link">
+        <a href="{% url 'Students:budget-dashboard' %}" class="side-bar-link" style="display: none;">
             <div class="nav-link"><img src="{% static 'images/icons/uw_dashboard.svg' %}" loading="lazy" width="30" height="30" alt="" class="nav-link-image">
                 <h1 class="nav-link-text">Dashboard</h1>
             </div>

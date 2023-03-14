@@ -20,7 +20,7 @@ def first_job_step1(request):
             progress = request.POST['progress']
             if student_model.course_progress < progress:
                 student_model.course_progress = progress
-                student_model.jobs_applied = [jobs]
+                student_model.jobs_applied = jobs
                 student_model.save()
                 return redirect('/university/video/2')
             else:
@@ -45,7 +45,8 @@ def first_job_step2(request):
     season = graduation[0]
     year = graduation[2]
     jobs_applied = student_model.jobs_applied
-    jobs_applied = jobs_applied.replace("'", "")
+    jobs_applied = jobs_applied.split(",")
+
 
     if user.is_active and user.has_university == True:
         the_jobs = []
@@ -53,6 +54,7 @@ def first_job_step2(request):
         for job in jobs:
             if job.job_id in jobs_applied:
                 the_jobs.append(job)
+                print(the_jobs)
 
         if request.method == 'POST':
             progress = request.POST['progress']
@@ -81,7 +83,7 @@ def first_job_step3(request):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         jobs_applied = student_model.jobs_applied
-        jobs_applied = jobs_applied.replace("'", "")
+        jobs_applied = jobs_applied.split(",")
         the_jobs = []
         jobs = Job.objects.all()
         for job in jobs:
@@ -115,7 +117,7 @@ def first_job_step4(request):
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
         jobs_applied = student_model.jobs_applied
-        jobs_applied = jobs_applied.replace("'", "")
+        jobs_applied = jobs_applied.split(",")
 
         the_jobs = []
         jobs = Job.objects.all()
@@ -161,12 +163,12 @@ def first_job_step4(request):
 
                 # Packaging benefits into module results
                 company_401k = student_job.company_401k
-                health = ['health', student_job.health]
-                dental = ['dental', student_job.dental]
-                vision = ['vision', student_job.vision]
-                pto = ['paid time off', student_job.pto]
-                student_loan_assist = ['student loan assist', student_job.student_loan_assist]
-                relocation = ['relocation', student_job.relocation]
+                health = ['Health Insurance', student_job.health]
+                dental = ['Dental Insurance', student_job.dental]
+                vision = ['Vision Insurance', student_job.vision]
+                pto = ['Paid Time Off', student_job.pto]
+                student_loan_assist = ['Student Loan Assist', student_job.student_loan_assist]
+                relocation = ['Relocation Benefits', student_job.relocation]
                 result_json = {"module_results": []}
 
                 number = 13414

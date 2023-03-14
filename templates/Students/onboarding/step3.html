@@ -26,11 +26,32 @@
                 <div class="input-container">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Birthday</label><br>
                     <div class="" style="display: flex; flex-direction: row; justify-content: space-between">
-                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="month" data-name="Name" placeholder="Month" id="age" value="{% if birth_month %}{{ birth_month }}{% endif %}">
+                        <select style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" id="month" class="text-field" name="month" form="info-form">
+                        <option value="{% if birth_month %}{{ birth_month }}{% endif %}">{% if birth_month %}{{ birth_month }}{% endif %}</option>
+                        {% for gend in month_choices %}
+                            {% if gend.0 != gender %}
+                                <option value="{{ gend.0 }}">{{ gend.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
                         <p>/</p>
-                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="day" data-name="Name" placeholder="Day" id="age" value="{% if birth_day %}{{ birth_day }}{% endif %}">
+                        <select style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" id="day" class="text-field" name="day" form="info-form">
+                        <option value="{% if birth_day %}{{ birth_day }}{% endif %}">{% if birth_day %}{{ birth_day }}{% endif %}</option>
+                        {% for gend in day_choices %}
+                            {% if gend.0 != gender %}
+                                <option value="{{ gend.0 }}">{{ gend.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
                         <p>/</p>
-                        <input style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" type="text" class="text-field" maxlength="256" name="year" data-name="Name" placeholder="Year" id="age" value="{% if birth_year %}{{ birth_year }}{% endif %}">
+                        <select style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" id="day" class="text-field" name="year" form="info-form">
+                        <option value="{% if birth_year %}{{ birth_year }}{% endif %}">{% if birth_year %}{{ birth_year }}{% endif %}</option>
+                        {% for gend in year_choices %}
+                            {% if gend.0 != gender %}
+                                <option value="{{ gend.0 }}">{{ gend.0 }}</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
                     </div>
                 </div>
 
@@ -98,6 +119,20 @@
                         {% endfor %}
                     </datalist>
                 </div>
+                <div class="input-container">
+                    <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Where do you want to work? (Closest City)</label><br>
+                    <input type="text" list="my-locations" class="text-field" width="100%" name="desired_location" value="{% if desired_location %}{{ desired_location }}{% endif %}" id="locations-input" style="margin-bottom: 20px">
+                    <datalist id="my-locations" style="width: 10%">
+                        {% for pc in locationChoices %}
+                            {% if pc != location %}
+                                <option value="{{ pc }}">{{ pc }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+
+
                 <div class="input-container">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">When do you plan on graduating?</label><br>
                     <select style="margin-bottom: 40px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="graduation" form="info-form" required="required">
