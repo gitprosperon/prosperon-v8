@@ -168,6 +168,9 @@ def onboarding_step3(request):
         parentsChoices = Student.YES_NO
         locationChoices = Location.objects.all()
         graduationChoices = Student.GRADUATION_DATES
+        day_choices = Student.BIRTH_DAY_CHOICES
+        month_choices = Student.BIRTH_MONTH
+        year_choices = Student.BIRTH_YEAR_CHOICES
 
 
 
@@ -193,7 +196,13 @@ def onboarding_step3(request):
             'graduation': graduation,
             'locationChoices': locationChoices,
             'graduationChoices': graduationChoices,
-            'image_form': image_form
+            'image_form': image_form,
+            'day_choices': day_choices,
+            'month_choices': month_choices,
+            'year_choices': year_choices
+
+
+
 
         }
 
