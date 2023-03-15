@@ -52,6 +52,14 @@ class MonthlyExpense(models.Model):
 
 # Models for get a job
 class Job(models.Model):
+    YES_NO_ORIGINAL = [
+        ("Yes", "Yes"),
+        ("No", "No"),
+
+        ]
+
+
+    original = models.CharField(max_length=400, null=True, blank=True, choices=YES_NO_ORIGINAL)
     title = models.CharField(max_length=400, null=True, blank=True)
     company = models.CharField(max_length=400, null=True, blank=True)
     job_id = models.CharField(max_length=400, null=True, blank=True)
