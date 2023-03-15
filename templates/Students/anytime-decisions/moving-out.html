@@ -18,9 +18,10 @@
     <div class="search-area _10-top">
 
         {% if student_job_location != student_current_location and student.job.job_type != 'Remote' %}
-            <h1 class="_18-poppins padding" id="citySearch">{{ student.job.job_city }}</h1>
+            <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: 'Poppins', sans-serif; width: 100%" placeholder="Search for housing" value="{{ student.job.job_city }}" name="already">
+
         {% else %}
-            <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: Poppins; width: 100%" placeholder="Search for housing">
+            <input type="text" id="citySearch" class="_18-poppins padding" style="border: none; font-family: 'Poppins', sans-serif; width: 100%" placeholder="Search for housing" name="add">
 
         {% endif %}
     </div>
@@ -36,7 +37,7 @@
         <div id="w-node-_60506164-f4ec-2e17-d413-eaac3c90f688-9f05c550" class="_10-top _10-sides">
           <div class="_18-poppins centered-text">{{ apartment.title }}</div>
           <div class="_18px _10-top _14 apartment-padding">{{ apartment.address }}</div>
-            <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState"><h1 class="city">Boston, Ma</h1></div>
+            <div class="_18px _10-top _14 apartment-padding cirtandState" id="cityAndState"><h1 class="city">{{ apartment.location }}</h1></div>
           <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed / {{ apartment.bathrooms }} bath</div>
           <div class="_18px _10-top _14 apartment-padding amount">${{ apartment.yearly_cost|div:12|floatformat|intcomma }}</div>
         </div>
@@ -89,9 +90,29 @@
 
 <script>
 
+
+
+
+
 // search functionality for housing
 const citySearch = document.getElementById('citySearch');
-citySearch.addEventListener("keyup", (e) => {
+
+if (citySearch.name === 'already') {
+    window.onload = function () {
+        console.log('it sssss alrady')
+        let currentValue = citySearch.value.toLowerCase();
+        let city = document.querySelectorAll('h1.city');
+        city.forEach(city => {
+            if (city.textContent.toLowerCase().includes(currentValue)) {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+            } else {
+                city.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+            }
+        })
+
+    }
+} else {
+    citySearch.addEventListener("keyup", (e) => {
     let currentValue = e.target.value.toLowerCase();
     let city = document.querySelectorAll('h1.city');
     city.forEach(city => {
@@ -102,6 +123,12 @@ citySearch.addEventListener("keyup", (e) => {
         }
     })
 })
+}
+
+
+
+
+
 
 
 

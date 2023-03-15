@@ -545,9 +545,11 @@ def accounts(request):
         else:
             total_real_estate_value = 0
             for prop in housing:
-                cost = int(prop['costNow'])
-                total_real_estate_value += cost
-                print(total_real_estate_value)
+                if prop['property_type'] == 'House':
+                    print('place holder')
+                    cost = int(prop['costNow'])
+                    total_real_estate_value += cost
+                    print(total_real_estate_value)
 
 
         context = {

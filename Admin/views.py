@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .forms import AddLocationForm
+from .forms import AddLocationForm, AddApartmentForm
+from Student.models import Location, Apartment
 
 # Create your views here.
 
@@ -164,3 +165,58 @@ def create_lcoations(request):
     print('test264323452')
     return render(request, 'Admin/create-locations.html')
 
+
+def apartmentAdd(request, title, address, sqFeet, yearly_cost, general_information, bedrooms, bathrooms, img, initial_cost, location):
+    form = AddApartmentForm(request.POST)
+    newApartment = form.save(commit=False)
+    newApartment.title = title
+    newApartment.address = address
+    newApartment.sqFeet = sqFeet
+    newApartment.yearly_cost = yearly_cost
+    newApartment.general_information = general_information
+    newApartment.bedrooms = bedrooms
+    newApartment.bathrooms = bathrooms
+    newApartment.img = img
+    newApartment.initial_cost = initial_cost
+    newApartment.location = location
+    newApartment.save()
+    print('new apartment saved')
+
+def addAllApartments(request):
+    apartmemnt_1 = Apartment.objects.get(id=2)
+    apartmemnt_2 = Apartment.objects.get(id=3)
+    apartmemnt_3 = Apartment.objects.get(id=4)
+    apartmemnt_4 = Apartment.objects.get(id=5)
+    first_apartments = [[apartmemnt_1, '1'], [apartmemnt_2, '2'], [apartmemnt_3, '3'], [apartmemnt_4, '4']]
+    locations = Location.objects.all()[:1]
+
+    for location in locations:
+        print('city: ', location.city)
+        for apartment in first_apartments:
+            print('the apartment: ', apartment[0].title)
+            if apartment[1] == '1':
+                cost = round(location.average_rent)
+                initial = round((cost / 12) * 2)
+                print(initial)
+                print(cost)
+            if apartment[1] == '2':
+                cost = round(location.average_rent * 1.1)
+                initial = round((cost / 12) * 2)
+                print(initial)
+                print(cost)
+            if apartment[1] == '3':
+                cost = round(location.average_rent * .7)
+                initial = round((cost / 12) * 2)
+                print(initial)
+                print(cost)
+            if apartment[1] == '4':
+                cost = round(location.average_rent * .9)
+                initial = round((cost / 12) * 2)
+                print(initial)
+                print(cost)
+
+            apartment = apartment[0]
+            apartmentAdd(request, apartment.title, apartment.address, apartment.sqFeet, cost, apartment.general_information, apartment.bedrooms, apartment.bathrooms, apartment.img, initial, location)
+
+    print('adding all apartments')
+    return render(request, 'Admin/create-locations.html')

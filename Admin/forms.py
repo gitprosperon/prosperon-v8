@@ -7,3 +7,9 @@ class AddLocationForm(forms.ModelForm):
         model = Location
         fields = ['city', 'average_rent']
 
+
+class AddApartmentForm(forms.ModelForm):
+
+    class Meta:
+        model = Apartment
+        fields = '__all__'

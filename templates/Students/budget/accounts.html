@@ -23,7 +23,7 @@
             <div class="account-ov-wrapper">
               <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
                 <div class="account-title">Checking &amp; Savings</div>
-                <div class="account-balance">$<span>{{ net_worth|intcomma }}</span></div>
+                <div class="account-balance calc">$<span>{{ net_worth|intcomma }}</span></div>
               </div>
             </div>
             <div class="account-ov-wrapper top-spacing">
@@ -35,7 +35,7 @@
             <div class="account-ov-wrapper top-spacing">
               <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
                 <div class="account-title">Investments</div>
-                <div class="account-balance">$<span>0</span></div>
+                <div class="account-balance calc">$<span>0</span></div>
               </div>
             </div>
             <div class="account-ov-wrapper top-spacing">
@@ -47,7 +47,7 @@
             <div class="account-ov-wrapper top-spacing">
               <div class="account-ov-information"><img src="images/assers-arrow.svg" loading="lazy" width="12" height="12" alt="">
                 <div class="account-title">Real Estate</div>
-                <div class="account-balance">$<span>{{ total_real_estate_value }}</span></div>
+                <div class="account-balance calc">$<span>{{ total_real_estate_value|intcomma }}</span></div>
               </div>
             </div>
             <div class="account-ov-wrapper top-spacing net-worth">
@@ -133,12 +133,12 @@
 
 
 
-var balances = document.getElementsByClassName('account-balance')
+var balances = document.getElementsByClassName('account-balance calc')
 
 
 var totalBalance = 0
 for (let i = 0; i < balances.length; i++) {
-    var balance = balances[i].innerText.replace("$", "").replace(",", "")
+    var balance = Number(balances[i].innerText.replace("$", "").replace(",", ""))
     var cleanedBalance = Number(balance)
     totalBalance += cleanedBalance
 
