@@ -12,8 +12,9 @@ def first_job_step1(request):
     student_user = Account.objects.filter(pk=request.user.pk)
     user_id = student_user.model.get_user_id(self=user)
     student_model = Student.objects.get(user_id_number=user_id)
+    student_desired_location = student_model.desired_location
     student_major = student_model.major
-    all_jobs = Job.objects.filter(major=student_major)
+    all_jobs = Job.objects.filter(major=student_major, location=student_desired_location, original='No')
     if user.is_active and user.has_university == True:
         if request.method == 'POST':
             jobs = request.POST['jobs']

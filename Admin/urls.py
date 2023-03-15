@@ -8,5 +8,6 @@ urlpatterns = [
     # Sidebar Pages
     path('create-locations', views.create_lcoations, name='create-locations'),
     path('create-apartments', views.addAllApartments, name='create-apartments'),
+    path('create-original', views.createOriginalJob, name='create-orig-job'),
 
 ]

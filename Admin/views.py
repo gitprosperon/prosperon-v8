@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import AddLocationForm, AddApartmentForm
-from Student.models import Location, Apartment
+from .forms import AddLocationForm, AddApartmentForm, OriginalJobForm, CreateNewJobForm
+from Student.models import Location, Apartment, Job
 
 # Create your views here.
 
@@ -219,4 +219,45 @@ def addAllApartments(request):
             apartmentAdd(request, apartment.title, apartment.address, apartment.sqFeet, cost, apartment.general_information, apartment.bedrooms, apartment.bathrooms, apartment.img, initial, location)
 
     print('adding all apartments')
+    return render(request, 'Admin/create-locations.html')
+
+
+
+
+
+def createOriginalJob(request):
+    print('create original graph')
+    id = 161
+    for location in Location.objects.all():
+        for job in Job.objects.filter(original='Yes'):
+            jobForm = CreateNewJobForm(request.POST)
+            theJobObject = jobForm.save(commit=False)
+            theJobObject.original = 'No'
+            theJobObject.title = job.title
+            theJobObject.company = job.company
+            theJobObject.job_id = id
+            id += 1
+            theJobObject.location = location.city
+            theJobObject.job_city = location
+            theJobObject.logo = job.logo
+            theJobObject.salary_range = job.salary_range
+            theJobObject.job_type = job.job_type
+            theJobObject.job_hours = job.job_hours
+            theJobObject.pay_structure = job.pay_structure
+            theJobObject.company_401k = job.company_401k
+            theJobObject.health = job.health
+            theJobObject.dental = job.dental
+            theJobObject.vision = job.vision
+            theJobObject.pto = job.pto
+            theJobObject.student_loan_assist = job.student_loan_assist
+            theJobObject.relocation = job.relocation
+            theJobObject.company_requirements = job.company_requirements
+            theJobObject.company_qualifications = job.company_qualifications
+            theJobObject.company_description = job.company_description
+            theJobObject.major = job.major
+            theJobObject.save()
+
+
+
+
     return render(request, 'Admin/create-locations.html')
