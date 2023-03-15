@@ -125,7 +125,7 @@ class Apartment(models.Model):
     address = models.CharField(max_length=500, null=True, blank=True)
     sqFeet = models.CharField(max_length=500, null=True, blank=True)
     yearly_cost = models.IntegerField(null=True, blank=True)
-    general_information = models.TextField(max_length=500, null=True, blank=True)
+    general_information = models.TextField(max_length=50000, null=True, blank=True)
     bedrooms = models.CharField(max_length=500, null=True, blank=True)
     bathrooms = models.CharField(max_length=500, null=True, blank=True)
     img = models.ImageField(upload_to='apartmentImages/', null=True, blank=True)
