@@ -188,30 +188,30 @@ def addAllApartments(request):
     apartmemnt_3 = Apartment.objects.get(id=4)
     apartmemnt_4 = Apartment.objects.get(id=5)
     first_apartments = [[apartmemnt_1, '1'], [apartmemnt_2, '2'], [apartmemnt_3, '3'], [apartmemnt_4, '4']]
-    locations = Location.objects.all()[:1]
+    locations = Location.objects.all()
 
     for location in locations:
         print('city: ', location.city)
         for apartment in first_apartments:
             print('the apartment: ', apartment[0].title)
             if apartment[1] == '1':
-                cost = round(location.average_rent)
+                cost = round((location.average_rent) * 12)
                 initial = round((cost / 12) * 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '2':
-                cost = round(location.average_rent * 1.1)
+                cost = round((location.average_rent * 1.1) * 12)
                 initial = round((cost / 12) * 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '3':
-                cost = round(location.average_rent * .7)
-                initial = round((cost / 12) * 2)
+                cost = round((location.average_rent * .7) * 12)
+                initial = round(((cost / 12) * 2) / 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '4':
-                cost = round(location.average_rent * .9)
-                initial = round((cost / 12) * 2)
+                cost = round((location.average_rent * .9) * 12)
+                initial = round(((cost / 12) * 2) / 3)
                 print(initial)
                 print(cost)
 
