@@ -47,11 +47,13 @@ def first_job_step2(request):
     year = graduation[2]
     jobs_applied = student_model.jobs_applied
     jobs_applied = jobs_applied.split(",")
+    student_desired_location = student_model.desired_location
+    student_major = student_model.major
 
 
     if user.is_active and user.has_university == True:
         the_jobs = []
-        jobs = Job.objects.all()
+        jobs = Job.objects.filter(major=student_major, location=student_desired_location, original='No')
         for job in jobs:
             if job.job_id in jobs_applied:
                 the_jobs.append(job)
@@ -83,10 +85,12 @@ def first_job_step3(request):
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)
+        student_desired_location = student_model.desired_location
+        student_major = student_model.major
         jobs_applied = student_model.jobs_applied
         jobs_applied = jobs_applied.split(",")
         the_jobs = []
-        jobs = Job.objects.all()
+        jobs = Job.objects.filter(major=student_major, location=student_desired_location, original='No')
         for job in jobs:
             if job.job_id in jobs_applied:
                 the_jobs.append(job)
