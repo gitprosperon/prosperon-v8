@@ -123,9 +123,11 @@ def first_job_step4(request):
         student_model = Student.objects.get(user_id_number=user_id)
         jobs_applied = student_model.jobs_applied
         jobs_applied = jobs_applied.split(",")
+        student_desired_location = student_model.desired_location
+        student_major = student_model.major
 
         the_jobs = []
-        jobs = Job.objects.all()
+        jobs = Job.objects.filter(major=student_major, location=student_desired_location, original='No')
         for job in jobs:
             if job.job_id in jobs_applied:
                 the_jobs.append(job)
