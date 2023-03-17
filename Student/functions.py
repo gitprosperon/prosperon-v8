@@ -296,6 +296,7 @@ def add_rental(request):
         # Changing living situation status
         location = Location.objects.get(city=city)
         the_apartnment = Apartment.objects.get(address=the_address, location=location)
+        student_model.location = location.city
         student_model.apartments = the_apartnment
         student_model.living_situation = "I Rent"
         student_model.save()
@@ -335,6 +336,15 @@ def add_rental(request):
         decision_id = post['decision_id']
         student_model.save()
         comp_anytime = student_model.completedAnytimeDecisions
+        ad = AnytimeDecision.objects.get(decision_id=decision_id)
+        ad_points = ad.points
+        student_model.last_points_added = ad.points
+        student_model.total_points = student_model.total_points + ad_points
+        print(student_model.total_points)
+
+        student_model.save()
+
+
         if comp_anytime == None:
             student_model.completedAnytimeDecisions = decision_id
             student_model.save()
@@ -524,6 +534,12 @@ def add_account(request):
                     student_model.life_path = new
                     student_model.save()
                     print('its all saved')
+                    ad = AnytimeDecision.objects.get(decision_id=decision_id)
+                    ad_points = ad.points
+                    student_model.last_points_added = ad.points
+                    student_model.total_points = student_model.total_points + ad_points
+                    print(student_model.total_points)
+                    student_model.save()
                     comp_anytime = student_model.completedAnytimeDecisions
                     if comp_anytime == None:
                         student_model.completedAnytimeDecisions = decision_id
