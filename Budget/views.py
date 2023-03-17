@@ -7,7 +7,7 @@ from Budget.models import BankAccount, MonthlySummary
 import requests
 from .forms import UpdateChangedTransactions
 import random
-from .plaid_integrations import plaid_get_Transactions
+from .plaid_integrations import plaid_get_Transactions, plaid_get_account_balance
 
 # creating env object
 env = environ.Env()
@@ -121,23 +121,22 @@ def budget_dashboard(request):
 
 
 
-        account_transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-05bf2bcd-db3e-4756-8ed3-3703f99bd4ad')
-        print('ficdafd', account_transactions)
+    # Getting transactions for account
+    transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5')
+    print(transactions)
+
+    # Getting account balances
+    balance = plaid_get_account_balance(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5')
+    test_balance = (balance['accounts'][0]['balances']['available'])
 
 
 
-        if changed_transactions['user_accounts'] == []:
-            print('there are no accounts')
+    context = {
+        'transaction_data': transactions,
+        'test_balance': test_balance,
+    }
 
-
-
-
-
-
-
-
-
-    return render(request, 'Budget/dashboard.html')
+    return render(request, 'Budget/dashboard.html', context=context)
 
 
 # Goals page

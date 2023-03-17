@@ -1,6 +1,7 @@
 {% extends 'Budget/base.html' %}
 {% load static %}
 {% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <div class="full-page-wrapper">
 
@@ -22,7 +23,10 @@
                   <h1 class="total-imcome-header">Total Income</h1>
                   <h1 class="_24px medium green">$21.12</h1>
                 </div>
-                <div class="graph-container"></div>
+                <div class="graph-container">
+
+
+                </div>
                 <div class="overvoew-btm">
                   <div class="budget-overview-btm-container">
                     <div class="div-block"><img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" loading="lazy" width="20" alt="">
@@ -88,9 +92,25 @@
                 {% endfor %}
 
 
-              <div class="_20-padding-container budget-container add-budget">
-                <h1 class="heading-7">Add Budget +</h1>
-              </div>
+              <a href="" class="no-text-decoration">
+                <div class="goals-card add-goal">
+                  <div class="goal-middle-section">
+                    <div class="goalcard-contents-wrapper add-goal">
+                      <h3 class="_24px semibold text add-goal" style="color: #1f79ba">Add Category +</h3>
+                    </div>
+                  </div>
+                </div>
+                </a>
+
+                <a href="{% url 'Students:create-budget' %}" class="no-text-decoration">
+                <div class="goals-card add-goal" style="background-color: #1f79ba; color: white">
+                  <div class="goal-middle-section">
+                    <div class="goalcard-contents-wrapper add-goal">
+                      <h3 class="_24px semibold text add-goal" style="color: white">Build Budget</h3>
+                    </div>
+                  </div>
+                </div>
+                </a>
 
 
             </div>
