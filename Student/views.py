@@ -764,8 +764,15 @@ def anytime_decision_step2(request, id):
         student = Student.objects.get(user_id_number=user_id)
         ad = AnytimeDecision.objects.get(decision_id=id)
         html_path = ad.step2_path
+        desired_city = student.desired_location
+        student_job_location = student.job.job_city.city
+
+        if student_job_location == desired_city:
+            apartments = Apartment.objects.filter(location__city=f'{desired_city}')
+        else:
+            apartments = Apartment.objects.all()
+
         print(html_path)
-        apartments = Apartment.objects.all()
         properties = Property.objects.all()
         credit_cards = CreditCard.objects.all()
         bank_accounts = BankAccount.objects.all()

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Student.models import Student, ModuleSummarie, AnytimeDecision, BudgetItemsUniversity, Apartment, Job, UniversityModule, CreditCard, BankAccount, Subscription
-from Student.models import Property, Scenario
+from Student.models import Property, Scenario, Location
 from Accounts.models import Account
 import random
 from Student.forms import AddBudgetForm
@@ -294,7 +294,8 @@ def add_rental(request):
         student_model.save()
 
         # Changing living situation status
-        the_apartnment = Apartment.objects.get(address=the_address)
+        location = Location.objects.get(city=city)
+        the_apartnment = Apartment.objects.get(address=the_address, location=location)
         student_model.apartments = the_apartnment
         student_model.living_situation = "I Rent"
         student_model.save()
@@ -518,6 +519,7 @@ def add_account(request):
 def anytime_decision_handeler(request, id):
     user = request.user
     if user.is_active and user.has_university == True:
+        print('anytime decision handeler')
         student_user = Account.objects.filter(pk=request.user.pk)
         user_id = student_user.model.get_user_id(self=user)
         student_model = Student.objects.get(user_id_number=user_id)

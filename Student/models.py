@@ -137,6 +137,9 @@ class Apartment(models.Model):
     initial_cost = models.IntegerField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return self.location.city + ' - ' + self.address
+
 
 # Create your models here.
 class Student(models.Model):
