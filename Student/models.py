@@ -137,8 +137,6 @@ class Apartment(models.Model):
     initial_cost = models.IntegerField(null=True, blank=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __str__(self):
-        return self.location.city + ' - ' + self.address
 
 
 # Create your models here.
@@ -435,8 +433,7 @@ class BudgetItemsUniversity(models.Model):
     users_id = models.CharField(max_length=100, null=True, blank=True)
     transactions = models.JSONField(null=True, blank=True)
 
-    def __str__(self):
-        return self.users_id + " - " + self.category
+
 
 
 # Model for all Modules
