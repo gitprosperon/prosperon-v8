@@ -332,7 +332,19 @@ def add_rental(request):
         print(current_all_transactions)
         current_all_transactions.append(new_packaged_transaction)
         print(current_all_transactions)
+        decision_id = post['decision_id']
         student_model.save()
+        comp_anytime = student_model.completedAnytimeDecisions
+        if comp_anytime == None:
+            student_model.completedAnytimeDecisions = decision_id
+            student_model.save()
+        else:
+            new = comp_anytime.split(",")
+            new.append(decision_id)
+            new = (str(new)).replace("'", '').replace("[", "").replace("]", "").replace(" ", "")
+            student_model.completedAnytimeDecisions = new
+            print('new: ', student_model.completedAnytimeDecisions)
+            student_model.save()
 
 
 
@@ -511,6 +523,18 @@ def add_account(request):
                     new = {"events": full_life_path}
                     student_model.life_path = new
                     student_model.save()
+                    print('its all saved')
+                    comp_anytime = student_model.completedAnytimeDecisions
+                    if comp_anytime == None:
+                        student_model.completedAnytimeDecisions = decision_id
+                        student_model.save()
+                    else:
+                        new = comp_anytime.split(",")
+                        new.append(decision_id)
+                        new = (str(new)).replace("'", '').replace("[", "").replace("]", "").replace(" ", "")
+                        student_model.completedAnytimeDecisions = new
+                        print('new: ', student_model.completedAnytimeDecisions)
+                        student_model.save()
 
             return redirect(f'/university/anytime-decision-handeler/{decision_id}')
 
@@ -534,6 +558,9 @@ def anytime_decision_handeler(request, id):
             new = (str(new)).replace("'", '').replace("[", "").replace("]", "").replace(" ", "")
             student_model.completedAnytimeDecisions = new
             print('new: ', student_model.completedAnytimeDecisions)
+            student_model.save()
+            student_model.save()
+            student_model.save()
             student_model.save()
 
         # Adding points for anytime decision

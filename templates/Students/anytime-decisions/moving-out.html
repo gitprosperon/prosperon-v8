@@ -159,7 +159,7 @@ if (citySearch.name === 'already') {
             <input type="hidden"  id="effect-monthly-cost-input" name="cost-later" value="2">
             <input type="hidden"  id="anytime-transaction-title" name="transactiontitle" value="Rent Payment">
 
-            <a href="{% url 'Students:anytime-handeler' id %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
+            <a href="{% url 'Students:dashboard' %}" class="next-btn" id="applyBtn" style="display: none">Add</a>
         </form>
     </div>
     {% endif %}
@@ -189,6 +189,7 @@ function test123(){
           action: "post",
           title: apartment_title,
           type: "Rental",
+          decision_id: '{{ id }}',
           the_address: address,
           city: city,
           costNow: costNow,
