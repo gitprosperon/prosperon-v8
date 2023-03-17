@@ -195,23 +195,23 @@ def addAllApartments(request):
         for apartment in first_apartments:
             print('the apartment: ', apartment[0].title)
             if apartment[1] == '1':
-                cost = round((location.average_rent) * 12)
+                cost = round((location.average_rent * .9) * 12)
                 initial = round((cost / 12) * 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '2':
-                cost = round((location.average_rent * 1.1) * 12)
+                cost = round((location.average_rent * 1) * 12)
                 initial = round((cost / 12) * 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '3':
-                cost = round((location.average_rent * .7) * 12)
-                initial = round(((cost / 12) * 2) / 2)
+                cost = round((location.average_rent * 1.2) * 12)
+                initial = round(((cost / 12) / 2) * 2)
                 print(initial)
                 print(cost)
             if apartment[1] == '4':
-                cost = round((location.average_rent * .9) * 12)
-                initial = round(((cost / 12) * 2) / 3)
+                cost = round((location.average_rent * 1.4) * 12)
+                initial = round(((cost / 12) / 3) * 2)
                 print(initial)
                 print(cost)
 

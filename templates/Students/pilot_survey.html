@@ -5,14 +5,14 @@
 {% block content %}
 <body style="padding: 0px; margin: 0px">
 <div class="alert-page-wrapper" style="height: 91vh">
-    <div class="alert-page-container" id="offers" style="margin-top: 0px;display: block; min-width: auto; max-width: none">
+    <div class="alert-page-container" id="offers" style="margin-top: 0px;display: block; min-width: auto; max-width: none; height: 80vh">
       <p class="alert-box-title" style="padding-bottom: 5px">Thank you for completing the pilot!</p>
         <p class="subheader" style="padding-bottom: 5px">Please fill out the survey below</p>
 
-<iframe src="https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_73Ssr4NJF0qEQdM" height="800px" width="600px"> </iframe>
+<iframe src="https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_73Ssr4NJF0qEQdM" height="75%" width="800px"> </iframe>
 
-<div class="button-wrapper">
-        <a href="{% url 'Students:dashboard' %}" class="next-btn">Return to Dashboard</a>
+<div class="button-wrapper" style="justify-content: center">
+        <a href="{% url 'Students:dashboard' %}" class="next-btn" style="width: 300px">Return to Dashboard</a>
     </div>
 
     </div>
