@@ -56,7 +56,7 @@
                 </div>
 
 
-                <div class="input-container">
+                <div class="input-container" style="display: none">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Gender</label><br>
                     <select style="margin-bottom: 20px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="gender" form="info-form">
                         <option value="{% if gender %}{{ gender }}{% endif %}">{% if gender %}{{ gender }}{% endif %}</option>
@@ -68,7 +68,7 @@
                     </select>
 
                 </div>
-                <div class="input-container">
+                <div class="input-container" style="display: none">
                     <label for="name" class="field-label" style="font-family: Poppins; font-size: 18px">Ethnicity</label><br>
                     <select style="margin-bottom: 40px; font-size: 18px; color: #1c2126; font-family: Poppins" id="cars" class="text-field" name="ethnicity" form="info-form">
                         <option value="{% if ethnicity %}{{ ethnicity }}{% endif %}">{% if ethnicity %}{{ ethnicity }}{% endif %}</option>

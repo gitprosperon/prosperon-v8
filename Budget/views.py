@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
-from .models import Goal, BudgetItems
+from .models import Goal, BudgetItems, BudgetUsers
 import json
 import environ
 from Accounts.models import Account
 from Budget.models import BankAccount, MonthlySummary
 import requests
-from .forms import UpdateChangedTransactions
+from .forms import UpdateChangedTransactions, AddBudgetForm
 import random
 from .plaid_integrations import plaid_get_Transactions, plaid_get_account_balance
+from .functions import package_transaction
+import datetime as dt
 
 # creating env object
 env = environ.Env()
@@ -101,6 +103,24 @@ def oauth(request):
     return render(request, 'Budget/oauth.html')
 
 
+def refresh(request):
+    user = request.user
+    if user.is_active and user.has_budget == True:
+        account = Account.objects.filter(pk=request.user.pk)
+        user_id = account.model.get_user_id(self=user)
+        changed_transactions = account.model.get_changed_transactions(self=user)
+        bank_accounts = BankAccount.objects.filter(users_id=user_id)
+        budget_user = BudgetUsers.objects.get(users_id=user_id)
+
+        # Getting account balances
+        balance = plaid_get_account_balance(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5')
+        budget_user.checking_savings_total = float(balance['accounts'][0]['balances']['available'])
+        budget_user.save()
+        return redirect('/budget/dashboard')
+
+
+    return render(request, 'Budget/dashboard.html')
+
 
 # Budget Dashboard
 def budget_dashboard(request):
@@ -110,7 +130,24 @@ def budget_dashboard(request):
         user_id = account.model.get_user_id(self=user)
         changed_transactions = account.model.get_changed_transactions(self=user)
         bank_accounts = BankAccount.objects.filter(users_id=user_id)
+        budget_user = BudgetUsers.objects.get(users_id=user_id)
+
+        # Basic information
+        checking_and_savings_total = budget_user.checking_savings_total
+        credit_avaliable = budget_user.credit_avaliable
+        investments = budget_user.investments
+        loans = budget_user.loans
+        real_estate = budget_user.real_estate
+
+        print(checking_and_savings_total)
+
         goals = Goal.objects.filter(users_id=user_id)
+        current_date = dt.date.today()
+
+        start_date = str(current_date).split("-")
+        start_date[1] = '01'
+        start_date = '-'.join(start_date)
+        print(start_date)
 
         print(bank_accounts)
         # receiving AJAX from changing a transaction category
@@ -121,23 +158,26 @@ def budget_dashboard(request):
 
 
 
-    # Getting transactions for account
-    transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5')
-    print(transactions)
-
-    # Getting account balances
-    balance = plaid_get_account_balance(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5')
-    test_balance = (balance['accounts'][0]['balances']['available'])
+        # Getting transactions for account
+        transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5', start_date, current_date)
+        print(transactions)
 
 
 
-    context = {
-        'transaction_data': transactions,
-        'test_balance': test_balance,
-    }
 
-    return render(request, 'Budget/dashboard.html', context=context)
 
+        context = {
+            'transaction_data': transactions,
+            'checking_and_savings_total': checking_and_savings_total,
+            'credit_avaliable': credit_avaliable,
+            'investments': investments,
+            'loans': loans,
+            'real_estate': real_estate
+        }
+
+        return render(request, 'Budget/dashboard.html', context=context)
+    else:
+        return render(request, 'MainWebsite/index.html')
 
 # Goals page
 def goals(request):
@@ -211,41 +251,61 @@ def transactions(request):
     if user.is_active and user.has_budget == True:
         account = Account.objects.filter(pk=request.user.pk)
         user_id = account.model.get_user_id(self=user)
-        bank_accounts = BankAccount.objects.filter(users_id=user_id)
-        monthly_summary = MonthlySummary.objects.filter(users_id=user_id)[:1]
-        monthly_summary = monthly_summary.get().all_transactions
-        monthly_summary = json.dumps(monthly_summary)
+        budget_categories = BudgetItems.objects.filter(users_id=user_id)
+        current_date = dt.date.today()
 
+        start_date = str(current_date).split("-")
+        start_date[1] = '01'
+        start_date = '-'.join(start_date)
+        print(start_date)
 
-        # Getting all accounts
-        for account in bank_accounts:
-            token = account.token
-            url = 'https://development.plaid.com/transactions/get'
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            data = {
-                "client_id": F"{CLIENT_ID}",
-                "secret": f"{SECRET}",
-                "access_token": f'{token}',
-                "start_date": "2022-11-02",
-                "end_date": "2023-11-04",
-                "options": {
-                    "count": 3,
-                    "offset": 0
-                }
-            }
+        print(current_date)
 
-            # Transaction data received
-            transaction_data = requests.post(url, headers=headers, json=data).json()['transactions']
+        transactions = plaid_get_Transactions(CLIENT_ID, SECRET, 'access-development-d608958f-5ab7-402e-a8b8-0231a53a5ce5', f'{start_date}', f'{current_date}')
 
 
 
+        print(transactions[0])
+        if request.POST.get('action') == 'post':
+            print(request.POST)
+            public = request.POST
+            transaction_category = public['test']
+            print(transaction_category)
+            transaction_id = public['the_id']
+            amount = public['amount']
+            tran_title = public['tran_title']
+            transaction_date = public['transaction_date']
+            print(transaction_date)
+
+            amount = float(amount)
+            category1 = public['category1']
+            category2 = public['category2']
+            transaction_budget = public['budget']
+
+            new_packaged_transaction = package_transaction(tran_title, transaction_budget, amount, category1, category2, transaction_id)
 
 
+            print(transaction_budget)
+
+            # Specific budget category
+            budget_category = BudgetItems.objects.get(budget_id=transaction_budget, users_id=user_id)
+            print('budget category: ', budget_category.title)
+
+            all_budgets = BudgetItems.objects.filter(users_id=user_id)
+            for budg in all_budgets:
+                category_transactions = budg.transactions['categoryTransactions']
+                # Checking to see if the transaction has been in any budgets
+                if (transaction_budget == budg.budget_id):
+                    category_transactions.append(new_packaged_transaction)
+                    budget_category.transactions['categoryTransactions'] = category_transactions
+                    budget_category.current_total = budget_category.current_total + amount
+                    budget_category.save()
+                    print('its saved')
 
         context = {
-            'transaction_data': transaction_data
+            'transaction_data': transactions,
+            'budget_categories': budget_categories,
+
         }
 
         return render(request, 'Budget/transactions.html', context=context)
@@ -261,12 +321,15 @@ def budget(request):
         account = Account.objects.filter(pk=request.user.pk)
         user_id = account.model.get_user_id(self=user)
         all_budgets = BudgetItems.objects.filter(users_id=user_id)
+        budget_user = BudgetUsers.objects.get(users_id=user_id)
+
+        average_income = budget_user.average_income
         print(all_budgets)
 
 
         context = {
             'all_budgets': all_budgets,
-
+            'average_income': average_income,
         }
 
         return render(request, 'Budget/budget.html', context=context)
@@ -274,8 +337,77 @@ def budget(request):
     else:
         return render(request, 'MainWebsite/index.html')
 
+
+# Page for adding budget
 def add_budget(request):
-    return render(request, 'Budget/add_budget.html')
+    user = request.user
+    if user.is_active and user.has_budget == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        user_id = student_user.model.get_user_id(self=user)
+        if request.method == 'POST':
+            form = AddBudgetForm(request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.user = request.user
+                instance.transactions = {"categoryTransactions": []}
+                instance.budget_id = random.randint(100000000, 90000000000)
+                instance.users_id = user_id
+                instance.current_total = 0
+                instance.save()
+                return redirect('/budget/dashboard')
+        else:
+            form = AddBudgetForm(request.POST)
+
+        context = {
+            'form': form
+        }
+        return render(request, 'Budget/add_budget.html', context=context)
+    else:
+        return render(request, 'MainWebsite/index.html')
+
+# Page for viewing budget
+def view_budget(request, id):
+    user = request.user
+    if user.is_active and user.has_budget == True:
+        student_user = Account.objects.filter(pk=request.user.pk)
+        student_budget = BudgetItems.objects.get(budget_id=id)
+        budget_categories = student_budget.CATAGORIES
+
+        budget_purchases = student_budget.transactions
+
+        if request.method == 'POST':
+            post = request.POST
+            print(request.POST)
+            budget_name = post['budget-title']
+            budget_max = post['Max-amount']
+            budget_category = post['Category']
+            print('changed budget')
+
+            for categories in budget_categories:
+                if categories[0] == budget_category:
+                    num = categories[0]
+
+            student_budget.title = budget_name
+            student_budget.total_per_month = budget_max
+            student_budget.category = num
+            student_budget.save()
+
+            return redirect('/budget/budget')
+
+        context = {
+            'student_budget': student_budget,
+            'budget_categories': budget_categories,
+            'budget_purchases': budget_purchases
+        }
+        return render(request, 'Budget/view_budget.html', context=context)
+
+# Page for deleting budget
+def delete_budget(request, id):
+    user = request.user
+    if user.is_active and user.has_budget == True:
+        student_budget = BudgetItems.objects.get(budget_id=id)
+        student_budget.delete()
+        return redirect('/budget/budget')
 
 
 # accounts page

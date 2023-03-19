@@ -53,6 +53,9 @@ def register_budget_account(request):
             user.set_password(user.password)
             user.last_login = datetime.datetime.now()
             user.save()
+
+
+
             djlogin(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('/budget/accounts')
 

@@ -1,25 +1,41 @@
-{% extends 'Budget/base.html' %}
+{% extends 'budget/base.html' %}
 {% load static %}
 {% block content %}
 <body>
-  <div class="background-blur wf-section">
-    <div class="_60-padding">
+  <div class="background-blur wf-section" style="height: 91vh">
+    <div class="_60-padding" style="display: flex; width: auto; padding-bottom: 20px; padding-top: 30px; padding-right: 40px; padding-left: 40px; justify-content: center; margin-top: 0px">
       <div class="w-layout-grid grid-2 hidden-calendar no-calendar">
         <div id="w-node-d23ddebc-133a-9942-783f-c833d5e69064-2acd809f">
           <h1 class="heading-36">Add a Budget Category</h1>
           <div class="pop-up-form-wrapper">
             <div class="w-form">
-              <form id="wf-form-add-goal" name="wf-form-add-goal" data-name="add goal" method="get" class="add-budget-form"><input type="text" class="input budget w-input" maxlength="256" name="name" data-name="Name" placeholder="Title" id="name"><input type="number" class="input budget w-input" maxlength="256" name="Max-amount" data-name="Max amount" placeholder="Max Amount" id="Max-amount" required=""><select id="Category" name="Category" data-name="Category" class="select-field-2 w-select">
-                  <option value="">Category</option>
-                  <option value="First">First choice</option>
-                  <option value="Second">Second choice</option>
-                  <option value="Third">Third choice</option>
-                </select>
-                <div class="_18-poppins">Color</div>
-                <div class="color-selector"><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="color-button w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label><label class="w-radio"><input type="radio" id="Red" name="Color-Select" value="Red" data-name="Color Select" class="w-form-formradioinput w-radio-input"><span class="radio-button-label w-form-label" for="Red">Radio</span></label></div>
+              <form id="add-budget" name="wf-form-add-budget" data-name="add budget" method="post" class="add-budget-form">
+                  {% csrf_token %}
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Budget Title</label>
+                  {{ form.title }}
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Max Per Month</label>
+                  {{ form.total_per_month }}
+                  <label style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px">Type</label>
+                  {{ form.category }}
+
+                <div class="_18-poppins" style="font-weight: 500; font-family: Poppins; color: #142450; font-size: 14px; display: none">Color</div>
+                <div class="color-selector" style="display: none">
+
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+                    <div class="color-choice" style="padding: 10px; background-color: red; border-radius: 10px"></div>
+
+                </div>
                 <div class="save-back-wrapper no-padding">
-                    <a href="#" class="back-button" style="text-decoration: none">Back</a><input type="submit" value="Add" data-wait="Please wait..." class="add-budget" style="text-decoration: none; color: white; font-family: Poppins; border: none">                </div>
+                  <a href="{% url 'Budget:add-budget' %}" class="back-btn" style="text-decoration: none; align-items: center; align-content: center">Back</a>
+                    <input type="submit" value="Add" data-wait="Please wait..." class="next-btn" style="text-decoration: none; color: white">
+                </div>
               </form>
+
+
               <div class="w-form-done">
                 <div>Thank you! Your submission has been received!</div>
               </div>
@@ -202,8 +218,6 @@
   </div>
 
 </body>
-
-
 
 
 {% endblock %}

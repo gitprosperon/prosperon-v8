@@ -1,5 +1,6 @@
 from django import forms
 from.models import Account
+from Budget.models import BudgetUsers
 from Student.models import Student
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -43,6 +44,14 @@ class AddStudentAccountForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = ['user_id_number', 'course_progress', 'student_email', 'life_path', 'total_points', 'last_points_added']
+
+
+# Form for adding budget model
+class addBudgetAccountForm(forms.ModelForm):
+
+    class Meta:
+        model = BudgetUsers
+        fields = '__all__'
 
 # Form for adding profile image
 class AddProfileImage(forms.ModelForm):
