@@ -192,10 +192,13 @@ def budgeting_step2(request):
 
                 if spender_category == '0':
                     spender_type = 'Spender'
+                    pack = {"title": f"You are a Spender. Spenders are individuals who enjoy the finer things in life and love to indulge in their wants. They don't like to be held back by budget constraints and are willing to spend money to enjoy the things they desire. Spenders enjoy dining out at fancy restaurants and purchasing high-end products. They are not worried about saving money and believe in living life to the fullest."}
                 elif spender_category == '1':
                     spender_type = 'Planner'
+                    pack = {"title": f"You are a Planner. Planners are individuals who are more calculated in their spending. They make sure that their finances are well organized and planned for. Planners take the time to budget their expenses and account for every dollar they spend. They prioritize their goals and desires and are willing to spend money on things that they have planned for. Planners are not afraid to spend money, but they always make sure that it is within their means."}
                 elif spender_category == '2':
                     spender_type = 'Frugal'
+                    pack = {"title": f"You are a Frugal. Frugal individuals are highly conscious of their spending and tend to be very cautious about their expenses. They prioritize their needs over their wants and don't believe in indulging themselves in unnecessary luxuries. They often go for the most affordable options and prefer to save money wherever possible. Frugal individuals are very mindful of their budget and keep track of every penny they spend."}
                 else:
                     spender_type = ''
 
@@ -205,7 +208,8 @@ def budgeting_step2(request):
                 newModule.module_url = 'budgeting'
                 newModule.module = UniversityModule.objects.get(module_title='Budgeting')
                 newModule.users_id = user_id
-                packaged = {"module_results":  [{"title":  "Budgeting Unlocked"}, {"title":  "Simulation Unlocked"}, {"title": f"You are a {spender_type}"}]}
+                packaged = {"module_results":  [{"title":  "Budgeting Unlocked"}, {"title":  "Simulation Unlocked"}]}
+                packaged['module_results'].append(pack)
                 newModule.module_results = packaged
                 newModule.save()
                 print('sent234')
