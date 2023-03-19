@@ -721,7 +721,7 @@
                                     </div>
                                     <div class="_18px _10-top _14 apartment-padding">{{ property.bed }} bed /{{ property.bath }}  bath</div>
                                     <div class="_18px _10-top _14 apartment-padding amount">$ {{ property.costNow|intcomma }} </div>
-                                    <input type="hidden" value="{{ property.monthly_rent }}">
+                                    <input type="hidden" value="{{ property.monthly_rent|intcomma }}">
                                     {% csrf_token %}
                                     <input type="hidden" value="{{ property.month_purchased }}">
                                 </div>
@@ -740,8 +740,8 @@
                                             <h1 class="city">{{ apartment.location }}</h1>
                                         </div>
                                         <div class="_18px _10-top _14 apartment-padding">{{ apartment.bedrooms }} bed /{{ apartment.bathrooms }}  bath</div>
-                                        <div class="_18px _10-top _14 apartment-padding amount">$ {{ apartment.yearly_cost|div:12|intcomma }} / month</div>
-                                        <input type="hidden" value="{{ apartment.yearly_cost|div:12|intcomma }}">
+                                        <div class="_18px _10-top _14 apartment-padding amount">$ {{ apartment.yearly_cost|div:12|floatformat:"2" }} / month</div>
+                                        <input type="hidden" value="{{ apartment.yearly_cost|div:12|floatformat:"2" }}">
                                         {% csrf_token %}
 
                                     </div>
