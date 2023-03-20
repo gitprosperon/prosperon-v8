@@ -99,13 +99,13 @@
         </div>
 
         {% if request.path == '/university/budget/accounts' %}
-        <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
+        <a href="{% url 'Students:accounts' %}" class="side-bar-link">
             <div class="nav-link selected" style="border-radius: 20px"><img src="{% static 'images/icons/icons_ub_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text selected">Bank Accounts</h1>
             </div>
         </a>
         {% else %}
-        <a href="{% url 'Budget:budget-accounts' %}" class="side-bar-link">
+        <a href="{% url 'Students:accounts' %}" class="side-bar-link">
             <div class="nav-link" style="border-radius: 20px"><img src="{% static 'images/icons/icons_uw_bank.svg' %}" loading="lazy" width="46" alt="" class="nav-link-image">
               <h1 class="nav-link-text">Bank Accounts</h1>
             </div>
