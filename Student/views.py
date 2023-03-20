@@ -59,6 +59,9 @@ def dashboard(request):
         scenario_display = student_model.scenario_display
         todays_date = datetime.date.today()
         total_months_completed = student_model.total_months_completed
+        birth_year = student_model.birth_year
+        testtt = int(current_year) - int(birth_year) - 1
+
 
 
         # Checking to see if there is a job
@@ -73,7 +76,7 @@ def dashboard(request):
         else:
             profile_image = ''
         age = student_model.age
-        new_age = int(total_months_completed // 12) + int(age)
+        new_age = testtt
         location = student_model.location
         total_points = student_model.total_points
         last_points = student_model.last_points_added
