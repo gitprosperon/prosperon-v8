@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views, functions
-from . import howy_views, howy_form_handeler
 
 
 app_name = "Budget"
@@ -40,8 +39,5 @@ urlpatterns = [
     # Plaid Authentication
     path('o-auth', views.oauth, name='budget-oauth'),
 
-    # Page for Howy
-    path('howy', howy_views.handle_input, name='howy-chat'),
-    path('howy-handler', howy_form_handeler.handle_sent_forms, name='howy-handler'),
 
 ]
