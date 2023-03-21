@@ -24,7 +24,7 @@
               <div>
                 <div class="total-imcome-container">
                   <h1 class="_14px">Monthly Income:</h1>
-                  <h1 class="_24px medium green">$<span>{{ average_income|intcomma }}</span></h1>
+                  <h1 class="_24px medium green">$<span></span></h1>
                 </div>
                 <div class="graph-container">
 
@@ -35,73 +35,7 @@
 
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                <script>
 
-                {% if all_budgets %}
-
-                    var allBudgetItemCategories = []
-                    var allBudgetCosts = []
-
-                    {% for budget in all_budgets %}
-
-                    var budgetItemCategory = '{{ budget.title }}'
-                    var budgetCosts = {{ budget.total_per_month }}
-
-                    allBudgetItemCategories.push(budgetItemCategory)
-                    allBudgetCosts.push(budgetCosts)
-
-                {% endfor %}
-
-                    console.log(allBudgetItemCategories)
-                    console.log(allBudgetCosts)
-
-
-                {% endif %}
-
-
-                const ctx = document.getElementById('myChart');
-                const chart = ctx.getContext('2d')
-
-
-
-
-
-                  new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                      labels: allBudgetItemCategories,
-                      datasets: [{
-                        label: '$ allocated',
-                        data: allBudgetCosts,
-                        borderWidth: 1
-                      }]
-                    },
-                    options: {
-                      scales: {
-                        y: {
-                            display: false,
-                        },
-                        x: {
-                            display: false,
-
-                        }
-                      }
-                    }
-                  });
-
-
-                 const canvasWidth = ctx.width;
-                const canvasHeight = ctx.height;
-                const centerX = canvasWidth / 2;
-                const centerY = canvasHeight / 2;
-
-                  ctx.font = '24px Arial';
-                  ctx.textAlign = 'center';
-                  ctx.textBaseline = 'middle';
-                  ctx.fillText('Hello, World!', centerX, centerY);
-
-
-                </script>
 
                 </div>
                 <div class="overvoew-btm">
@@ -135,8 +69,8 @@
                 <h1 class="page-section-header">My Budget Categories</h1>
               </div>
 
-                {% for budget in all_budgets %}
-                <a href="{% url 'Budget:view-budget' budget.budget_id %}" style="text-decoration: none">
+
+                <a href="" style="text-decoration: none">
                 <div class="_20-padding-container budget-container" >
 
                     <div class="left-card">
@@ -203,7 +137,6 @@
                     </div>
               </div>
             </a>
-                {% endfor %}
 
 
               <a href="{% url 'Budget:add-budget' %}" class="no-text-decoration">
